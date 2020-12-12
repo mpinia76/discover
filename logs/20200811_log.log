@@ -1,0 +1,38 @@
+2020-08-11 16:09:38 --> UPDATE gasto SET 
+								estado=1,
+								orden_pago=nro_orden,
+								factura_nro='00000008',
+								factura_punto_venta='0003',
+								factura_tipo='A',
+								factura_orden='B',
+								remito_nro='',
+								recibo_nro='',
+								iva_27='0',
+								iva_21='5025.6',
+								iva_10_5='0',
+								otra_alicuota='0',
+								perc_iva='0',
+								perc_iibb_bsas='0',
+								perc_iibb_caba='0',
+								exento='0'
+								
+							WHERE id=3200
+2020-08-11 16:11:07 --> UPDATE gasto SET 
+								estado=1,
+								orden_pago=nro_orden,
+								factura_nro='00000008',
+								factura_punto_venta='0003',
+								factura_tipo='A',
+								factura_orden='B',
+								remito_nro='',
+								recibo_nro='',
+								iva_27='0',
+								iva_21='5025.6',
+								iva_10_5='0',
+								otra_alicuota='0',
+								perc_iva='0',
+								perc_iibb_bsas='0',
+								perc_iibb_caba='0',
+								exento='0'
+								
+							WHERE id=3200

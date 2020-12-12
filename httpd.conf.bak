@@ -1,0 +1,886 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#   Direct modifications to the Apache configuration file may be lost upon subsequent regeneration of the       #
+#   configuration file. To have modifications retained, all modifications must be checked into the              #
+#   configuration system by running:                                                                            #
+#       /usr/local/cpanel/bin/apache_conf_distiller --update                                                    #
+#   To see if your changes will be conserved, regenerate the Apache configuration file by running:              #
+#       /usr/local/cpanel/bin/build_apache_conf                                                                 #
+#   and check the configuration file for your alterations. If your changes have been ignored, then they will    #
+#   need to be added directly to their respective template files.                                               #
+#                                                                                                               #
+#   It is also possible to add custom directives to the various "Include" files loaded by this httpd.conf       #
+#   For detailed instructions on using Include files and the apache_conf_distiller with the new configuration   #
+#   system refer to the documentation at: https://go.cpanel.net/customdirectives                                #
+#                                                                                                               #
+#   This configuration file was built from the following templates:                                             #
+#     /var/cpanel/templates/apache2/main.default                                                                #
+#     /var/cpanel/templates/apache2/main.local                                                                  #
+#     /var/cpanel/templates/apache2/vhost.default                                                               #
+#     /var/cpanel/templates/apache2/vhost.local                                                                 #
+#     /var/cpanel/templates/apache2/ssl_vhost.default                                                           #
+#     /var/cpanel/templates/apache2/ssl_vhost.local                                                             #
+#                                                                                                               #
+#  Templates with the '.local' extension will be preferred over templates with the '.default' extension.        #
+#  The only template updated by the apache_conf_distiller is main.default.                                      #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+
+Include "/usr/local/apache/conf/includes/pre_main_global.conf"
+Include "/usr/local/apache/conf/includes/pre_main_2.conf"
+
+
+
+LoadModule bwlimited_module modules/mod_bwlimited.so
+
+
+
+
+Include "/usr/local/apache/conf/php.conf"
+Include "/usr/local/apache/conf/includes/errordocument.conf"
+Include "/usr/local/apache/conf/includes/account_suspensions.conf"
+Include "/usr/local/apache/conf/modsec2.conf"
+
+
+ErrorLog "logs/error_log"
+ScriptAliasMatch ^/?controlpanel/?$ /usr/local/cpanel/cgi-sys/redirect.cgi
+ScriptAliasMatch ^/?cpanel/?$ /usr/local/cpanel/cgi-sys/redirect.cgi
+ScriptAliasMatch ^/?kpanel/?$ /usr/local/cpanel/cgi-sys/redirect.cgi
+ScriptAliasMatch ^/?securecontrolpanel/?$ /usr/local/cpanel/cgi-sys/sredirect.cgi
+ScriptAliasMatch ^/?securecpanel/?$ /usr/local/cpanel/cgi-sys/sredirect.cgi
+ScriptAliasMatch ^/?securewhm/?$ /usr/local/cpanel/cgi-sys/swhmredirect.cgi
+ScriptAliasMatch ^/?webmail(/.*|/?)$ /usr/local/cpanel/cgi-sys/wredirect.cgi
+ScriptAliasMatch ^/?whm/?$ /usr/local/cpanel/cgi-sys/whmredirect.cgi
+ScriptAliasMatch ^/Autodiscover/Autodiscover.xml /usr/local/cpanel/cgi-sys/autodiscover.cgi
+ScriptAliasMatch ^/autodiscover/autodiscover.xml /usr/local/cpanel/cgi-sys/autodiscover.cgi
+
+RewriteEngine on
+AddType text/html .shtml
+
+Alias /bandwidth /usr/local/bandmin/htdocs/
+Alias /img-sys /usr/local/cpanel/img-sys/
+Alias /mailman/archives /usr/local/cpanel/3rdparty/mailman/archives/public/
+Alias /pipermail /usr/local/cpanel/3rdparty/mailman/archives/public/
+Alias /sys_cpanel /usr/local/cpanel/sys_cpanel/
+
+
+ScriptAlias /cgi-sys /usr/local/cpanel/cgi-sys/
+ScriptAlias /mailman /usr/local/cpanel/3rdparty/mailman/cgi-bin/
+
+
+<Directory "/">
+    AllowOverride All
+    Options ExecCGI FollowSymLinks IncludesNOEXEC Indexes SymLinksIfOwnerMatch
+</Directory>
+
+<Directory "/home/villagepampa">
+    Options Includes Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Require all granted
+    Order allow,deny
+    Allow from all
+
+</Directory>
+
+<Files ~ "^error_log$">
+    Order allow,deny
+    Deny from all
+
+    Satisfy All
+</Files>
+
+<Files ".ht*">
+    Require all denied
+</Files>
+
+<IfModule log_config_module>
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+
+    CustomLog "logs/access_log" common
+
+    <IfModule logio_module>
+        LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
+
+    </IfModule>
+
+</IfModule>
+
+<IfModule alias_module>
+    ScriptAlias /cgi-bin/ "/usr/local/apache/cgi-bin/"
+
+</IfModule>
+
+<Directory "/usr/local/apache/cgi-bin">
+    AllowOverride None
+    Options All
+    Require all granted
+</Directory>
+
+<IfModule mime_module>
+    TypesConfig conf/mime.types
+    AddType application/x-compress .Z
+    AddType application/x-gzip .gz .tgz
+
+</IfModule>
+
+<IfModule prefork.c>
+    Mutex default mpm-accept
+
+</IfModule>
+
+<IfModule mod_log_config.c>
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+    LogFormat "%{Referer}i -> %U" referer
+    LogFormat "%{User-agent}i" agent
+
+    CustomLog logs/access_log common
+
+</IfModule>
+
+<IfModule itk.c>
+    Mutex default mpm-accept
+
+</IfModule>
+
+<IfModule worker.c>
+    Mutex default mpm-accept
+
+</IfModule>
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#   Direct modifications to the Apache configuration file may be lost upon subsequent regeneration of the       #
+#   configuration file. To have modifications retained, all modifications must be checked into the              #
+#   configuration system by running:                                                                            #
+#       /usr/local/cpanel/bin/apache_conf_distiller --update                                                    #
+#   To see if your changes will be conserved, regenerate the Apache configuration file by running:              #
+#       /usr/local/cpanel/bin/build_apache_conf                                                                 #
+#   and check the configuration file for your alterations. If your changes have been ignored, then they will    #
+#   need to be added directly to their respective template files.                                               #
+#                                                                                                               #
+#   It is also possible to add custom directives to the various "Include" files loaded by this httpd.conf       #
+#   For detailed instructions on using Include files and the apache_conf_distiller with the new configuration   #
+#   system refer to the documentation at: https://go.cpanel.net/customdirectives                                #
+#                                                                                                               #
+#   This configuration file was built from the following templates:                                             #
+#     /var/cpanel/templates/apache2/main.default                                                                #
+#     /var/cpanel/templates/apache2/main.local                                                                  #
+#     /var/cpanel/templates/apache2/vhost.default                                                               #
+#     /var/cpanel/templates/apache2/vhost.local                                                                 #
+#     /var/cpanel/templates/apache2/ssl_vhost.default                                                           #
+#     /var/cpanel/templates/apache2/ssl_vhost.local                                                             #
+#                                                                                                               #
+#  Templates with the '.local' extension will be preferred over templates with the '.default' extension.        #
+#  The only template updated by the apache_conf_distiller is main.default.                                      #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+
+PidFile /usr/local/apache/logs/httpd.pid
+Listen 0.0.0.0:80
+User nobody
+Group nobody
+ExtendedStatus On
+ServerAdmin marcos.pinero1976@gmail.com
+ServerName s97-74-232-175.secureserver.net
+LogLevel warn
+
+# These can be set in WHM under 'Apache Global Configuration'
+Timeout 300
+TraceEnable Off
+ServerSignature Off
+ServerTokens ProductOnly
+FileETag None
+StartServers 5
+<IfModule prefork.c>
+MinSpareServers 5
+MaxSpareServers 10
+</IfModule>
+ServerLimit 256
+MaxRequestWorkers 150
+MaxConnectionsPerChild 10000
+KeepAlive On
+KeepAliveTimeout 5
+MaxKeepAliveRequests 100
+
+RewriteEngine on
+RewriteMap LeechProtect prg:/usr/local/cpanel/bin/leechprotect
+Mutex file:/usr/local/apache/logs rewrite-map
+
+# Set UserDir directory for all virtual hosts, except..
+UserDir public_html
+# when the following two modules are loaded
+<IfModule mod_ruid2.c>
+UserDir disabled
+</IfModule>
+<IfModule mpm_itk.c>
+UserDir disabled
+</IfModule>
+
+# DirectoryIndex is set via the WHM -> Service Configuration -> Apache Setup -> DirectoryIndex Priority
+DirectoryIndex index.html.var index.htm index.html index.shtml index.xhtml index.wml index.perl index.pl index.plx index.ppl index.cgi index.jsp index.js index.jp index.php4 index.php3 index.php index.phtml default.htm default.html home.htm index.php5 Default.html Default.htm home.html
+
+# SSLCipherSuite can be set in WHM under 'Apache Global Configuration'
+SSLCipherSuite ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA
+SSLProtocol All -SSLv2 -SSLv3
+SSLPassPhraseDialog  builtin
+
+SSLUseStapling on
+SSLStaplingCache shmcb:/usr/local/apache/logs/stapling_cache_shmcb(256000)
+SSLStaplingReturnResponderErrors off
+SSLStaplingFakeTryLater off # since SSLStaplingReturnResponderErrors is off this being on doesn't make much sense
+SSLStaplingErrorCacheTimeout 60
+SSLSessionCache shmcb:/usr/local/apache/logs/ssl_gcache_data_shmcb(1024000)
+
+SSLSessionCacheTimeout  300
+Mutex                   file:/usr/local/apache/logs ssl-cache
+SSLRandomSeed startup builtin
+SSLRandomSeed connect builtin
+
+
+
+    Listen 0.0.0.0:443
+    AddType application/x-x509-ca-cert .crt
+    AddType application/x-pkcs7-crl .crl
+
+
+AddHandler cgi-script .cgi .pl .plx .ppl .perl
+AddHandler server-parsed .shtml
+AddType text/html .shtml
+AddType application/x-tar .tgz
+AddType text/vnd.wap.wml .wml
+AddType image/vnd.wap.wbmp .wbmp
+AddType text/vnd.wap.wmlscript .wmls
+AddType application/vnd.wap.wmlc .wmlc
+AddType application/vnd.wap.wmlscriptc .wmlsc
+
+<Location /whm-server-status>
+    SetHandler server-status
+    Order deny,allow
+    Deny from all
+    
+    Allow from 127.0.0.1 ::1
+    
+</Location>
+
+
+
+# SUEXEC is supported
+
+Include "/usr/local/apache/conf/includes/account_suspensions.conf"
+Include "/usr/local/apache/conf/includes/pre_virtualhost_global.conf"
+Include "/usr/local/apache/conf/includes/pre_virtualhost_2.conf"
+
+# DO NOT EDIT. AUTOMATICALLY GENERATED.  IF YOU NEED TO MAKE A CHANGE PLEASE USE THE INCLUDE FILES.
+# DO NOT EDIT. AUTOMATICALLY GENERATED.  IF YOU NEED TO MAKE A CHANGE PLEASE USE THE INCLUDE FILES.
+
+
+# Default vhost for unbound IPs
+
+<VirtualHost *>
+    ServerName s97-74-232-175.secureserver.net
+    DocumentRoot /usr/local/apache/htdocs
+    ServerAdmin marcos.pinero1976@gmail.com
+    <IfModule mod_suphp.c>
+        suPHP_UserGroup nobody nobody
+    </IfModule>
+</VirtualHost>
+
+# DO NOT EDIT. AUTOMATICALLY GENERATED.  IF YOU NEED TO MAKE A CHANGE PLEASE USE THE INCLUDE FILES.
+
+<VirtualHost 166.62.56.47:80>
+  ServerName discoverushuaiatest.com.ar
+  ServerAlias mail.discoverushuaiatest.com.ar www.discoverushuaiatest.com.ar
+  DocumentRoot /home/discoverushuaia/public_html
+  ServerAdmin webmaster@discoverushuaiatest.com.ar
+  UseCanonicalName Off
+  CustomLog /usr/local/apache/domlogs/discoverushuaiatest.com.ar combined
+  <IfModule log_config_module>
+    <IfModule logio_module>
+      CustomLog /usr/local/apache/domlogs/discoverushuaiatest.com.ar-bytes_log "%{%s}t %I .\n%{%s}t %O ."
+    </IfModule>
+  </IfModule>
+  ## User discoverushuaia # Needed for Cpanel::ApacheConf
+  <IfModule userdir_module>
+    <IfModule !mpm_itk.c>
+      <IfModule !ruid2_module>
+        UserDir disabled
+        UserDir enabled discoverushuaia 
+      </IfModule>
+    </IfModule>
+  </IfModule>
+
+  # Enable backwards compatible Server Side Include expression parser for Apache versions >= 2.4.
+  # To selectively use the newer Apache 2.4 expression parser, disable SSILegacyExprParser in
+  # the user's .htaccess file.  For more information, please read:
+  #    http://httpd.apache.org/docs/2.4/mod/mod_include.html#ssilegacyexprparser
+  <IfModule include_module>
+    <Directory "/home/discoverushuaia/public_html">
+      SSILegacyExprParser On
+    </Directory>
+  </IfModule>
+
+  <IfModule suphp_module>
+    suPHP_UserGroup discoverushuaia discoverushuaia
+  </IfModule>
+  <IfModule !mod_disable_suexec.c>
+    <IfModule !mod_ruid2.c>
+      SuexecUserGroup discoverushuaia discoverushuaia
+    </IfModule>
+  </IfModule>
+  <IfModule ruid2_module>
+    RMode config
+    RUidGid discoverushuaia discoverushuaia
+  </IfModule>
+  <IfModule mpm_itk.c>
+    # For more information on MPM ITK, please read:
+    #   http://mpm-itk.sesse.net/
+    AssignUserID discoverushuaia discoverushuaia
+  </IfModule>
+
+  <IfModule alias_module>
+    ScriptAlias /cgi-bin/ /home/discoverushuaia/public_html/cgi-bin/
+  </IfModule>
+
+  # To customize this VirtualHost use an include file at the following location
+  # Include "/usr/local/apache/conf/userdata/std/2_4/discoverushuaia/discoverushuaiatest.com.ar/*.conf"
+</VirtualHost>
+
+# DO NOT EDIT. AUTOMATICALLY GENERATED.  IF YOU NEED TO MAKE A CHANGE PLEASE USE THE INCLUDE FILES.
+
+<VirtualHost 198.12.151.59:80>
+  ServerName sistemadiscover.com.ar
+  ServerAlias mail.sistemadiscover.com.ar www.sistemadiscover.com.ar
+  DocumentRoot /home/sistemadiscover/public_html
+  ServerAdmin webmaster@sistemadiscover.com.ar
+  UseCanonicalName Off
+  CustomLog /usr/local/apache/domlogs/sistemadiscover.com.ar combined
+  <IfModule log_config_module>
+    <IfModule logio_module>
+      CustomLog /usr/local/apache/domlogs/sistemadiscover.com.ar-bytes_log "%{%s}t %I .\n%{%s}t %O ."
+    </IfModule>
+  </IfModule>
+  ## User sistemadiscover # Needed for Cpanel::ApacheConf
+  <IfModule userdir_module>
+    <IfModule !mpm_itk.c>
+      <IfModule !ruid2_module>
+        UserDir disabled
+        UserDir enabled sistemadiscover 
+      </IfModule>
+    </IfModule>
+  </IfModule>
+
+  # Enable backwards compatible Server Side Include expression parser for Apache versions >= 2.4.
+  # To selectively use the newer Apache 2.4 expression parser, disable SSILegacyExprParser in
+  # the user's .htaccess file.  For more information, please read:
+  #    http://httpd.apache.org/docs/2.4/mod/mod_include.html#ssilegacyexprparser
+  <IfModule include_module>
+    <Directory "/home/sistemadiscover/public_html">
+      SSILegacyExprParser On
+    </Directory>
+  </IfModule>
+
+  <IfModule suphp_module>
+    suPHP_UserGroup sistemadiscover sistemadiscover
+  </IfModule>
+  <IfModule !mod_disable_suexec.c>
+    <IfModule !mod_ruid2.c>
+      SuexecUserGroup sistemadiscover sistemadiscover
+    </IfModule>
+  </IfModule>
+  <IfModule ruid2_module>
+    RMode config
+    RUidGid sistemadiscover sistemadiscover
+  </IfModule>
+  <IfModule mpm_itk.c>
+    # For more information on MPM ITK, please read:
+    #   http://mpm-itk.sesse.net/
+    AssignUserID sistemadiscover sistemadiscover
+  </IfModule>
+
+  <IfModule alias_module>
+    ScriptAlias /cgi-bin/ /home/sistemadiscover/public_html/cgi-bin/
+  </IfModule>
+
+  # To customize this VirtualHost use an include file at the following location
+  # Include "/usr/local/apache/conf/userdata/std/2_4/sistemadiscover/sistemadiscover.com.ar/*.conf"
+</VirtualHost>
+
+# DO NOT EDIT. AUTOMATICALLY GENERATED.  IF YOU NEED TO MAKE A CHANGE PLEASE USE THE INCLUDE FILES.
+
+
+# DO NOT EDIT. AUTOMATICALLY GENERATED.  IF YOU NEED TO MAKE A CHANGE PLEASE USE THE INCLUDE FILES.
+
+# SSL
+# DO NOT EDIT. AUTOMATICALLY GENERATED.  IF YOU NEED TO MAKE A CHANGE PLEASE USE THE INCLUDE FILES.
+
+<VirtualHost 166.62.56.47:443>
+  ServerName discoverushuaiatest.com.ar
+  ServerAlias mail.discoverushuaiatest.com.ar www.discoverushuaiatest.com.ar cpanel.discoverushuaiatest.com.ar webdisk.discoverushuaiatest.com.ar webmail.discoverushuaiatest.com.ar
+  DocumentRoot /home/discoverushuaia/public_html
+  ServerAdmin webmaster@discoverushuaiatest.com.ar
+  UseCanonicalName Off
+  CustomLog /usr/local/apache/domlogs/discoverushuaiatest.com.ar-ssl_log combined
+  <IfModule log_config_module>
+    <IfModule logio_module>
+      CustomLog /usr/local/apache/domlogs/discoverushuaiatest.com.ar-bytes_log "%{%s}t %I .\n%{%s}t %O ."
+    </IfModule>
+  </IfModule>
+  ## User discoverushuaia # Needed for Cpanel::ApacheConf
+  <IfModule userdir_module>
+    <IfModule !mpm_itk.c>
+      <IfModule !ruid2_module>
+        UserDir disabled
+        UserDir enabled discoverushuaia 
+      </IfModule>
+    </IfModule>
+  </IfModule>
+
+  # Enable backwards compatible Server Side Include expression parser for Apache versions >= 2.4.
+  # To selectively use the newer Apache 2.4 expression parser, disable SSILegacyExprParser in
+  # the user's .htaccess file.  For more information, please read:
+  #    http://httpd.apache.org/docs/2.4/mod/mod_include.html#ssilegacyexprparser
+  <IfModule include_module>
+    <Directory "/home/discoverushuaia/public_html">
+      SSILegacyExprParser On
+    </Directory>
+  </IfModule>
+
+  <IfModule suphp_module>
+    suPHP_UserGroup discoverushuaia discoverushuaia
+  </IfModule>
+  <IfModule !mod_disable_suexec.c>
+    <IfModule !ruid2_module>
+      SuexecUserGroup discoverushuaia discoverushuaia
+    </IfModule>
+  </IfModule>
+  <IfModule ruid2_module>
+    RMode config
+    RUidGid discoverushuaia discoverushuaia
+  </IfModule>
+  <IfModule mpm_itk.c>
+    # For more information on MPM ITK, please read:
+    #   http://mpm-itk.sesse.net/
+    AssignUserID discoverushuaia discoverushuaia
+  </IfModule>
+
+  <IfModule alias_module>
+    ScriptAlias /cgi-bin/ /home/discoverushuaia/public_html/cgi-bin/
+  </IfModule>
+  <IfModule ssl_module>
+    SSLEngine on
+    
+    SSLCertificateFile /var/cpanel/ssl/apache_tls/discoverushuaiatest.com.ar/combined
+
+    SSLUseStapling off
+    SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
+    <Directory "/home/discoverushuaia/public_html/cgi-bin">
+      SSLOptions +StdEnvVars
+    </Directory>
+  </IfModule>
+
+  # To customize this VirtualHost use an include file at the following location
+  # Include "/usr/local/apache/conf/userdata/ssl/2_4/discoverushuaia/discoverushuaiatest.com.ar/*.conf"
+
+    <IfModule headers_module>
+    RequestHeader set X-HTTPS 1
+    </IfModule>
+
+    RewriteEngine On
+            RewriteCond %{HTTP_HOST} =cpanel.discoverushuaiatest.com.ar [OR]
+            RewriteCond %{HTTP_HOST} =cpanel.discoverushuaiatest.com.ar:443
+
+        RewriteRule ^/(.*) /___proxy_subdomain_cpanel/$1 [PT]
+		ProxyPass "/___proxy_subdomain_cpanel" "http://127.0.0.1:2082" max=1 retry=0
+            RewriteCond %{HTTP_HOST} =webdisk.discoverushuaiatest.com.ar [OR]
+            RewriteCond %{HTTP_HOST} =webdisk.discoverushuaiatest.com.ar:443
+
+        RewriteRule ^/(.*) /___proxy_subdomain_webdisk/$1 [PT]
+		ProxyPass "/___proxy_subdomain_webdisk" "http://127.0.0.1:2077" max=1 retry=0
+            RewriteCond %{HTTP_HOST} =webmail.discoverushuaiatest.com.ar [OR]
+            RewriteCond %{HTTP_HOST} =webmail.discoverushuaiatest.com.ar:443
+
+        RewriteRule ^/(.*) /___proxy_subdomain_webmail/$1 [PT]
+		ProxyPass "/___proxy_subdomain_webmail" "http://127.0.0.1:2095" max=1 retry=0
+</VirtualHost>
+
+# DO NOT EDIT. AUTOMATICALLY GENERATED.  IF YOU NEED TO MAKE A CHANGE PLEASE USE THE INCLUDE FILES.
+
+<VirtualHost 198.12.151.59:443>
+  ServerName sistemadiscover.com.ar
+  ServerAlias mail.sistemadiscover.com.ar www.sistemadiscover.com.ar webmail.sistemadiscover.com.ar webdisk.sistemadiscover.com.ar cpanel.sistemadiscover.com.ar
+  DocumentRoot /home/sistemadiscover/public_html
+  ServerAdmin webmaster@sistemadiscover.com.ar
+  UseCanonicalName Off
+  CustomLog /usr/local/apache/domlogs/sistemadiscover.com.ar-ssl_log combined
+  <IfModule log_config_module>
+    <IfModule logio_module>
+      CustomLog /usr/local/apache/domlogs/sistemadiscover.com.ar-bytes_log "%{%s}t %I .\n%{%s}t %O ."
+    </IfModule>
+  </IfModule>
+  ## User sistemadiscover # Needed for Cpanel::ApacheConf
+  <IfModule userdir_module>
+    <IfModule !mpm_itk.c>
+      <IfModule !ruid2_module>
+        UserDir disabled
+        UserDir enabled sistemadiscover 
+      </IfModule>
+    </IfModule>
+  </IfModule>
+
+  # Enable backwards compatible Server Side Include expression parser for Apache versions >= 2.4.
+  # To selectively use the newer Apache 2.4 expression parser, disable SSILegacyExprParser in
+  # the user's .htaccess file.  For more information, please read:
+  #    http://httpd.apache.org/docs/2.4/mod/mod_include.html#ssilegacyexprparser
+  <IfModule include_module>
+    <Directory "/home/sistemadiscover/public_html">
+      SSILegacyExprParser On
+    </Directory>
+  </IfModule>
+
+  <IfModule suphp_module>
+    suPHP_UserGroup sistemadiscover sistemadiscover
+  </IfModule>
+  <IfModule !mod_disable_suexec.c>
+    <IfModule !ruid2_module>
+      SuexecUserGroup sistemadiscover sistemadiscover
+    </IfModule>
+  </IfModule>
+  <IfModule ruid2_module>
+    RMode config
+    RUidGid sistemadiscover sistemadiscover
+  </IfModule>
+  <IfModule mpm_itk.c>
+    # For more information on MPM ITK, please read:
+    #   http://mpm-itk.sesse.net/
+    AssignUserID sistemadiscover sistemadiscover
+  </IfModule>
+
+  <IfModule alias_module>
+    ScriptAlias /cgi-bin/ /home/sistemadiscover/public_html/cgi-bin/
+  </IfModule>
+  <IfModule ssl_module>
+    SSLEngine on
+    
+    SSLCertificateFile /var/cpanel/ssl/apache_tls/sistemadiscover.com.ar/combined
+
+    SSLUseStapling off
+    SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
+    <Directory "/home/sistemadiscover/public_html/cgi-bin">
+      SSLOptions +StdEnvVars
+    </Directory>
+  </IfModule>
+
+  # To customize this VirtualHost use an include file at the following location
+  # Include "/usr/local/apache/conf/userdata/ssl/2_4/sistemadiscover/sistemadiscover.com.ar/*.conf"
+
+    <IfModule headers_module>
+    RequestHeader set X-HTTPS 1
+    </IfModule>
+
+    RewriteEngine On
+            RewriteCond %{HTTP_HOST} =cpanel.sistemadiscover.com.ar [OR]
+            RewriteCond %{HTTP_HOST} =cpanel.sistemadiscover.com.ar:443
+
+        RewriteRule ^/(.*) /___proxy_subdomain_cpanel/$1 [PT]
+		ProxyPass "/___proxy_subdomain_cpanel" "http://127.0.0.1:2082" max=1 retry=0
+            RewriteCond %{HTTP_HOST} =webdisk.sistemadiscover.com.ar [OR]
+            RewriteCond %{HTTP_HOST} =webdisk.sistemadiscover.com.ar:443
+
+        RewriteRule ^/(.*) /___proxy_subdomain_webdisk/$1 [PT]
+		ProxyPass "/___proxy_subdomain_webdisk" "http://127.0.0.1:2077" max=1 retry=0
+            RewriteCond %{HTTP_HOST} =webmail.sistemadiscover.com.ar [OR]
+            RewriteCond %{HTTP_HOST} =webmail.sistemadiscover.com.ar:443
+
+        RewriteRule ^/(.*) /___proxy_subdomain_webmail/$1 [PT]
+		ProxyPass "/___proxy_subdomain_webmail" "http://127.0.0.1:2095" max=1 retry=0
+</VirtualHost>
+
+# DO NOT EDIT. AUTOMATICALLY GENERATED.  IF YOU NEED TO MAKE A CHANGE PLEASE USE THE INCLUDE FILES.
+
+
+
+
+
+
+
+#NameVirtualHost 97.74.232.175:80
+<VirtualHost 97.74.232.175:80>
+  ServerName villagedelaspampas.com.ar
+  ServerAlias mail.villagedelaspampas.com.ar www.villagedelaspampas.com.ar
+  DocumentRoot /home/villagepampa/public_html
+  ServerAdmin webmaster@villagedelaspampas.com.ar
+  UseCanonicalName Off
+  CustomLog /usr/local/apache/domlogs/villagedelaspampas.com.ar combined
+  <IfModule log_config_module>
+    <IfModule logio_module>
+      CustomLog /usr/local/apache/domlogs/villagedelaspampas.com.ar-bytes_log "%{%s}t %I .\n%{%s}t %O ."
+    </IfModule>
+  </IfModule>
+  ## User villagepampa # Needed for Cpanel::ApacheConf
+  <IfModule userdir_module>
+    <IfModule !mpm_itk.c>
+      <IfModule !ruid2_module>
+        UserDir disabled
+        UserDir enabled villagepampa 
+      </IfModule>
+    </IfModule>
+  </IfModule>
+
+  # Enable backwards compatible Server Side Include expression parser for Apache versions >= 2.4.
+  # To selectively use the newer Apache 2.4 expression parser, disable SSILegacyExprParser in
+  # the user's .htaccess file.  For more information, please read:
+  #    http://httpd.apache.org/docs/2.4/mod/mod_include.html#ssilegacyexprparser
+  <IfModule include_module>
+    <Directory "/home/villagepampa/public_html">
+      SSILegacyExprParser On
+    </Directory>
+  </IfModule>
+
+  <IfModule suphp_module>
+    suPHP_UserGroup villagepampa villagepampa
+  </IfModule>
+  <IfModule !mod_disable_suexec.c>
+    <IfModule !mod_ruid2.c>
+      SuexecUserGroup villagepampa villagepampa
+    </IfModule>
+  </IfModule>
+  <IfModule ruid2_module>
+    RMode config
+    RUidGid villagepampa villagepampa
+  </IfModule>
+  <IfModule mpm_itk.c>
+    # For more information on MPM ITK, please read:
+    #   http://mpm-itk.sesse.net/
+    AssignUserID villagepampa villagepampa
+  </IfModule>
+
+  <IfModule alias_module>
+    ScriptAlias /cgi-bin/ /home/villagepampa/public_html/cgi-bin/
+  </IfModule>
+
+  # To customize this VirtualHost use an include file at the following location
+  # Include "/usr/local/apache/conf/userdata/std/2_4/villagepampa/villagedelaspampas.com.ar/*.conf"
+</VirtualHost>
+#NameVirtualHost 97.74.232.175:443
+<VirtualHost 97.74.232.175:443>
+  ServerName villagedelaspampas.com.ar
+  ServerAlias mail.villagedelaspampas.com.ar www.villagedelaspampas.com.ar webdisk.villagedelaspampas.com.ar webmail.villagedelaspampas.com.ar cpanel.villagedelaspampas.com.ar
+  DocumentRoot /home/villagepampa/public_html
+  ServerAdmin webmaster@villagedelaspampas.com.ar
+  UseCanonicalName Off
+  CustomLog /usr/local/apache/domlogs/villagedelaspampas.com.ar-ssl_log combined
+  <IfModule log_config_module>
+    <IfModule logio_module>
+      CustomLog /usr/local/apache/domlogs/villagedelaspampas.com.ar-bytes_log "%{%s}t %I .\n%{%s}t %O ."
+    </IfModule>
+  </IfModule>
+  ## User villagepampa # Needed for Cpanel::ApacheConf
+  <IfModule userdir_module>
+    <IfModule !mpm_itk.c>
+      <IfModule !ruid2_module>
+        UserDir disabled
+        UserDir enabled villagepampa 
+      </IfModule>
+    </IfModule>
+  </IfModule>
+
+  # Enable backwards compatible Server Side Include expression parser for Apache versions >= 2.4.
+  # To selectively use the newer Apache 2.4 expression parser, disable SSILegacyExprParser in
+  # the user's .htaccess file.  For more information, please read:
+  #    http://httpd.apache.org/docs/2.4/mod/mod_include.html#ssilegacyexprparser
+  <IfModule include_module>
+    <Directory "/home/villagepampa/public_html">
+      SSILegacyExprParser On
+    </Directory>
+  </IfModule>
+
+  <IfModule suphp_module>
+    suPHP_UserGroup villagepampa villagepampa
+  </IfModule>
+  <IfModule !mod_disable_suexec.c>
+    <IfModule !ruid2_module>
+      SuexecUserGroup villagepampa villagepampa
+    </IfModule>
+  </IfModule>
+  <IfModule ruid2_module>
+    RMode config
+    RUidGid villagepampa villagepampa
+  </IfModule>
+  <IfModule mpm_itk.c>
+    # For more information on MPM ITK, please read:
+    #   http://mpm-itk.sesse.net/
+    AssignUserID villagepampa villagepampa
+  </IfModule>
+
+  <IfModule alias_module>
+    ScriptAlias /cgi-bin/ /home/villagepampa/public_html/cgi-bin/
+  </IfModule>
+  <IfModule ssl_module>
+    SSLEngine on
+    
+    SSLCertificateFile /var/cpanel/ssl/apache_tls/villagedelaspampas.com.ar/combined
+
+    SSLUseStapling off
+    SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
+    <Directory "/home/villagepampa/public_html/cgi-bin">
+      SSLOptions +StdEnvVars
+    </Directory>
+  </IfModule>
+
+  # To customize this VirtualHost use an include file at the following location
+  # Include "/usr/local/apache/conf/userdata/ssl/2_4/villagepampa/villagedelaspampas.com.ar/*.conf"
+
+    <IfModule headers_module>
+    RequestHeader set X-HTTPS 1
+    </IfModule>
+
+    RewriteEngine On
+            RewriteCond %{HTTP_HOST} =cpanel.villagedelaspampas.com.ar [OR]
+            RewriteCond %{HTTP_HOST} =cpanel.villagedelaspampas.com.ar:443
+
+        RewriteRule ^/(.*) /___proxy_subdomain_cpanel/$1 [PT]
+		ProxyPass "/___proxy_subdomain_cpanel" "http://127.0.0.1:2082" max=1 retry=0
+            RewriteCond %{HTTP_HOST} =webdisk.villagedelaspampas.com.ar [OR]
+            RewriteCond %{HTTP_HOST} =webdisk.villagedelaspampas.com.ar:443
+
+        RewriteRule ^/(.*) /___proxy_subdomain_webdisk/$1 [PT]
+		ProxyPass "/___proxy_subdomain_webdisk" "http://127.0.0.1:2077" max=1 retry=0
+            RewriteCond %{HTTP_HOST} =webmail.villagedelaspampas.com.ar [OR]
+            RewriteCond %{HTTP_HOST} =webmail.villagedelaspampas.com.ar:443
+
+        RewriteRule ^/(.*) /___proxy_subdomain_webmail/$1 [PT]
+		ProxyPass "/___proxy_subdomain_webmail" "http://127.0.0.1:2095" max=1 retry=0
+</VirtualHost>
+# CPANEL/WHM/WEBMAIL/WEBDISK PROXY SUBDOMAINS
+
+<VirtualHost 166.62.56.47:80 198.12.151.59:80 97.74.232.175:80 127.0.0.1:80>
+    ServerName s97-74-232-175.secureserver.net
+
+    ServerAlias cpanel.* whm.* webmail.* webdisk.* cpcalendars.* cpcontacts.*
+
+    DocumentRoot /usr/local/apache/htdocs
+    ServerAdmin marcos.pinero1976@gmail.com
+    <IfModule mod_suphp.c>
+        suPHP_UserGroup nobody nobody
+    </IfModule>
+    <Proxy "*">
+        <IfModule mod_security2.c>
+            SecRuleEngine Off
+        </IfModule>
+    </Proxy>
+    RewriteEngine On
+
+    ScriptAlias /.cpanel/dcv /usr/local/cpanel/cgi-priv/get_local.cgi
+            RewriteCond %{REQUEST_URI} ^/[0-9]+\..+\.cpaneldcv$ [OR]
+            RewriteCond %{REQUEST_URI} ^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$ 
+        RewriteRule ^ /.cpanel/dcv [PT]
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^cpanel.
+    RewriteRule ^/(.*) /___proxy_subdomain_cpanel/$1 [PT]
+    ProxyPass "/___proxy_subdomain_cpanel" "http://127.0.0.1:2082" max=1 retry=0
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^webmail.
+    RewriteRule ^/(.*) /___proxy_subdomain_webmail/$1 [PT]
+    ProxyPass "/___proxy_subdomain_webmail" "http://127.0.0.1:2095" max=1 retry=0
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^whm.
+    RewriteRule ^/(.*) /___proxy_subdomain_whm/$1 [PT]
+    ProxyPass "/___proxy_subdomain_whm" "http://127.0.0.1:2086" max=1 retry=0
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^webdisk.
+    RewriteRule ^/(.*) /___proxy_subdomain_webdisk/$1 [PT]
+    ProxyPass "/___proxy_subdomain_webdisk" "http://127.0.0.1:2077" max=1 retry=0
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^cpcalendars.
+    RewriteRule ^/(.*) /___proxy_subdomain_cpcalendars/$1 [PT]
+    ProxyPass "/___proxy_subdomain_cpcalendars" "http://127.0.0.1:2079" max=1 retry=0
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^cpcontacts.
+    RewriteRule ^/(.*) /___proxy_subdomain_cpcontacts/$1 [PT]
+    ProxyPass "/___proxy_subdomain_cpcontacts" "http://127.0.0.1:2079" max=1 retry=0
+
+    UseCanonicalName Off
+</VirtualHost>
+
+
+
+
+
+
+# CPANEL/WHM/WEBMAIL/WEBDISK PROXY SUBDOMAINS
+
+<VirtualHost 166.62.56.47:443 198.12.151.59:443 97.74.232.175:443 127.0.0.1:443>
+    ServerName s97-74-232-175.secureserver.net
+
+    ServerAlias cpanel.* whm.* webmail.* webdisk.* cpcalendars.* cpcontacts.*
+
+    DocumentRoot /usr/local/apache/htdocs
+    ServerAdmin marcos.pinero1976@gmail.com
+    <IfModule mod_suphp.c>
+        suPHP_UserGroup nobody nobody
+    </IfModule>
+    <Proxy "*">
+        <IfModule mod_security2.c>
+            SecRuleEngine Off
+        </IfModule>
+    </Proxy>
+    RewriteEngine On
+    <IfModule mod_ssl.c>
+        SSLEngine on
+            SSLCertificateFile /var/cpanel/ssl/cpanel/cpanel.pem
+        SSLCertificateKeyFile /var/cpanel/ssl/cpanel/cpanel.pem
+        SSLCertificateChainFile /var/cpanel/ssl/cpanel/cpanel.pem
+        SSLUseStapling Off
+    
+    </IfModule>
+
+    <IfModule mod_headers.c>
+        RequestHeader set X-HTTPS 1
+    </IfModule>
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^cpanel.
+    RewriteRule ^/(.*) /___proxy_subdomain_cpanel/$1 [PT]
+    ProxyPass "/___proxy_subdomain_cpanel" "http://127.0.0.1:2082" max=1 retry=0
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^webmail.
+    RewriteRule ^/(.*) /___proxy_subdomain_webmail/$1 [PT]
+    ProxyPass "/___proxy_subdomain_webmail" "http://127.0.0.1:2095" max=1 retry=0
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^whm.
+    RewriteRule ^/(.*) /___proxy_subdomain_whm/$1 [PT]
+    ProxyPass "/___proxy_subdomain_whm" "http://127.0.0.1:2086" max=1 retry=0
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^webdisk.
+    RewriteRule ^/(.*) /___proxy_subdomain_webdisk/$1 [PT]
+    ProxyPass "/___proxy_subdomain_webdisk" "http://127.0.0.1:2077" max=1 retry=0
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^cpcalendars.
+    RewriteRule ^/(.*) /___proxy_subdomain_cpcalendars/$1 [PT]
+    ProxyPass "/___proxy_subdomain_cpcalendars" "http://127.0.0.1:2079" max=1 retry=0
+
+    RewriteCond %{HTTP_HOST} !^s97-74-232-175.secureserver.net$
+    RewriteCond %{HTTP_HOST} ^cpcontacts.
+    RewriteRule ^/(.*) /___proxy_subdomain_cpcalendars/$1 [PT]
+    ProxyPass "/___proxy_subdomain_cpcalendars" "http://127.0.0.1:2079" max=1 retry=0
+
+    UseCanonicalName Off
+</VirtualHost>
+
+
+
+Include "/usr/local/apache/conf/includes/post_virtualhost_global.conf"
+Include "/usr/local/apache/conf/includes/post_virtualhost_2.conf"
+
+
+# DO NOT EDIT. AUTOMATICALLY GENERATED.  IF YOU NEED TO MAKE A CHANGE PLEASE USE THE INCLUDE FILES.

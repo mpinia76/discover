@@ -1,0 +1,28 @@
+2020-03-05 13:45:49 --> INSERT INTO gasto (nro_orden,fecha,fecha_vencimiento,rubro_id,subrubro_id,proveedor,descripcion,remito_nro,recibo_nro,factura_nro,factura_tipo,factura_orden,monto,user_id,estado,iva_27,iva_21,iva_10_5,otra_alicuota,origen,razon,cuit, factura_punto_venta,perc_iva,perc_iibb_bsas,perc_iibb_caba,exento)
+				VALUES (3036,'2020-03-05','2020-03-05',1,'1','21','','','','00000008','A','B','28957.01',1,0,0,5025.6,0,0,'Servicios','Piña S.A.','20251748056','0003',0,0,0,0)
+2020-03-05 9:48:17 --> UPDATE gasto SET 
+					fecha='2020-03-05',
+					fecha_vencimiento='2020-03-05',
+					rubro_id=1,
+					subrubro_id=1,
+					proveedor='21',
+					descripcion='',
+					factura_nro='00000008',
+					factura_tipo='A',
+					factura_punto_venta='0003',
+					factura_orden='B',
+					remito_nro='',
+					recibo_nro='',
+					monto='28957.01',
+					iva_27='0',
+					iva_21='5025.6',
+					iva_10_5='0',
+					otra_alicuota='0',
+					origen='Servicios',
+					razon='Piña S.A.',
+					cuit='20251748056',
+					perc_iva='0',
+					perc_iibb_bsas='0',
+					perc_iibb_caba='0',
+					exento='0'
+				WHERE id=3200

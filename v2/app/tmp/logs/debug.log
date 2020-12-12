@@ -1,0 +1,2822 @@
+2016-08-24 12:29:16 Debug: Notice (8): Undefined index: ReservaCobro in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservaCobrosController.php, line 244]
+Trace:
+ReservaCobrosController::eliminar() - APP\Controller\ReservaCobrosController.php, line 244
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 12:45:27 Debug: Notice (8): Undefined index: reserva_id in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservaCobrosController.php, line 246]
+Trace:
+ReservaCobrosController::eliminar() - APP\Controller\ReservaCobrosController.php, line 246
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 12:45:27 Debug: Notice (8): Indirect modification of overloaded property ReservaCobrosController::$Reserva has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservaCobrosController.php, line 246]
+Trace:
+ReservaCobrosController::eliminar() - APP\Controller\ReservaCobrosController.php, line 246
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 12:46:09 Debug: Notice (8): Undefined index: reserva_id in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservaCobrosController.php, line 246]
+Trace:
+ReservaCobrosController::eliminar() - APP\Controller\ReservaCobrosController.php, line 246
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 12:46:10 Debug: Notice (8): Indirect modification of overloaded property ReservaCobrosController::$Reserva has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservaCobrosController.php, line 246]
+Trace:
+ReservaCobrosController::eliminar() - APP\Controller\ReservaCobrosController.php, line 246
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 12:48:13 Debug: Notice (8): Indirect modification of overloaded property ReservaCobrosController::$Reserva has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservaCobrosController.php, line 246]
+Trace:
+ReservaCobrosController::eliminar() - APP\Controller\ReservaCobrosController.php, line 246
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 12:48:52 Debug: Notice (8): Indirect modification of overloaded property ReservaCobrosController::$Reserva has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservaCobrosController.php, line 246]
+Trace:
+ReservaCobrosController::eliminar() - APP\Controller\ReservaCobrosController.php, line 246
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 12:52:05 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 13:12:37 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 13:14:47 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 13:15:57 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 13:16:57 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 13:17:19 Debug: Notice (8): Undefined index: cobro_id in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservaCobrosController.php, line 273]
+Trace:
+ReservaCobrosController::eliminarCobro() - APP\Controller\ReservaCobrosController.php, line 273
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 13:17:19 Debug: Notice (8): Undefined index: cobro_id in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservaCobrosController.php, line 290]
+Trace:
+ReservaCobrosController::eliminarCobro() - APP\Controller\ReservaCobrosController.php, line 290
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 13:18:39 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 13:38:13 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 13:41:45 Debug: Notice (8): Undefined variable: cobro_id in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservaCobrosController.php, line 149]
+Trace:
+ReservaCobrosController::detalle() - APP\Controller\ReservaCobrosController.php, line 149
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-24 13:47:02 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 11:35:17 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 11:36:51 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 11:37:19 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 12:06:05 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 216]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 216
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 12:22:42 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 216]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 216
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 12:35:29 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 217]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 217
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 12:38:16 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 218]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 218
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 12:41:22 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 218]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 218
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 12:43:41 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 12:44:04 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 218]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 218
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 12:44:06 Debug: Strict (2048): Declaration of CajaMovimiento::beforeSave() should be compatible with Model::beforeSave($options = Array) in [D:\Documents\Mis Webs\pampa_online\v2\app\Model\CajaMovimiento.php, line 18]
+Trace:
+App::load() - CORE\Cake\Core\App.php, line 558
+App::load() - CORE\Cake\Core\App.php, line 558
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+ClassRegistry::init() - CORE\Cake\Utility\ClassRegistry.php, line 136
+Controller::loadModel() - CORE\Cake\Controller\Controller.php, line 734
+ReservaCobrosController::eliminarCobro() - APP\Controller\ReservaCobrosController.php, line 278
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 12:44:39 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 12:45:12 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:03:41 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:03:41 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:03:44 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 221]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 221
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:22:09 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:22:09 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:22:22 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:22:31 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 221]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 221
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:41:23 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:41:23 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:41:33 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:41:43 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 221]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 221
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:43:56 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 13:44:04 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 14:30:24 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 14:30:24 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 14:30:34 Debug: Notice (8): Undefined index: interes in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 174]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 174
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-25 14:30:45 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 221]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 221
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-30 14:23:33 Debug: Notice (8): Undefined variable: extra in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Reservas\editar.ctp, line 75]
+Trace:
+include - APP\View\Reservas\editar.ctp, line 75
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-30 14:24:55 Debug: Notice (8): Undefined variable: extra in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Reservas\editar.ctp, line 75]
+Trace:
+include - APP\View\Reservas\editar.ctp, line 75
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 12:52:17 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 222]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 222
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 222]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 222
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 88]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 88
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-08-31 14:58:31 Debug: Notice (8): Undefined variable: devoluciones in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 90]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 90
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-01 21:35:48 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 236]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 236
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-01 23:41:14 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 236]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 236
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:20:26 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:21:37 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:25:39 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:26:35 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:27:03 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:27:26 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:28:30 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:28:50 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:29:07 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:29:40 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:30:09 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:30:32 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:53 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 288]
+Trace:
+InformesController::ventas_financiero() - APP\Controller\InformesController.php, line 288
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:53 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 288]
+Trace:
+InformesController::ventas_financiero() - APP\Controller\InformesController.php, line 288
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:32:54 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:31 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 164]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 164
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:31 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 164]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 164
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 189]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 189
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 00:53:55 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_economico.ctp, line 190]
+Trace:
+include - APP\View\Informes\ventas_economico.ctp, line 190
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:49:01 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:47 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 288]
+Trace:
+InformesController::ventas_financiero() - APP\Controller\InformesController.php, line 288
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:47 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 288]
+Trace:
+InformesController::ventas_financiero() - APP\Controller\InformesController.php, line 288
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:50:48 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:51:33 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:00 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:23 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 288]
+Trace:
+InformesController::ventas_financiero() - APP\Controller\InformesController.php, line 288
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:23 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 288]
+Trace:
+InformesController::ventas_financiero() - APP\Controller\InformesController.php, line 288
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:54:24 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:55:16 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:56:43 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:57:58 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:23 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 288]
+Trace:
+InformesController::ventas_financiero() - APP\Controller\InformesController.php, line 288
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:23 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 288]
+Trace:
+InformesController::ventas_financiero() - APP\Controller\InformesController.php, line 288
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:58:24 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 01:59:18 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 237]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 237
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:00:45 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:02:11 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:03:55 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:06:02 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:07:29 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:09:56 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 289]
+Trace:
+InformesController::ventas_financiero() - APP\Controller\InformesController.php, line 289
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 9 in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 289]
+Trace:
+InformesController::ventas_financiero() - APP\Controller\InformesController.php, line 289
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 1 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 2 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 3 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 4 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 5 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 6 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 7 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 8 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 10 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 11 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 39]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 39
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:10:13 Debug: Notice (8): Undefined offset: 12 in [D:\Documents\Mis Webs\pampa_online\v2\app\View\Informes\ventas_financiero.ctp, line 40]
+Trace:
+include - APP\View\Informes\ventas_financiero.ctp, line 40
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:11:32 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:13:04 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:14:43 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:16:56 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:18:38 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:20:30 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:22:23 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:24:09 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:26:29 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:28:39 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:43:55 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:49:11 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 02:58:41 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 03:04:06 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 238]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 238
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 03:11:38 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 239]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 239
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 03:25:23 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 239]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 239
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 03:27:29 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 239]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 239
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 12:12:13 Debug: Notice (8): Undefined variable: descuentos_tarjeta_posnets in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\InformesController.php, line 239]
+Trace:
+InformesController::ventas_economico() - APP\Controller\InformesController.php, line 239
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-02 12:57:48 Debug: Notice (8): Indirect modification of overloaded property ReservasController::$data has no effect in [D:\Documents\Mis Webs\pampa_online\v2\app\Controller\ReservasController.php, line 16]
+Trace:
+ReservasController::index() - APP\Controller\ReservasController.php, line 16
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 12:56:04 Debug: Strict (2048): Declaration of CajaMovimiento::beforeSave() should be compatible with Model::beforeSave($options = Array) in [D:\Documents\Mis Webs\pampa_online\v2\app\Model\CajaMovimiento.php, line 18]
+Trace:
+App::load() - CORE\Cake\Core\App.php, line 558
+App::load() - CORE\Cake\Core\App.php, line 558
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+ClassRegistry::init() - CORE\Cake\Utility\ClassRegistry.php, line 136
+CobroEfectivo::afterSave() - APP\Model\CobroEfectivo.php, line 15
+CakeEventManager::dispatch() - CORE\Cake\Event\CakeEventManager.php, line 244
+Model::save() - CORE\Cake\Model\Model.php, line 1746
+ReservaCobrosController::guardar() - APP\Controller\ReservaCobrosController.php, line 223
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:07:25 Debug: Strict (2048): Declaration of CajaMovimiento::beforeSave() should be compatible with Model::beforeSave($options = Array) in [D:\Documents\Mis Webs\pampa_online\v2\app\Model\CajaMovimiento.php, line 18]
+Trace:
+App::load() - CORE\Cake\Core\App.php, line 540
+App::load() - CORE\Cake\Core\App.php, line 540
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+ClassRegistry::init() - CORE\Cake\Utility\ClassRegistry.php, line 136
+CobroEfectivo::afterSave() - APP\Model\CobroEfectivo.php, line 15
+CakeEventManager::dispatch() - CORE\Cake\Event\CakeEventManager.php, line 244
+Model::save() - CORE\Cake\Model\Model.php, line 1746
+ReservaCobrosController::guardar() - APP\Controller\ReservaCobrosController.php, line 223
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:09:58 Debug: Notice (8): Undefined index:  in [D:\Documents\Mis Webs\pampa_online\v2\app\View\ReservaCobros\finalizar.ctp, line 91]
+Trace:
+include - APP\View\ReservaCobros\finalizar.ctp, line 91
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:10:17 Debug: Notice (8): Undefined index:  in [D:\Documents\Mis Webs\pampa_online\v2\app\View\ReservaCobros\finalizar.ctp, line 91]
+Trace:
+include - APP\View\ReservaCobros\finalizar.ctp, line 91
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:12:53 Debug: Strict (2048): Declaration of CajaMovimiento::beforeSave() should be compatible with Model::beforeSave($options = Array) in [D:\Documents\Mis Webs\pampa_online\v2\app\Model\CajaMovimiento.php, line 18]
+Trace:
+App::load() - CORE\Cake\Core\App.php, line 540
+App::load() - CORE\Cake\Core\App.php, line 540
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+ClassRegistry::init() - CORE\Cake\Utility\ClassRegistry.php, line 136
+CobroEfectivo::afterSave() - APP\Model\CobroEfectivo.php, line 15
+CakeEventManager::dispatch() - CORE\Cake\Event\CakeEventManager.php, line 244
+Model::save() - CORE\Cake\Model\Model.php, line 1746
+ReservaCobrosController::guardar() - APP\Controller\ReservaCobrosController.php, line 223
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:13:01 Debug: Strict (2048): Declaration of CajaMovimiento::beforeSave() should be compatible with Model::beforeSave($options = Array) in [D:\Documents\Mis Webs\pampa_online\v2\app\Model\CajaMovimiento.php, line 18]
+Trace:
+App::load() - CORE\Cake\Core\App.php, line 540
+App::load() - CORE\Cake\Core\App.php, line 540
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+ClassRegistry::init() - CORE\Cake\Utility\ClassRegistry.php, line 136
+Controller::loadModel() - CORE\Cake\Controller\Controller.php, line 734
+ReservaCobrosController::eliminarCobro() - APP\Controller\ReservaCobrosController.php, line 278
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:26:50 Debug: Notice (8): Undefined index:  in [D:\Documents\Mis Webs\pampa_online\v2\app\View\ReservaCobros\finalizar.ctp, line 129]
+Trace:
+include - APP\View\ReservaCobros\finalizar.ctp, line 129
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:26:57 Debug: Strict (2048): Declaration of CuentaMovimiento::beforeSave() should be compatible with Model::beforeSave($options = Array) in [D:\Documents\Mis Webs\pampa_online\v2\app\Model\CuentaMovimiento.php, line 12]
+Trace:
+App::load() - CORE\Cake\Core\App.php, line 558
+App::load() - CORE\Cake\Core\App.php, line 558
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+ClassRegistry::init() - CORE\Cake\Utility\ClassRegistry.php, line 136
+Controller::loadModel() - CORE\Cake\Controller\Controller.php, line 734
+ReservaCobrosController::eliminarCobro() - APP\Controller\ReservaCobrosController.php, line 286
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:33:24 Debug: Notice (8): Undefined index:  in [D:\Documents\Mis Webs\pampa_online\v2\app\View\ReservaCobros\finalizar.ctp, line 129]
+Trace:
+include - APP\View\ReservaCobros\finalizar.ctp, line 129
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:35:17 Debug: Strict (2048): Declaration of CuentaMovimiento::beforeSave() should be compatible with Model::beforeSave($options = Array) in [D:\Documents\Mis Webs\pampa_online\v2\app\Model\CuentaMovimiento.php, line 12]
+Trace:
+App::load() - CORE\Cake\Core\App.php, line 540
+App::load() - CORE\Cake\Core\App.php, line 540
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+ClassRegistry::init() - CORE\Cake\Utility\ClassRegistry.php, line 136
+Controller::loadModel() - CORE\Cake\Controller\Controller.php, line 734
+ReservaCobrosController::eliminarCobro() - APP\Controller\ReservaCobrosController.php, line 286
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:35:50 Debug: Notice (8): Undefined index:  in [D:\Documents\Mis Webs\pampa_online\v2\app\View\ReservaCobros\finalizar.ctp, line 129]
+Trace:
+include - APP\View\ReservaCobros\finalizar.ctp, line 129
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:35:54 Debug: Strict (2048): Declaration of CuentaMovimiento::beforeSave() should be compatible with Model::beforeSave($options = Array) in [D:\Documents\Mis Webs\pampa_online\v2\app\Model\CuentaMovimiento.php, line 12]
+Trace:
+App::load() - CORE\Cake\Core\App.php, line 540
+App::load() - CORE\Cake\Core\App.php, line 540
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+ClassRegistry::init() - CORE\Cake\Utility\ClassRegistry.php, line 136
+Controller::loadModel() - CORE\Cake\Controller\Controller.php, line 734
+ReservaCobrosController::eliminarCobro() - APP\Controller\ReservaCobrosController.php, line 286
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:39:33 Debug: Notice (8): Undefined index:  in [D:\Documents\Mis Webs\pampa_online\v2\app\View\ReservaCobros\finalizar.ctp, line 129]
+Trace:
+include - APP\View\ReservaCobros\finalizar.ctp, line 129
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:39:39 Debug: Strict (2048): Declaration of CuentaMovimiento::beforeSave() should be compatible with Model::beforeSave($options = Array) in [D:\Documents\Mis Webs\pampa_online\v2\app\Model\CuentaMovimiento.php, line 12]
+Trace:
+App::load() - CORE\Cake\Core\App.php, line 540
+App::load() - CORE\Cake\Core\App.php, line 540
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+ClassRegistry::init() - CORE\Cake\Utility\ClassRegistry.php, line 136
+Controller::loadModel() - CORE\Cake\Controller\Controller.php, line 734
+ReservaCobrosController::eliminarCobro() - APP\Controller\ReservaCobrosController.php, line 288
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:41:13 Debug: Notice (8): Undefined index:  in [D:\Documents\Mis Webs\pampa_online\v2\app\View\ReservaCobros\finalizar.ctp, line 129]
+Trace:
+include - APP\View\ReservaCobros\finalizar.ctp, line 129
+View::_evaluate() - CORE\Cake\View\View.php, line 910
+View::_render() - CORE\Cake\View\View.php, line 874
+View::render() - CORE\Cake\View\View.php, line 465
+Controller::render() - CORE\Cake\Controller\Controller.php, line 959
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 110
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+
+2016-09-16 13:43:41 Debug: Strict (2048): Declaration of CuentaMovimiento::beforeSave() should be compatible with Model::beforeSave($options = Array) in [D:\Documents\Mis Webs\pampa_online\v2\app\Model\CuentaMovimiento.php, line 12]
+Trace:
+App::load() - CORE\Cake\Core\App.php, line 540
+App::load() - CORE\Cake\Core\App.php, line 540
+spl_autoload_call - [internal], line ??
+class_exists - [internal], line ??
+ClassRegistry::init() - CORE\Cake\Utility\ClassRegistry.php, line 136
+Controller::loadModel() - CORE\Cake\Controller\Controller.php, line 734
+ReservaCobrosController::eliminarCobro() - APP\Controller\ReservaCobrosController.php, line 288
+ReflectionMethod::invokeArgs() - [internal], line ??
+Controller::invokeAction() - CORE\Cake\Controller\Controller.php, line 485
+Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
+Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
+[main] - APP\webroot\index.php, line 92
+

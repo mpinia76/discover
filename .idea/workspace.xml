@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/v2/app/Controller/PlansController.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1hasZEWHqXHGpJY5aEXW3MZ9KoV" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../wp_maquetado" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Documents\Mis Webs\discover\v2\app\View\GestionAlertas" />
+      <recent name="D:\Documents\Mis Webs\discover\v2\app\Controller" />
+      <recent name="D:\Documents\Mis Webs\discover\v2\app\Model" />
+      <recent name="D:\Documents\Mis Webs\discover\v2\app\View\Alertas" />
+      <recent name="D:\Documents\Mis Webs\discover\v2\app\View\UnidadAlertas" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\marcos\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="" />
+      <created>1600260590916</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600260590916</updated>
+      <workItem from="1600260593071" duration="4237000" />
+      <workItem from="1600348617288" duration="597000" />
+      <workItem from="1600709340009" duration="9212000" />
+      <workItem from="1600784635393" duration="1218000" />
+      <workItem from="1600864665614" duration="3347000" />
+      <workItem from="1600951776879" duration="594000" />
+      <workItem from="1601039200594" duration="594000" />
+      <workItem from="1601146354915" duration="598000" />
+      <workItem from="1601304680603" duration="596000" />
+      <workItem from="1601405027438" duration="644000" />
+      <workItem from="1601471463182" duration="90000" />
+      <workItem from="1601642520726" duration="3617000" />
+      <workItem from="1601742137588" duration="1892000" />
+      <workItem from="1601825762651" duration="1368000" />
+      <workItem from="1601902069426" duration="621000" />
+      <workItem from="1601910320888" duration="431000" />
+      <workItem from="1601918296498" duration="3005000" />
+      <workItem from="1601988156927" duration="4933000" />
+      <workItem from="1602178118023" duration="1528000" />
+      <workItem from="1604016023047" duration="779000" />
+      <workItem from="1604600648814" duration="6896000" />
+      <workItem from="1604665845477" duration="16004000" />
+      <workItem from="1604755228503" duration="1862000" />
+      <workItem from="1604845294547" duration="598000" />
+      <workItem from="1604925652955" duration="3803000" />
+      <workItem from="1605009548518" duration="1294000" />
+      <workItem from="1605018696751" duration="2502000" />
+      <workItem from="1605132755306" duration="936000" />
+      <workItem from="1605184072677" duration="599000" />
+      <workItem from="1605185869937" duration="7200000" />
+      <workItem from="1605272029207" duration="7784000" />
+      <workItem from="1605364278055" duration="3926000" />
+      <workItem from="1605448982125" duration="593000" />
+      <workItem from="1605530801093" duration="2613000" />
+      <workItem from="1605539285878" duration="12682000" />
+      <workItem from="1605621770953" duration="1130000" />
+      <workItem from="1605703459511" duration="14356000" />
+      <workItem from="1605789341335" duration="11394000" />
+      <workItem from="1605873764572" duration="8363000" />
+      <workItem from="1606137399749" duration="593000" />
+      <workItem from="1606147780263" duration="394000" />
+      <workItem from="1606220784540" duration="9631000" />
+      <workItem from="1606306137310" duration="10791000" />
+      <workItem from="1606390902644" duration="13296000" />
+      <workItem from="1606426340007" duration="1710000" />
+      <workItem from="1606479450785" duration="10935000" />
+      <workItem from="1606570585647" duration="1225000" />
+      <workItem from="1606686801438" duration="596000" />
+      <workItem from="1606738223871" duration="7016000" />
+      <workItem from="1606825936735" duration="2368000" />
+      <workItem from="1606836684877" duration="4204000" />
+      <workItem from="1606853903205" duration="670000" />
+      <workItem from="1606911283914" duration="835000" />
+      <workItem from="1606915434079" duration="19942000" />
+      <workItem from="1606998210005" duration="5663000" />
+      <workItem from="1607085234314" duration="19788000" />
+      <workItem from="1607176967355" duration="9214000" />
+      <workItem from="1607517506094" duration="17133000" />
+      <workItem from="1607691414194" duration="17374000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="370" y="135" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606392625132">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="370" y="135" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.760@0.0.1280.760" timestamp="1606392625132" />
+    <state x="387" y="235" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1604608582075">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="387" y="235" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1280.760@0.0.1280.760" timestamp="1604608582075" />
+    <state x="420" y="135" key="FileChooserDialogImpl" timestamp="1607793118071">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="420" y="135" key="FileChooserDialogImpl/0.0.1280.760@0.0.1280.760" timestamp="1607793118071" />
+    <state x="518" y="278" key="Github.ShareDialog" timestamp="1607792798832">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="518" y="278" key="Github.ShareDialog/0.0.1280.760@0.0.1280.760" timestamp="1607792798832" />
+    <state x="474" y="303" key="NewPhpFileDialog" timestamp="1605709625844">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="474" y="303" key="NewPhpFileDialog/0.0.1280.760@0.0.1280.760" timestamp="1605709625844" />
+    <state x="414" y="82" key="RollbackChangesDialog" timestamp="1607793294869">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="414" y="82" key="RollbackChangesDialog/0.0.1280.760@0.0.1280.760" timestamp="1607793294869" />
+    <state x="457" y="221" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605570144763">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="457" y="221" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.760@0.0.1280.760" timestamp="1605570144763" />
+    <state x="92" y="92" width="1096" height="576" key="dock-window-1" timestamp="1606231804588">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="92" y="92" width="1096" height="576" key="dock-window-1/0.0.1280.760@0.0.1280.760" timestamp="1606231804588" />
+    <state x="347" y="113" width="585" height="624" key="find.popup" timestamp="1607702217648">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="347" y="113" width="585" height="624" key="find.popup/0.0.1280.760@0.0.1280.760" timestamp="1607702217648" />
+    <state x="441" y="286" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1607793083841">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="441" y="286" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1280.760@0.0.1280.760" timestamp="1607793083841" />
+    <state x="296" y="170" key="run.anything.popup" timestamp="1604600958880">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="296" y="170" key="run.anything.popup/0.0.1280.760@0.0.1280.760" timestamp="1604600958880" />
+    <state x="303" y="81" width="672" height="678" key="search.everywhere.popup" timestamp="1607789221356">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="303" y="81" width="672" height="678" key="search.everywhere.popup/0.0.1280.760@0.0.1280.760" timestamp="1607789221356" />
+    <state x="457" y="140" key="svn.repositoryBrowser" timestamp="1607792210929">
+      <screen x="0" y="0" width="1280" height="760" />
+    </state>
+    <state x="457" y="140" key="svn.repositoryBrowser/0.0.1280.760@0.0.1280.760" timestamp="1607792210929" />
+  </component>
+</project>

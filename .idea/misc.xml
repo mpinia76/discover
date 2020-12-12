@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="branchUrls">
+                <list>
+                  <option value="https://163.10.35.34:8443/svn/discover/branches" />
+                  <option value="https://163.10.35.34:8443/svn/discover/tags" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="https://163.10.35.34:8443/svn/discover/trunk" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

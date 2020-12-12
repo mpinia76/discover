@@ -1,0 +1,9 @@
+2020-06-08 21:54:26 --> INSERT INTO gasto (nro_orden,fecha,fecha_vencimiento,rubro_id,subrubro_id,proveedor,descripcion,remito_nro,recibo_nro,factura_nro,factura_tipo,factura_orden,monto,user_id,estado,iva_27,iva_21,iva_10_5,otra_alicuota,origen,razon,cuit, factura_punto_venta,perc_iva,perc_iibb_bsas,perc_iibb_caba,exento)
+				VALUES (3037,'2020-06-08','--',1,'1','21','','','000001','','n','B','500',1,0,0,0,0,0,'','Piña S.A.','20251748056','',0,0,0,0)
+2020-06-08 21:56:48 --> 
+2020-06-08 22:08:25 --> 
+2020-06-08 22:20:27 --> ,
+2020-06-08 22:22:01 --> INSERT INTO gasto (nro_orden,fecha,fecha_vencimiento,rubro_id,subrubro_id,proveedor,descripcion,remito_nro,recibo_nro,factura_nro,factura_tipo,factura_orden,monto,user_id,estado,iva_27,iva_21,iva_10_5,otra_alicuota,origen,razon,cuit, factura_punto_venta,perc_iva,perc_iibb_bsas,perc_iibb_caba,exento)
+				VALUES (3037,'2020-06-08',,1,'1','21','','','000001','','n','B','300',1,0,0,0,0,0,'','Piña S.A.','20251748056','',0,0,0,0)
+2020-06-08 22:23:00 --> INSERT INTO gasto (nro_orden,fecha,fecha_vencimiento,rubro_id,subrubro_id,proveedor,descripcion,remito_nro,recibo_nro,factura_nro,factura_tipo,factura_orden,monto,user_id,estado,iva_27,iva_21,iva_10_5,otra_alicuota,origen,razon,cuit, factura_punto_venta,perc_iva,perc_iibb_bsas,perc_iibb_caba,exento)
+				VALUES (3037,'2020-06-08',null,1,'1','21','','','000001','','n','B','500',1,0,0,0,0,0,'','Piña S.A.','20251748056','',0,0,0,0)

@@ -1,0 +1,36 @@
+2020-06-30 16:08:48 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:08:48','caja_2','otra_1','100',37,'1','0','0')
+2020-06-30 16:08:48 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:08:48','haciaOtra_1','2','-100',37,'1','-0','0')
+2020-06-30 16:08:48 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:08:48','cajaOtra_2','1','100',37,'1','0','0')
+2020-06-30 16:08:48 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:08:48','hacia_1','otra_2','-100',37,'1','-0','0')
+2020-06-30 16:14:46 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:14:46','caja_2','otra_1','1000',37,'1','0','0')
+2020-06-30 16:14:47 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:14:46','haciaOtra_1','2','-1000',37,'1','-0','0')
+2020-06-30 16:14:47 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:14:46','cajaOtra_2','1','1000',35,'1','0','0')
+2020-06-30 16:14:47 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:14:46','hacia_1','otra_2','-1000',35,'1','-0','0')
+2020-06-30 16:33:06 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:33:06','haciaOtra_Oficina','2','-1000',37,'1','-0','0')
+2020-06-30 16:33:06 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:33:06','cajaOtra_Buenos Aires','1','1000',35,'1','0','0')
+2020-06-30 16:40:36 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:40:36','haciaOtra_Oficina','2','-500',37,'1','-0','0')
+2020-06-30 16:40:37 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-06-30 16:40:36','cajaOtra_Buenos Aires','1','500',35,'1','0','0')

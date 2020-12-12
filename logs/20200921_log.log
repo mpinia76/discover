@@ -1,0 +1,6 @@
+2020-09-21 18:20:33 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio)
+					VALUES
+					('2020-09-21 18:20:33','haciaOtra_','2','-500',37,'1','-0','0')
+2020-09-21 18:20:33 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio)
+					VALUES
+					('2020-09-21 18:20:33','cajaOtra_Buenos Aires','1','500',35,'1','0','0')

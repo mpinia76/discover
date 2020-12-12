@@ -1,0 +1,30 @@
+2020-07-01 12:46:17 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-07-01 12:46:17','haciaOtra_Oficina','2','-500',37,'1','-0','0')
+2020-07-01 12:46:17 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-07-01 12:46:17','cajaOtra_Buenos Aires','1','500',35,'1','0','0')
+2020-07-01 12:49:34 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-07-01 12:49:34','haciaOtra_Oficina','2','-500',37,'1','-0','0')
+2020-07-01 12:49:34 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-07-01 12:49:34','cajaOtra_Buenos Aires','1','500',35,'1','0','0')
+2020-07-01 12:51:19 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-07-01 12:51:19','haciaOtra_Oficina','2','-500',37,'1','-0','0')
+2020-07-01 12:51:19 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-07-01 12:51:19','cajaOtra_Buenos Aires','1','500',35,'1','0','0')
+2020-07-01 12:52:14 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-07-01 12:52:14','haciaOtra_Oficina','2','-500',37,'1','-0','0')
+2020-07-01 12:52:14 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-07-01 12:52:14','cajaOtra_Buenos Aires','1','500',35,'1','0','0')
+2020-07-01 12:53:07 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-07-01 12:53:07','haciaOtra_Oficina','2','-500',37,'1','-0','0')
+2020-07-01 12:53:07 --> INSERT INTO caja_movimiento (fecha,origen,caja_id,monto,usuario_id,moneda_id,monto_moneda,cambio) 
+					VALUES 
+					('2020-07-01 12:53:07','cajaOtra_Buenos Aires','1','500',35,'1','0','0')
