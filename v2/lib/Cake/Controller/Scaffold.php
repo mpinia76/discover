@@ -104,7 +104,7 @@ class Scaffold {
  * @param CakeRequest $request Request parameters.
  * @throws MissingModelException
  */
-	public function __construct(Controller $controller, CakeRequest $request) { 
+	public function __construct(Controller $controller, CakeRequest $request) {
 		$this->controller = $controller;
 
 		$count = count($this->_passedVars);
@@ -159,9 +159,9 @@ class Scaffold {
  * @throws NotFoundException
  */
 	protected function _scaffoldView(CakeRequest $request) {
-            
+
 		if ($this->controller->beforeScaffold('view')) {
-                                                        
+
 			if (isset($request->params['pass'][0])) {
 				$this->ScaffoldModel->id = $request->params['pass'][0];
 			}
@@ -186,7 +186,7 @@ class Scaffold {
  * @return mixed A rendered view listing rows from Models database table
  */
 	protected function _scaffoldIndex($params) {
-                                    $this->layout = 'index';
+	    $this->layout = 'index';
 		if ($this->controller->beforeScaffold('index')) {
 			$this->ScaffoldModel->recursive = 0;
 			$this->controller->set(
@@ -227,7 +227,7 @@ class Scaffold {
 	protected function _scaffoldSave(CakeRequest $request, $action = 'edit') {
 		$formAction = 'edit';
 		$success = __d('cake', 'updated');
-                                    
+
 		if ($action === 'add') {
 			$formAction = 'add';
                                                       $this->redirect = array('action' => 'add','exito');
@@ -333,7 +333,7 @@ class Scaffold {
  * @return void
  */
 	protected function _sendMessage($message) {
-            
+
 		if ($this->_validSession) {
 			$this->controller->Session->setFlash($message);
 			$this->controller->redirect($this->redirect);

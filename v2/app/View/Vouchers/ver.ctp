@@ -7,7 +7,7 @@
             </td>
             <td width="36%"  class="locacion">
                 25 de Mayo 260 2do. 9 Ushuaia, Tierra del Fuego, Argentina (9410) Tel. (54) 2901 425337<br/>
-                
+
             </td>
         </tr>
     </table>
@@ -54,24 +54,66 @@
             <td width="200"><strong><?php echo $devolucion;?>:</strong></td>
             <td><?php echo $reserva['Reserva']['devolucion'].' '.$reserva['Reserva']['hora_devolucion'];?></td>
         </tr>
-       
+
         <tr>
             <td width="200"><strong><?php echo $seguro;?>:</strong></td>
-            <td><?php 
+            <td><?php
 	    if($reserva['Reserva']['discover']){
 		$seguro = 'Discover';
-	    } 
+	    }
 	    if($reserva['Reserva']['discover_plus']){
 		$seguro = 'Discover Plus';
-	    } 
+	    }
 	    if($reserva['Reserva']['discover_advance']){
 		$seguro = 'Discover Advance';
 	    }
-	    
+
 	    //echo ($reserva['Reserva']['discover'])?'Discover':(($reserva['Reserva']['discover_plus'])?'Discover Plus':($reserva['Reserva']['discover_advance'])?'Discover Advance':'');
 	    echo $seguro;
 	    ?></td>
         </tr>
+        <?php
+
+        if(count($extras) > 0){ ?>
+            <tr>
+                <td colspan="2"><strong>Extras incluidos</strong></td>
+
+            </tr>
+
+
+
+
+
+
+
+            <?php foreach($extras as $extra){
+                // print_r($extra);
+                switch ($idioma) {
+                    case 1:
+                        $subRubro=$extra['Extra']['ExtraSubrubro']['subrubro'];
+                        break;
+
+                    case 2:
+                        $subRubro=$extra['Extra']['ExtraSubrubro']['subrubro_ingles'];
+                        break;
+
+                    case 3:
+                        $subRubro=$extra['Extra']['ExtraSubrubro']['subrubro_portugues'];
+                        break;
+                }
+
+                ?>
+                <tr>
+                    <td class="border" width="400"> <?php echo utf8_encode($extra['Extra']['ExtraRubro']['rubro']);?> <?php echo utf8_encode($subRubro);?> <?php echo utf8_encode($extra['Extra']['detalle']); ?></td>
+                    <td class="border"><?php echo $extra['ReservaExtra']['cantidad'];?></td>
+                </tr>
+            <?php } ?>
+
+
+
+
+
+        <?php } ?>
         <?php if($pendiente > 0){ ?>
         <tr>
             <td width="200"><strong><?php echo $saldo;?>:</strong></td>

@@ -19,6 +19,11 @@ class GestionAlerta extends AppModel
 
         }
 
+        if (!empty($this->data['GestionAlerta']['fecha_posposicion'])) {
+            $this->data['GestionAlerta']['fecha_posposicion'] = $this->dateFormatBeforeSave($this->data['GestionAlerta']['fecha_posposicion']);
+
+        }
+
         return true;
     }
 
@@ -31,6 +36,9 @@ class GestionAlerta extends AppModel
                 $results[$key]['GestionAlerta']['fecha_resolucion']= $this->dateFormatAfterFind($val['GestionAlerta']['fecha_resolucion']);
             }
 
+            if (!empty($val) and isset($val['GestionAlerta']['fecha_posposicion'])) {
+                $results[$key]['GestionAlerta']['fecha_posposicion']= $this->dateFormatAfterFind($val['GestionAlerta']['fecha_posposicion']);
+            }
         }
         return $results;
     }

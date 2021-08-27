@@ -268,7 +268,7 @@ class Form{
 		$html .='<div class="label">'.$atr['label'].'</div>';
 		$html .='<div class="content">';
 
-        $dbhost = "163.10.35.34";
+        $dbhost = "163.10.35.37";
         $dbname = "discover";
         $dbuser = "root";
         $dbpassword = "secyt";
@@ -356,7 +356,7 @@ class Form{
 		$html .='<div class="label">'.$atr['label'].'</div>';
 		$html .='<div class="content">';
 
-        $dbhost = "163.10.35.34";
+        $dbhost = "163.10.35.37";
         $dbname = "discoverbsas";
         $dbuser = "root";
         $dbpassword = "secyt";

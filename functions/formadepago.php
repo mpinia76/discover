@@ -323,6 +323,7 @@ function quitarCheque (cheque_id){
 	<li><label>Cuenta:</label><select name="debito_cuenta_id[]">
 <?php
 	$sql = "SELECT banco.banco,cuenta_tipo.cuenta_tipo,cuenta.saldo,cuenta.* FROM cuenta INNER JOIN cuenta_tipo ON cuenta.cuenta_tipo_id=cuenta_tipo.id INNER JOIN banco ON cuenta.banco_id=banco.id INNER JOIN usuario_cuenta ON usuario_cuenta.cuenta_id = cuenta.id AND usuario_cuenta.usuario_id = $user_id ORDER BY banco.banco";
+
 	$rsTemp = mysqli_query($conn,$sql);
 	while($rs = mysqli_fetch_array($rsTemp)){?>
 	<option value="<?php echo $rs['id']?>"><?php echo $rs['banco']?> <?php echo $rs['sucursal']?> <?php echo $rs['cuenta_tipo']?> <?php echo  $rs['nombre']?></option>

@@ -421,6 +421,22 @@ class ChequeConsumosController extends AppController {
 	                'Compra.id = RelPagoOperacion.operacion_id ','RelPagoOperacion.operacion_tipo = \'compra\' '
 	            )
 	        ),
+                array(
+                    'table' => 'cuota_plans',
+                    'alias' => 'CuotaPlans',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'CuotaPlans.id = RelPagoOperacion.operacion_id ','RelPagoOperacion.operacion_tipo = \'cuota_plan\' '
+                    )
+                ),
+                array(
+                    'table' => 'plans',
+                    'alias' => 'Plans',
+                    'type' => 'LEFT',
+                    'conditions' => array(
+                        'Plans.id = CuotaPlans.plan_id'
+                    )
+                ),
 	        array(
 	            'table' => 'reserva_devoluciones',
 	            'alias' => 'ReservaDevoluciones',
@@ -447,7 +463,7 @@ class ChequeConsumosController extends AppController {
 	        )
 
 
-	    ),'fields'=>array(' Reservas.numero as reserva_numero, Chequera.numero as chequera_numero, Gasto.nro_orden as gasto_orden, Compra.nro_orden as compra_orden,ChequeConsumo.*,sum(ChequeConsumo.monto) as suma_monto,Banco.banco,Cuenta.sucursal,Cuenta.nombre,MONTH(ChequeConsumo.fecha) as mes '), 'group' => array('ChequeConsumo.id'), 'conditions' => $condicion,'order' => $order, 'offset'=>$_GET['iDisplayStart'], 'limit'=>$_GET['iDisplayLength'], 'recursive' => -1));
+	    ),'fields'=>array(' Reservas.numero as reserva_numero, Chequera.numero as chequera_numero, Gasto.nro_orden as gasto_orden, Compra.nro_orden as compra_orden,ChequeConsumo.*,sum(ChequeConsumo.monto) as suma_monto,Banco.banco,Cuenta.sucursal,Cuenta.nombre,MONTH(ChequeConsumo.fecha) as mes,CuotaPlans.id as id_cuotaPlan, Plans.plan, CuotaPlans.vencimiento '), 'group' => array('ChequeConsumo.id'), 'conditions' => $condicion,'order' => $order, 'offset'=>$_GET['iDisplayStart'], 'limit'=>$_GET['iDisplayLength'], 'recursive' => -1));
 	    //print_r($filtroEstado);
    /*App::uses('ConnectionManager', 'Model');
         	$dbo = ConnectionManager::getDatasource('default');
@@ -509,6 +525,22 @@ class ChequeConsumosController extends AppController {
 	                'Compra.id = RelPagoOperacion.operacion_id ','RelPagoOperacion.operacion_tipo = \'compra\' '
 	            )
 	        ),
+        array(
+            'table' => 'cuota_plans',
+            'alias' => 'CuotaPlans',
+            'type' => 'LEFT',
+            'conditions' => array(
+                'CuotaPlans.id = RelPagoOperacion.operacion_id ','RelPagoOperacion.operacion_tipo = \'cuota_plan\' '
+            )
+        ),
+        array(
+            'table' => 'plans',
+            'alias' => 'Plans',
+            'type' => 'LEFT',
+            'conditions' => array(
+                'Plans.id = CuotaPlans.plan_id'
+            )
+        ),
 	        array(
 	            'table' => 'reserva_devoluciones',
 	            'alias' => 'ReservaDevoluciones',
@@ -689,7 +721,37 @@ class ChequeConsumosController extends AppController {
 
 					$concepto = "Impuestos, tasas y cargas sociales - ".$cheque['Compra']['compra_orden'];
 				}
-		    }elseif($cheque['Reservas']['reserva_numero'] != ''){
+		    }
+        if($cheque['CuotaPlans']['id_cuotaPlan'] != ''){
+            $cuota_buscar = $this->ChequeConsumo->find('first',array('joins' => array(
+
+                array(
+                    'table' => 'rel_pago_operacion',
+                    'alias' => 'RelPagoOperacion',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'ChequeConsumo.id = RelPagoOperacion.forma_pago_id','RelPagoOperacion.forma_pago = \'cheque\''
+                    )
+                ),
+                array(
+                    'table' => 'cuota_plans',
+                    'alias' => 'CuotaPlans',
+                    'type' => 'INNER',
+                    'conditions' => array(
+                        'CuotaPlans.id = RelPagoOperacion.operacion_id','RelPagoOperacion.operacion_tipo = \'cuota_plan\' '
+                    )
+                )
+
+            ), 'conditions' => array('CuotaPlans.id '=>$cheque['CuotaPlans']['id_cuotaPlan'])));
+
+            //print_r($cuota_buscar);
+            if ($cuota_buscar['ChequeConsumo']['id']) {
+
+
+                $concepto = "Cuota Plan - ".$cheque['Plans']['plan']." Vencimiento ".$cheque['CuotaPlans']['vencimiento'];
+            }
+        }
+			elseif($cheque['Reservas']['reserva_numero'] != ''){
 		       	$concepto = "Devolucion de Reserva nro: ".$cheque['Reservas']['reserva_numero'];
 			}elseif($cheque['ChequeConsumo']['concepto'] != ''){
 				$concepto = $cheque['ChequeConsumo']['concepto'];

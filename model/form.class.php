@@ -136,7 +136,12 @@ class Form{
 		$html .= '<li>';
 		$html .='<label>'.$label.'</label>';
 
-		include_once("config/db.php");
+        $dbhost = "163.10.35.37";
+        $dbname = "discover";
+        $dbuser = "root";
+        $dbpassword = "secyt";
+
+        $conn=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 
 		$sql = "SELECT $campo_id,$campo FROM $tabla";
 

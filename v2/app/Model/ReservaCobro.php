@@ -1,6 +1,9 @@
 <?php
 class ReservaCobro extends AppModel {
-    public $belongsTo = array('Usuario','Reserva');
+    public $belongsTo = array('Usuario','Reserva','ConceptoFacturacion' => array(
+        'className'    => 'ConceptoFacturacion',
+        'foreignKey'   => 'concepto_facturacion_id'
+    ));
     public $hasOne = array(
         'CobroTarjeta' => array(
             'className' => 'CobroTarjeta',
@@ -28,12 +31,12 @@ class ReservaCobro extends AppModel {
             'dependent' => true
         )
     );
-    
+
     public $virtualFields = array(
         'mes' => 'MONTH(fecha)',
         'ano_mes' => 'DATE_FORMAT(fecha,"%y%m")'
     );
-    
+
     public $validate = array(
         'fecha' => array(
             'rule'     => array('date','dmy'),
@@ -44,6 +47,11 @@ class ReservaCobro extends AppModel {
             'required'   => true,
             'rule' => 'notEmpty',
             'message' => 'Debe seleccionar una forma de cobro'
+        ),
+        'concepto_facturacion_id' => array(
+            'required'   => true,
+            'rule' => 'notEmpty',
+            'message' => 'Debe seleccionar un concepto'
         ),
         'monto_neto' => array(
             'numero' => array(
@@ -57,7 +65,7 @@ class ReservaCobro extends AppModel {
             )
         )
     );
-    
+
     public function monto_pagado(){
         if($this->data['ReservaCobro']['monto_neto'] > $this->data['ReservaCobro']['pendiente']){
             return false;
@@ -65,14 +73,14 @@ class ReservaCobro extends AppModel {
             return true;
         }
     }
-    
+
     public function beforeSave($options = Array()) {
         if (!empty($this->data['ReservaCobro']['fecha'])) {
             $this->data['ReservaCobro']['fecha'] = $this->dateFormatBeforeSave($this->data['ReservaCobro']['fecha']);
         }
         return true;
     }
-    
+
     public function afterFind($results, $primary = false) {
         foreach ($results as $key => $val) {
             if (isset($val['ReservaCobro']['fecha'])) {

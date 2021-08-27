@@ -176,6 +176,9 @@ class ReservaCobrosController extends AppController {
         $this->loadModel('Moneda');
         $this->set('monedas',$this->Moneda->find('list'));
 
+        $this->loadModel('ConceptoFacturacion');
+        $this->set('concepto_facturacions',$this->ConceptoFacturacion->find('list',array('fields' => 'id,nombre','conditions' =>array('activo =' => 1))));
+
         $this->loadModel('Caja');
         $this->set('cajas',$this->Caja->find('list'));
 
@@ -323,6 +326,9 @@ class ReservaCobrosController extends AppController {
 
         $this->loadModel('Moneda');
         $this->set('monedas',$this->Moneda->find('list'));
+
+        $this->loadModel('ConceptoFacturacion');
+        $this->set('concepto_facturacions',$this->ConceptoFacturacion->find('list',array('fields' => 'id,nombre','conditions' =>array('activo =' => 1))));
 
         $this->loadModel('Caja');
         $this->set('cajas',$this->Caja->find('list'));

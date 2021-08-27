@@ -1,4 +1,4 @@
-<?php 
+<?php
 $i = 0;
 foreach ($scaffoldFields as $_field):
     if($i == 0){ $cols[] = "{'bVisible':    false } "; }else{ $cols[] = "null"; }
@@ -49,7 +49,7 @@ function edit(){
 </ul>
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable">
     <thead>
-        <tr> 
+        <tr>
             <?php foreach ($scaffoldFields as $_field):?>
                 <th><?php echo $this->Paginator->sort($_field);?></th>
             <?php endforeach;?>
@@ -61,6 +61,7 @@ function edit(){
     foreach (${$pluralVar} as ${$singularVar}):
         echo "<tr>";
             foreach ($scaffoldFields as $_field) {
+
                 $isKey = false;
                 if (!empty($associations['belongsTo'])) {
                     foreach ($associations['belongsTo'] as $_alias => $_details) {

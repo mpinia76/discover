@@ -67,7 +67,7 @@ if(is_array($data) and count($data)>1 and $_GET['action'] == 'consultar' ){ ?>
 
 
 	if(isset($dataid)){
-		$sql 		= "SELECT cuota_plans.id, cuota_plans.plan_id, plans.plan, plans.tipo, plans.proveedor, rubro.rubro, subrubro.subrubro,
+		$sql 		= "SELECT cuota_plans.id, cuota_plans.plan_id, plans.plan, plans.tipo, plans.proveedor, plans.ordenes, rubro.rubro, subrubro.subrubro,
 						usuario.nombre,usuario.apellido, cuota_plans.vencimiento, cuota_plans.monto, cuota_plans.fecha_pago, cuota_plans.estado
 						FROM cuota_plans
 						INNER JOIN plans ON cuota_plans.plan_id = plans.id
@@ -224,8 +224,8 @@ if(is_array($data) and count($data)>1 and $_GET['action'] == 'consultar' ){ ?>
 				<li><label>Vencimiento:</label><?php echo fechavista($rs_cuenta['vencimiento'])?></li>
 				<li><label>Monto:</label>$<?php echo $rs_cuenta['monto']?></li>
 				<?php
-				$ordenes='';
-				switch ($rs_cuenta['tipo']) {
+				$ordenes=$rs_cuenta['ordenes'];
+				/*switch ($rs_cuenta['tipo']) {
 					case 'Gastos y compras':
 
 						$sql = "SELECT * FROM gasto WHERE plan_id=".$rs_cuenta['plan_id'];
@@ -285,7 +285,7 @@ if(is_array($data) and count($data)>1 and $_GET['action'] == 'consultar' ){ ?>
 
 
 					break;
-				}
+				}*/
 				?>
 				<li><label>Ordenes incluidas:</label><?php echo $ordenes?></li>
 

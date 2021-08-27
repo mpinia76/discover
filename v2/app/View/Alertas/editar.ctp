@@ -12,24 +12,26 @@ echo $this->Form->hidden('Alerta.id');
 
 <div class="ym-grid">
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Alerta.alerta');?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Alerta.corta',array('label'=>'Descripcion'));?></div>
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Alerta.tipo',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $tipos));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Alerta.nivel',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $niveles));?></div>
+
 
 </div>
 
 <div class="ym-grid">
-
+    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.nivel',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $niveles));?></div>
     <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.unidad',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $unidades));?></div>
     <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.magnitud',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $magnitudes));?></div>
     <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.segmento',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $segmentos));?></div>
-    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.controla',array('type'=>'number'));?></div>
+
 </div>
 
 <div class="ym-grid">
-    <div class="ym-g33 ym-gl" id="divIniNum"><?php echo $this->Form->input('Alerta.inicio_num',array('label'=>'Inicio','type'=>'number'));?></div>
-    <div class="ym-g33 ym-gl" id="divIniFecha" style="display:none"><?php echo $this->Form->input('Alerta.inicio_fecha',array('label'=>'Inicio','class'=>'datepicker','type'=>'text'));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Alerta.fin_num',array('type'=>'number'));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Alerta.recordatorio',array('type'=>'number'));?></div>
+    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.controla',array('type'=>'number', 'style'=>'width:60px;'));?></div>
+    <div class="ym-g25 ym-gl" id="divIniNum"><?php echo $this->Form->input('Alerta.inicio_num',array('label'=>'Inicio','type'=>'number', 'style'=>'width:60px;'));?></div>
+    <div class="ym-g25 ym-gl" id="divIniFecha" style="display:none"><?php echo $this->Form->input('Alerta.inicio_fecha',array('label'=>'Inicio','class'=>'datepicker','type'=>'text'));?></div>
+    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.fin_num',array('label'=>'Fin','type'=>'number', 'style'=>'width:60px;'));?></div>
+    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.recordatorio',array('type'=>'number', 'style'=>'width:60px;'));?></div>
 </div>
 
 <div class="ym-grid">
@@ -76,10 +78,13 @@ echo $this->Form->hidden('Alerta.id');
                 $('#AlertaInicioNum').prop('disabled', true);
                 $('#AlertaInicioFecha').val('');
                 $('#AlertaInicioFecha').prop('disabled', true);
+                $('#AlertaFinNum').val('');
+                $('#AlertaFinNum').prop('disabled', true);
                 break;
             case 'General':
                 $('#AlertaInicioNum').prop('disabled', false);
                 $('#AlertaInicioFecha').prop('disabled', false);
+                $('#AlertaFinNum').prop('disabled', false);
                 break;
 
 

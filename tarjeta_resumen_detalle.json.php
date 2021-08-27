@@ -52,6 +52,19 @@ $sql = "SELECT
 		WHERE tarjeta_consumo_cuota.fecha >= '$inicio' and tarjeta_consumo_cuota.fecha <= '$fin' AND tarjeta_consumo.tarjeta_id='$tarjeta'
 		UNION
 		SELECT
+			tarjeta_consumo_cuota.fecha,CONCAT(tarjeta_consumo_cuota.nro_cuota,'/',tarjeta_consumo.cuotas) AS cuotas,tarjeta_consumo_cuota.monto,CONCAT('Cuota Plan ',plans.plan, ' Vencimiento ',cuota_plans.vencimiento) as operacion, '' as nro_orden
+		FROM tarjeta_consumo_cuota
+		INNER JOIN tarjeta_consumo
+			ON tarjeta_consumo_cuota.tarjeta_consumo_id=tarjeta_consumo.id
+		INNER JOIN rel_pago_operacion
+			ON tarjeta_consumo.id=rel_pago_operacion.forma_pago_id AND rel_pago_operacion.forma_pago = 'tarjeta'
+		INNER JOIN cuota_plans
+			ON rel_pago_operacion.operacion_tipo = 'cuota_plan' AND rel_pago_operacion.operacion_id=cuota_plans.id
+		INNER JOIN plans
+			ON plans.id=cuota_plans.plan_id
+		WHERE tarjeta_consumo_cuota.fecha >= '$inicio' and tarjeta_consumo_cuota.fecha <= '$fin' AND tarjeta_consumo.tarjeta_id='$tarjeta'
+		UNION
+		SELECT
 			tarjeta_movimiento.fecha, '' as cuotas,tarjeta_movimiento.monto,tarjeta_movimiento.detalle as operacion, '' as nro_orden
 		FROM tarjeta_movimiento
 		WHERE tarjeta_movimiento.tarjeta_resumen_id=$resumen_id

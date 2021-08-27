@@ -81,8 +81,11 @@ class CuotaPlansController extends AppController {
 
 
         foreach($cuotas as $cuota){
-        	$ordenes='';
-        	switch ($cuota['Plan']['tipo']) {
+            //print_r($cuota);
+        	$ordenes=$cuota['Plan']['ordenes'];
+        	$ordenesArray = explode(',', $ordenes);
+            sort($ordenesArray);
+        	/*switch ($cuota['Plan']['tipo']) {
         		case 'Gastos y compras':
         			$this->loadModel('Gasto');
         			$gastos = $this->Gasto->find('all',array('order' => 'nro_orden ASC','conditions' => array('plan_id' => $cuota['Plan']['id'])));
@@ -124,14 +127,19 @@ class CuotaPlansController extends AppController {
 
         			//}
         		break;
-        	}
+        	}*/
             //estado y nro de orden
 
 	        if($cuota['CuotaPlan']['estado']==0){
 				$estado = 'Pendiente de pago';
 				$segundos= strtotime('now')-strtotime($cuota['CuotaPlan']['vencimiento']);
-			}else{
-				$estado = 'Pagado';
+			}
+	        elseif($cuota['CuotaPlan']['estado']==2){
+                $estado = 'Refinanciada';
+                $segundos= strtotime('now')-strtotime($cuota['CuotaPlan']['vencimiento']);
+            }
+	        else{
+				$estado = 'Pagada';
 				$segundos= strtotime($cuota['CuotaPlan']['vencimiento'])-strtotime($cuota['CuotaPlan']['vencimiento']);
 			}
 
@@ -142,7 +150,7 @@ class CuotaPlansController extends AppController {
                 $cuota['CuotaPlan']['id'],
                 $cuota['Plan']['plan'],
                 $cuota['Plan']['tipo'],
-                $ordenes,
+                $ordenesArray[0],
                 $cuota['Plan']['proveedor'],
                 $cuota['Plan']['Rubro']['rubro'],
                 $cuota['Plan']['Subrubro']['subrubro'],
@@ -212,7 +220,9 @@ class CuotaPlansController extends AppController {
         		case 'Pagada':
         		$condicionSearch8 = array('CuotaPlan.estado = '=>1);
         		break;
-
+                case 'Refinanciada':
+                    $condicionSearch8 = array('CuotaPlan.estado = '=>2);
+                    break;
         		default:
         			$condicionSearch8 = array();
         		break;
@@ -251,7 +261,9 @@ class CuotaPlansController extends AppController {
         		case 'Pagada':
         		$condicionSearch8 = array('CuotaPlan.estado = '=>1);
         		break;
-
+                case 'Refinanciada':
+                    $condicionSearch8 = array('CuotaPlan.estado = '=>2);
+                    break;
         		default:
         			$condicionSearch8 = array();
         		break;
@@ -294,7 +306,9 @@ class CuotaPlansController extends AppController {
         		case 'Pagada':
         		$condicionSearch8 = array('CuotaPlan.estado = '=>1);
         		break;
-
+                case 'Refinanciada':
+                    $condicionSearch8 = array('CuotaPlan.estado = '=>2);
+                    break;
         		default:
         			$condicionSearch8 = array();
         		break;

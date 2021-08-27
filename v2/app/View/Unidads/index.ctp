@@ -33,6 +33,7 @@ $this->Js->buffer('
             null,
             null,
             null,
+            null,
             {"sType": "date-uk"},
             null,
 
@@ -91,7 +92,8 @@ function editar(){
             <th width="150">Marca</th>
             <th width="50">Modelo</th>
             <th width="250">Patente</th>
-            <th width="20">KM</th>
+            <th width="20">KM iniciales</th>
+            <th width="20">KM actuales</th>
             <th width="250">Habilitacion</th>
             <th width="150">Periodo</th>
             <th width="150">Baja</th>

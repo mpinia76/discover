@@ -251,6 +251,11 @@
             Alta y parametrizacion de Alertas
         </div>
     <?php } ?>
+    <?php if(MENU_46){?>
+        <div class="configuracion item" onclick="createWindow('w_concepto_facturacions','Conceptos de Facturacion','v2/concepto_facturacions/index','600','400'); $('#menu').hide();">
+            Conceptos de Facturacion
+        </div>
+    <?php } ?>
         <div class="title" onclick="$('.informes').toggle();"><img width="30" src="images/ico_informes.png" align="absmiddle" /> Informes</div>
         <?php if(ACCION_108){ ?>
         <div class="informes item" onclick="createWindow('w_informe','Informe economico','informe.economico.php','1230','400'); $('#menu').hide();">
@@ -327,6 +332,11 @@
             Auditor&iacute;a de Usuarios
         </div>
         <?php } ?>
+    <?php if(ACCION_149){ ?>
+        <div class="informes item" onclick="createWindow('w_base_datos','Base de datos','v2/informes/index_base_datos','1230','600'); $('#menu').hide();">
+            Base de datos
+        </div>
+    <?php } ?>
          <div class="title" onclick="$('.onLine').toggle();"><img width="30" src="images/ico_configure.png" align="absmiddle" /> Reservas On line</div>
         <?php if(MENU_40){ ?>
         <div class="onLine item" onclick="createWindow('w_configuracion_reservas','Configuracion reservas On Line','configuracion.reservas.php','600','400'); $('#menu').hide();">

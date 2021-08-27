@@ -64,10 +64,15 @@ while($rs = mysqli_fetch_array($rsTemp)){
    if($rs['estado']==0){
 		$estado = 'Pendiente de pago';
 		$segundos= strtotime('now')-strtotime($rs['fecha']);
-	}else{
+	}elseif($rs['estado']==1){
 		$estado = 'Pagado';
 		$segundos= strtotime($rs['fecha_pago'])-strtotime($rs['fecha']);
-	}
+	}else{
+       $estado = 'Plan de pago';
+       $segundos= ($rs['fecha_pago'])?strtotime($rs['fecha_pago'])-strtotime($rs['fecha']):strtotime('now')-strtotime($rs['fecha']);
+   }
+
+
 
 	$cantidad_dias=intval($segundos/60/60/24);
 

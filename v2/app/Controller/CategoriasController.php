@@ -3,6 +3,18 @@ class CategoriasController extends AppController {
     public $scaffold;
     public $components = array('Mpdf');
 
+    function array_sort_by(&$arrIni, $col, $order = SORT_ASC)
+    {
+        $arrAux = array();
+        foreach ($arrIni as $key=> $row)
+        {
+            $arrAux[$key] = is_object($row) ? $arrAux[$key] = $row->$col : $row[$col];
+            $arrAux[$key] = strtolower($arrAux[$key]);
+        }
+        array_multisort($arrAux, $order, $arrIni);
+    }
+
+
 	public function index(){
     	$this->layout = 'index';
     	$this->setLogUsuario('Categorias');
@@ -395,7 +407,8 @@ class CategoriasController extends AppController {
 
 		$this->loadModel('CategoriaCoheficiente');
 
-		$dias = $this->CategoriaCoheficiente->find('all', array('fields' => array('DISTINCT CategoriaCoheficiente.dia'), 'order' => 'CategoriaCoheficiente.dia ASC'));
+		$dias = $this->CategoriaCoheficiente->find('all', array('fields' => array('DISTINCT CategoriaCoheficiente.dia')));
+        $this->array_sort_by($dias, 'dia');
 
 		$diasMostrados = array();
         foreach ($dias as $dia) {
@@ -478,7 +491,7 @@ class CategoriasController extends AppController {
         $this->layout = 'form';
 
         $categorias = $this->Categoria->find('list');
-   		$this->set('dias', array('1' => '1', '2' => '2', '3' => '3','4' => '4', '5' => '5', '6' => '6', '7' => '7', '8 o +' => '8 o +'));
+   		$this->set('dias', array('1' => '1', '2' => '2', '3' => '3','4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14 o +' => '14 o +'));
         $this->set('categorias',$categorias);
 
     }
@@ -488,7 +501,7 @@ class CategoriasController extends AppController {
         $this->layout = 'form';
         $this->loadModel('CategoriaCoheficiente');
         $this->set('categorias', $this->CategoriaCoheficiente->Categoria->find('list'));
-        $this->set('dias', array('1' => '1', '2' => '2', '3' => '3','4' => '4', '5' => '5', '6' => '6', '7' => '7', '8 o +' => '8 o +'));
+        $this->set('dias', array('1' => '1', '2' => '2', '3' => '3','4' => '4', '5' => '5', '6' => '6', '7' => '7', '8' => '8', '9' => '9', '10' => '10', '11' => '11', '12' => '12', '13' => '13', '14 o +' => '14 o +'));
 		$this->CategoriaCoheficiente->id = $id;
         $this->request->data = $this->CategoriaCoheficiente->read();
 

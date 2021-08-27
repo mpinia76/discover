@@ -27,7 +27,8 @@ if($_GET['inicio'] != '' and $_GET['fin'] != ''){
 
 	$where .= "transferencia_consumo.fecha >= '$inicio' AND transferencia_consumo.fecha <= '$fin'";
 }
-$sql = "SELECT rel_pago_operacion.operacion_tipo, gasto.nro_orden as gasto_orden, reservas.numero as reserva_numero, compra.nro_orden as compra_orden,transferencia_consumo.*,banco.banco,cuenta.sucursal,cuenta.nombre,MONTH(transferencia_consumo.fecha) as mes FROM transferencia_consumo INNER JOIN cuenta ON transferencia_consumo.cuenta_id=cuenta.id INNER JOIN banco ON cuenta.banco_id=banco.id INNER JOIN cuenta_tipo ON cuenta.cuenta_tipo_id=cuenta_tipo.id LEFT JOIN rel_pago_operacion ON transferencia_consumo.id = rel_pago_operacion.forma_pago_id AND rel_pago_operacion.forma_pago = 'transferencia' LEFT JOIN gasto ON gasto.id = rel_pago_operacion.operacion_id and rel_pago_operacion.operacion_tipo = 'gasto' LEFT JOIN compra ON compra.id = rel_pago_operacion.operacion_id and rel_pago_operacion.operacion_tipo = 'compra' LEFT JOIN reserva_devoluciones ON reserva_devoluciones.id = rel_pago_operacion.operacion_id LEFT JOIN reservas ON reserva_devoluciones.reserva_id = reservas.id $where GROUP BY transferencia_consumo.id ORDER BY transferencia_consumo.fecha DESC";
+$sql = "SELECT rel_pago_operacion.operacion_tipo, gasto.nro_orden as gasto_orden, reservas.numero as reserva_numero, compra.nro_orden as compra_orden,transferencia_consumo.*,banco.banco,cuenta.sucursal,cuenta.nombre,MONTH(transferencia_consumo.fecha) as mes, cuota_plans.id AS id_cuotaPlan, plans.plan, cuota_plans.vencimiento  FROM transferencia_consumo INNER JOIN cuenta ON transferencia_consumo.cuenta_id=cuenta.id INNER JOIN banco ON cuenta.banco_id=banco.id INNER JOIN cuenta_tipo ON cuenta.cuenta_tipo_id=cuenta_tipo.id LEFT JOIN rel_pago_operacion ON transferencia_consumo.id = rel_pago_operacion.forma_pago_id AND rel_pago_operacion.forma_pago = 'transferencia' LEFT JOIN gasto ON gasto.id = rel_pago_operacion.operacion_id and rel_pago_operacion.operacion_tipo = 'gasto' LEFT JOIN compra ON compra.id = rel_pago_operacion.operacion_id and rel_pago_operacion.operacion_tipo = 'compra' LEFT JOIN cuota_plans ON cuota_plans.id = rel_pago_operacion.operacion_id and rel_pago_operacion.operacion_tipo = 'cuota_plan'
+LEFT JOIN plans ON cuota_plans.plan_id = plans.id LEFT JOIN reserva_devoluciones ON reserva_devoluciones.id = rel_pago_operacion.operacion_id LEFT JOIN reservas ON reserva_devoluciones.reserva_id = reservas.id $where GROUP BY transferencia_consumo.id ORDER BY transferencia_consumo.fecha DESC";
 
 $rsTemp = mysqli_query($conn,$sql); echo mysqli_error($conn);
 $rows = array();
@@ -49,9 +50,11 @@ while($rs = mysqli_fetch_array($rsTemp)){
 		$concepto = "Compra - ".$rs['compra_orden'];
 	}elseif($rs['concepto'] != ''){
 		$concepto = $rs['concepto'];
-                 }elseif($rs['reserva_numero'] != ''){
-                     $concepto = 'Devolucion de Reserva nro: '.$rs['reserva_numero'];
-	}else{
+	}elseif($rs['id_cuotaPlan'] != ''){
+	    $concepto = 'Cuota Plan '.$rs['plan'].' Venc. '.$rs['vencimiento'];
+	}elseif($rs['reserva_numero'] != ''){
+        $concepto = 'Devolucion de Reserva nro: '.$rs['reserva_numero'];
+    }else{
 		$concepto = $rs['operacion_tipo'];
 	}
 

@@ -32,6 +32,7 @@ class UnidadsController extends AppController {
                 $unidad['Unidad']['marca'],
                 $unidad['Unidad']['modelo'],
                 $unidad['Unidad']['patente'],
+                $unidad['Unidad']['km_ini'],
                 $unidad['Unidad']['km'],
                 $unidad['Unidad']['habilitacion'],
                 $unidad['Unidad']['periodo'],
@@ -123,6 +124,7 @@ class UnidadsController extends AppController {
             $arrayUnidadAlerta['alerta_id'] = $unidadalerta['UnidadAlerta']['alerta_id'];
             $arrayUnidadAlerta['inicio_num'] = $unidadalerta['UnidadAlerta']['inicio_num'];
             $arrayUnidadAlerta['inicio_fecha'] = $unidadalerta['UnidadAlerta']['inicio_fecha'];
+            $arrayUnidadAlerta['fin_num'] = $unidadalerta['UnidadAlerta']['fin_num'];
             $arrayUnidadAlerta['inactiva'] = $unidadalerta['UnidadAlerta']['inactiva'];
             $gestionAlerta = $this->GestionAlerta->find('first',array('conditions' => array('unidad_alerta_id =' =>$unidadalerta['UnidadAlerta']['id'],'estado <>'=>'Pendiente')));
             if (!empty($gestionAlerta)){
@@ -141,7 +143,15 @@ class UnidadsController extends AppController {
         $this->set('cantunidadalertas', count($unidadalertas));
 
         $this->loadModel('Reserva');
-        $ultima_reserva = $this->Reserva->find('first',array('order' => array('Reserva.id' => 'desc')));
+        //$ultima_reserva = $this->Reserva->find('first',array('order' => array('Reserva.id' => 'desc')));
+
+        $filtroUnidad=array('Reserva.unidad_id' => $id);
+        $condicion=array($filtroUnidad);
+
+        $ultima_reserva = $this->Reserva->find('first', array(
+            'conditions' => $condicion
+        ,'order' => array('Reserva.id' => 'desc')));
+
 
         $this->set('ultimaReserva',$ultima_reserva['Reserva']['numero']);
 
@@ -190,6 +200,7 @@ class UnidadsController extends AppController {
                 $unidadAlertas_id = $this->request->data['unidadAlerta_id'];
                 $inicio_nums = $this->request->data['inicio_num'];
                 $inicio_fechas = $this->request->data['inicio_fecha'];
+                $fin_nums = $this->request->data['fin_num'];
                 $inactivas = $this->request->data['inactiva'];
                 $noBorrar='';
                 foreach ($unidadAlertas_id as $unidadAlerta_id){
@@ -205,7 +216,12 @@ class UnidadsController extends AppController {
                         $grabar=0;
                         $errores['Unidad']['errorAlerta'] = 'Falta cargar un inicio';
                     }
+                    elseif ($fin_nums[$item]==''){
+                        $grabar=0;
+                        $errores['Unidad']['errorAlerta'] = 'Falta cargar un fin';
+                    }
                     else{
+                        $gestionAlerta=array();
                         if (!empty($unidadAlertas_id[$item])){
                             $unidadAlerta_id=$unidadAlertas_id[$item];
                             $this->UnidadAlerta->id = $unidadAlerta_id;
@@ -226,11 +242,13 @@ class UnidadsController extends AppController {
                         }
 
                         try {
+
                             if ((empty($gestionAlerta))||($gestionAlerta['GestionAlerta']['estado']=='Pendiente')){
                                 $this->UnidadAlerta->set('unidad_id',$this->Unidad->id);
                                 $this->UnidadAlerta->set('alerta_id',$alertas[$item]);
                                 $this->UnidadAlerta->set('inicio_num',$inicio_nums[$item]);
                                 $this->UnidadAlerta->set('inicio_fecha',$inicio_fechas[$item]);
+                                $this->UnidadAlerta->set('fin_num',$fin_nums[$item]);
                                 $this->UnidadAlerta->set('inactiva',($inactivas[$item])?1:0);
                                 $this->UnidadAlerta->save();
 

@@ -13,6 +13,7 @@ echo $this->Form->hidden('ReservaCobro.usuario_id',array('value' => $usuario['Us
 echo $this->Form->hidden('ReservaCobro.reserva_id',array('value' => $reserva['Reserva']['id']));
 echo $this->Form->hidden('ReservaCobro.finalizado',array('value' => 1));
 echo $this->Form->hidden('Reserva.otrasReservas',array('value' => $otrasReservas));
+echo $this->Form->hidden('Reserva.km_ini',array('value' => $reserva['Reserva']['km_ini']));
 ?>
 <div class="ym-grid">
     <div class="ym-g50 ym-gl">
@@ -160,6 +161,7 @@ else{
             <td width="80"><strong>Fecha</strong></td>
             <td width="100"><strong>Usuario</strong></td>
             <td width="120"><strong>Tipo</strong></td>
+            <td><strong>Concepto FC</strong></td>
             <td><strong>Informacion</strong></td>
             <td width="75" align="right"><strong>Neto</strong></td>
             <td width="75" align="right"><strong>Interes</strong></td>
@@ -175,6 +177,7 @@ else{
                     <td><?php echo $cobro['ReservaCobro']['fecha']?></td>
                     <td><?php echo $cobro['Usuario']['nombre'].' '.$cobro['Usuario']['apellido']?></td>
                     <td><?php echo $cobro['ReservaCobro']['tipo']?></td>
+                    <td><?php echo $cobro['ConceptoFacturacion']['nombre']?></td>
                     <td><a onclick="createWindow('w_reservas_view_cobro','Detalles','<?php echo $this->Html->url('/reserva_cobros/detalle/'.$cobro['ReservaCobro']['id'], true);?>','430','400');"><?php echo $tarjetas_tipo[$cobro['CobroTarjeta']['cobro_tarjeta_tipo_id']]?> - <?php echo $cobro['CobroTarjeta']['tarjeta_numero']?> <?php echo $cobro['CobroTarjeta']['cuotas']?> cuota/s</a></td>
                     <td align="right">$<?php echo $cobro['CobroTarjeta']['monto_neto']?></td>
                     <td align="right">$<?php echo $cobro['CobroTarjeta']['interes']?></td>
@@ -189,6 +192,7 @@ else{
                     <td><?php echo $cobro['ReservaCobro']['fecha']?></td>
                     <td><?php echo $cobro['Usuario']['nombre'].' '.$cobro['Usuario']['apellido']?></td>
                     <td><?php echo $cobro['ReservaCobro']['tipo']?></td>
+                    <td><?php echo $cobro['ConceptoFacturacion']['nombre']?></td>
                     <td><a onclick="createWindow('w_reservas_view_cobro','Detalles','<?php echo $this->Html->url('/reserva_cobros/detalle/'.$cobro['ReservaCobro']['id'], true);?>','430','400');"><?php echo $cobro['CobroCheque']['banco']?> <?php echo substr($cobro['CobroCheque']['numero'],strlen($cobro['CobroCheque']['numero'])-4);?> </a></td>
                     <td align="right">$<?php echo $cobro['CobroCheque']['monto_neto']?></td>
                     <td align="right">$<?php echo $cobro['CobroCheque']['interes']?></td>
@@ -228,6 +232,7 @@ else{
                     <td><?php echo $cobro['ReservaCobro']['fecha']?></td>
                     <td><?php echo $cobro['Usuario']['nombre'].' '.$cobro['Usuario']['apellido']?></td>
                     <td><?php echo $cobro['ReservaCobro']['tipo']?></td>
+                    <td><?php echo $cobro['ConceptoFacturacion']['nombre']?></td>
                     <td><a onclick="createWindow('w_reservas_view_cobro','Detalles','<?php echo $this->Html->url('/reserva_cobros/detalle/'.$cobro['ReservaCobro']['id'], true);?>','430','400');"> a <?php echo $cuentas[$cobro['CobroTransferencia']['cuenta_id']]?></a></td>
                     <td align="right">$<?php echo $cobro['CobroTransferencia']['monto_neto']?></td>
                     <td align="right">$<?php echo $cobro['CobroTransferencia']['interes']?></td>
@@ -272,6 +277,9 @@ else{
                 <option value="TRANSFERENCIA">Transferencia</option>
             </select>
         </div>
+    </div>
+    <div class="ym-g20 ym-gl">
+        <?php echo $this->Form->input('ReservaCobro.concepto_facturacion_id',array( 'type' => 'select', 'empty' => 'Seleccionar ...', 'options' => $concepto_facturacions)); ?>
     </div>
     <div id="divMoneda" class="ym-g8 ym-gl" style="display:none">
         <?php echo $this->Form->input('ReservaCobro.moneda_id',array( 'type' => 'select', 'options' => $monedas)); ?>
@@ -651,15 +659,16 @@ $('#ReservaKmFin').change(function(){
 })
 var reservasSinCargar = $('#ReservaOtrasReservas').val();
 $('#ReservaKmTotales').prop( "disabled", true );
+$('#ReservaKmIni').prop( "disabled", true );
 if ((reservasSinCargar==1)||(parseInt($('#ReservaKmFin').val())>parseInt($('#ReservaKmIni').val()))){
-    $('#ReservaKmIni').prop( "disabled", true );
+    //$('#ReservaKmIni').prop( "disabled", true );
     $('#ReservaKmFin').prop( "disabled", true );
 
     $('#guardarKM').hide();
 }
 else {
 
-    $('#ReservaKmIni').prop("disabled", false);
+    //$('#ReservaKmIni').prop("disabled", false);
     $('#ReservaKmFin').prop("disabled", false);
 
     $('#guardarKM').show();

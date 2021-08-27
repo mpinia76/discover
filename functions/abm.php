@@ -50,6 +50,10 @@ if (!$msg) {
 	$count++;
 	}
 	$query.=')';
+    if ($tabla=='empleado') {
+        include_once("util.php");
+        _log($query);
+    }
 	//echo $query;
 	mysqli_query($conn,$query);
 	$result=mysqli_affected_rows($conn);
@@ -62,6 +66,7 @@ if (!$msg) {
 	else{
 		if ($tabla=='empleado') {
 			$sql = "INSERT INTO empleado_historico (empleado_id, alta) VALUES (".mysqli_insert_id($conn).", '".fechasql($_POST['fecha_alta'])."')";
+            _log($sql);
 			//echo $sql;
 			mysqli_query($conn,$sql);
 		}

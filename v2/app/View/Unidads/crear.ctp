@@ -19,11 +19,13 @@ echo $this->Form->hidden('Unidad.cantAlertas',array('value' => $cantunidadalerta
 </div>
 <div class="ym-grid">
 	<div class="ym-g25 ym-gl"><?php echo $this->Form->input('Unidad.patente'); ?></div>
-    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Unidad.orden',array( 'style' => 'width:60px;')); ?></div>
+
     <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Unidad.capacidad',array('style' => 'width:60px;')); ?></div>
+    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Unidad.km_ini',array('style' => 'width:80px;')); ?></div>
     <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Unidad.km',array('style' => 'width:80px;')); ?></div>
 </div>
 <div class="ym-grid">
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Unidad.orden',array( 'style' => 'width:60px;')); ?></div>
 	<div class="ym-g33 ym-gl"><?php echo $this->Form->input('Unidad.habilitacion',array('class'=>'datepicker','type'=>'text'));?></div>
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Unidad.baja',array('class'=>'datepicker','type'=>'text'));?></div>
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Unidad.periodo'); ?></div>
@@ -103,11 +105,11 @@ echo $this->Form->hidden('Unidad.cantAlertas',array('value' => $cantunidadalerta
             '<td></td><td>'+'<select name="alerta[]" id="alerta_'+$cantAlertas+'" style="width: 200px;" onChange="cambiarAlerta('+$cantAlertas+')"><option value="">Seleccionar...</option>'+
             '<?php foreach ($alertas as $alerta){
                 $magnitud = ($alerta['Alerta']['magnitud'])?' '.$alerta['Alerta']['magnitud']:' ';
-                $alertaMostrar = $alerta['Alerta']['alerta'].' '.$alerta['Alerta']['unidad'].$magnitud.' '.$alerta['Alerta']['segmento'];
+                $alertaMostrar = $alerta['Alerta']['alertaCompleta'].' '.$alerta['Alerta']['unidad'].$magnitud.' '.$alerta['Alerta']['segmento'];
                 echo '<option uni="'.$alerta['Alerta']['unidad'].'" value="'.$alerta['Alerta']['id'].'">'.$alertaMostrar.'</option>';
             }?>'+
 
-            '</select></td>'+'<td>'+'<span style="font-weight:bold">Inicio: </span><span id="divIniNum_'+$cantAlertas+'"><input name="inicio_num[]" id="inicio_num_'+$cantAlertas+'" type="number"/></span><span id="divIniFecha_'+$cantAlertas+'" style="display:none"><input name="inicio_fecha[]" id="inicio_fecha_'+$cantAlertas+'" class="datepicker" type="text" style="width: 100px;"/></span>' +'</td><td><a href="#" class="removealerta"><img src="../img/bt_anular.png" align="absmiddle"></a></td>'+
+            '</select></td>'+'<td>'+'<span style="font-weight:bold">Ini: </span><span id="divIniNum_'+$cantAlertas+'"><input name="inicio_num[]" id="inicio_num_'+$cantAlertas+'" type="number" style="width: 65px;"/></span><span id="divIniFecha_'+$cantAlertas+'" style="display:none"><input name="inicio_fecha[]" id="inicio_fecha_'+$cantAlertas+'" class="datepicker" type="text" style="width: 65px;"/></span>' +'</td><td><span style="font-weight:bold">Fin: </span><input name="fin_num[]" id="fin_num_'+$cantAlertas+'" type="number" style="width: 55px;"/></td><td><a href="#" class="removealerta"><img src="../img/bt_anular.png" align="absmiddle"></a></td>'+
             '</tr>';
         $('#cuerpoalertas').append(tr);
 

@@ -14,7 +14,7 @@ include_once("functions/delete.php");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Documento sin t&iacute;tulo</title>
 <link rel="STYLESHEET" type="text/css" href="styles/toolbar.css">
-<script type="text/javascript" src="library/jquery/jquery-1.4.2.min.js"></script> 
+<script type="text/javascript" src="library/jquery/jquery-1.4.2.min.js"></script>
 <!--dhtmlGrid-->
 <link rel="STYLESHEET" type="text/css" href="library/dhtml/styles/dhtmlxgrid.css">
 <link rel="STYLESHEET" type="text/css" href="library/dhtml/styles/dhtmlxgrid_dhx_skyblue.css">
@@ -36,7 +36,7 @@ var ypos = position[1];
 var mygrid;
 
 var dataid;
-var timeoutHnd;	
+var timeoutHnd;
 function doInitGrid(){
 	mygrid = new dhtmlXGridObject('mygrid_container');
 	mygrid.setImagePath("library/dhtml/imgs/");
@@ -49,15 +49,15 @@ function doInitGrid(){
 	mygrid.setColSorting("str,str,int,str,int,int,int");			//tipo datos para ordenar
 	mygrid.setColTypes("ro,ro,ro,ro,price,price,price");				//editable o no
 	mygrid.enableEditEvents(false,false,false,false,false,false,false);
-    mygrid.setSkin("dhx_skyblue");	
+    mygrid.setSkin("dhx_skyblue");
     var desde_mask = document.getElementById("fecha_desde").value;
-	var hasta_mask = document.getElementById("fecha_hasta").value;	
+	var hasta_mask = document.getElementById("fecha_hasta").value;
 	mygrid.load("<?php echo $json?>?cuenta_id=<?php echo $_GET['cuenta_id']?>&desde_mask="+desde_mask+"&hasta_mask="+hasta_mask,"json");	//ruta al json con datos
 	mygrid.init();
 }
 
 function doSearch(ev){
-	
+
 	var elem = ev.target||ev.srcElement;
 	if(timeoutHnd)
 		clearTimeout(timeoutHnd);
@@ -115,7 +115,7 @@ a.dp-choose-date {
 	display: block;
 	text-indent: -2000px;
 	overflow: hidden;
-	background: url(images/calendar.png) no-repeat; 
+	background: url(images/calendar.png) no-repeat;
 }
 a.dp-choose-date.dp-disabled {
 	background-position: 0 -20px;

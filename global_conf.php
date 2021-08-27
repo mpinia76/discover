@@ -4,7 +4,7 @@
 
 $CONF['sql_user']="root";
 $CONF['sql_passwd']="secyt";
-$CONF['sql_host']="163.10.35.34";
+$CONF['sql_host']="163.10.35.37";
 /*$CONF['sql_passwd']="";
 $CONF['sql_host']="localhost";*/
 $CONF['sql_db']="";

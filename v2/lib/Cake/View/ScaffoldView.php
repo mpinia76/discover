@@ -75,6 +75,7 @@ class ScaffoldView extends ThemeView {
 			foreach ($paths as $path) {
 				foreach ($names as $name) {
 					if (file_exists($path . $name . $ext)) {
+
 						return $path . $name . $ext;
 					}
 				}

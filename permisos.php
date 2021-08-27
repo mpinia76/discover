@@ -7,7 +7,7 @@ ini_set('display_startup_errors', 1);
 
 error_reporting(E_ALL);*/
 
-$dbhost = "163.10.35.34";
+$dbhost = "163.10.35.37";
 $dbname = "discover";
 $dbuser = "root";
 $dbpassword = "secyt";

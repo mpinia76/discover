@@ -2,15 +2,15 @@
 //DATOS PARA LA BASE DE DATOS MYSQL
 
 
-$dbhost = "163.10.35.34";
+/*$dbhost = "163.10.35.37";
 $dbname = "discover";
 $dbuser = "root";
-$dbpassword = "secyt";
+$dbpassword = "secyt";*/
 
-/*$dbhost = "localhost";
+$dbhost = "localhost";
 $dbname = "discover";
 $dbuser = "root";
-$dbpassword = "";*/
+$dbpassword = "";
 
 //CONEXION A LA BASE DE DATOS
 

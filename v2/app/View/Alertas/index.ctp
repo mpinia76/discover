@@ -125,7 +125,7 @@ function editar(){
     }else{
         var data = oTable.fnGetData(row[0]);
 
-        createWindow("w_alertas_view","Ver opcion de Cobro","<?php echo $this->Html->url('/alertas/editar', true);?>/"+data[0],"450","350");
+        createWindow("w_alertas_view","Alta y parametrizacion de Alertas","<?php echo $this->Html->url('/alertas/editar', true);?>/"+data[0],"450","350");
 
     }
 }

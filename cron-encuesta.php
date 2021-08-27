@@ -116,8 +116,9 @@ while ($rs = mysqli_fetch_array($rsTemp1)){
 	    $mailheaders .= "Content-type: text/html; charset=utf8 \r\n";
 	    $mailheaders .= "From: Discover Ushuaia-rent a car <info@discoverushuaia.com.ar> \r\n";
 	    $mailheaders .= "Return-path: Discover Ushuaia-rent a car <info@discoverushuaia.com.ar> \r\n";
-	    $mailheaders .= "Cc: pacec@discoverushuaia.com.ar \r\n";
-	    $mailheaders .= "X-Priority: 1 \r\n";
+	    $mailheaders .= "Cco: pacec@discoverushuaia.com.ar \r\n";
+        $mailheaders .= "Cco: minervinim@discoverushuaia.com.ar \r\n";
+        $mailheaders .= "X-Priority: 1 \r\n";
 	    $mailheaders .= "X-MSMail-Priority: High \r\n";
 	    $mailheaders .= "X-Mailer: PHP/".phpversion()." \n";
 

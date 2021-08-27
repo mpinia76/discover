@@ -1224,7 +1224,8 @@ ALTER TABLE `cheque_consumo`
 
 ################################### 05/11/2020 ###########################################
 ALTER TABLE `unidads`
-	ADD COLUMN `km` INT NULL AFTER `orden`;
+	ADD COLUMN `km_ini` INT NULL AFTER `orden`,
+	ADD COLUMN `km` INT NULL AFTER `km_ini`;
 
 ALTER TABLE `reservas`
 	ADD COLUMN `km_ini` INT NULL AFTER `unidad_id`,
@@ -1236,6 +1237,7 @@ CREATE TABLE `alertas` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`tipo` ENUM('Flota','General') NOT NULL,
 	`alerta` VARCHAR(255) NOT NULL,
+	`corta` VARCHAR(255) NOT NULL,
 	`fecha` DATE NOT NULL,
 	`nivel` ENUM('Nivel 1','Nivel 2','Nivel 3') NOT NULL,
 	`unidad` ENUM('KM','Tiempo','Reservas') NOT NULL,
@@ -1283,7 +1285,10 @@ CREATE TABLE `gestion_alertas` (
 	`fecha_resolucion` DATE NULL,
 	`km_resolucion` INT(11) NULL,
 	`reserva_resolucion` INT(11) NULL,
-	`resuelta` TINYINT(1) NOT NULL DEFAULT '0',
+	`fecha_posposicion` DATE NULL,
+	`km_posposicion` INT(11) NULL,
+	`reserva_posposicion` INT(11) NULL,
+	`reservas` INT(11) NULL DEFAULT '0',
 	PRIMARY KEY (`id`),
 	INDEX `id` (`id`)
 )
@@ -1300,3 +1305,122 @@ INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (46, 'Auditoria');
 ################################### 12/11/2020 ###########################################
 ALTER TABLE `gasto`
 	ADD COLUMN `quitar_egresos` INT(1) NOT NULL DEFAULT '0';
+
+################################### 21/01/2021 ###########################################
+UPDATE categoria_coheficiente SET dia = '8' WHERE dia = '8 o +';
+
+################################### 28/01/2021 ###########################################
+ALTER TABLE `plans`
+	ADD COLUMN `ordenes` VARCHAR(255) NULL DEFAULT NULL AFTER `proveedor`;
+
+UPDATE plans AS p
+SET p.ordenes =
+(SELECT GROUP_CONCAT(DISTINCT g.nro_orden)
+ FROM gasto AS g
+ WHERE g.plan_id = p.id AND g.plan_id IS NOT NULL
+ GROUP BY g.plan_id)
+ WHERE p.tipo = "Gastos y compras";
+
+ UPDATE plans AS p
+SET p.ordenes =
+(SELECT GROUP_CONCAT(DISTINCT g.nro_orden)
+ FROM compra AS g
+ WHERE g.plan_id = p.id AND g.plan_id IS NOT NULL
+ GROUP BY g.plan_id)
+ WHERE p.tipo = "Impuestos, tasas y cargas sociales";
+
+ UPDATE plans AS p
+SET p.ordenes =
+(SELECT GROUP_CONCAT(DISTINCT g.nro_orden)
+ FROM compra AS g INNER JOIN cuenta_a_pagar AS CP ON g.id = CP.operacion_id AND CP.operacion_tipo = "compra"
+ WHERE CP.plan_id = p.id AND CP.plan_id IS NOT NULL
+ GROUP BY CP.plan_id)
+ WHERE p.tipo = "Cuentas a pagar";
+
+ UPDATE plans AS p
+SET p.ordenes =
+(SELECT GROUP_CONCAT(DISTINCT g.nro_orden)
+ FROM gasto AS g INNER JOIN cuenta_a_pagar AS CP ON g.id = CP.operacion_id AND CP.operacion_tipo = "gasto"
+ WHERE CP.plan_id = p.id AND CP.plan_id IS NOT NULL
+ GROUP BY CP.plan_id)
+ WHERE p.tipo = "Cuentas a pagar";
+
+ ################################### 26/04/2021 ###########################################
+INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (10, 'Base de datos');
+
+ ################################### 30/06/2021 ###########################################
+ALTER TABLE `lugars`
+	ADD COLUMN `activo` TINYINT(1) NOT NULL DEFAULT '1' AFTER `lugar_portugues`;
+
+################################### 05/07/2021 ###########################################
+CREATE TABLE `reserva_conductors` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`reserva_id` INT(11) NOT NULL,
+	`nombre_apellido` VARCHAR(250) NOT NULL COLLATE 'utf8_unicode_ci',
+	`dni` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`telefono` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`direccion` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`localidad` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`email` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`nro_licencia_de_conducir` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	`vencimiento` DATE NULL DEFAULT NULL,
+	`lugar_emision` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8_unicode_ci',
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_unicode_ci'
+ENGINE=InnoDB;
+
+################################### 15/07/2021 ###########################################
+
+ALTER TABLE `clientes`
+	ADD COLUMN `tipoDocumento` ENUM('DNI','Pasaporte') NULL DEFAULT 'DNI' AFTER `nombre_apellido`;
+
+ALTER TABLE `clientes`
+	ADD COLUMN `tipoTelefono` ENUM('Fijo','Celular') NULL DEFAULT 'Celular' AFTER `dni`;
+
+ALTER TABLE `clientes`
+	ADD COLUMN `codPais` VARCHAR(10) NULL DEFAULT NULL AFTER `tipoTelefono`,
+	ADD COLUMN `codArea` VARCHAR(10) NULL DEFAULT NULL AFTER `codPais`;
+
+CREATE TABLE `pais_telefono` (
+	`nombre` VARCHAR(50) NULL DEFAULT NULL,
+	`name` VARCHAR(50) NULL DEFAULT NULL,
+	`nom` VARCHAR(50) NULL DEFAULT NULL,
+	`iso2` VARCHAR(50) NULL DEFAULT NULL,
+	`iso3` VARCHAR(50) NULL DEFAULT NULL,
+	`phone_code` VARCHAR(50) NULL DEFAULT NULL
+)
+COLLATE='utf8_general_ci'
+;
+
+ALTER TABLE `paises`
+	ADD COLUMN `prefijo` VARCHAR(10) NULL DEFAULT NULL AFTER `nombre`;
+
+UPDATE paises INNER JOIN pais_telefono ON paises.iso = pais_telefono.iso2
+SET paises.prefijo = `pais_telefono`.`phone_code`;
+
+ALTER TABLE `reservas`
+	ADD COLUMN `aerolinea` VARCHAR(50) NULL DEFAULT NULL AFTER `planilla`;
+
+ALTER TABLE `clientes`
+	ADD COLUMN `razon_social` VARCHAR(250) NULL DEFAULT NULL AFTER `cuit`,
+	ADD COLUMN `tipoPersona` ENUM('Fisica','Juridica') NULL DEFAULT 'Fisica' AFTER `razon_social`;
+ALTER TABLE `clientes`
+	ADD COLUMN `titular_factura` TINYINT(1) NULL DEFAULT '0' AFTER `titular_conduce`;
+
+CREATE TABLE `concepto_facturacions` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(255) NOT NULL,
+	`activo` TINYINT(1) NOT NULL DEFAULT '0',
+	PRIMARY KEY (`id`),
+	INDEX `id` (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1;
+
+INSERT INTO `permiso_grupo` (`nombre`) VALUES ('Concepto de facturacion');
+INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (47, 'Operar');
+
+ALTER TABLE `reserva_cobros`
+	ADD COLUMN `concepto_facturacion_id` INT(11) NULL AFTER `cambio`;

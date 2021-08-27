@@ -101,6 +101,9 @@ if(count($reserva_descuentos) > 0){  ?>
             </select>
         </div>
     </div>
+    <div class="ym-g20 ym-gl">
+        <?php echo $this->Form->input('ReservaCobro.concepto_facturacion_id',array( 'type' => 'select', 'empty' => 'Seleccionar ...', 'options' => $concepto_facturacions)); ?>
+    </div>
     <div id="divMoneda" class="ym-g10 ym-gl" style="display:none">
         <?php echo $this->Form->input('ReservaCobro.moneda_id',array( 'type' => 'select', 'options' => $monedas)); ?>
     </div>
@@ -133,7 +136,7 @@ if(count($reserva_descuentos) > 0){  ?>
             <td width="80"><strong>Fecha</strong></td>
             <td width="120"><strong>Usuario</strong></td>
             <td width="80"><strong>Tipo</strong></td>
-
+            <td><strong>Concepto FC</strong></td>
             <td><strong>Informacion</strong></td>
             <td width="75" align="right"><strong>Neto</strong></td>
             <td width="75" align="right"><strong>Interes</strong></td>
@@ -144,6 +147,7 @@ if(count($reserva_descuentos) > 0){  ?>
  //   print_r($posnets);
         foreach($reserva_cobros as $cobro){ //print_r($reserva_cobros);
             //print_r($cobro['CobroTarjeta'] ['CobroTarjetaTipo']);
+
             switch($cobro['ReservaCobro']['tipo']){
 
                 case  'TARJETA': ?>
@@ -152,7 +156,7 @@ if(count($reserva_descuentos) > 0){  ?>
                     <td><?php echo $cobro['ReservaCobro']['fecha']?></td>
                     <td><?php echo $cobro['Usuario']['nombre'].' '.$cobro['Usuario']['apellido']?></td>
                     <td><?php echo $cobro['ReservaCobro']['tipo'].' ('.$posnets[$cobro['CobroTarjeta']['CobroTarjetaTipo']['cobro_tarjeta_posnet_id']].')'?></td>
-
+                    <td><?php echo $cobro['ConceptoFacturacion']['nombre']?></td>
                     <td><a onclick="createWindow('w_reservas_view_cobro','Detalles','<?php echo $this->Html->url('/reserva_cobros/detalle/'.$cobro['ReservaCobro']['id'], true);?>','430','400');"><?php echo $tarjetas_tipo[$cobro['CobroTarjeta']['cobro_tarjeta_tipo_id']]?> - <?php echo $cobro['CobroTarjeta']['tarjeta_numero']?> <?php echo $cobro['CobroTarjeta']['cuotas']?> cuota/s</a></td>
                     <td align="right">$<?php echo $cobro['CobroTarjeta']['monto_neto']?></td>
                     <td align="right">$<?php echo $cobro['CobroTarjeta']['interes']?></td>
@@ -166,6 +170,7 @@ if(count($reserva_descuentos) > 0){  ?>
                     <td><?php echo $cobro['ReservaCobro']['fecha']?></td>
                     <td><?php echo $cobro['Usuario']['nombre'].' '.$cobro['Usuario']['apellido']?></td>
                     <td><?php echo $cobro['ReservaCobro']['tipo']?></td>
+                    <td><?php echo $cobro['ConceptoFacturacion']['nombre']?></td>
                     <td><a onclick="createWindow('w_reservas_view_cobro','Detalles','<?php echo $this->Html->url('/reserva_cobros/detalle/'.$cobro['ReservaCobro']['id'], true);?>','430','400');"><?php echo $cobro['CobroCheque']['banco']?> <?php echo substr($cobro['CobroCheque']['numero'],strlen($cobro['CobroCheque']['numero'])-4);?> </a></td>
                     <td align="right">$<?php echo $cobro['CobroCheque']['monto_neto']?></td>
                     <td align="right">$<?php echo $cobro['CobroCheque']['interes']?></td>
@@ -180,6 +185,7 @@ if(count($reserva_descuentos) > 0){  ?>
                     <td><?php echo $cobro['ReservaCobro']['fecha']?></td>
                     <td><?php echo $cobro['Usuario']['nombre'].' '.$cobro['Usuario']['apellido']?></td>
                     <td><?php echo $cobro['ReservaCobro']['tipo']?></td>
+                    <td><?php echo $cobro['ConceptoFacturacion']['nombre']?></td>
                     <td> a <?php
                     		switch ($cobro['CobroEfectivo']['moneda_id']) {
                               			case 1:
@@ -206,6 +212,7 @@ if(count($reserva_descuentos) > 0){  ?>
                     <td><?php echo $cobro['ReservaCobro']['fecha']?></td>
                     <td><?php echo $cobro['Usuario']['nombre'].' '.$cobro['Usuario']['apellido']?></td>
                     <td><?php echo $cobro['ReservaCobro']['tipo']?></td>
+                    <td><?php echo $cobro['ConceptoFacturacion']['nombre']?></td>
                     <td><a onclick="createWindow('w_reservas_view_cobro','Detalles','<?php echo $this->Html->url('/reserva_cobros/detalle/'.$cobro['ReservaCobro']['id'], true);?>','430','400');"> a <?php echo $cuentas[$cobro['CobroTransferencia']['cuenta_id']]?></a></td>
                     <td align="right">$<?php echo $cobro['CobroTransferencia']['monto_neto']?></td>
                     <td align="right">$<?php echo $cobro['CobroTransferencia']['interes']?></td>

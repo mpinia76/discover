@@ -27,21 +27,21 @@ class AlertasController extends AppController {
                     $nivel = '<span style="color:green">' . $alerta['Alerta']['nivel'] . '</span>';
                     break;
                 case 'Nivel 2':
-                    $nivel = '<span style="color:yellow">' . $alerta['Alerta']['nivel'] . '</span>';
+                    $nivel = '<span style="color:orange">' . $alerta['Alerta']['nivel'] . '</span>';
                     break;
                 case 'Nivel 3':
                     $nivel = '<span style="color:red">' . $alerta['Alerta']['nivel'] . '</span>';
                     break;
             }
-
+            $magnitud = ($alerta['Alerta']['magnitud'])?$alerta['Alerta']['magnitud']:'No aplica';
             $rows[] = array(
                 $alerta['Alerta']['id'],
-                $alerta['Alerta']['alerta'],
+                $alerta['Alerta']['alertaCompleta'],
                 date('d/m/Y',strtotime($alerta['Alerta']['fecha'])),
                 $alerta['Alerta']['tipo'],
                 $nivel,
                 $alerta['Alerta']['unidad'],
-                $alerta['Alerta']['magnitud'],
+                $magnitud,
                 $alerta['Alerta']['segmento'],
                 $alerta['Alerta']['controla'],
                 $alerta['Alerta']['fin_num']
@@ -83,7 +83,7 @@ class AlertasController extends AppController {
             $magnitud = ($alerta['GestionAlerta']['unidad_alerta_id'])?$alerta['UnidadAlerta']['Alerta']['magnitud']:$alerta['Alerta']['magnitud'];
             $segmento = ($alerta['GestionAlerta']['unidad_alerta_id'])?$alerta['UnidadAlerta']['Alerta']['segmento']:$alerta['Alerta']['segmento'];
             $controla = ($alerta['GestionAlerta']['unidad_alerta_id'])?$alerta['UnidadAlerta']['Alerta']['controla']:$alerta['Alerta']['controla'];
-            $nombre = ($alerta['GestionAlerta']['unidad_alerta_id'])?$alerta['UnidadAlerta']['Alerta']['alerta']:$alerta['Alerta']['alerta'];
+            $nombre = ($alerta['GestionAlerta']['unidad_alerta_id'])?$alerta['UnidadAlerta']['Alerta']['alertaCompleta']:$alerta['Alerta']['alertaCompleta'];
             $fecha = ($alerta['GestionAlerta']['unidad_alerta_id'])?$alerta['UnidadAlerta']['Alerta']['fecha']:$alerta['Alerta']['fecha'];
             switch($nivel) {
                 case 'Nivel 1':
@@ -247,6 +247,11 @@ class AlertasController extends AppController {
             if(!$this->Alerta->validates()){
                 $errores['Alerta'] = $this->Alerta->validationErrors;
             }
+
+            if(($alerta['unidad']=='Tiempo')&&($alerta['magnitud']=='')){
+                $errores['Alerta']['magnitud'] = 'Debe seleccionar una magnitud';
+            }
+
 
             //muestro resultado
             if(isset($errores) and count($errores) > 0){

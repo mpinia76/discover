@@ -59,6 +59,7 @@ while($rs = mysqli_fetch_array($rsTemp)){
     $reserva_cobro_transferencia[$rs['cobro_transferencia_id']] = $rs['numero'].'-'.$rs['user'].'-'.$rs['quien_transfiere'];
 }
 
+
 //devoluciones de reserva con transferencia
 $sql = "SELECT rd.id, rd.forma_pago, r.numero, CONCAT(usuario.apellido,', ',usuario.nombre) as user FROM reserva_devoluciones rd LEFT JOIN usuario ON rd.usuario_id = usuario.id INNER JOIN reservas r ON rd.reserva_id = r.id AND (rd.forma_pago = 'TRANSFERENCIA' OR rd.forma_pago = 'CHEQUE') ";
 $rsTemp = mysqli_query($conn,$sql);
@@ -139,7 +140,7 @@ while($rs = mysqli_fetch_array($rsTemp)){
 		elseif($es_cuenta[0] == 'debitocuenta'){
 
 			$orden = "";
-			$sql1 = "SELECT G.id as id_gasto, G.nro_orden, ES.id as id_sueldo, CONCAT(E.nombre,' ',E.apellido) as empleadoSueldo, EA.id as id_adelanto, CONCAT(E1.nombre,' ',E1.apellido) as empleadoAdelanto, TR.id as id_tarjeta, TR.nombre as tarjetaNombre,C.id as id_compra, C.nro_orden as ordenCompra
+			$sql1 = "SELECT CP.id AS id_cuotaPlan, G.id as id_gasto, G.nro_orden, ES.id as id_sueldo, CONCAT(E.nombre,' ',E.apellido) as empleadoSueldo, EA.id as id_adelanto, CONCAT(E1.nombre,' ',E1.apellido) as empleadoAdelanto, TR.id as id_tarjeta, TR.nombre as tarjetaNombre,C.id as id_compra, C.nro_orden as ordenCompra, P.plan, CP.vencimiento
 					FROM rel_pago_operacion RPO
 					LEFT JOIN gasto G ON RPO.operacion_id = G.id AND RPO.operacion_tipo = 'gasto'
 					LEFT JOIN empleado_sueldo ES ON RPO.operacion_id = ES.id AND RPO.operacion_tipo = 'sueldo_pago'
@@ -148,7 +149,10 @@ while($rs = mysqli_fetch_array($rsTemp)){
 					LEFT JOIN empleado E1 ON EA.empleado_id = E1.id
 					LEFT JOIN tarjeta_resumen TR ON RPO.operacion_id = TR.id AND RPO.operacion_tipo = 'tarjeta_resumen'
 					LEFT JOIN compra C ON RPO.operacion_id = C.id AND RPO.operacion_tipo = 'compra'
+					LEFT JOIN cuota_plans CP ON RPO.operacion_id = CP.id AND RPO.operacion_tipo = 'cuota_plan'
+					LEFT JOIN plans P ON CP.plan_id = P.id
 					WHERE RPO.forma_pago = 'debito' AND operacion_id = ".$es_cuenta[1];
+
 			$rsTemp1 = mysqli_query($conn,$sql1);
 			while($rs1 = mysqli_fetch_array($rsTemp1)){
 				if ($rs1['id_gasto']) {
@@ -169,6 +173,11 @@ while($rs = mysqli_fetch_array($rsTemp)){
 				if ($rs1['id_tarjeta']) {
 					$detalle = "Debito de cuenta (Tarjeta ".$rs1['tarjetaNombre'].")";
 				}
+                if ($rs1['id_cuotaPlan']) {
+                    $detalle = "Debito de cuenta (Cuota Plan ".$rs1['plan']." Vencimiento ".$rs1['vencimiento'].")";
+                }
+
+
 
 			}
 			$orden = substr( $orden, 0, strlen($orden)-3);

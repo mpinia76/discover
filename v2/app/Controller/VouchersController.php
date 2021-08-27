@@ -112,6 +112,10 @@ class VouchersController extends AppController {
 		$categoria = $this->Categoria->read();
 		$this->set('categoria',$categoria);
 
+		$this->set('idioma',$idioma);
+        $extras = $this->Reserva->ReservaExtra->find('all',array('conditions' => array('reserva_id' => $reserva_id),'recursive' => 2));
+        $this->set('extras',$extras);
+
         $pagado = 0;
         $descontado = 0;
         if(count($reserva['ReservaCobro'])>0){
@@ -123,6 +127,7 @@ class VouchersController extends AppController {
                 }
             }
         }
+
         $this->set('pagado',$pagado);
         $this->set('pendiente',$reserva['Reserva']['total'] - $descontado - $pagado);
         $this->set('total',$reserva['Reserva']['total'] - $descontado);

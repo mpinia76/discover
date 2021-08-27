@@ -59,7 +59,7 @@ while($rs = mysqli_fetch_array($rsTemp)){
 
 		<?php
 		$rubro_id = $rs['rubro_id'];
-		$sql_subrubro = "SELECT $sql_meses,ROUND(SUM(IF(YEAR($tabla.fecha)=$ano,$tabla.monto,0)),2) as 'anual',ROUND(sum($tabla.monto),2) as total, subrubro.subrubro as tipo FROM $tabla INNER JOIN subrubro ON $tabla.subrubro_id = subrubro.id WHERE $tabla.rubro_id = '$rubro_id' GROUP BY $tabla.subrubro_id";
+		$sql_subrubro = "SELECT $sql_meses,ROUND(SUM(IF(YEAR($tabla.fecha)=$ano,$tabla.monto,0)),2) as 'anual',ROUND(sum($tabla.monto),2) as total, subrubro.subrubro as tipo FROM $tabla INNER JOIN subrubro ON $tabla.subrubro_id = subrubro.id WHERE $tabla.rubro_id = '$rubro_id' AND quitar_egresos != 1 GROUP BY $tabla.subrubro_id";
 		$rsTemp2 =  mysqli_query($conn,$sql_subrubro);echo mysqli_error($conn);
 		while($rs2 = mysqli_fetch_array($rsTemp2)){ ?>
 			<tr class="<?php echo$tabla?>_rubro_<?php echo$rubro_id?>" style="display:none;">

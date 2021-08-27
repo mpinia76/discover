@@ -1,6 +1,8 @@
 <?php
 class Lugar extends AppModel {
     public $displayField = 'lugar';
+
+
     public $validate = array(
         'lugar' => array(
             'required'   => true,
@@ -8,7 +10,7 @@ class Lugar extends AppModel {
             'message' => 'Debe completar con un nombre'
         )
     );
-    
+
     public $hasMany = array(
 		'Lugar_Retiro' => array(
 		'className' => 'Reserva',
@@ -19,5 +21,7 @@ class Lugar extends AppModel {
 		'foreignKey' => 'lugar_devolucion_id'
 		)
 	);
+
+
 }
 ?>

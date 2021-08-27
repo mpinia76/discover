@@ -74,7 +74,7 @@ function doInitGrid(){
 	mygrid.attachHeader("#text_filter,#select_filter,#select_filter,#select_filter,#text_filter,#text_filter,#text_filter,<div id='estado_filter'></div>");
     mygrid.attachHeader("&nbsp;,&nbsp;,&nbsp;,&nbsp;,&nbsp;,&nbsp;,${#stat_total},&nbsp;");
 	mygrid.enablePaging(true,12,10,"pagingArea",true,"recinfoArea");
-	mygrid.setInitWidths("80,80,*,*,*,100,100,100"); 				//ancho de las columnas
+	mygrid.setInitWidths("80,80,*,*,*,200,100,100"); 				//ancho de las columnas
     mygrid.setColAlign("left,left,left,left,left,left,left,left");			//alineacion de las columnas
 	mygrid.setColSorting("str,str,str,str,str,str,str,na");			//tipo datos para ordenar
 	mygrid.setColTypes("ro,ro,ro,ro,ro,ro,ro,ro");				//editable o no

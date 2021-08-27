@@ -173,38 +173,32 @@ function resolver(){
     }
 }
 
-function eliminar(){
-
-	var row = $("#dataTable tr.row_selected");
+function posponer(){
+    var row = $("#dataTable tr.row_selected");
     if(row.length == 0){
         alert('Debe seleccionar un registro');
     }else{
-        if(confirm('Seguro desea eliminar el alerta?')){
-	    	var id = oTable.fnGetData(row[0]);
+        var data = oTable.fnGetData(row[0]);
 
-	        $.ajax({
-	            url : '<?php echo $this->Html->url('/alertas/eliminar', true);?>',
-	            type : 'POST',
-	            dataType: 'json',
-	            data: {'id' : id},
-	            success : function(data){
+        if(data[15]=='<span style="color:yellow">Pendiente</span>'){
+            createWindow("w_posponer_view","Posponer Alerta","<?php echo $this->Html->url('/gestion_alertas/posponer', true);?>/"+data[0],"450","350");
+        }
+        else {
+            alert('Alerta debe estar en estado Pendiente');
+        }
 
-	               window.parent.dhxWins.window('w_alertas').attachURL('<?php echo $this->Html->url('/alertas/index', true);?>');
 
-	            }
-	        });
-	    }
     }
-
-
-
-
 }
+
+
 
 </script>
 <ul class="action_bar">
+    <li onclick="window.location.reload()" class="boton actualizar">Actualizar</li>
     <!--<li class="boton agregar"><a onclick="createWindow('w_alertas_add','Alta y parametrización de alertas','<?php echo $this->Html->url('/alertas/crear', true);?>','450','350');">Crear</a></li>-->
     <li class="boton editar"><a onclick="resolver();">Resolver</a></li>
+    <li class="boton editar"><a onclick="posponer();">Posponer</a></li>
     <!--<li class="boton anular"> <a onclick="eliminar();">Eliminar</a></li>
     <li class="filtro">Buscar <input id="data_search" type="text" with="10"/></li>-->
 </ul>

@@ -152,6 +152,24 @@ function borrar(){
 	}
 }
 
+function refinanciar(){
+    var row = $('.row_selected');
+    if(row.length > 1){
+        alert('Debe seleccionar un solo registro');
+    }else if(row.length == 0){
+        alert('Debe seleecionar un registro');
+    }else{
+        var data = oTable.fnGetData(row[0]);
+        if(data[8] == 'Pendiente de pago'){
+            createWindow('w_refinanciar_plan','Refinanciar plan de pagos','v2/plans/refinanciar/'+data[0],'430','250');
+        }else {
+            alert('La cuota debe estar pendiente de pago');
+        }
+
+    }
+}
+
+
 
 
 function edit(action){
@@ -190,6 +208,7 @@ function edit(action){
     <?php if(isset($usuario_accion['136'])){ ?><li onclick="edit('abonar');"  class="boton abonar">Abonar</li><?php  } ?>
 
     <?php if(isset($usuario_accion['136'])){ ?><li onclick="borrar();"  class="boton anular">Anular Pago</li><?php  } ?>
+    <?php if(isset($usuario_accion['136'])){ ?><li onclick="refinanciar();"  class="boton abonar">Refinanciar</li><?php  } ?>
     <li class="filtro">Buscar <input id="data_search" type="text"/></li>
 </ul>
 
@@ -229,7 +248,7 @@ function edit(action){
                     <option value="-1">Estado</option>
                     <option selected="selected">Pendiente</option>
                     <option>Pagada</option>
-
+                    <option>Refinanciada</option>
                 </select>
             </th>
             <!-- Campo Devengao-->

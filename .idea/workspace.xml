@@ -3,9 +3,116 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/v2/app/Controller/PlansController.php" afterDir="false" />
+    <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="Modificaciones varias">
+      <change afterPath="$PROJECT_DIR$/v2/app/Controller/ConceptoFacturacionsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v2/app/Controller/ReservaConductorsController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v2/app/Model/ConceptoFacturacion.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v2/app/Model/ReservaConductor.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v2/app/View/GestionAlertas/posponer.ctp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v2/app/View/Plans/refinanciar.ctp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v2/app/View/ReservaConductors/agregar.ctp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/v2/app/View/ReservaConductors/get_row.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anular_compra_procesa.php" beforeDir="false" afterPath="$PROJECT_DIR$/anular_compra_procesa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anular_cuenta_procesa.php" beforeDir="false" afterPath="$PROJECT_DIR$/anular_cuenta_procesa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anular_cuota_plan_procesa.php" beforeDir="false" afterPath="$PROJECT_DIR$/anular_cuota_plan_procesa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anular_tarjeta_resumen_procesa.php" beforeDir="false" afterPath="$PROJECT_DIR$/anular_tarjeta_resumen_procesa.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base.sql" beforeDir="false" afterPath="$PROJECT_DIR$/base.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/dbBsAs.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/dbBsAs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cron-encuesta.php" beforeDir="false" afterPath="$PROJECT_DIR$/cron-encuesta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cuenta_detalle.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/cuenta_detalle.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cuenta_detalle.php" beforeDir="false" afterPath="$PROJECT_DIR$/cuenta_detalle.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cuentas_pagar.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/cuentas_pagar.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cuota_plan.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/cuota_plan.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/excel_facturacion_electronica_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/excel_facturacion_electronica_1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/abm.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/abm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/form.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/form.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/formadepago.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/formadepago.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global_conf.php" beforeDir="false" afterPath="$PROJECT_DIR$/global_conf.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/informe.economico.gasto.php" beforeDir="false" afterPath="$PROJECT_DIR$/informe.economico.gasto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/menu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/form.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/form.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/permisos.php" beforeDir="false" afterPath="$PROJECT_DIR$/permisos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tarjeta_resumen_detalle.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/tarjeta_resumen_detalle.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transferencias_movimientos.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/transferencias_movimientos.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transferencias_movimientos.php" beforeDir="false" afterPath="$PROJECT_DIR$/transferencias_movimientos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/AlertasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/AlertasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/CategoriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/CategoriasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ChequeConsumosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ChequeConsumosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ClientesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ClientesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/Component/ExportXlsComponent.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/Component/ExportXlsComponent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/CuotaPlansController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/CuotaPlansController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/GestionAlertasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/GestionAlertasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/InformesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/InformesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/PlansController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/PlansController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ReservaCobrosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ReservaCobrosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/UnidadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/UnidadsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/VouchersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/VouchersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Model/Alerta.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/Alerta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Model/Cliente.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/Cliente.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Model/GestionAlerta.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/GestionAlerta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Model/Lugar.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/Lugar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Model/Plan.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/Plan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Model/Reserva.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/Reserva.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Model/ReservaCobro.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/ReservaCobro.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Alertas/crear.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Alertas/crear.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Alertas/editar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Alertas/editar.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Alertas/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Alertas/index.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/CuotaPlans/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/CuotaPlans/index.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/GestionAlertas/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/GestionAlertas/index.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/GestionAlertas/resolver.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/GestionAlertas/resolver.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_economico.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_economico.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_extras_economico.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_extras_economico.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_ocupacion.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_ocupacion.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_ocupacion_porcentaje.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_ocupacion_porcentaje.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_ocupacion_x_categoria.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_ocupacion_x_categoria.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Layouts/informeGrilla.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Layouts/informeGrilla.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/ReservaCobros/agregar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/ReservaCobros/agregar.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/ReservaCobros/finalizar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/ReservaCobros/finalizar.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/ReservaExtras/get_row.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/ReservaExtras/get_row.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Reservas/contrato.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Reservas/contrato.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Reservas/crear.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Reservas/crear.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Reservas/editar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Reservas/editar.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Reservas/plantilla.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Reservas/plantilla.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Scaffolds/form.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Scaffolds/form.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Scaffolds/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Scaffolds/index.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Unidads/crear.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Unidads/crear.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Unidads/editar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Unidads/editar.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Unidads/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Unidads/index.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Vouchers/ver.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Vouchers/ver.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/tmp/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/logs/error.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/lib/Cake/Console/Templates/default/views/form.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/lib/Cake/Console/Templates/default/views/form.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/lib/Cake/Controller/Scaffold.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/lib/Cake/Controller/Scaffold.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/lib/Cake/View/ScaffoldView.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/lib/Cake/View/ScaffoldView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/lib/Cake/View/Scaffolds/view.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/lib/Cake/View/Scaffolds/view.ctp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +125,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1hasZEWHqXHGpJY5aEXW3MZ9KoV" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -29,17 +144,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../wp_maquetado" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/v2/app/Controller" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Documents\Mis Webs\discover\v2\app\View\GestionAlertas" />
       <recent name="D:\Documents\Mis Webs\discover\v2\app\Controller" />
       <recent name="D:\Documents\Mis Webs\discover\v2\app\Model" />
-      <recent name="D:\Documents\Mis Webs\discover\v2\app\View\Alertas" />
-      <recent name="D:\Documents\Mis Webs\discover\v2\app\View\UnidadAlertas" />
+      <recent name="D:\Documents\Mis Webs\discover\v2\app\View\ReservaConductors" />
+      <recent name="D:\Documents\Mis Webs\discover\v2\app\View" />
+      <recent name="D:\Documents\Mis Webs\discover\v2\app\View\Plans" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -112,65 +228,87 @@
       <workItem from="1607085234314" duration="19788000" />
       <workItem from="1607176967355" duration="9214000" />
       <workItem from="1607517506094" duration="17133000" />
-      <workItem from="1607691414194" duration="17374000" />
+      <workItem from="1607691414194" duration="18227000" />
+      <workItem from="1607953421037" duration="13199000" />
+      <workItem from="1608039613760" duration="6224000" />
+      <workItem from="1608124259698" duration="5846000" />
+      <workItem from="1608211778956" duration="2037000" />
+      <workItem from="1608293529617" duration="1204000" />
+      <workItem from="1608511343491" duration="314000" />
+      <workItem from="1608731020229" duration="442000" />
+      <workItem from="1608818290955" duration="52000" />
+      <workItem from="1610114016594" duration="1652000" />
+      <workItem from="1610454458022" duration="103000" />
+      <workItem from="1611096380214" duration="477000" />
+      <workItem from="1611150462628" duration="623000" />
+      <workItem from="1611231867370" duration="11840000" />
+      <workItem from="1611844809107" duration="7640000" />
+      <workItem from="1612026932534" duration="2062000" />
+      <workItem from="1612207369616" duration="1856000" />
+      <workItem from="1612902972231" duration="10768000" />
+      <workItem from="1613051931301" duration="571000" />
+      <workItem from="1613135760338" duration="3084000" />
+      <workItem from="1613485858989" duration="784000" />
+      <workItem from="1613652784796" duration="5348000" />
+      <workItem from="1613689350326" duration="4648000" />
+      <workItem from="1613914680431" duration="593000" />
+      <workItem from="1613935781132" duration="1213000" />
+      <workItem from="1613993322808" duration="174000" />
+      <workItem from="1614269438697" duration="4838000" />
+      <workItem from="1614341881347" duration="2750000" />
+      <workItem from="1614428598570" duration="1199000" />
+      <workItem from="1614517559354" duration="588000" />
+      <workItem from="1614600553205" duration="11535000" />
+      <workItem from="1614641498142" duration="892000" />
+      <workItem from="1614885331536" duration="2654000" />
+      <workItem from="1614943152069" duration="203000" />
+      <workItem from="1616676767055" duration="212000" />
+      <workItem from="1620315160689" duration="3568000" />
+      <workItem from="1620480424903" duration="1059000" />
+      <workItem from="1625092800306" duration="4166000" />
+      <workItem from="1625142285221" duration="53000" />
+      <workItem from="1625143430050" duration="16000" />
+      <workItem from="1625143953466" duration="3681000" />
+      <workItem from="1625228359563" duration="592000" />
+      <workItem from="1625488674537" duration="11868000" />
+      <workItem from="1625573933220" duration="8964000" />
+      <workItem from="1625660174056" duration="5018000" />
+      <workItem from="1625678170775" duration="3693000" />
+      <workItem from="1626188246715" duration="204000" />
+      <workItem from="1626351536445" duration="17128000" />
+      <workItem from="1626435412027" duration="10121000" />
+      <workItem from="1626526142976" duration="589000" />
+      <workItem from="1626554871100" duration="508000" />
+      <workItem from="1626556594166" duration="622000" />
+      <workItem from="1626646288575" duration="584000" />
+      <workItem from="1626695472086" duration="608000" />
+      <workItem from="1626783023482" duration="9184000" />
+      <workItem from="1626817714736" duration="411000" />
+      <workItem from="1626878976190" duration="9341000" />
+      <workItem from="1629809987372" duration="3842000" />
+      <workItem from="1629815177234" duration="4814000" />
+      <workItem from="1629904963788" duration="2221000" />
+      <workItem from="1630069129097" duration="8353000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="370" y="135" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606392625132">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="370" y="135" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.760@0.0.1280.760" timestamp="1606392625132" />
-    <state x="387" y="235" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1604608582075">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="387" y="235" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1280.760@0.0.1280.760" timestamp="1604608582075" />
-    <state x="420" y="135" key="FileChooserDialogImpl" timestamp="1607793118071">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="420" y="135" key="FileChooserDialogImpl/0.0.1280.760@0.0.1280.760" timestamp="1607793118071" />
-    <state x="518" y="278" key="Github.ShareDialog" timestamp="1607792798832">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="518" y="278" key="Github.ShareDialog/0.0.1280.760@0.0.1280.760" timestamp="1607792798832" />
-    <state x="474" y="303" key="NewPhpFileDialog" timestamp="1605709625844">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="474" y="303" key="NewPhpFileDialog/0.0.1280.760@0.0.1280.760" timestamp="1605709625844" />
-    <state x="414" y="82" key="RollbackChangesDialog" timestamp="1607793294869">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="414" y="82" key="RollbackChangesDialog/0.0.1280.760@0.0.1280.760" timestamp="1607793294869" />
-    <state x="457" y="221" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605570144763">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="457" y="221" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.760@0.0.1280.760" timestamp="1605570144763" />
-    <state x="92" y="92" width="1096" height="576" key="dock-window-1" timestamp="1606231804588">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="92" y="92" width="1096" height="576" key="dock-window-1/0.0.1280.760@0.0.1280.760" timestamp="1606231804588" />
-    <state x="347" y="113" width="585" height="624" key="find.popup" timestamp="1607702217648">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="347" y="113" width="585" height="624" key="find.popup/0.0.1280.760@0.0.1280.760" timestamp="1607702217648" />
-    <state x="441" y="286" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1607793083841">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="441" y="286" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1280.760@0.0.1280.760" timestamp="1607793083841" />
-    <state x="296" y="170" key="run.anything.popup" timestamp="1604600958880">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="296" y="170" key="run.anything.popup/0.0.1280.760@0.0.1280.760" timestamp="1604600958880" />
-    <state x="303" y="81" width="672" height="678" key="search.everywhere.popup" timestamp="1607789221356">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="303" y="81" width="672" height="678" key="search.everywhere.popup/0.0.1280.760@0.0.1280.760" timestamp="1607789221356" />
-    <state x="457" y="140" key="svn.repositoryBrowser" timestamp="1607792210929">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="457" y="140" key="svn.repositoryBrowser/0.0.1280.760@0.0.1280.760" timestamp="1607792210929" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Modificaciones varias" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modificaciones varias" />
   </component>
 </project>

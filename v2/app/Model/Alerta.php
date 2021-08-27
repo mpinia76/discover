@@ -3,6 +3,10 @@ class Alerta extends AppModel {
 
     public $hasMany = array('UnidadAlerta','UnidadAlerta');
 
+    public $virtualFields = array(
+        'alertaCompleta' => "CONCAT(alerta,' - ', corta)"
+    );
+
     public $validate = array(
         'tipo' => array(
             'required'   => true,

@@ -103,6 +103,11 @@ class InformesController extends AppController {
     }
 
 
+    function index_base_datos(){
+        $this->layout = 'informe';
+        $this->setLogUsuario('Base de datos');
+    }
+
  	function index_ventas_ocupacion(){
         $this->layout = 'informe';
         $this->setLogUsuario('Informe de ocupacion');
@@ -2890,6 +2895,143 @@ class InformesController extends AppController {
   		$this->ExportXls->export($fileName, $headerRow, $data);
     }
 
+    function base_datos($mes,$ano, $colNombre, $colDni, $colTelefono, $colCelular, $colDireccion, $colLocalidad, $colEmail){
+        //error_reporting(0);
+
+        //echo $colNombre;
+        $this->layout = 'ajax';
+
+        $this->loadModel('Reserva');
+
+        if ($mes!='N'){
+            $from = $ano .'-'. $mes .'-01 00:00:00';
+            $to = $ano .'-'. $mes .'-31 00:00:00';
+        }
+        else{
+            $from = $ano .'-01-01 00:00:00';
+            $to = $ano .'-12-31 00:00:00';
+        }
+
+
+
+        $reservas = $this->Reserva->find('all',array('order' => 'Reserva.id desc', 'conditions' => array('Reserva.devolucion between ? and ?' => array($from, $to))));
+
+        //print_r($reservas);
+
+        $clientesMostrar = array();
+        if(count($reservas) > 0){
+
+            foreach($reservas as $reserva){
+
+
+                $clientesMostrar[]=array('nombre_apellido'=>$reserva['Cliente']['nombre_apellido'],'dni'=>$reserva['Cliente']['dni'],'telefono'=>$reserva['Cliente']['telefono'],'celular'=>$reserva['Cliente']['celular'],'direccion'=>$reserva['Cliente']['direccion'],'localidad'=>$reserva['Cliente']['localidad'],'email'=>$reserva['Cliente']['email']);
+            }
+        }
+        //$this->array_sort_by($gastosMostrar, $orden);
+        $this->set(array(
+            'clientes' => $clientesMostrar,
+            'colNombre' => $colNombre,
+            'colDni' => $colDni,
+            'colTelefono' => $colTelefono,
+            'colCelular' => $colCelular,
+            'colDireccion' => $colDireccion,
+            'colLocalidad' => $colLocalidad,
+            'colEmail' => $colEmail,
+        ));
+    }
+
+    function exportarBaseDatos($mes, $ano, $colNombre, $colDni, $colTelefono, $colCelular, $colDireccion, $colLocalidad, $colEmail){
+        //error_reporting(0);
+        $this->layout = 'ajax';
+
+        $this->loadModel('Reserva');
+
+
+        if ($mes!='N'){
+            $from = $ano .'-'. $mes .'-01 00:00:00';
+            $to = $ano .'-'. $mes .'-31 00:00:00';
+        }
+        else{
+            $from = $ano .'-01-01 00:00:00';
+            $to = $ano .'-12-31 00:00:00';
+        }
+
+        $reservas = $this->Reserva->find('all',array('order' => 'Reserva.id desc', 'conditions' => array('Reserva.devolucion between ? and ?' => array($from, $to))));
+        $this->autoRender = false;
+        $this->layout = false;
+
+
+        $fileName = "Base_Datos_".$mes.'_'.$ano.".xls";
+
+        $headerRow = array();
+        if ($colNombre){
+            $headerRow[]="Nombre Apellido";
+        }
+        if ($colDni){
+            $headerRow[]="DNI";
+        }
+        if ($colTelefono){
+            $headerRow[]="Telefono";
+        }
+        if ($colCelular){
+            $headerRow[]="Celular";
+        }
+        if ($colDireccion){
+            $headerRow[]="Direccion";
+        }
+        if ($colLocalidad){
+            $headerRow[]="Localidad";
+        }
+        if ($colEmail){
+            $headerRow[]="E-mail";
+        }
+
+        //$headerRow = array("Nombre Apellido","DNI","Telefono","Celular","Direccion","Localidad","E-mail");
+
+        $data = array();
+
+        $clientesMostrar = array();
+        if(count($reservas) > 0){
+
+            foreach($reservas as $reserva){
+
+
+
+
+                $clientesMostrar[]=array('nombre_apellido'=>$reserva['Cliente']['nombre_apellido'],'dni'=>$reserva['Cliente']['dni'],'telefono'=>$reserva['Cliente']['telefono'],'celular'=>$reserva['Cliente']['celular'],'direccion'=>$reserva['Cliente']['direccion'],'localidad'=>$reserva['Cliente']['localidad'],'email'=>$reserva['Cliente']['email']);
+            }
+        }
+        // $this->array_sort_by($gastosMostrar, $orden);
+        foreach($clientesMostrar as $cliente){
+
+            $row = array();
+            if ($colNombre){
+                $row[]=utf8_decode(trim($cliente['nombre_apellido']));
+            }
+            if ($colDni){
+                $row[]=utf8_decode(trim($cliente['dni']));
+            }
+            if ($colTelefono){
+                $row[]=utf8_decode(trim($cliente['telefono']));
+            }
+            if ($colCelular){
+                $row[]=utf8_decode(trim($cliente['celular']));
+            }
+            if ($colDireccion){
+                $row[]=utf8_decode(trim($cliente['direccion']));
+            }
+            if ($colLocalidad){
+                $row[]=utf8_decode(trim($cliente['localidad']));
+            }
+            if ($colEmail){
+                $row[]=utf8_decode(trim($cliente['email']));
+            }
+            $data[] = $row;
+        }
+
+
+        $this->ExportXls->export($fileName, $headerRow, $data);
+    }
 
 }
 ?>

@@ -30,8 +30,8 @@ $this->Js->buffer('
             <td width="50%"><p style="font-size:16px;"><strong>DNI/Pasaporte: </strong> <?php echo $reserva['Cliente']['dni']; ?></p></td>
         </tr>
         <tr>
-            <td><p style="font-size:16px;"><strong>Telefono: </strong> <?php echo $reserva['Cliente']['telefono']; ?></p></td>
-            <td><p style="font-size:16px;"><strong>Celular: </strong> <?php echo $reserva['Cliente']['celular']; ?></p></td>
+            <td><p style="font-size:16px;"><strong>Telefono: </strong> <?php echo $telefono; ?></p></td>
+            <td><p style="font-size:16px;"><strong>Celular: </strong> <?php echo $celular; ?></p></td>
         </tr>
         <tr>
             <td><p style="font-size:16px;"><strong>Direccion: </strong> <?php echo $reserva['Cliente']['direccion']; ?></p></td>
@@ -49,16 +49,16 @@ $this->Js->buffer('
             <td width="50%"><p style="font-size:16px;"><strong>Email: </strong>  <?php echo $reserva['Cliente']['email']; ?></p></td>
             <td width="50%"><p style="font-size:16px;"><strong>Domicilio en Ushuaia: </strong> <?php echo $reserva['Cliente']['domicilio_local']; ?></p></td>
         </tr>
-        
+
         <tr>
             <td colspan="2" height="30"><p style="font-size:16px;"><em>Datos Conductor</em></p></td>
         </tr>
-        
+
         <tr>
             <td width="50%"><p style="font-size:16px;"><strong>Nombre y Apellido: </strong> <?php echo $reserva['Cliente']['ad_nombre_apellido']; ?></p></td>
             <td width="50%"><p style="font-size:16px;"><strong>DNI/Pasaporte: </strong> <?php echo $reserva['Cliente']['ad_dni']; ?></p></td>
         </tr>
-        
+
         <tr>
             <td width="50%"><p style="font-size:16px;"><strong>Telefono: </strong> <?php echo $reserva['Cliente']['ad_telefono']; ?></p></td>
             <td width="50%"><p style="font-size:16px;"><strong>Email: </strong> <?php echo $reserva['Cliente']['ad_email']; ?></p></td>
@@ -75,21 +75,21 @@ $this->Js->buffer('
     </table>
     <h2>Datos de la reserva</h2>
     <table width="100%">
-    	<tr> 
+    	<tr>
             <td width="50%"><p style="font-size:16px;"><strong>Categoria: </strong><?php echo $categoria['Categoria']['categoria']; ?></p></td>
             <td width="50%"><p style="font-size:16px;"><strong>Unidad: </strong><?php echo $reserva['Unidad']['unidad']; ?></p></td>
-           
+
         </tr>
-        <tr> 
-            
+        <tr>
+
             <td width="50%"><p style="font-size:16px;"><strong>Lugar Retiro: </strong><?php echo $reserva['Lugar_Retiro']['lugar']; ?></p></td>
             <td width="50%"><p style="font-size:16px;"><strong>Retiro: </strong><?php echo $reserva['Reserva']['retiro'].' '. $reserva['Reserva']['hora_retiro']; ?></p></td>
-            
+
         </tr>
-        <tr> 
+        <tr>
             <td width="50%"><p style="font-size:16px;"><strong>Lugar Devolucion: </strong><?php echo $reserva['Lugar_Devolucion']['lugar']; ?></p></td>
             <td width="50%"><p style="font-size:16px;"><strong>Devolucion: </strong><?php echo $reserva['Reserva']['devolucion'].' '.$reserva['Reserva']['hora_devolucion']; ?></p></td>
-            
+
         </tr>
         <tr>
             <td colspan="3"><p style="font-size:16px;"><strong>Total Pasajeros: </strong><?php echo $reserva['Reserva']['pax_adultos'] + $reserva['Reserva']['pax_menores'] ; ?> </p></td>
@@ -136,19 +136,19 @@ $this->Js->buffer('
 
 function descargar(){
 	document.location = "<?php echo $this->Html->url('/reservas/plantilla/'.$reserva['Reserva']['id'].'/1', true);?>";
-    
+
 }
 
 function enviarVoucher(){
-	
-		
-	
-			
-	createWindow('w_enviar_palnilla','Enviar planilla','<?php echo $this->Html->url('/reservas/formMailPlanilla/'.$reserva['Reserva']['id'], true);?>','430','400');		
-			
-			
-		
-	
+
+
+
+
+	createWindow('w_enviar_palnilla','Enviar planilla','<?php echo $this->Html->url('/reservas/formMailPlanilla/'.$reserva['Reserva']['id'], true);?>','430','400');
+
+
+
+
 }
 
 </script>

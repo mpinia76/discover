@@ -92,7 +92,7 @@ $meses = array('01'=>'ENERO', '02'=> 'FEBRERO', '03'=> 'MARZO', '04'=> 'ABRIL', 
 <?php
 $ids = substr( $_GET['ids'], 0, strlen($_GET['ids'])-1); //se le quita la �ltima , (coma)
 //print_r($_GET['ids']);
-$sql = "SELECT R.id, R.retiro, R.devolucion, R.total, C.nombre_apellido, C.cuit, C.dni, C.sexo, CA.categoria, R.estado
+$sql = "SELECT R.id, R.retiro, R.devolucion, R.total, C.nombre_apellido, C.cuit, C.dni, C.sexo, CA.categoria, R.estado, C.tipoDocumento, C.tipoPersona, C.titular_factura, C.razon_social, C.iva, c.cuit
 FROM reservas R INNER JOIN clientes C ON R.cliente_id = C.id
 INNER JOIN unidads U ON R.unidad_id = U.id
 INNER JOIN categorias CA ON U.categoria_id = CA.id
@@ -105,6 +105,29 @@ $rsTemp = mysqli_query($conn,$sql);
 $totalGral=0;
 while($rs = mysqli_fetch_array($rsTemp)){
 	if(($rs['estado']!='2')&&($rs['estado']!='3')){
+	    $docTipo = ($rs['tipoDocumento']=='DNI')?'94':'96';
+        $documento = ($rs['cuit']!='')?$rs['cuit']:intval($rs['dni']);
+
+        $tipoPersona = ($rs['tipoPersona']=='Juridica')?'0':'1';
+        $razonSocial = ($rs['titular_factura']=='0')?$rs['razon_social']:'0';
+        switch ($rs['iva']) {
+
+            case 'Responsable Inscripto':
+                $condicion='0';
+                $docTipo = '80';
+                break;
+            case 'Excento':
+                $condicion='2';
+                break;
+            case 'Monotributo':
+                $condicion='3';
+                break;
+            default:
+                $condicion='1';
+                break;
+
+        }
+        $cvTipo = ($rs['iva']=='Responsable Inscripto')?'1':'6';
 		/*$sql = "SELECT * FROM reserva_extras WHERE reserva_id = ".$rs['id'];
 
 		$rsTempExtras = mysqli_query($conn,$sql);
@@ -114,7 +137,16 @@ while($rs = mysqli_fetch_array($rsTemp)){
 	        	$no_adelantadas = $no_adelantadas + $rsExtras['cantidad'] * $rsExtras['precio'];
 	        }
 		}*/
-		$sql = "SELECT * FROM reserva_cobros WHERE reserva_id = ".$rs['id'];
+        $sql = "SELECT reserva_cobros.*, concepto_facturacions.nombre as concepto_facturacion FROM reserva_cobros LEFT JOIN concepto_facturacions ON reserva_cobros.concepto_facturacion_id = concepto_facturacions.id  WHERE fecha LIKE '".$_GET["ano"]."-".$_GET["mes"]."%' AND reserva_id = ".$rs['id']." AND reserva_cobros.tipo <> 'DESCUENTO' ORDER BY reserva_cobros.id";
+
+        $rsTempCobros = mysqli_query($conn,$sql);
+
+        while($rsCobros = mysqli_fetch_array($rsTempCobros)){
+            $detalle = $rsCobros['concepto_facturacion'];
+        }
+
+
+        $sql = "SELECT * FROM reserva_cobros WHERE reserva_id = ".$rs['id'];
 
 		$rsTempDescuentos = mysqli_query($conn,$sql);
 		$descontado=0;
@@ -122,10 +154,12 @@ while($rs = mysqli_fetch_array($rsTemp)){
 		$tarjetas=0;
 		$cheques=0;
 		while($rsDescuentos = mysqli_fetch_array($rsTempDescuentos)){
+
 			if($rsDescuentos['tipo'] == "DESCUENTO"){
 
 	        	$descontado += $rsDescuentos['monto_neto'];
 	        }
+
 		if ($_GET['columnaTransfiere']==1) {
 				$sql = "SELECT * FROM cobro_transferencias INNER JOIN cuenta ON cobro_transferencias.cuenta_id = cuenta.id
 		        WHERE reserva_cobro_id = ".$rsDescuentos['id']." AND cuenta.controla_facturacion = 1 AND cobro_transferencias.acreditado = 1";
@@ -221,15 +255,15 @@ while($rs = mysqli_fetch_array($rsTemp)){
 
 ?>
 <tr>
-<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">96</td>
-<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $rs['dni']; ?></td>
+<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $docTipo; ?></td>
+<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $documento ?></td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">administracion@villagedelaspampas.com.ar</td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"></td>
-<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">1</td>
+<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $tipoPersona; ?></td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo utf8_decode($rs['nombre_apellido']);?></td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"> </td>
-<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">0</td>
-<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">1</td>
+<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo utf8_decode($razonSocial);?></td>
+<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $condicion; ?></td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"> </td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"> </td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"> </td>
@@ -242,7 +276,7 @@ while($rs = mysqli_fetch_array($rsTemp)){
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"> </td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"> </td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"> </td>
-<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">6</td>
+<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $cvTipo;?></td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">2</td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $total;?></td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $total;?></td>
@@ -269,7 +303,7 @@ while($rs = mysqli_fetch_array($rsTemp)){
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">1</td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">7</td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">1</td>
-<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">Alquiler</td>
+<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $detalle;?></td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $total;?></td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">0</td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">0</td>

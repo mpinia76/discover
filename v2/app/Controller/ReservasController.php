@@ -570,7 +570,12 @@ class ReservasController extends AppController {
         $this->set('lugars', $this->Lugar->find('list',array('order' => array('Lugar.lugar ASC'))));
 
         //iva
-        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Consumidor Final' => 'Consumidor Final', 'Monotributo' => 'Monotributo'));
+        //$this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Consumidor Final' => 'Consumidor Final', 'Monotributo' => 'Monotributo'));
+        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Monotributo' => 'Monotributo'));
+
+        $this->set('tipoDocumento_ops', array('DNI' => 'DNI', 'Pasaporte' => 'Pasaporte'));
+        $this->set('tipoTelefono_ops', array('Fijo' => 'Fijo', 'Celular' => 'Celular'));
+        $this->set('tipoPersona_ops', array('Fisica' => 'Fisica', 'Juridica' => 'Juridica'));
 
         //lista de extra rubros
         $this->loadModel('ExtraRubro');
@@ -588,6 +593,9 @@ class ReservasController extends AppController {
 
         $extras = $this->Reserva->ReservaExtra->find('all',array('conditions' => array('reserva_id' => $id, 'adelantada' => 1, 'extra_id !=' => 0),'recursive' => 2));
         $this->set('extras',$extras);
+
+        $reservaConductors = $this->Reserva->ReservaConductor->find('all',array('conditions' => array('reserva_id' => $id),'recursive' => 2));
+        $this->set('reservaConductors',$reservaConductors);
 
        //$this->set('hora',date ("h:i"));
 
@@ -638,7 +646,7 @@ class ReservasController extends AppController {
 
 
         //iva
-        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Consumidor Final' => 'Consumidor Final', 'Monotributo' => 'Monotributo'));
+        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Monotributo' => 'Monotributo'));
 
         $this->Reserva->id = $id;
         $this->request->data = $this->Reserva->read();
@@ -692,6 +700,12 @@ class ReservasController extends AppController {
 
        	$this->set('defaultSexo',$reserva['Cliente']['sexo']);
         $this->set('sexos',$sexos);
+
+        //tipo documento
+
+        $this->set('tipoDocumento_ops', array('DNI' => 'DNI', 'Pasaporte' => 'Pasaporte'));
+        $this->set('tipoTelefono_ops', array('Fijo' => 'Fijo', 'Celular' => 'Celular'));
+        $this->set('tipoPersona_ops', array('Fisica' => 'Fisica', 'Juridica' => 'Juridica'));
 
         $this->set('pendiente', $pendiente);
         $this->set('reserva', $this->Reserva->read());
@@ -875,6 +889,7 @@ class ReservasController extends AppController {
         //load modules
         $this->loadModel('Cliente');
         $this->loadModel('ReservaExtra');
+        $this->loadModel('ReservaConductor');
 
 
         if(!empty($this->request->data)) {
@@ -890,9 +905,19 @@ class ReservasController extends AppController {
         	if ($cliente['dni']=='') {
             	$errores['Cliente']['dni'][] = 'Ingrese un DNI';
             }
+            if ($cliente['tipoDocumento']=='DNI') {
+                if (!ctype_digit($cliente['dni'])){
+                    $errores['Cliente']['dni'][] = 'Ingrese solo numeros';
+                }
 
+            }
         	if ($cliente['sexo']=='') {
             	$errores['Cliente']['sexo'][] = 'Seleccione un sexo';
+            }
+
+            if($cliente['codPais'] == '') {
+                //$cliente['codPais'] = $cliente['codPaisAux'];
+                $this->Cliente->set('codPais',$cliente['codPaisAux']);
             }
 
             if(($cliente['telefono'] == '') AND ($cliente['celular'] == '')){
@@ -923,6 +948,16 @@ class ReservasController extends AppController {
             if ($cliente['nacionalidad']=='') {
             	$errores['Cliente']['nacionalidadAux'] = 'Seleccione una nacionalidad';
             }
+
+            if(($cliente['iva'] != '') AND ($cliente['tipoPersona'] == '')){
+                $errores['Cliente']['tipoPersona'][] = 'Seleccione un Tipo de Persona';
+
+            }
+            if(($cliente['iva'] != '') AND ($cliente['razon_social'] == '')){
+                $errores['Cliente']['razon_social'][] = 'Ingrese una Razon Social';
+
+            }
+
 	        $vencimiento = $cliente['vencimiento'];
 
 
@@ -1061,7 +1096,7 @@ class ReservasController extends AppController {
             }else{
                 //guardo cliente
                 $this->Cliente->save();
-
+                //print_r($this->Cliente);
                 //guardo reserva
                 $this->Reserva->set('cliente_id',$this->Cliente->id);
                 $this->Reserva->set('estado','0');
@@ -1086,10 +1121,64 @@ class ReservasController extends AppController {
                         }
                     }
                 }
+                //print_r($this->request->data['ReservaConductorNombreApellido']);
+                $this->ReservaConductor->deleteAll(array('reserva_id' => $this->Reserva->id), false);
+                if(array_key_exists('ReservaConductorNombreApellido',$this->request->data)){
 
-                $this->set('resultado','OK');
-                $this->set('mensaje','Datos guardados');
-                $this->set('detalle','');
+                    $reservaconductors = $this->request->data['ReservaConductorNombreApellido'];
+
+                    if($reservaconductors and count($reservaconductors)>0){
+
+                        $i=0;
+                        foreach($reservaconductors as $conductor){
+                            //echo $this->request->data['ReservaConductorNombreApellido'][$i];
+                            $this->ReservaConductor->create();
+                            $this->ReservaConductor->set('reserva_id',$this->Reserva->id);
+                            $this->ReservaConductor->set('nombre_apellido',$this->request->data['ReservaConductorNombreApellido'][$i]);
+                            $this->ReservaConductor->set('dni',$this->request->data['ReservaConductorDni'][$i]);
+                            $this->ReservaConductor->set('telefono',$this->request->data['ReservaConductorTelefono'][$i]);
+                            $this->ReservaConductor->set('email',$this->request->data['ReservaConductorEmail'][$i]);
+                            $this->ReservaConductor->set('nro_licencia_de_conducir',$this->request->data['ReservaConductorNroLicencia'][$i]);
+                            $this->ReservaConductor->set('vencimiento',$this->request->data['ReservaConductorVencimiento'][$i]);
+                            $this->ReservaConductor->set('lugar_emision',$this->request->data['ReservaConductorLugarEmision'][$i]);
+                            $this->ReservaConductor->set('direccion',$this->request->data['ReservaConductorDireccion'][$i]);
+                            $this->ReservaConductor->set('localidad',$this->request->data['ReservaConductorLocalidad'][$i]);
+
+                            if(!$this->ReservaConductor->validates()){
+                                foreach ($this->ReservaConductor->validationErrors as $validationError){
+                                    //print_r($validationError);
+                                    $errores['Cliente']['ad_localidad'][] = $validationError[0];
+                                }
+
+                            }
+
+                            $date_parts = explode("/",$this->request->data['ReservaConductorVencimiento'][$i]);
+                            $vencimiento =  $date_parts[2]."-".$date_parts[1]."-".$date_parts[0];
+
+                            if ($vencimiento<$devolucion) {
+                                $errores['Cliente']['ad_localidad'][]='La licencia de uno de los conductores está vencida para la fecha de la reserva';
+                            }
+                            if(isset($errores) and count($errores) > 0){
+                                break;
+                            }
+                            else{
+                                $this->ReservaConductor->save();
+                            }
+
+
+                            $i++;
+                        }
+                    }
+                }
+                 if(isset($errores) and count($errores) > 0){
+                    $this->set('resultado','ERROR');
+                    $this->set('mensaje','No se pudo guardar');
+                    $this->set('detalle',$errores);
+                }else {
+                     $this->set('resultado', 'OK');
+                     $this->set('mensaje', 'Datos guardados');
+                     $this->set('detalle', '');
+                 }
             }
             $this->set('_serialize', array(
                 'resultado',
@@ -1135,7 +1224,7 @@ class ReservasController extends AppController {
 	            $this->Reserva->set($reserva);
 	            if (($reserva['reservado_por']!='')or($reserva['subcanal_id']!='')or($reserva['lugar_retiro_id']!='')or($reserva['lugar_devolucion_id']!='')
 	            or($reserva['pax_adultos']!='0')or($reserva['pax_menores']!='0')or($reserva['pax_bebes']!='0')or($reserva['discover']!='0')or($reserva['discover_plus']!='0')
-	            or($reserva['discover_advance']!='0')or($reserva['total_estadia']!='0')or($reserva['comentarios']!='') ){
+	            or($reserva['discover_advance']!='0')or($reserva['total_estadia']!='0') ){
 	            	$this->guardar();
 	            }
 	       		else{
@@ -1259,6 +1348,16 @@ class ReservasController extends AppController {
 
         $this->Reserva->id = $reserva_id;
         $reserva = $this->Reserva->read();
+        $telefono ='';
+        if ($reserva['Cliente']['tipoTelefono']=='Fijo'){
+            $telefono = $reserva['Cliente']['codPais'].' '.$reserva['Cliente']['codArea'].' '.$reserva['Cliente']['telefono'];
+        }
+        $celular ='';
+        if ($reserva['Cliente']['tipoTelefono']=='Celular'){
+            $celular = $reserva['Cliente']['codPais'].' '.$reserva['Cliente']['codArea'].' '.$reserva['Cliente']['telefono'];
+        }
+        $this->set('telefono',$telefono);
+        $this->set('celular',$celular);
         $this->set('reserva',$reserva);
 
 
