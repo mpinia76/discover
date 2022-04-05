@@ -202,7 +202,7 @@ echo $this->Form->create(null, array('url' => '/reservas/crear','inputDefaults' 
 
 
     <div class="ym-grid">
-        <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.iva',array('type' => 'select', 'options' => $iva_ops, 'empty' => 'Seleccionar ...', 'label' => 'Condicion Impositiva')); ?></div>
+        <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.iva',array('type' => 'select','disabled'=>'disabled', 'options' => $iva_ops, 'empty' => 'Seleccionar ...', 'label' => 'Condicion Impositiva')); ?></div>
         <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.tipoPersona',array('type' => 'select','disabled'=>'disabled', 'options' => $tipoPersona_ops, 'empty' => 'Seleccionar ...', 'label' => 'Tipo de Persona')); ?></div>
     </div>
 
@@ -235,7 +235,7 @@ $(document).ready(function(){
 	$("#ClienteNacionalidadAux").autocomplete({
 	select: function(event, ui) {
 	selected_id = ui.item.id;
-	$("#ReservaCrearForm").append('<input id="\"NacionalidadId\"" type="\"hidden\"" name="data[Cliente][nacionalidad]" value="' + selected_id + '" />');
+	$("#ReservaCrearForm").append('<input id="NacionalidadId" type="hidden" name="data[Cliente][nacionalidad]" value="' + selected_id + '" />');
 
 	}
 	});
@@ -510,7 +510,7 @@ $("#ClienteTitularConduce").click( function(){
    if( $(this).is(':checked') ) {
    		$("#ClienteAdNombreApellido").val($("#ClienteNombreApellido").val());
    		$("#ClienteAdDni").val($("#ClienteDni").val());
-   		$("#ClienteAdTelefono").val($("#ClienteTelefono").val());
+       $("#ClienteAdTelefono").val($("#ClienteCodPaisAux").val()+' '+$("#ClienteCodArea").val()+' '+$("#ClienteTelefono").val());
    		$("#ClienteAdEmail").val($("#ClienteEmail").val());
    		$("#ClienteAdDireccion").val($("#ClienteDireccion").val());
    		$("#ClienteAdLocalidad").val($("#ClienteLocalidad").val());

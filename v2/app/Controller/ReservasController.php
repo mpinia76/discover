@@ -963,7 +963,15 @@ class ReservasController extends AppController {
                 $errores['Cliente']['razon_social'][] = 'Ingrese una Razon Social';
 
             }
+            //echo $cliente['iva'];
+            if ($cliente['iva'] == ''){
 
+
+                $this->Cliente->set('razon_social','');
+                $this->Cliente->set('cuit','');
+                $this->Cliente->set('tipoPersona',null);
+
+            }
 	        $vencimiento = $cliente['vencimiento'];
 
 
@@ -1100,6 +1108,7 @@ class ReservasController extends AppController {
                 $this->set('mensaje','No se pudo guardar');
                 $this->set('detalle',$errores);
             }else{
+                //print_r($cliente);
                 //guardo cliente
                 $this->Cliente->save();
                 //print_r($this->Cliente);

@@ -305,8 +305,8 @@ $disabled = ($grilla==2)?'disabled':'';
 
 
     <div class="ym-grid">
-        <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.iva',array('type' => 'select', 'options' => $iva_ops, 'empty' => 'Seleccionar ...', 'label' => 'Condicion Impositiva')); ?></div>
-        <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.tipoPersona',array('type' => 'select', 'options' => $tipoPersona_ops, 'empty' => 'Seleccionar ...', 'label' => 'Tipo de Persona')); ?></div>
+        <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.iva',array('type' => 'select','disabled'=>'disabled', 'options' => $iva_ops, 'empty' => 'Seleccionar ...', 'label' => 'Condicion Impositiva')); ?></div>
+        <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.tipoPersona',array('type' => 'select','disabled'=>'disabled', 'options' => $tipoPersona_ops, 'empty' => 'Seleccionar ...', 'label' => 'Tipo de Persona')); ?></div>
     </div>
 
     <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.titular_factura',array('label'=>'Facturar a titular de reserva','default' => '0')); ?></div>
@@ -375,6 +375,9 @@ $(document).ready(function(){
             $("#CodPaisId").remove();
         }
     });
+    modificarFacturacion();
+    //$("#ClienteIva").change();
+
 });
 function addExtra(){
     var pattern = /^(([1-9]\d*))$/;
@@ -614,7 +617,7 @@ $("#ClienteTitularConduce").click( function(){
    if( $(this).is(':checked') ) {
    		$("#ClienteAdNombreApellido").val($("#ClienteNombreApellido").val());
    		$("#ClienteAdDni").val($("#ClienteDni").val());
-   		$("#ClienteAdTelefono").val($("#ClienteTelefono").val());
+       $("#ClienteAdTelefono").val($("#ClienteCodPaisAux").val()+' '+$("#ClienteCodArea").val()+' '+$("#ClienteTelefono").val());
    		$("#ClienteAdEmail").val($("#ClienteEmail").val());
    		$("#ClienteAdDireccion").val($("#ClienteDireccion").val());
    		$("#ClienteAdLocalidad").val($("#ClienteLocalidad").val());

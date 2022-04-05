@@ -340,6 +340,24 @@ function eliminarCobro(cobro_id){
     }
     $('#loading_delete'+cobro_id).hide();
 }
+function eliminarDevolucion(id){
+
+    if(confirm('Seguro desea eliminar la devolucion?')){
+        $.ajax({
+            url : '<?php echo $this->Html->url('/reserva_devolucions/eliminar', true);?>',
+            type : 'POST',
+            dataType: 'json',
+            data: {'id' : id},
+            success : function(data){
+                if(data.resultado == 'ERROR'){
+                    alert(data.mensaje+' '+data.detalle);
+                }
+                location.reload();
+            }
+        });
+    }
+
+}
 function agregar_descuento(){
     $.ajax({
         url : '<?php echo $this->Html->url('/reserva_descuentos/agregar', true);?>',

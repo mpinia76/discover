@@ -105,7 +105,7 @@ $rsTemp = mysqli_query($conn,$sql);
 $totalGral=0;
 while($rs = mysqli_fetch_array($rsTemp)){
 	if(($rs['estado']!='2')&&($rs['estado']!='3')){
-	    $docTipo = ($rs['tipoDocumento']=='DNI')?'94':'96';
+	    $docTipo = ($rs['tipoDocumento']=='DNI')?'96':'94';
         $documento = preg_replace("/[^0-9]/", "", $rs['dni']);
 
         $tipoPersona = ($rs['tipoPersona']=='Juridica')?'0':'1';
@@ -115,7 +115,7 @@ while($rs = mysqli_fetch_array($rsTemp)){
             case 'Responsable Inscripto':
                 $condicion='0';
                 $docTipo = '80';
-                $documento = $rs['cuit'];
+                $documento = str_replace('-','',$rs['cuit']);
                 break;
             case 'Excento':
                 $condicion='2';
