@@ -52,19 +52,23 @@ class ClientesController extends AppController {
         $this->layout = 'ajax';
 
         $query = $_GET['term'];
-
+        $this->loadModel('Reserva');
         $clientes = $this->Cliente->find('all', array(
-            'conditions' => array('dni LIKE' => '%' . $query . '%'),
+            'conditions' => array('dni LIKE' => '%' . $query . '%'),'order' => 'id desc',
             'fields' => array('nombre_apellido', 'id','dni')));
         $i=0;
 
 
         //print_r($clientes);
+        $procesarClientes=array();
         foreach($clientes as $cliente){
-            $response[$i]['id']=utf8_encode($cliente['Cliente']['id']);
-            $response[$i]['label']=utf8_encode($cliente['Cliente']['nombre_apellido']).'('.$cliente['Cliente']['dni'].')';
-            $response[$i]['value']=$cliente['Cliente']['dni'];
-            $i++;
+            if (!in_array($cliente['Cliente']['dni'], $procesarClientes)){
+                $response[$i]['id']=utf8_encode($cliente['Cliente']['id']);
+                $response[$i]['label']=utf8_encode($cliente['Cliente']['nombre_apellido']).'('.$cliente['Cliente']['dni'].')';
+                $response[$i]['value']=$cliente['Cliente']['dni'];
+                $i++;
+            }
+            $procesarClientes[]=$cliente['Cliente']['dni'];
         }
         echo json_encode($response);
     }

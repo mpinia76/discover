@@ -38,7 +38,7 @@ echo $this->Form->create(null, array('url' => '/reservas/crear','inputDefaults' 
 ?>
 <?php echo $this->Form->hidden('Cliente.cuit'); ?>
 <?php echo $this->Form->hidden('Cliente.codPais'); ?>
-<?php echo $this->Form->hidden('Cliente.dni'); ?>
+
 <div class="sectionTitle">Formulario de reserva</div>
 <div class="ym-grid">
     <div class="ym-g25 ym-gl"><div class="ym-gbox"><span class="fieldName">Creada:</span> <?php echo date('d/m/Y');?></div></div>
@@ -58,7 +58,7 @@ echo $this->Form->create(null, array('url' => '/reservas/crear','inputDefaults' 
 <div class="ym-grid">
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Cliente.nombre_apellido');?></div>
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Cliente.tipoDocumento',array('type' => 'select', 'empty' => 'Seleccionar ...', 'options' => $tipoDocumento_ops, 'label' => 'Tipo')); ?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Cliente.dniAux',array('label'=>'DNI/Pasaporte', 'value' => $reserva['Cliente']['dni']));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Cliente.dni',array('label'=>'DNI/Pasaporte'));?></div>
 </div>
 <div class="ym-grid">
 	<div class="ym-g20 ym-gl"><?php echo $this->Form->input('Cliente.sexo',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $sexos));?></div>
@@ -206,9 +206,9 @@ echo $this->Form->create(null, array('url' => '/reservas/crear','inputDefaults' 
         <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.tipoPersona',array('type' => 'select','disabled'=>'disabled', 'options' => $tipoPersona_ops, 'empty' => 'Seleccionar ...', 'label' => 'Tipo de Persona')); ?></div>
     </div>
 
-    <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.titular_factura',array('label'=>'Facturar a titular de reserva','default' => '0')); ?></div>
+    <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.titular_factura',array('label'=>'Facturar a titular de reserva','disabled'=>'disabled','default' => '0')); ?></div>
     <div class="ym-grid">
-        <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.razon_social',array('label'=>'Nombre Apellido/Razon Social')); ?></div>
+        <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.razon_social',array('label'=>'Nombre Apellido/Razon Social','disabled'=>'disabled')); ?></div>
         <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Cliente.cuitAux', array('label' => 'CUIT','disabled'=>'disabled', 'value' => $reserva['Cliente']['cuit'])); ?></div>
     </div>
 <div class="sectionSubtitle">Comentarios</div>
@@ -263,12 +263,12 @@ $(document).ready(function(){
             $("#CodPaisId").remove();
         }
     });
-    $("#ClienteDniAux").autocomplete({
+    $("#ClienteDni").autocomplete({
         source: '<?php echo $this->Html->url('/clientes/autoCompleteDni', true);?>',
         minLength: 2
     });
 
-    $("#ClienteDniAux").autocomplete({
+    $("#ClienteDni").autocomplete({
         select: function(event, ui) {
             selected_id = ui.item.id;
             selected_dni = ui.item.value;
@@ -562,11 +562,23 @@ function modificarFacturacion(){
         $('#ClienteRazonSocial').prop( "disabled", true );
         $('#ClienteCuitAux').val('');
         $('#ClienteCuitAux').prop( "disabled", true );
+        $('#ClienteTitularFactura').prop( "disabled", true );
+        $("#ClienteTitularFactura").prop('checked', false);
     }
+
+
 
 }
 
 $('#ClienteTipoDocumento').change(function(){
+    if ($('#ClienteTipoDocumento').val()=='DNI'){
+        $("#ClienteDni").attr('maxlength', 8);
+    }
+    else{
+
+        $("#ClienteDni").removeAttr('maxLength');
+    }
+
     modificarFacturacion();
 });
 
@@ -574,16 +586,41 @@ $('#ClienteNacionalidadAux').blur(function(){
     modificarFacturacion();
 });
 
-$('#ClienteIva').change(function(){
-    if ($('#ClienteIva').val()==''){
 
-        $('#ClienteTipoPersona').prop( "disabled", true );
+$("#ClienteIva").one('focus', function () {
+    var ddl = $(this);
+    ddl.data('previous', ddl.val());
+}).on('change', function () {
+    var ddl = $(this);
+    var previous = ddl.data('previous');
+    ddl.data('previous', ddl.val());
+    if ($(this).val()==''){
+        if(confirm('Desea facturar a consumidor final?')) {
+
+            $('#ClienteTipoPersona').val('');
+            $('#ClienteTipoPersona').prop("disabled", true);
+            $('#ClienteRazonSocial').val('');
+            $('#ClienteRazonSocial').prop("disabled", true);
+            $('#ClienteCuitAux').val('');
+            $('#ClienteCuitAux').prop("disabled", true);
+            $('#ClienteTitularFactura').prop( "disabled", true );
+            $("#ClienteTitularFactura").prop('checked', false);
+        }else{
+
+            $("option[value='"+previous+"']", this).attr("selected",true);
+        }
 
     }
     else{
         $('#ClienteTipoPersona').prop( "disabled", false );
     }
 });
+
+
+
+
+
+
 
 $('#ClienteTipoPersona').change(function(){
     if ($('#ClienteTipoPersona').val()=='Fisica'){
@@ -631,5 +668,7 @@ $('#ClienteCuitAux').change(function(){
 
 
 });
+
+
 
 </script>

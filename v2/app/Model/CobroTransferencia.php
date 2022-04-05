@@ -1,7 +1,7 @@
 <?php
 class CobroTransferencia extends AppModel {
     public $belongsTo = array('ReservaCobro','Cuenta');
-    
+
     public $validate = array(
         'cuenta_id' => array(
             'required'   => true,
@@ -34,18 +34,18 @@ class CobroTransferencia extends AppModel {
                 'message' => 'La fecha no puede ser posterior a hoy'
             )
         )
-        
+
     );
-    
+
     public $virtualFields = array(
         'total' => '(CobroTransferencia.monto_neto + CobroTransferencia.interes)',
         'mes_acreditado' => 'MONTH(CobroTransferencia.fecha_acreditado)',
         'ano_mes_acreditado' => 'DATE_FORMAT(CobroTransferencia.fecha_acreditado,"%y%m")'
     );
-    
+
 	public  function fecha_acreditado_menor_hoy(){
        $fecha_hoy = mktime(0, 0, 0, date('m'), date('d'), date('Y')); //echo $fecha_hoy." ]] ";
-       if(isset($this->data['CobroTransferencia']['fecha_acreditado'])){ 
+       if(isset($this->data['CobroTransferencia']['fecha_acreditado'])){
            $parts = explode("/",$this->data['CobroTransferencia']['fecha_acreditado']);
            $fecha_acreditado = mktime(0,0,0, $parts[1], $parts[0], $parts[2]); //echo $fecha_acreditado;
            if($fecha_acreditado <= $fecha_hoy){
@@ -53,14 +53,23 @@ class CobroTransferencia extends AppModel {
            }
        }
    }
-   
 
-    
+
+
     public function beforeSave($options = Array()) {
         if (!empty($this->data['CobroTransferencia']['fecha_acreditado'])) {
             $this->data['CobroTransferencia']['fecha_acreditado'] = $this->dateFormatBeforeSave($this->data['CobroTransferencia']['fecha_acreditado']);
         }
         return true;
+    }
+
+    public function afterFind($results, $primary = false) {
+        foreach ($results as $key => $val) {
+            if (isset($val['CobroTransferencia']['fecha_acreditado'])) {
+                $results[$key]['CobroTransferencia']['fecha_acreditado']= $this->dateFormatAfterFind($val['CobroTransferencia']['fecha_acreditado']);
+            }
+        }
+        return $results;
     }
 
 }

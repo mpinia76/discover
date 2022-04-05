@@ -25,6 +25,7 @@ $this->Js->buffer('
             {"bVisible": false },
             {"bVisible": false },
             {"sType": "date-uk"},
+            {"sType": "date-uk"},
             null,
             null,
             null,
@@ -70,7 +71,8 @@ $this->Js->buffer('
         <tr>
             <th width="50">Id</th>
             <th width="50">Cobro Id</th>
-            <th width="150">Fecha</th>
+            <th width="150">F. cobro</th>
+            <th width="150">Acreditado</th>
             <th width="200">Banco</th>
             <th width="150">Cuenta</th>
             <th width="250">Quien Transfiere</th>
@@ -128,7 +130,7 @@ function acreditar(){
                 $('.error-message').html(data.detalle.fecha_acreditado[0]);
             }else{
             	$('#confirm_box').jqmHide();
-                $("#filter_estado").change();	
+                $("#filter_estado").change();
             }
         }
     })

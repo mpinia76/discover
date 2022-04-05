@@ -665,11 +665,20 @@ function modificarFacturacion(){
        $('#ClienteRazonSocial').prop( "disabled", true );
        $('#ClienteCuitAux').val('');
        $('#ClienteCuitAux').prop( "disabled", true );
+       $('#ClienteTitularFactura').prop( "disabled", true );
+       $("#ClienteTitularFactura").prop('checked', false);
     }
 
 }
 
 $('#ClienteTipoDocumento').change(function(){
+    if ($('#ClienteTipoDocumento').val()=='DNI'){
+        $("#ClienteDni").attr('maxlength', 8);
+    }
+    else{
+
+        $("#ClienteDni").removeAttr('maxLength');
+    }
     modificarFacturacion();
 });
 
@@ -677,10 +686,28 @@ $('#ClienteNacionalidadAux').blur(function(){
     modificarFacturacion();
 });
 
-$('#ClienteIva').change(function(){
-    if ($('#ClienteIva').val()==''){
+$("#ClienteIva").one('focus', function () {
+    var ddl = $(this);
+    ddl.data('previous', ddl.val());
+}).on('change', function () {
+    var ddl = $(this);
+    var previous = ddl.data('previous');
+    ddl.data('previous', ddl.val());
+    if ($(this).val()==''){
+        if(confirm('Desea facturar a consumidor final?')) {
 
-        $('#ClienteTipoPersona').prop( "disabled", true );
+            $('#ClienteTipoPersona').val('');
+            $('#ClienteTipoPersona').prop("disabled", true);
+            $('#ClienteRazonSocial').val('');
+            $('#ClienteRazonSocial').prop("disabled", true);
+            $('#ClienteCuitAux').val('');
+            $('#ClienteCuitAux').prop("disabled", true);
+            $('#ClienteTitularFactura').prop( "disabled", true );
+            $("#ClienteTitularFactura").prop('checked', false);
+        }else{
+
+            $("option[value='"+previous+"']", this).attr("selected",true);
+        }
 
     }
     else{

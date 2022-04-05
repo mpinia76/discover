@@ -903,11 +903,17 @@ class ReservasController extends AppController {
                  $errores['Cliente'] = $this->Cliente->validationErrors;
             }
         	if ($cliente['dni']=='') {
-            	$errores['Cliente']['dni'][] = 'Ingrese un DNI';
+            	$errores['Cliente']['dni'][] = 'Ingrese un Documento';
             }
             if ($cliente['tipoDocumento']=='DNI') {
                 if (!ctype_digit($cliente['dni'])){
                     $errores['Cliente']['dni'][] = 'Ingrese solo numeros';
+                }
+
+            }
+            if ($cliente['tipoDocumento']=='DNI') {
+                if (strlen($cliente['dni'])!=8){
+                    $errores['Cliente']['dni'][] = 'El DNI debe contener 8 digitos';
                 }
 
             }

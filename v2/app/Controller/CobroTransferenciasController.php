@@ -1,6 +1,6 @@
 <?php
 class CobroTransferenciasController extends AppController {
-    
+
     public function index(){
         $this->layout = 'index';
          $this->setLogUsuario('Transferencias a acreditar');
@@ -14,7 +14,7 @@ class CobroTransferenciasController extends AppController {
         }elseif($estado == 'acreditado'){
             $transferencias = $this->CobroTransferencia->find('all',array('order' => 'ReservaCobro.fecha asc','conditions' => array('CobroTransferencia.acreditado' => '1'), 'recursive' => 2));
         }
-		
+
         foreach($transferencias as $tran){
         	//print_r($tran);
             $monto = $tran['CobroTransferencia']['monto_neto'] + $tran['CobroTransferencia']['interes'];
@@ -27,6 +27,7 @@ class CobroTransferenciasController extends AppController {
                 $tran['CobroTransferencia']['id'],
                 $tran['ReservaCobro']['id'],
                 $tran['ReservaCobro']['fecha'],
+                $tran['CobroTransferencia']['fecha_acreditado'],
                 $tran['Cuenta']['Banco']['banco'],
                 $tran['Cuenta']['nombre'],
                 $tran['CobroTransferencia']['quien_transfiere'],
@@ -43,7 +44,7 @@ class CobroTransferenciasController extends AppController {
     }
     public function acreditar(){
         $cobro = $this->CobroTransferencia->read(null, $this->request->data['id']);
-        
+
         $this->CobroTransferencia->set(array(
             'fecha_acreditado' => $this->request->data['fecha'],
             'acreditado' => 1,
@@ -62,7 +63,7 @@ class CobroTransferenciasController extends AppController {
 				$this->CuentaMovimiento->deleteAll(array('cuenta_id' => $cobro['CobroTransferencia']['cuenta_id'], 'origen' => 'reservatransferencia_'.$this->CobroTransferencia->id), false);
 			}
             //agrego el movimiento a la cuenta
-            
+
             $this->CuentaMovimiento->set(array(
                 'cuenta_id' => $cobro['CobroTransferencia']['cuenta_id'],
                 'origen' => 'reservatransferencia_'.$this->CobroTransferencia->id,
@@ -70,52 +71,52 @@ class CobroTransferenciasController extends AppController {
                 'fecha' => $this->request->data['fecha']
             ));
             $this->CuentaMovimiento->save();
-            
+
             $this->set('resultado','OK');
             $this->set('detalle','');
         }
         $this->set('_serialize', array(
             'resultado',
-            'detalle' 
+            'detalle'
         ));
     }
-    
+
 	public function anular(){
         $cobro = $this->CobroTransferencia->read(null, $this->request->data['id']);
-        
+
         $this->CobroTransferencia->set(array(
             'fecha_acreditado' => '01/01/1970',
             'acreditado' => 0,
         	'acreditado_por' => 0
         ));
-      
+
 	    $this->CobroTransferencia->save();
 	    $this->loadModel('CuentaMovimiento');
-	           
+
 		$this->CuentaMovimiento->deleteAll(array('cuenta_id' => $cobro['CobroTransferencia']['cuenta_id'], 'origen' => 'reservatransferencia_'.$this->CobroTransferencia->id), false);
-				
-	            
+
+
 	    $this->set('resultado','OK');
 	    $this->set('detalle','');
-      
-       
+
+
         $this->set('_serialize', array(
             'resultado',
-            'detalle' 
+            'detalle'
         ));
     }
-    
-    
+
+
     public function agregar($user_id){
         $this->layout = 'ajax';
-        
+
         $this->loadModel('Usuario');
         $this->Usuario->id = $user_id;
         $usuario = $this->Usuario->read();
-        
+
         $this->loadModel('Banco');
         $bancos = $this->Banco->find('list');
-        
+
         $cuentas = array();
         foreach($usuario['Cuentas'] as $cuenta){
             $cuentas[$cuenta['id']] = $bancos[$cuenta['banco_id']]." ".$cuenta['nombre'];
@@ -123,7 +124,7 @@ class CobroTransferenciasController extends AppController {
         $this->set('cuentas',$cuentas);
         $this->set('reserva_cobro',$this->request->data['ReservaCobro']);
     }
-    
+
     public function guardar(){
         $data = $this->request->data['CobroTransferencia'];
         $this->CobroTransferencia->set($data);
@@ -144,10 +145,10 @@ class CobroTransferenciasController extends AppController {
         $this->set('_serialize', array(
             'resultado',
             'mensaje' ,
-            'detalle' 
+            'detalle'
         ));
     }
-    
+
     //protege el controlador solo para usuarios
     public function beforeFilter(){
         if(isset($_COOKIE['useridushuaia'])){

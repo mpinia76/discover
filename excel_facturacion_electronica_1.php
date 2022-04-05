@@ -106,7 +106,7 @@ $totalGral=0;
 while($rs = mysqli_fetch_array($rsTemp)){
 	if(($rs['estado']!='2')&&($rs['estado']!='3')){
 	    $docTipo = ($rs['tipoDocumento']=='DNI')?'94':'96';
-        $documento = ($rs['cuit']!='')?$rs['cuit']:intval($rs['dni']);
+        $documento = preg_replace("/[^0-9]/", "", $rs['dni']);
 
         $tipoPersona = ($rs['tipoPersona']=='Juridica')?'0':'1';
         $razonSocial = ($rs['titular_factura']=='0')?$rs['razon_social']:'0';
@@ -115,6 +115,7 @@ while($rs = mysqli_fetch_array($rsTemp)){
             case 'Responsable Inscripto':
                 $condicion='0';
                 $docTipo = '80';
+                $documento = $rs['cuit'];
                 break;
             case 'Excento':
                 $condicion='2';
@@ -303,7 +304,7 @@ while($rs = mysqli_fetch_array($rsTemp)){
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">1</td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">7</td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">1</td>
-<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $detalle;?></td>
+<td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo utf8_decode($detalle);?></td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;"><?php echo $total;?></td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">0</td>
 <td style="font-family: Arial; font-size: 10pt; text-align:center;border: 0.1pt solid black;vertical-align: middle;">0</td>

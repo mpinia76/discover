@@ -42,7 +42,7 @@ if(isset($_POST['agregar'])){
 
 			include("functions/procesa_pagos.php");
 
-
+            $empleado_id = $_POST['empleado_id'];
 
 
 				$result = 1;
