@@ -970,6 +970,7 @@ class ReservasController extends AppController {
                 $this->Cliente->set('razon_social','');
                 $this->Cliente->set('cuit','');
                 $this->Cliente->set('tipoPersona',null);
+                $this->Cliente->set('iva',null);
 
             }
 	        $vencimiento = $cliente['vencimiento'];

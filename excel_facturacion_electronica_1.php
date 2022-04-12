@@ -125,6 +125,7 @@ while($rs = mysqli_fetch_array($rsTemp)){
                 break;
             default:
                 $condicion='1';
+                
                 break;
 
         }

@@ -152,6 +152,7 @@ Montos
 <th>Nro de reserva</th>
 <th>Titular</th>
 <th>DNI/CUIT</th>
+    <th>Concepto de facturacion</th>
 <th>Monto FC</th>
 <th>transfe/deposito <input type="checkbox" <?php echo (($_POST['hTransfiere']==1)||(!isset($_POST['hTransfiere'])))?'checked="checked"':''?> id="columnaTransfiere" name="columnaTransfiere" onClick="buscar();"></input></th>
 <th>quien transfiere</th>
@@ -377,6 +378,15 @@ while($rs = mysqli_fetch_array($rsTemp)){
 
 		}
 
+        $sql = "SELECT reserva_cobros.*, concepto_facturacions.nombre as concepto_facturacion FROM reserva_cobros LEFT JOIN concepto_facturacions ON reserva_cobros.concepto_facturacion_id = concepto_facturacions.id  WHERE fecha LIKE '".$_POST["ano"]."-".$_POST["mes"]."%' AND reserva_id = ".$rs['id']." AND reserva_cobros.tipo <> 'DESCUENTO' ORDER BY reserva_cobros.id";
+
+        $rsTempCobros = mysqli_query($conn,$sql);
+
+        while($rsCobros = mysqli_fetch_array($rsTempCobros)){
+            $detalle = $rsCobros['concepto_facturacion'];
+        }
+
+
 		if (isset($_POST['estado'])) {
 			switch ($_POST['estado']) {
 				case 1:
@@ -410,6 +420,7 @@ if ($mostrar) {
 <td><?php echo $rs['numero']; ?></td>
 <td><?php echo ($rs['nombre_apellido']);?></td>
 <td><?php echo ($rs['cuit']!='')?$rs['cuit']:$rs['dni']; ?></td>
+    <td><?php echo $detalle; ?></td>
 <td><?php echo trim( number_format($fc, 2, '.', '') );?></td>
 <td><?php echo trim( number_format($transferencias, 2, '.', '') );?></td>
 <td><?php echo $quienTransfiere;?></td>
