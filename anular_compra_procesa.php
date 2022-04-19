@@ -102,6 +102,7 @@ if(mysqli_num_rows($result) != 0){
 
                                         $rsTempChequera = mysqli_query($conn,$sql);
                                         if($rsChequera = mysqli_fetch_array($rsTempChequera)){
+                                            _LogCheques('El cheque '.str_pad($numero, 8,'0',STR_PAD_LEFT).' se pasó a 0 en la chequera '.$rsChequera['id']);
                                             $sql = "SELECT chequera_cheques.chequera_id FROM chequera_cheques  WHERE chequera_cheques.chequera_id = '".$rsChequera['id']."' AND chequera_cheques.estado = '0'";
 
                                             mysqli_query($conn,$sql);

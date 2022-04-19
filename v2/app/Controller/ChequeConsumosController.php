@@ -903,6 +903,7 @@ class ChequeConsumosController extends AppController {
         			//print_r($chequeraCheque);
             		$this->ChequeraCheque->set('estado',$chequera['concepto']);
             		$this->ChequeraCheque->save();
+					CakeLog::write('cheques_'.date('Y-m-d'), 'El cheque '.str_pad($numero, 8,'0',STR_PAD_LEFT).' se pasó a '.$chequera['concepto'].' en la chequera '.$chequera['chequera_id']);
             		$concepto = ($chequera['concepto']==3)?'Anulado':'Extraviado';
             		$concepto .=' - '.$chequera['obs'];
             		$this->ChequeConsumo->create();
@@ -978,6 +979,7 @@ class ChequeConsumosController extends AppController {
         			//print_r($chequeraCheque);
             		$this->ChequeraCheque->set('estado',$cheque['concepto']);
             		$this->ChequeraCheque->save();
+				CakeLog::write('cheques_'.date('Y-m-d'), 'El cheque '.str_pad($cheque['numero'], 8,'0',STR_PAD_LEFT).' se pasó a '.$cheque['concepto'].' en la chequera '.$cheque['chequera_id']);
             		$this->ChequeConsumo->id = $this->request->data['ChequeConsumo']['id'];
         			$chequeConsumo = $this->ChequeConsumo->read();
             		//print_r($chequeConsumo);
@@ -1174,6 +1176,7 @@ class ChequeConsumosController extends AppController {
 							$this->ChequeraCheque->set($cheque);
 							$this->ChequeraCheque->set('estado',5);
 							$this->ChequeraCheque->save();
+							CakeLog::write('cheques_'.date('Y-m-d'), 'El cheque '.str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT).' se pasó a 5 en la chequera '.$chequera['chequera_id']);
 						}
 						$chequeConsumoAnterior=$this->ChequeConsumo->findById($chequeConsumo['id']);
 						$this->loadModel('Cuenta');
@@ -1222,6 +1225,7 @@ class ChequeConsumosController extends AppController {
 		            	$this->ChequeraCheque->set($this->ChequeraCheque->read());
 		            	$this->ChequeraCheque->set('estado',0);
 		            	$this->ChequeraCheque->save();
+						CakeLog::write('cheques_'.date('Y-m-d'), 'El cheque '.str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT).' se pasó a 0 en la chequera '.$cheque['ChequeraCheque']['id']);
 
 		            	$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumo['fecha']));
 		            	$this->ChequeConsumo->set('vencido',0);
@@ -1252,6 +1256,7 @@ class ChequeConsumosController extends AppController {
 	            	$this->ChequeraCheque->set($this->ChequeraCheque->read());
 	            	$this->ChequeraCheque->set('estado',2);
 	            	$this->ChequeraCheque->save();
+					CakeLog::write('cheques_'.date('Y-m-d'), 'El cheque '.str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT).' se pasó a 2 en la chequera '.$cheque['ChequeraCheque']['id']);
 
 	            	$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumo['fecha']));
 	            	$this->ChequeConsumo->set('vencido',1);

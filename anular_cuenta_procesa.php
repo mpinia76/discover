@@ -86,12 +86,15 @@ if(mysqli_num_rows(mysqli_query($conn,$sql)) != 0){
                                 $numero = str_pad($rsCheque['numero'], 8,'0',STR_PAD_LEFT);
                                 $sql = "UPDATE chequera_cheques INNER JOIN chequeras ON chequera_cheques.chequera_id = chequeras.id SET chequera_cheques.estado = 0 WHERE chequeras.cuenta_id = '".$rsCheque['cuenta_id']."' AND chequera_cheques.numero = '".$numero."'";
                                 mysqli_query($conn,$sql);
+
                                 if(mysqli_affected_rows($conn) > 0){
 
                                     $sql = "SELECT chequeras.id FROM chequera_cheques INNER JOIN chequeras ON chequera_cheques.chequera_id = chequeras.id WHERE chequeras.cuenta_id = '".$rsCheque['cuenta_id']."' AND chequera_cheques.numero = '".$numero."'";
 
                                     $rsTempChequera = mysqli_query($conn,$sql);
+
                                     if($rsChequera = mysqli_fetch_array($rsTempChequera)){
+                                        _LogCheques('El cheque '.str_pad($rsCheque['numero'], 8,'0',STR_PAD_LEFT).' se pasó a 0 en la chequera '.$rsChequera['id']);
                                         $sql = "SELECT chequera_cheques.chequera_id FROM chequera_cheques  WHERE chequera_cheques.chequera_id = '".$rsChequera['id']."' AND chequera_cheques.estado = '0'";
 
                                         mysqli_query($conn,$sql);

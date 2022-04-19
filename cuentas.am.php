@@ -1,4 +1,5 @@
 <?php
+
 include_once("model/form.class.php");
 include_once("config/db.php");
 include_once("functions/abm.php");
@@ -27,10 +28,12 @@ $form->setAction('cuentas.am.php'); //a donde hacer el post
 if(isset($dataid)){
 
 	$sql = "SELECT * FROM $tabla WHERE id=".$dataid; //traer datos
+    //echo $sql;
 	$rsTemp = mysqli_query($conn,$sql);
 	$rs = mysqli_fetch_array($rsTemp);
 
 	foreach($campos as $clave=>$valores){
+	    //echo $rs[$clave];
 		$campos[$clave][3] = $rs[$clave];
 	}
 
@@ -43,7 +46,7 @@ if(isset($dataid)){
 	$form->setBotonName('agregar');
 
 }
-
+//print_r($campos);
 $form->setCampos($campos);
 
 

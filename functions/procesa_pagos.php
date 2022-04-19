@@ -205,6 +205,7 @@ if ($ok) {
 
 				 $sql = "UPDATE chequera_cheques SET estado = 1 WHERE id = ".$chequera_cheque_id[$key];
 	            mysqli_query($conn,$sql);
+                _LogCheques('El cheque '.str_pad($cheque_numero[$key], 8,'0',STR_PAD_LEFT).' se pasó a 1 en la chequera '.$chequera_id[$key]);
 				//_log($sql);
 				$sql = "SELECT chequera_cheques.chequera_id FROM chequera_cheques  WHERE chequera_cheques.chequera_id = '".$chequera_id[$key]."' AND chequera_cheques.estado = '0'";
 

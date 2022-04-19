@@ -2820,3 +2820,12 @@ Dispatcher::_invoke() - CORE\Cake\Routing\Dispatcher.php, line 103
 Dispatcher::dispatch() - CORE\Cake\Routing\Dispatcher.php, line 85
 [main] - APP\webroot\index.php, line 92
 
+2022-04-19 15:29:16 Debug: Something horrible happened
+2022-04-19 15:33:45 Debug: Something horrible happened
+2022-04-19 15:33:45 Debug: Something horrible happened
+2022-04-19 15:33:45 Debug: Something horrible happened
+2022-04-19 15:38:23 Debug: Something horrible happened
+2022-04-19 15:38:23 Debug: Something horrible happened
+2022-04-19 15:38:23 Debug: Something horrible happened
+2022-04-19 16:02:02 Debug: Something horrible happened
+2022-04-19 16:02:39 Debug: Something horrible happened
