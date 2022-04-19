@@ -1420,7 +1420,7 @@ ENGINE=InnoDB
 AUTO_INCREMENT=1;
 
 INSERT INTO `permiso_grupo` (`nombre`) VALUES ('Concepto de facturacion');
-INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (47, 'Operar');
+INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (43, 'Operar');
 
 ALTER TABLE `reserva_cobros`
 	ADD COLUMN `concepto_facturacion_id` INT(11) NULL AFTER `cambio`;
