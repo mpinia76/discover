@@ -1126,53 +1126,107 @@ class ChequeConsumosController extends AppController {
 
 	public function reemplazo(){
 
-     //print_r($this->request->data);
+		//print_r($this->request->data);
 		if(!empty($this->request->data)) {
 			$this->loadModel('Chequera');
 			$chequera = $this->request->data['Chequera'];
 			//print_r($chequera);
-            //$this->Chequera->set($chequera);
-            $chequeConsumo = $this->request->data['ChequeConsumo'];
-            $this->ChequeConsumo->set($chequeConsumo);
-            if ($chequeConsumo['vencido']=='0') {
-            	if ($chequeConsumo['vencio']=='0') {
+			//$this->Chequera->set($chequera);
+			$chequeConsumo = $this->request->data['ChequeConsumo'];
+			$this->ChequeConsumo->set($chequeConsumo);
+			if ($chequeConsumo['vencido']=='0') {
+				if ($chequeConsumo['vencio']=='0') {
 					if ($chequera['chequera_id']=='') {
-		            	$errores['Chequera']['chequera_id']= 'Debe seleccionar una chequera';
-		            }
+						$errores['Chequera']['chequera_id']= 'Debe seleccionar una chequera';
+					}
 					if ($chequeConsumo['cuenta_id']=='') {
-		            	$errores['ChequeConsumo']['cuenta_id']= 'Debe seleccionar una cuenta';
-		            }
+						$errores['ChequeConsumo']['cuenta_id']= 'Debe seleccionar una cuenta';
+					}
 					if ($chequeConsumo['cheque_id']=='') {
-		            	$errores['ChequeConsumo']['cheque_id']= 'Debe seleccionar un numero';
-		            }
+						$errores['ChequeConsumo']['cheque_id']= 'Debe seleccionar un numero';
+					}
 					if ($chequeConsumo['titular']=='') {
-		            	$errores['ChequeConsumo']['titular']= 'Ingrese un titular';
-		            }
+						$errores['ChequeConsumo']['titular']= 'Ingrese un titular';
+					}
 					if ($chequeConsumo['fecha']=='') {
-		            	$errores['ChequeConsumo']['fecha']= 'Ingrese una fecha valida';
-		            }
-            	}
-            }
-            if(isset($errores) and count($errores) > 0){
-                $this->set('resultado','ERROR');
-                $this->set('mensaje','No se pudo guardar');
-                $this->set('detalle',$errores);
-            }else{
-            	if ($chequeConsumo['vencido']=='0') {
-            		if ($chequeConsumo['vencio']=='0') {
-		            	$this->loadModel('ChequeraCheque');
-		            	$this->ChequeraCheque->id = $chequeConsumo['cheque_id'];
-		            	$cheque=$this->ChequeraCheque->read();
-		            	$this->ChequeraCheque->set('estado',1);
-		            	$this->ChequeraCheque->save();
-		            	$numeroNuevo = $cheque['ChequeraCheque']['numero'];
-		            	$cheque = $this->ChequeraCheque->find('first',array('conditions'=>array('ChequeraCheque.chequera_id'=>$chequera['chequera_id'],'ChequeraCheque.numero'=>str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT))));
+						$errores['ChequeConsumo']['fecha']= 'Ingrese una fecha valida';
+					}
+				}
+			}
+			if(isset($errores) and count($errores) > 0){
+				$this->set('resultado','ERROR');
+				$this->set('mensaje','No se pudo guardar');
+				$this->set('detalle',$errores);
+			}else{
+
+				if ($chequeConsumo['vencido']!=$chequeConsumo['vencio']) {
+					if ($chequeConsumo['vencido']=='0') {
+						$this->loadModel('ChequeraCheque');
+						$cheque = $this->ChequeraCheque->find('first',array('conditions'=>array('Chequera.cuenta_id'=>$chequeConsumo['cuenta'],'ChequeraCheque.numero'=>str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT))));
+						/*App::uses('ConnectionManager', 'Model');
+                    $dbo = ConnectionManager::getDatasource('default');
+                    $logs = $dbo->getLog();
+                    print_r($logs);*/
+						$chequera_id = $cheque['ChequeraCheque']['chequera_id'];
+						//print_r($cheque);
+						$this->ChequeraCheque->id = $cheque['ChequeraCheque']['id'];
+						$this->ChequeraCheque->set($this->ChequeraCheque->read());
+						$this->ChequeraCheque->set('estado',0);
+						$this->ChequeraCheque->save();
+						CakeLog::write('cheques_'.date('Y-m-d'), 'El cheque '.str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT).' se pasó a 0 en la chequera '.$cheque['ChequeraCheque']['id']);
+						$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumo['fecha']));
+						$this->ChequeConsumo->set('vencido',0);
+						$this->ChequeConsumo->set('cuenta_id',$chequeConsumo['cuenta']);
+						$this->ChequeConsumo->set('chequera_id',$chequera_id);
+						$this->ChequeConsumo->save();
+					}
+					else{
+						$this->loadModel('ChequeraCheque');
+						$cheque = $this->ChequeraCheque->find('first',array('conditions'=>array('Chequera.cuenta_id'=>$chequeConsumo['cuenta'],'ChequeraCheque.numero'=>str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT))));
+						$chequera_id = $cheque['ChequeraCheque']['chequera_id'];
+						//print_r($cheque);
+						$this->ChequeraCheque->id = $cheque['ChequeraCheque']['id'];
+						$this->ChequeraCheque->set($this->ChequeraCheque->read());
+						$this->ChequeraCheque->set('estado',2);
+						$this->ChequeraCheque->save();
+						CakeLog::write('cheques_'.date('Y-m-d'), 'El cheque '.str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT).' se pasó a 2 en la chequera '.$cheque['ChequeraCheque']['id']);
+						$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumo['fecha']));
+						$this->ChequeConsumo->set('vencido',1);
+						$this->ChequeConsumo->set('chequera_id',$chequera_id);
+						$this->ChequeConsumo->set('cuenta_id',$chequeConsumo['cuenta']);
+						$this->ChequeConsumo->save();
+						$chequeraUsada = $this->ChequeraCheque->find('first',array('conditions'=>array('ChequeraCheque.chequera_id'=>$cheque['ChequeraCheque']['chequera_id'],'ChequeraCheque.estado'=>0)));
+
+						$this->Chequera->id = $chequera_id;
+						$this->Chequera->set($this->Chequera->read());
+
+						if ($chequeraUsada) {
+							$this->Chequera->set('estado',1);
+						}
+						else{
+							$this->Chequera->set('estado',3);
+						}
+						$this->Chequera->save();
+					}
+
+				}
+				if ($chequeConsumo['vencido']=='0') {
+					if ($chequera['chequera_id']!='') {
+						$this->loadModel('ChequeraCheque');
+						$this->ChequeraCheque->id = $chequeConsumo['cheque_id'];
+						$cheque=$this->ChequeraCheque->read();
+						$this->ChequeraCheque->set('estado',1);
+						$this->ChequeraCheque->save();
+
+						$numeroNuevo = $cheque['ChequeraCheque']['numero'];
+						CakeLog::write('cheques_'.date('Y-m-d'), 'El cheque '.str_pad($numeroNuevo, 8,'0',STR_PAD_LEFT).' se pasó a 1 en la chequera '.$chequera['chequera_id']);
+						$cheque = $this->ChequeraCheque->find('first',array('conditions'=>array('ChequeraCheque.chequera_id'=>$chequera['chequera_id'],'ChequeraCheque.numero'=>str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT))));
 						/*App::uses('ConnectionManager', 'Model');
 		        	$dbo = ConnectionManager::getDatasource('default');
 				    $logs = $dbo->getLog();
 				    print_r($logs);*/
 
-		            	if ($cheque) {
+						if ($cheque) {
 							$this->ChequeraCheque->set($cheque);
 							$this->ChequeraCheque->set('estado',5);
 							$this->ChequeraCheque->save();
@@ -1184,111 +1238,62 @@ class ChequeConsumosController extends AppController {
 
 						$this->ChequeConsumo->set('numero',$numeroNuevo);
 						$this->ChequeConsumo->set('cuenta_id',$chequeConsumo['cuenta_id']);
-	  					$this->ChequeConsumo->set('chequera_id',$chequera['chequera_id']);
-	  					$this->ChequeConsumo->set('concepto',$chequeConsumo['concepto']);
-	  					$this->ChequeConsumo->set('titular',$chequeConsumo['titular']);
-	  					$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumo['fecha']));
-	  					$this->ChequeConsumo->set('monto',$chequeConsumo['monto']);
-	  					$this->ChequeConsumo->set('interes',$chequeConsumo['interes']);
-	  					$this->ChequeConsumo->set('descuento',$chequeConsumo['descuento']);
-		            	$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumo['fecha']));
+						$this->ChequeConsumo->set('chequera_id',$chequera['chequera_id']);
+						$this->ChequeConsumo->set('concepto',$chequeConsumo['concepto']);
+						$this->ChequeConsumo->set('titular',$chequeConsumo['titular']);
+						$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumo['fecha']));
+						$this->ChequeConsumo->set('monto',$chequeConsumo['monto']);
+						$this->ChequeConsumo->set('interes',$chequeConsumo['interes']);
+						$this->ChequeConsumo->set('descuento',$chequeConsumo['descuento']);
+						$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumo['fecha']));
 
-		            	$this->ChequeConsumo->save();
-		            	$cuenta=$this->Cuenta->findById($chequeConsumo['cuenta_id']);
+						$this->ChequeConsumo->save();
+						$cuenta=$this->Cuenta->findById($chequeConsumo['cuenta_id']);
 
-		            	 $user_id = $_SESSION['useridushuaia'];
-		            	$this->ChequeConsumo->create();
-	          			$this->ChequeConsumo->set('numero',$chequeConsumoAnterior['ChequeConsumo']['numero']);
-	  					$this->ChequeConsumo->set('cuenta_id',$chequeConsumoAnterior['ChequeConsumo']['cuenta_id']);
-	  					$this->ChequeConsumo->set('chequera_id',$chequeConsumoAnterior['ChequeConsumo']['chequera_id']);
-	  					$this->ChequeConsumo->set('concepto','Reemplazado por '.$numeroNuevo.' de '.$cuenta['Banco']['banco'].'-'.$cuenta['Cuenta']['nombre']);
-	  					$this->ChequeConsumo->set('titular',$chequeConsumoAnterior['ChequeConsumo']['titular']);
-	  					$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumoAnterior['ChequeConsumo']['fecha']));
-	  					$this->ChequeConsumo->set('monto',$chequeConsumoAnterior['ChequeConsumo']['monto']);
-	  					$this->ChequeConsumo->set('interes',$chequeConsumoAnterior['ChequeConsumo']['interes']);
-	  					$this->ChequeConsumo->set('descuento',$chequeConsumoAnterior['ChequeConsumo']['descuento']);
-	  					$this->ChequeConsumo->set('creado_por',$user_id);
+						$user_id = $_SESSION['userid'];
+						$this->ChequeConsumo->create();
+						$this->ChequeConsumo->set('numero',$chequeConsumoAnterior['ChequeConsumo']['numero']);
+						$this->ChequeConsumo->set('cuenta_id',$chequeConsumoAnterior['ChequeConsumo']['cuenta_id']);
+						$this->ChequeConsumo->set('chequera_id',$chequeConsumoAnterior['ChequeConsumo']['chequera_id']);
+						$this->ChequeConsumo->set('concepto','Reemplazado por '.$numeroNuevo.' de '.$cuenta['Banco']['banco'].'-'.$cuenta['Cuenta']['nombre']);
+						$this->ChequeConsumo->set('titular',$chequeConsumoAnterior['ChequeConsumo']['titular']);
+						$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumoAnterior['ChequeConsumo']['fecha']));
+						$this->ChequeConsumo->set('monto',$chequeConsumoAnterior['ChequeConsumo']['monto']);
+						$this->ChequeConsumo->set('interes',$chequeConsumoAnterior['ChequeConsumo']['interes']);
+						$this->ChequeConsumo->set('descuento',$chequeConsumoAnterior['ChequeConsumo']['descuento']);
+						$this->ChequeConsumo->set('creado_por',$user_id);
 
-	  					$this->ChequeConsumo->save();
-	  					$chequera_id = $chequera['chequera_id'];
-            		}
-	            	else{
-	            		$this->loadModel('ChequeraCheque');
-	            		$cheque = $this->ChequeraCheque->find('first',array('conditions'=>array('Chequera.cuenta_id'=>$chequeConsumo['cuenta'],'ChequeraCheque.numero'=>str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT))));
-	            		/*App::uses('ConnectionManager', 'Model');
-		        	$dbo = ConnectionManager::getDatasource('default');
-				    $logs = $dbo->getLog();
-				    print_r($logs);*/
-	            		$chequera_id = $cheque['ChequeraCheque']['chequera_id'];
-	            		//print_r($cheque);
-	            		$this->ChequeraCheque->id = $cheque['ChequeraCheque']['id'];
-		            	$this->ChequeraCheque->set($this->ChequeraCheque->read());
-		            	$this->ChequeraCheque->set('estado',0);
-		            	$this->ChequeraCheque->save();
-						CakeLog::write('cheques_'.date('Y-m-d'), 'El cheque '.str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT).' se pasó a 0 en la chequera '.$cheque['ChequeraCheque']['id']);
+						$this->ChequeConsumo->save();
+						$chequera_id = $chequera['chequera_id'];
+					}
 
-		            	$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumo['fecha']));
-		            	$this->ChequeConsumo->set('vencido',0);
-		            	$this->ChequeConsumo->set('cuenta_id',$chequeConsumo['cuenta']);
-		            	$this->ChequeConsumo->set('chequera_id',$chequera_id);
-		            	$this->ChequeConsumo->save();
-	            	}
+					$chequeraUsada = $this->ChequeraCheque->find('first',array('conditions'=>array('ChequeraCheque.chequera_id'=>$chequera_id,'ChequeraCheque.estado'=>0)));
 
-	            	$chequeraUsada = $this->ChequeraCheque->find('first',array('conditions'=>array('ChequeraCheque.chequera_id'=>$chequera_id,'ChequeraCheque.estado'=>0)));
+					$this->Chequera->id = $chequera_id;
+					$this->Chequera->set($this->Chequera->read());
 
-	            	 $this->Chequera->id = $chequera_id;
-	            	 $this->Chequera->set($this->Chequera->read());
+					if ($chequeraUsada) {
+						$this->Chequera->set('estado',1);
+					}
+					else{
+						$this->Chequera->set('estado',3);
+					}
+					$this->Chequera->save();
+				}
 
-	            	 if ($chequeraUsada) {
-	            		$this->Chequera->set('estado',1);
-	            	}
-	            	else{
-	            		$this->Chequera->set('estado',3);
-	            	}
-	            	$this->Chequera->save();
-            	}
-            	else{
-            		$this->loadModel('ChequeraCheque');
-            		$cheque = $this->ChequeraCheque->find('first',array('conditions'=>array('Chequera.cuenta_id'=>$chequeConsumo['cuenta'],'ChequeraCheque.numero'=>str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT))));
-            		$chequera_id = $cheque['ChequeraCheque']['chequera_id'];
-            		//print_r($cheque);
-            		$this->ChequeraCheque->id = $cheque['ChequeraCheque']['id'];
-	            	$this->ChequeraCheque->set($this->ChequeraCheque->read());
-	            	$this->ChequeraCheque->set('estado',2);
-	            	$this->ChequeraCheque->save();
-					CakeLog::write('cheques_'.date('Y-m-d'), 'El cheque '.str_pad($chequeConsumo['numero'], 8,'0',STR_PAD_LEFT).' se pasó a 2 en la chequera '.$cheque['ChequeraCheque']['id']);
-
-	            	$this->ChequeConsumo->set('fecha',$this->dateFormatSQL($chequeConsumo['fecha']));
-	            	$this->ChequeConsumo->set('vencido',1);
-	            	$this->ChequeConsumo->set('chequera_id',$chequera_id);
-	            	$this->ChequeConsumo->set('cuenta_id',$chequeConsumo['cuenta']);
-	            	$this->ChequeConsumo->save();
-	            	$chequeraUsada = $this->ChequeraCheque->find('first',array('conditions'=>array('ChequeraCheque.chequera_id'=>$cheque['ChequeraCheque']['chequera_id'],'ChequeraCheque.estado'=>0)));
-
-	            	 $this->Chequera->id = $chequera_id;
-	            	 $this->Chequera->set($this->Chequera->read());
-
-	            	 if ($chequeraUsada) {
-	            		$this->Chequera->set('estado',1);
-	            	}
-	            	else{
-	            		$this->Chequera->set('estado',3);
-	            	}
-	            	$this->Chequera->save();
-            	}
-            	$this->set('resultado','OK');
-                $this->set('mensaje','Datos guardados');
-                $this->set('detalle','');
-            }
-            $this->set('_serialize', array(
-                'resultado',
-                'mensaje' ,
-                'detalle'
-            ));
+				$this->set('resultado','OK');
+				$this->set('mensaje','Datos guardados');
+				$this->set('detalle','');
+			}
+			$this->set('_serialize', array(
+				'resultado',
+				'mensaje' ,
+				'detalle'
+			));
 		}
 
 
 
-    }
+	}
 }
 ?>
