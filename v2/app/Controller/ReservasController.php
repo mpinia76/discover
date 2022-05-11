@@ -902,9 +902,15 @@ class ReservasController extends AppController {
             if(!$this->Cliente->validates()){
                  $errores['Cliente'] = $this->Cliente->validationErrors;
             }
+
+            if ($cliente['tipoDocumento']=='') {
+                $errores['Cliente']['tipoDocumento'][] = 'Seleccione un Tipo de Documento';
+            }
+
         	if ($cliente['dni']=='') {
             	$errores['Cliente']['dni'][] = 'Ingrese un Documento';
             }
+
             if ($cliente['tipoDocumento']=='DNI') {
                 if (!ctype_digit($cliente['dni'])){
                     $errores['Cliente']['dni'][] = 'Ingrese solo numeros';
@@ -925,6 +931,11 @@ class ReservasController extends AppController {
                 //$cliente['codPais'] = $cliente['codPaisAux'];
                 $this->Cliente->set('codPais',$cliente['codPaisAux']);
             }
+
+            if ($cliente['tipoTelefono']=='') {
+                $errores['Cliente']['TipoTelefono'][] = 'Seleccione un Tipo de Teléfono';
+            }
+
 
             if(($cliente['telefono'] == '') AND ($cliente['celular'] == '')){
             	$errores['Cliente']['telefono'][] = 'Ingrese un telefono o celular valido';

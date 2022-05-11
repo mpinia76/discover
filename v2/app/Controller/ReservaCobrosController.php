@@ -449,6 +449,10 @@ class ReservaCobrosController extends AppController {
                 $this->set('cuentas',$cuentas);
                 break;
         }
+        $this->loadModel('ConceptoFacturacion');
+        //echo 'id: '.$cobro['Cobro']['concepto_facturacion_id'];
+        $this->set('concepto_facturacion_id', $cobro['ReservaCobro']['concepto_facturacion_id']);
+        $this->set('concepto_facturacions',$this->ConceptoFacturacion->find('list',array('fields' => 'id,nombre','conditions' =>array('activo =' => 1))));
     }
 
     public function validar(){

@@ -14,7 +14,8 @@ echo $this->Form->create(null, array('url' => '/extras/crear','inputDefaults' =>
         echo $this->Form->input('CobroTarjeta.lote_nuevo',array( 'label' => 'Lote','maxlength'=>'4'));
         echo $this->Form->input('CobroTarjeta.lote',array('label' => 'Nro liquidacion','maxlength'=>'8'));
         echo $this->Form->input('CobroTarjeta.fecha_pago',array('class'=>'datepicker','type'=>'text'));
-        ?>
+
+?>
             <span onclick="guardar('<?php echo $this->Html->url('/cobro_tarjetas/guardarMultiple.json', true);?>',$('form').serialize(),false);" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
         
 
