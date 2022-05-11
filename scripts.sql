@@ -660,7 +660,7 @@ ALTER TABLE `compra`
 ALTER TABLE `cheque_consumo`
 	CHANGE COLUMN `vencido` `vencido` INT(11) NULL AFTER `debitado_por`;
 
-##################################09/03/2018############################################################
+##################################09/03/2018########################################################### #
 ALTER TABLE `unidads`
 	ADD COLUMN `orden` INT NULL AFTER `activa`;
 

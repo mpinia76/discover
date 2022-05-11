@@ -571,7 +571,7 @@ class ReservasController extends AppController {
 
         //iva
         //$this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Consumidor Final' => 'Consumidor Final', 'Monotributo' => 'Monotributo'));
-        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Monotributo' => 'Monotributo'));
+        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Exento' => 'Exento', 'Monotributo' => 'Monotributo'));
 
         $this->set('tipoDocumento_ops', array('DNI' => 'DNI', 'Pasaporte' => 'Pasaporte'));
         $this->set('tipoTelefono_ops', array('Fijo' => 'Fijo', 'Celular' => 'Celular'));
@@ -646,7 +646,7 @@ class ReservasController extends AppController {
 
 
         //iva
-        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Monotributo' => 'Monotributo'));
+        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Exento' => 'Exento', 'Monotributo' => 'Monotributo'));
 
         $this->Reserva->id = $id;
         $this->request->data = $this->Reserva->read();
