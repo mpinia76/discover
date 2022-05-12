@@ -1424,3 +1424,7 @@ INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (43, 'Operar');
 
 ALTER TABLE `reserva_cobros`
 	ADD COLUMN `concepto_facturacion_id` INT(11) NULL AFTER `cambio`;
+
+#######################################12/05/2022#############################################3
+ALTER TABLE `categorias`
+	ADD COLUMN `concepto_facturacion_id` INT(11) NULL AFTER `orden`;

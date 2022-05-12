@@ -15,9 +15,14 @@ echo $this->Form->create(null, array('url' => '/categorias/crear','inputDefaults
 </div>
 
 <div class="ym-grid">
-	<div class="ym-g33 ym-gl"><?php echo $this->Form->input('Categoria.orden'); ?></div>
-	 <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Categoria.activa',array('default' => '1', 'label' => 'Disponible en venta on line')); ?></div>
-	 <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Categoria.descuento',array('default' => '0', 'label' => 'Descuento')); ?></div>
+    <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Categoria.concepto_facturacion_id',array('label' => 'Concepto Facturacion', 'options' => $concepto_facturacions,'empty' => 'Seleccionar', 'type'=>'select'));?></div>
+	<div class="ym-g50 ym-gl"><?php echo $this->Form->input('Categoria.orden'); ?></div>
+
+</div>
+<div class="ym-grid">
+
+    <div class="ym-g50 ym-gl"><?php echo $this->Form->input('Categoria.activa',array('default' => '1', 'label' => 'Disponible en venta on line')); ?></div>
+    <div class="ym-50 ym-gl"><?php echo $this->Form->input('Categoria.descuento',array('default' => '0', 'label' => 'Descuento')); ?></div>
 </div>
 
 
