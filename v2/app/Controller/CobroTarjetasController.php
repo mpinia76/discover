@@ -574,19 +574,28 @@ class CobroTarjetasController extends AppController {
     }
     
     public function guardar(){
-        $data = $this->request->data['CobroTarjeta']; 
-       	if (!$data['fecha_pago']) {
+        $data = $this->request->data['CobroTarjeta'];
+		$dataCobro = $this->request->data['ReservaCobro'];
+		if (!$data['fecha_pago']) {
        		 $errores['CobroTarjeta']['fecha_pago'][]='Ingrese una fecha valida';
-       		 $this->set('resultado','ERROR');
-             $this->set('mensaje','No se pudo guardar');
-             $this->set('detalle',$errores);
+
        	}
+		if (!$dataCobro['concepto_facturacion_id']) {
+			$errores['ReservaCobro']['concepto_facturacion_id'][]='Seleccione un concepto de facturacion';
+
+		}
+       	if ($errores){
+			$this->set('resultado','ERROR');
+			$this->set('mensaje','No se pudo guardar');
+			$this->set('detalle',$errores);
+		}
        	else{
 	        //actualizo si es un registro existente
 	        if(isset($data['id'])){
 	            $this->CobroTarjeta->id = $data['id'];
-	            $this->CobroTarjeta->read();
+	            $cobroTarjeta = $this->CobroTarjeta->read();
 	        }
+
 	        $this->CobroTarjeta->set($data);
 	        
 	        if(!$this->CobroTarjeta->validates()){
@@ -595,10 +604,20 @@ class CobroTarjetasController extends AppController {
 	            $this->set('mensaje','No se pudo guardar');
 	            $this->set('detalle',$errores);
 	        }else{
-	            $this->CobroTarjeta->save();
-	            $this->set('resultado','OK');
-	            $this->set('mensaje','Datos guardados');
-	            $this->set('detalle','');
+				$this->CobroTarjeta->save();
+				$this->loadModel('ReservaCobro');
+				$this->ReservaCobro->id = $cobroTarjeta['CobroTarjeta']['reserva_cobro_id'];
+				$reservaCobro=$this->ReservaCobro->read();
+				$reservaCobro['ReservaCobro']['concepto_facturacion_id']=$dataCobro['concepto_facturacion_id'];
+				//$reservaCobro->set('concepto_facturacion_id',$dataCobro['concepto_facturacion_id']);
+
+
+					$this->ReservaCobro->save($reservaCobro, false);
+					$this->set('resultado','OK');
+					$this->set('mensaje','Datos guardados');
+					$this->set('detalle','');
+
+
 	        }
        	}
         $this->set('_serialize', array(
@@ -693,7 +712,7 @@ class CobroTarjetasController extends AppController {
 	public function detalle($ids){
         $this->layout = 'form';
         $this->set('ids',$ids);
-        
+
         
     }
     
@@ -706,7 +725,7 @@ class CobroTarjetasController extends AppController {
         }
         else{
         	$explode_name = explode('.', $data['CobroTarjetaArchivoCSV']['name']);
-            //Se valida así y no con el mime type porque este no funciona para algunos programas
+            //Se valida asï¿½ y no con el mime type porque este no funciona para algunos programas
             $pos_ext = count($explode_name) - 1;
             if (!in_array(strtolower($explode_name[$pos_ext]), explode(",","csv,CSV"))) {
             	$errores['CobroTarjeta']['archivoCSV'][]='El archivo a subir debe ser CSV';

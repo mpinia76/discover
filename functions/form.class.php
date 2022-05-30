@@ -268,10 +268,10 @@ class Form{
 		$html .='<div class="label">'.$atr['label'].'</div>';
 		$html .='<div class="content">';
 
-        $dbhost = "163.10.35.37";
+        $dbhost = "localhost";
         $dbname = "discover";
         $dbuser = "root";
-        $dbpassword = "secyt";
+        $dbpassword = "";
 
         $conn=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 
@@ -356,10 +356,10 @@ class Form{
 		$html .='<div class="label">'.$atr['label'].'</div>';
 		$html .='<div class="content">';
 
-        $dbhost = "163.10.35.37";
+        $dbhost = "localhost";
         $dbname = "discoverbsas";
         $dbuser = "root";
-        $dbpassword = "secyt";
+        $dbpassword = "";
 
         $connBsAs = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 

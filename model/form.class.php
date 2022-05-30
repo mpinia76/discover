@@ -136,10 +136,10 @@ class Form{
 		$html .= '<li>';
 		$html .='<label>'.$label.'</label>';
 
-        $dbhost = "163.10.35.37";
+        $dbhost = "localhost";
         $dbname = "discover";
         $dbuser = "root";
-        $dbpassword = "secyt";
+        $dbpassword = "";
 
         $conn=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
 

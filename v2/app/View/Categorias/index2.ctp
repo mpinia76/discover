@@ -29,6 +29,7 @@ $this->Js->buffer('
             null,
             null,
             null,
+            null,
             null
             
         ]
@@ -80,6 +81,7 @@ function editar(){
             <th width="50">Id</th>
             <th width="100">Categoria</th>
             <th width="150">Vehiculos</th>
+            <th width="150">Concepto Facturacion</th>
             <th width="50">Orden</th>
             <th width="100">Disponible venta on line</th>
      		<th width="20">Descuento</th>

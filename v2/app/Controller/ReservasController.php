@@ -571,7 +571,7 @@ class ReservasController extends AppController {
 
         //iva
         //$this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Consumidor Final' => 'Consumidor Final', 'Monotributo' => 'Monotributo'));
-        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Monotributo' => 'Monotributo'));
+        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Exento' => 'Exento', 'Monotributo' => 'Monotributo'));
 
         $this->set('tipoDocumento_ops', array('DNI' => 'DNI', 'Pasaporte' => 'Pasaporte'));
         $this->set('tipoTelefono_ops', array('Fijo' => 'Fijo', 'Celular' => 'Celular'));
@@ -646,7 +646,7 @@ class ReservasController extends AppController {
 
 
         //iva
-        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Excento' => 'Excento', 'Monotributo' => 'Monotributo'));
+        $this->set('iva_ops', array('Responsable Inscripto' => 'Responsable Inscripto', 'Exento' => 'Exento', 'Monotributo' => 'Monotributo'));
 
         $this->Reserva->id = $id;
         $this->request->data = $this->Reserva->read();
@@ -902,9 +902,15 @@ class ReservasController extends AppController {
             if(!$this->Cliente->validates()){
                  $errores['Cliente'] = $this->Cliente->validationErrors;
             }
+
+            if ($cliente['tipoDocumento']=='') {
+                $errores['Cliente']['tipoDocumento'][] = 'Seleccione un Tipo de Documento';
+            }
+
         	if ($cliente['dni']=='') {
             	$errores['Cliente']['dni'][] = 'Ingrese un Documento';
             }
+
             if ($cliente['tipoDocumento']=='DNI') {
                 if (!ctype_digit($cliente['dni'])){
                     $errores['Cliente']['dni'][] = 'Ingrese solo numeros';
@@ -925,6 +931,11 @@ class ReservasController extends AppController {
                 //$cliente['codPais'] = $cliente['codPaisAux'];
                 $this->Cliente->set('codPais',$cliente['codPaisAux']);
             }
+
+            if ($cliente['tipoTelefono']=='') {
+                $errores['Cliente']['TipoTelefono'][] = 'Seleccione un Tipo de Teléfono';
+            }
+
 
             if(($cliente['telefono'] == '') AND ($cliente['celular'] == '')){
             	$errores['Cliente']['telefono'][] = 'Ingrese un telefono o celular valido';

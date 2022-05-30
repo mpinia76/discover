@@ -141,3 +141,9 @@
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
+
+CakeLog::config('logCheques', array(
+    'engine' => 'FileLog',
+    'path' => 'D:/Documents/Mis Webs/discover/logs/',
+    'file' => 'cheques_'.date('Y-m-d')
+));

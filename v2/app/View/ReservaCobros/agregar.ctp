@@ -146,7 +146,7 @@ if(count($reserva_descuentos) > 0){  ?>
 
  //   print_r($posnets);
         foreach($reserva_cobros as $cobro){ //print_r($reserva_cobros);
-            //print_r($cobro['CobroTarjeta'] ['CobroTarjetaTipo']);
+            //print_r($cobro['CobroTarjeta'] ['titular']);
 
             switch($cobro['ReservaCobro']['tipo']){
 
@@ -154,7 +154,15 @@ if(count($reserva_descuentos) > 0){  ?>
                 <tr>
                     <td><img style="display:none;" src="<?php echo $this->webroot; ?>img/loading.gif" class="loading" id="loading_delete<?php echo $cobro['ReservaCobro']['id'];?>" /><a onclick="eliminarCobro('<?php echo $cobro['ReservaCobro']['id'];?>')">eliminar</a>&nbsp;&nbsp;&nbsp;<a href="<?php echo $this->Html->url('/reserva_cobros/recibo/'.$cobro['ReservaCobro']['id'], true);?>">recibo</a></td>
                     <td><?php echo $cobro['ReservaCobro']['fecha']?></td>
-                    <td><?php echo $cobro['Usuario']['nombre'].' '.$cobro['Usuario']['apellido']?></td>
+                    <td><?php
+                        if ($cobro['Usuario']['apellido']) {
+
+                            echo $cobro['Usuario']['nombre'] . ' ' . $cobro['Usuario']['apellido'];
+                        }
+                        else{
+                            echo $cobro['CobroTarjeta'] ['titular'];
+                        }
+                        ?></td>
                     <td><?php echo $cobro['ReservaCobro']['tipo'].' ('.$posnets[$cobro['CobroTarjeta']['CobroTarjetaTipo']['cobro_tarjeta_posnet_id']].')'?></td>
                     <td><?php echo $cobro['ConceptoFacturacion']['nombre']?></td>
                     <td><a onclick="createWindow('w_reservas_view_cobro','Detalles','<?php echo $this->Html->url('/reserva_cobros/detalle/'.$cobro['ReservaCobro']['id'], true);?>','430','400');"><?php echo $tarjetas_tipo[$cobro['CobroTarjeta']['cobro_tarjeta_tipo_id']]?> - <?php echo $cobro['CobroTarjeta']['tarjeta_numero']?> <?php echo $cobro['CobroTarjeta']['cuotas']?> cuota/s</a></td>

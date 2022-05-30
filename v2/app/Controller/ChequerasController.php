@@ -351,6 +351,7 @@ class ChequerasController extends AppController {
     
 
  	public function crear(){
+
         $this->layout = 'form';
         
         $this->loadModel('Cuenta');
@@ -511,13 +512,14 @@ class ChequerasController extends AppController {
 		                $final = intval($chequera['final']);
 		                for ($i = $inicio; $i < $final+1; $i++) {
 		                	
-		               
+
 	                            $this->ChequeraCheque->create();
 	                            $this->ChequeraCheque->set('numero',str_pad($i, 8,'0',STR_PAD_LEFT)  );
 	                            $this->ChequeraCheque->set('estado',0);
 	                            $this->ChequeraCheque->set('chequera_id',$this->Chequera->id);
 	                            $this->ChequeraCheque->save();
-	                            
+
+							CakeLog::write('cheques_'.date('Y-m-d'), 'Se creo el cheque '.str_pad($i, 8,'0',STR_PAD_LEFT).' en la chequera '.$this->Chequera->id);
 	                        }
 				    }
 	               

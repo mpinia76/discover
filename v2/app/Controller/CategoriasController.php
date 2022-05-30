@@ -63,7 +63,7 @@ class CategoriasController extends AppController {
             $categorias = $this->Categoria->find('all',array('limit' => $limit,'order' => 'orden'));
         }
         foreach ($categorias as $categoria) {
-
+			//print_r($categoria);
         	$activa = ($categoria['Categoria']['activa'])?'Si':'No';
         	$descuento = ($categoria['Categoria']['descuento'])?'Si':'No';
         	$rows[] = array(
@@ -71,6 +71,7 @@ class CategoriasController extends AppController {
                 $categoria['Categoria']['categoria'],
 
                 $categoria['Categoria']['vehiculos'],
+				$categoria['ConceptoFacturacion']['nombre'],
                 $categoria['Categoria']['orden'],
 
                 $activa,
@@ -110,6 +111,9 @@ class CategoriasController extends AppController {
         $categoria = $this->request->data;
 
         $this->set('categoria', $this->Categoria->read());
+
+		$this->loadModel('ConceptoFacturacion');
+		$this->set('concepto_facturacions',$this->ConceptoFacturacion->find('list',array('fields' => 'id,nombre','conditions' =>array('activo =' => 1))));
     }
 
 	public function guardar(){
