@@ -14,32 +14,35 @@
             height:100%;
             overflow:hidden;
         }
-		.white_cell{
-		background-color:white;
-		}
-		.green_cell{
-			background-color:#8D6190;
-		}
-		.yellow_cell{
-			background-color:#c4accd;
-		}
-		.red_cell{
-			background-color:#FF5353;
-		}
-		.grey_cell{
-			background-color:#999;
-		}
-		.blue_cell{
-			background-color:#00F;
-		}
-			#sedes{
-		vertical-align:bottom;
-	}
+        .white_cell{
+            background-color:white;
+        }
+        .green_cell{
+            background-color:#8D6190;
+        }
+        .yellow_cell{
+            background-color:#c4accd;
+        }
+        .red_cell{
+            background-color:#FF5353;
+        }
+        .grey_cell{
+            background-color:#999;
+        }
+        .blue_cell{
+            background-color:#00F;
+        }
+        .orange_cell{
+            background-color:#D3D3D3;
+        }
+        #sedes{
+            vertical-align:bottom;
+        }
     </style>
 
 
     <script type="text/javascript" charset="utf-8">
-    	var xpos, ypos, dhxWins, position, oTable;
+        var xpos, ypos, dhxWins, position, oTable;
         function createWindow(id,titulo,url,w,h) {
             xpos = xpos+20;
             ypos = ypos+20;
@@ -51,67 +54,67 @@
             w1.setText(titulo);
             w1.attachURL(url);
         }
-		function show(){
-			alert(scheduler.toXML());
-		}
+        function show(){
+            alert(scheduler.toXML());
+        }
 
-		function pad(input, length, padding) {
-		  var str = input + "";
-		  return (length <= str.length) ? str : pad(str+padding, length, padding);
-		}
+        function pad(input, length, padding) {
+            var str = input + "";
+            return (length <= str.length) ? str : pad(str+padding, length, padding);
+        }
 
-		function direccionaJS(url, parametro, id){
-			var form = document.createElement("form");
-		    input = document.createElement("input");
+        function direccionaJS(url, parametro, id){
+            var form = document.createElement("form");
+            input = document.createElement("input");
 
-			form.action = url;
-			form.method = "post"
+            form.action = url;
+            form.method = "post"
 
-			input.type = "hidden";
-			input.name = parametro;
-			input.value = id;
-			form.appendChild(input);
+            input.type = "hidden";
+            input.name = parametro;
+            input.value = id;
+            form.appendChild(input);
 
-			document.body.appendChild(form);
-			form.submit();
-		}
+            document.body.appendChild(form);
+            form.submit();
+        }
 
-		function direccionaJS2parametros(url, parametro, id, parametro2, id2){
-			var form = document.createElement("form");
-		    input = document.createElement("input");
-		    input2 = document.createElement("input");
+        function direccionaJS2parametros(url, parametro, id, parametro2, id2){
+            var form = document.createElement("form");
+            input = document.createElement("input");
+            input2 = document.createElement("input");
 
-			form.action = url;
-			form.method = "post"
+            form.action = url;
+            form.method = "post"
 
-			input.type = "hidden";
-			input.name = parametro;
-			input.value = id;
-			form.appendChild(input);
+            input.type = "hidden";
+            input.name = parametro;
+            input.value = id;
+            form.appendChild(input);
 
-			input2.type = "hidden";
-			input2.name = parametro2;
-			input2.value = id2;
-			form.appendChild(input2);
+            input2.type = "hidden";
+            input2.name = parametro2;
+            input2.value = id2;
+            form.appendChild(input2);
 
-			document.body.appendChild(form);
-			form.submit();
-		}
+            document.body.appendChild(form);
+            form.submit();
+        }
 
-		function cancelarReserva(idAlquiler){
-			if (confirm('�Seguro que desea cancelar esta reserva?'))
-				window.location.assign("Comercial/Reservas/procesarReserva.php?accion=5&idAlquileres="+idAlquiler);
-		}
+        function cancelarReserva(idAlquiler){
+            if (confirm('ï¿½Seguro que desea cancelar esta reserva?'))
+                window.location.assign("Comercial/Reservas/procesarReserva.php?accion=5&idAlquileres="+idAlquiler);
+        }
 
-		// #88 para eventos q no son de la sede actual
-		function block_readonly(id){
-			if (!id) return true;
-			return !this.getEvent(id).readonly;
-		}
+        // #88 para eventos q no son de la sede actual
+        function block_readonly(id){
+            if (!id) return true;
+            return !this.getEvent(id).readonly;
+        }
 
         function init() {
             scheduler.config.multi_day = true;
-			brief_mode = true;
+            brief_mode = true;
             scheduler.locale.labels.timeline_tab = "Timeline";
             scheduler.locale.labels.section_custom="Vehiculo";
             scheduler.config.xml_date="%Y-%m-%d %H:%i";
@@ -120,590 +123,612 @@
             scheduler.config.details_on_dblclick=false;
             scheduler.config.drag_create = true;
 
-			scheduler.config.drag_move = true; // No permite mover los eventos
-			scheduler.config.drag_resize= false;
-			scheduler.config.readonly = false;
-			scheduler.config.dblclick_create = false;
+            scheduler.config.drag_move = true; // No permite mover los eventos
+            scheduler.config.drag_resize= false;
+            scheduler.config.readonly = false;
+            scheduler.config.dblclick_create = false;
 
-			// Para evitar que se cambie la fecha cuando hace drag and drop
-			/*scheduler.attachEvent("onBeforeEventChanged", function(ev, e, flag, ev_old){
-				if (!flag) { // only for existing events
+            // Para evitar que se cambie la fecha cuando hace drag and drop
+            /*scheduler.attachEvent("onBeforeEventChanged", function(ev, e, flag, ev_old){
+                if (!flag) { // only for existing events
 //				alert("No se puede modificar la fecha y dia");
-					ev.start_date = ev_old.start_date;
-					ev.end_date = ev_old.end_date;
-				}
-			 return true;
-			 });*/
+                    ev.start_date = ev_old.start_date;
+                    ev.end_date = ev_old.end_date;
+                }
+             return true;
+             });*/
 
-			 // Para que con doble clic vaya a Modificar Reserva
-			 // Sacado para que con doble clic se abra el menu
-			/*
-			 scheduler.attachEvent("onDblClick", function(id){
-			   // redirect on double click on event, pass event id
-			   var eventObj = scheduler.getEvent(id);
-			   if (eventObj['idReserva'] != 0) // Para evitar que se vaya de la pantalla al hacer doble clic en una reserva de Categoria Deshabilitada
-			   		direccionaJS("Comercial/Reservas/modificarReserva.php", "idAlquiler", eventObj['idReserva']);
-			   		// location.href = "Comercial/Reservas/modificarReserva.php?idAlquiler=" + eventObj['idReserva'];
-			});
-			*/
+            // Para que con doble clic vaya a Modificar Reserva
+            // Sacado para que con doble clic se abra el menu
+            /*
+             scheduler.attachEvent("onDblClick", function(id){
+               // redirect on double click on event, pass event id
+               var eventObj = scheduler.getEvent(id);
+               if (eventObj['idReserva'] != 0) // Para evitar que se vaya de la pantalla al hacer doble clic en una reserva de Categoria Deshabilitada
+                       direccionaJS("Comercial/Reservas/modificarReserva.php", "idAlquiler", eventObj['idReserva']);
+                       // location.href = "Comercial/Reservas/modificarReserva.php?idAlquiler=" + eventObj['idReserva'];
+            });
+            */
 
-			//===============
-			// Salvar
-			//===============
-			//scheduler.config.xml_date="%Y-%m-%d %H:%i";
-			scheduler.config.prevent_cache = true;
-			// Ver si son necesarios
-			scheduler.config.include_end_by = true;
-      		scheduler.config.repeat_precise = true;
+            //===============
+            // Salvar
+            //===============
+            //scheduler.config.xml_date="%Y-%m-%d %H:%i";
+            scheduler.config.prevent_cache = true;
+            // Ver si son necesarios
+            scheduler.config.include_end_by = true;
+            scheduler.config.repeat_precise = true;
 
-			//===============
-			// Tooltip related code
-			//===============
+            //===============
+            // Tooltip related code
+            //===============
 
-			// we want to save "dhx_cal_data" div in a variable to limit look ups
-			var scheduler_container = document.getElementById("scheduler_here");
-			var scheduler_container_divs = scheduler_container.getElementsByTagName("div");
-			var dhx_cal_data = scheduler_container_divs[scheduler_container_divs.length-1];
+            // we want to save "dhx_cal_data" div in a variable to limit look ups
+            var scheduler_container = document.getElementById("scheduler_here");
+            var scheduler_container_divs = scheduler_container.getElementsByTagName("div");
+            var dhx_cal_data = scheduler_container_divs[scheduler_container_divs.length-1];
 
-			// while target has parent node and we haven't reached dhx_cal_data
-			// we can keep checking if it is timeline section
-			scheduler.dhtmlXTooltip.isTooltipTarget = function(target) {
-				while (target.parentNode && target != dhx_cal_data) {
-					var css = target.className.split(" ")[0];
-					// if we are over matrix cell or tooltip itself
-					if (css == "dhx_matrix_scell" || css == "dhtmlXTooltip") {
-						return { classname: css };
-					}
-					target = target.parentNode;
-				}
-				return false;
-			};
+            // while target has parent node and we haven't reached dhx_cal_data
+            // we can keep checking if it is timeline section
+            scheduler.dhtmlXTooltip.isTooltipTarget = function(target) {
+                while (target.parentNode && target != dhx_cal_data) {
+                    var css = target.className.split(" ")[0];
+                    // if we are over matrix cell or tooltip itself
+                    if (css == "dhx_matrix_scell" || css == "dhtmlXTooltip") {
+                        return { classname: css };
+                    }
+                    target = target.parentNode;
+                }
+                return false;
+            };
 
-			// Para la posicion del Tooltip.  Se establecio este valor para que no se pise con el menu contextual
-			dhtmlXTooltip.config.delta_x = -350;
+            // Para la posicion del Tooltip.  Se establecio este valor para que no se pise con el menu contextual
+            dhtmlXTooltip.config.delta_x = -350;
             // dhtmlXTooltip.config.delta_y = -20;
 
-			scheduler.attachEvent("onMouseMove", function(id, e) {
+            scheduler.attachEvent("onMouseMove", function(id, e) {
 
-				var timeline_view = scheduler.matrix[scheduler.getState().mode];
+                var timeline_view = scheduler.matrix[scheduler.getState().mode];
 
-				// if we are over event then we can immediately return or if we are not on timeline view
-				if (id || !timeline_view) {
-					return;
-				}
+                // if we are over event then we can immediately return or if we are not on timeline view
+                if (id || !timeline_view) {
+                    return;
+                }
 
-				// native mouse event
-				e = e||window.event;
-				var target = e.target||e.srcElement;
+                // native mouse event
+                e = e||window.event;
+                var target = e.target||e.srcElement;
 
-				var tooltip = scheduler.dhtmlXTooltip;
-				var tooltipTarget = tooltip.isTooltipTarget(target);
-				if (tooltipTarget) {
+                var tooltip = scheduler.dhtmlXTooltip;
+                var tooltipTarget = tooltip.isTooltipTarget(target);
+                if (tooltipTarget) {
 
-					if (tooltipTarget.classname == "dhx_matrix_scell") {
-						// we are over cell, need to get what cell it is and display tooltip
-						var section_id = scheduler.getActionData(e).section;
-						var section = timeline_view.y_unit[timeline_view.order[section_id]];
+                    if (tooltipTarget.classname == "dhx_matrix_scell") {
+                        // we are over cell, need to get what cell it is and display tooltip
+                        var section_id = scheduler.getActionData(e).section;
+                        var section = timeline_view.y_unit[timeline_view.order[section_id]];
 
-						// showing tooltip itself
-						var text = "Datos de vehiculo: <b>"+section.label+"</b>";
-						tooltip.delay(tooltip.show, tooltip, [e, text]);
-					}
-					if (tooltipTarget.classname == "dhtmlXTooltip") {
-						dhtmlxTooltip.delay(tooltip.show, tooltip, [e, tooltip.tooltip.innerHTML]);
-					}
-				}
-			});
+                        // showing tooltip itself
+                        var text = "Datos de vehiculo: <b>"+section.label+"</b>";
+                        tooltip.delay(tooltip.show, tooltip, [e, text]);
+                    }
+                    if (tooltipTarget.classname == "dhtmlXTooltip") {
+                        dhtmlxTooltip.delay(tooltip.show, tooltip, [e, tooltip.tooltip.innerHTML]);
+                    }
+                }
+            });
 
-			//===============
-			// Menu Contextual
-			//===============
+            //===============
+            // Menu Contextual
+            //===============
 
-			var eventoSeleccionado = null;
-			var eventoClienteSeleccionado = null;
-			// Para el clic derecho
-			var menu = new dhtmlXMenuObject();
-			menu.setSkin("dhx_terrace");
-		//	menu.setIconsPath("./data/imgs/");
-			menu.renderAsContextMenu();
-			menu.loadStruct("../app/webroot/js/dhtmlx/dhxmenu.xml");
-
-
-			menu.attachEvent("onClick", function(id, zoneId, cas){
-				// zoneId used for context menu
-				// ctrl, alt, shift state
-				/*
-				var casText = "";
-				for (var a in {ctrl:1,alt:1,shift:1}) if (cas[a] == true) casText += " "+a+"=true";
-				console.log("<b>onClick</b> id="+id+ " texto:"+ casText+" id " + eventoSeleccionado + "<br>");
-				*/
-				switch(id) {
-				    case "modificarReserva":
-				    	//direccionaJS("Comercial/Reservas/modificarReserva.php", "idAlquiler", eventoSeleccionado);
-				    	direccionaJS("<?php echo $this->Html->url('/reservas/editar', true);?>/"+ eventoSeleccionado+"/1");
-				        break;
-				    case "cargarCobranza":
-				    	//direccionaJS("Comercial/Cobranzas/altaCobranza.php", "idAlquiler", eventoSeleccionado);
-				    	if((eventoColorSeleccionado!='#f1fa52')){
-				    		direccionaJS("<?php echo $this->Html->url('/reserva_cobros/agregar', true);?>/"+ eventoSeleccionado+"/1");
-				    	}
-				    	else{
-				    		alert('Unidad Bloqueada');
-				    	}
-				        break;
-				    case "cancelarReserva":
-				    	if((eventoColorSeleccionado=='#ff0033')||(eventoColorSeleccionado=='#f1fa52')){
-				    		if(confirm("Esta seguro que desea cancelar la reserva?")){
+            var eventoSeleccionado = null;
+            var eventoClienteSeleccionado = null;
+            // Para el clic derecho
+            var menu = new dhtmlXMenuObject();
+            menu.setSkin("dhx_terrace");
+            //	menu.setIconsPath("./data/imgs/");
+            menu.renderAsContextMenu();
+            menu.loadStruct("../app/webroot/js/dhtmlx/dhxmenu.xml");
 
 
-					            $.ajax({
-					                url: "<?php echo $this->Html->url('/reservas/cancelar', true);?>",
-					                data: {'reserva_id' : eventoSeleccionado},
-					                type: 'POST',
-					                dataType: 'json',
-					                success: function(data){
-
-					                    if(data.resultado == 'ERROR'){
-					                        alert(data.mensaje);
-					                    }else{
-					                        location.reload();
-					                    }
-					                }
-					            })
-
-						    }
-				    	}
-				    	else{
-				    		alert('No se puede cancelar la reserva');
-				    	}
-
-				   		//cancelarReserva(eventoSeleccionado);
-				        break;
-			        case "entrega":
-			        	direccionaJS2parametros("Comercial/Reservas/procesarReserva.php", "idAlquileres", eventoSeleccionado, "accion", 16);
-				        break;
-					case "devolucion":
-						direccionaJS2parametros("Comercial/Reservas/procesarReserva.php", "idAlquileres", eventoSeleccionado, "accion", 17);
-				        break;
-		        	case "listadoCobranza":
-		        		direccionaJS("Comercial/Cobranzas/listadoCobranzas.php", "idAlquiler", eventoSeleccionado);
-				        break;
-					case "modificarCliente":
-		        		direccionaJS("Comercial/Cliente/altaCliente.php", "idCliente", eventoClienteSeleccionado);
-				        break;
-			        case "voucher":
-				    	direccionaJS("Comercial/Reservas/voucher.php", "idAlquileres", eventoSeleccionado);
-				        break;
-				    default:
-				       break;
-				}
-
-			});
+            menu.attachEvent("onClick", function(id, zoneId, cas){
+                // zoneId used for context menu
+                // ctrl, alt, shift state
+                /*
+                var casText = "";
+                for (var a in {ctrl:1,alt:1,shift:1}) if (cas[a] == true) casText += " "+a+"=true";
+                console.log("<b>onClick</b> id="+id+ " texto:"+ casText+" id " + eventoSeleccionado + "<br>");
+                */
+                switch(id) {
+                    case "modificarReserva":
+                        //direccionaJS("Comercial/Reservas/modificarReserva.php", "idAlquiler", eventoSeleccionado);
+                        direccionaJS("<?php echo $this->Html->url('/reservas/editar', true);?>/"+ eventoSeleccionado+"/1");
+                        break;
+                    case "cargarCobranza":
+                        //direccionaJS("Comercial/Cobranzas/altaCobranza.php", "idAlquiler", eventoSeleccionado);
+                        if((eventoColorSeleccionado!='#f1fa52')){
+                            direccionaJS("<?php echo $this->Html->url('/reserva_cobros/agregar', true);?>/"+ eventoSeleccionado+"/1");
+                        }
+                        else{
+                            alert('Unidad Bloqueada');
+                        }
+                        break;
+                    case "cancelarReserva":
+                        if((eventoColorSeleccionado=='#ff0033')||(eventoColorSeleccionado=='#f1fa52')){
+                            if(confirm("Esta seguro que desea cancelar la reserva?")){
 
 
-		scheduler.attachEvent("onBeforeDrag",block_readonly);
-		// scheduler.attachEvent("onClick",block_readonly);
+                                $.ajax({
+                                    url: "<?php echo $this->Html->url('/reservas/cancelar', true);?>",
+                                    data: {'reserva_id' : eventoSeleccionado},
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    success: function(data){
 
-			/* Menu con clic derecho
-			Esto es para cuando estoy parado en la grilla pero no sobre un evento
-			*/
-			scheduler.attachEvent("onContextMenu", function (id, e){
-			    var action_data = scheduler.getActionData(e);
-				var eventObj = scheduler.getEvent(id);
+                                        if(data.resultado == 'ERROR'){
+                                            alert(data.mensaje);
+                                        }else{
+                                            location.reload();
+                                        }
+                                    }
+                                })
 
-				if (eventObj != null){
-					eventoSeleccionado = eventObj.idReserva;
-					eventoColorSeleccionado = eventObj.color;
-					eventoClienteSeleccionado = eventObj.idCliente;
-				//	console.log(eventoClienteSeleccionado);
-				}
+                            }
+                        }
+                        else{
+                            alert('No se puede cancelar la reserva');
+                        }
 
-				return false; // Con esto evito el menu desplegable del navegador
-			});
+                        //cancelarReserva(eventoSeleccionado);
+                        break;
+                    case "entrega":
+                        direccionaJS2parametros("Comercial/Reservas/procesarReserva.php", "idAlquileres", eventoSeleccionado, "accion", 16);
+                        break;
+                    case "devolucion":
+                        direccionaJS2parametros("Comercial/Reservas/procesarReserva.php", "idAlquileres", eventoSeleccionado, "accion", 17);
+                        break;
+                    case "listadoCobranza":
+                        direccionaJS("Comercial/Cobranzas/listadoCobranzas.php", "idAlquiler", eventoSeleccionado);
+                        break;
+                    case "modificarCliente":
+                        direccionaJS("Comercial/Cliente/altaCliente.php", "idCliente", eventoClienteSeleccionado);
+                        break;
+                    case "voucher":
+                        direccionaJS("Comercial/Reservas/voucher.php", "idAlquileres", eventoSeleccionado);
+                        break;
+                    default:
+                        break;
+                }
 
-
-
-			scheduler.attachEvent("onContextMenu", function(event_id, native_event_object) {
-
-				if (event_id) {
-
-					// #88 Esto es para evitar que se despliegue el menu en eventos readonly (cuando son reservas de otra sede)
-					var eventObj = scheduler.getEvent(event_id);
-					if (eventObj.readonly)
-						return false;
-
-					var posx = 0;
-					var posy = 0;
-					if (native_event_object.pageX || native_event_object.pageY) {
-						posx = native_event_object.pageX;
-						posy = native_event_object.pageY;
-					} else if (native_event_object.clientX || native_event_object.clientY) {
-						posx = native_event_object.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-						posy = native_event_object.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-					}
-					menu.showContextMenu(posx, posy);
-
-					return false; // prevent default action and propagation
-				}
-				return true;
-			});
+            });
 
 
-			/* Menu con doble clic */
-			scheduler.attachEvent("onDblClick", function (id, e){
-			    var action_data = scheduler.getActionData(e);
+            scheduler.attachEvent("onBeforeDrag",block_readonly);
+            // scheduler.attachEvent("onClick",block_readonly);
 
-				var eventObj = scheduler.getEvent(id);
-				if (eventObj != null){
-					eventoSeleccionado = eventObj.idReserva;
-					eventoClienteSeleccionado = eventObj.idCliente;
-				//	console.log(eventoClienteSeleccionado);
-				}
-				return false; // Con esto evito el menu desplegable del navegador
-			});
+            /* Menu con clic derecho
+            Esto es para cuando estoy parado en la grilla pero no sobre un evento
+            */
+            scheduler.attachEvent("onContextMenu", function (id, e){
+                var action_data = scheduler.getActionData(e);
+                var eventObj = scheduler.getEvent(id);
 
-			scheduler.attachEvent("onDblClick", function(event_id, native_event_object) {
+                if (eventObj != null){
+                    eventoSeleccionado = eventObj.idReserva;
+                    eventoColorSeleccionado = eventObj.color;
+                    eventoClienteSeleccionado = eventObj.idCliente;
+                    //	console.log(eventoClienteSeleccionado);
+                }
 
-				if (event_id) {
-
-					// #88 Esto es para evitar que se despliegue el menu en eventos readonly (cuando son reservas de otra sede)
-					var eventObj = scheduler.getEvent(event_id);
-					if (eventObj.readonly)
-						return false;
-
-					var posx = 0;
-					var posy = 0;
-					if (native_event_object.pageX || native_event_object.pageY) {
-						posx = native_event_object.pageX;
-						posy = native_event_object.pageY;
-					} else if (native_event_object.clientX || native_event_object.clientY) {
-						posx = native_event_object.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-						posy = native_event_object.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-					}
-					menu.showContextMenu(posx, posy);
-
-					return false; // prevent default action and propagation
-				}
-				return true;
-			});
-
-		/*
-		scheduler.attachEvent("ondrag_create", function (id, e){
-
-					    var action_data = scheduler.getActionData(e);
-
-						var eventObj = scheduler.getEvent(id);
-						if (eventObj != null){
-							eventoSeleccionado = eventObj.idReserva;
-							eventoClienteSeleccionado = eventObj.idCliente;
-						//	console.log(eventoClienteSeleccionado);
-						}
-						return false; // Con esto evito el menu desplegable del navegador
-					});
+                return false; // Con esto evito el menu desplegable del navegador
+            });
 
 
 
+            scheduler.attachEvent("onContextMenu", function(event_id, native_event_object) {
 
-		var patentesEspeciales=['AC488VR','AB425OY','AA727XE','AA727XF','AA727XG','AC488VQ','AD428KP','AD428KQ','AD428KR','AD428KS','AD428KT'];*/
+                if (event_id) {
+
+                    // #88 Esto es para evitar que se despliegue el menu en eventos readonly (cuando son reservas de otra sede)
+                    var eventObj = scheduler.getEvent(event_id);
+                    if (eventObj.readonly)
+                        return false;
+
+                    var posx = 0;
+                    var posy = 0;
+                    if (native_event_object.pageX || native_event_object.pageY) {
+                        posx = native_event_object.pageX;
+                        posy = native_event_object.pageY;
+                    } else if (native_event_object.clientX || native_event_object.clientY) {
+                        posx = native_event_object.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+                        posy = native_event_object.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+                    }
+                    menu.showContextMenu(posx, posy);
+
+                    return false; // prevent default action and propagation
+                }
+                return true;
+            });
+
+
+            /* Menu con doble clic */
+            scheduler.attachEvent("onDblClick", function (id, e){
+                var action_data = scheduler.getActionData(e);
+
+                var eventObj = scheduler.getEvent(id);
+                if (eventObj != null){
+                    eventoSeleccionado = eventObj.idReserva;
+                    eventoClienteSeleccionado = eventObj.idCliente;
+                    //	console.log(eventoClienteSeleccionado);
+                }
+                return false; // Con esto evito el menu desplegable del navegador
+            });
+
+            scheduler.attachEvent("onDblClick", function(event_id, native_event_object) {
+
+                if (event_id) {
+
+                    // #88 Esto es para evitar que se despliegue el menu en eventos readonly (cuando son reservas de otra sede)
+                    var eventObj = scheduler.getEvent(event_id);
+                    if (eventObj.readonly)
+                        return false;
+
+                    var posx = 0;
+                    var posy = 0;
+                    if (native_event_object.pageX || native_event_object.pageY) {
+                        posx = native_event_object.pageX;
+                        posy = native_event_object.pageY;
+                    } else if (native_event_object.clientX || native_event_object.clientY) {
+                        posx = native_event_object.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+                        posy = native_event_object.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+                    }
+                    menu.showContextMenu(posx, posy);
+
+                    return false; // prevent default action and propagation
+                }
+                return true;
+            });
+
+            /*
+            scheduler.attachEvent("ondrag_create", function (id, e){
+
+                            var action_data = scheduler.getActionData(e);
+
+                            var eventObj = scheduler.getEvent(id);
+                            if (eventObj != null){
+                                eventoSeleccionado = eventObj.idReserva;
+                                eventoClienteSeleccionado = eventObj.idCliente;
+                            //	console.log(eventoClienteSeleccionado);
+                            }
+                            return false; // Con esto evito el menu desplegable del navegador
+                        });
+
+
+
+
+            var patentesEspeciales=['AC488VR','AB425OY','AA727XE','AA727XF','AA727XG','AC488VQ','AD428KP','AD428KQ','AD428KR','AD428KS','AD428KT'];*/
             var patentesEspeciales=['AD923NX','AD923NW','AD937KA','AD923NZ','AD923NV','AD923NY','AC488VN','AC488VO','AD428KP','AD428KQ','AD428KR'];
-		/*var sections=[
-            <?php
+            /*var sections=[
+<?php
             //$patentesEspeciales = array('AC488VR','AB425OY','AA727XE','AA727XF','AA727XG','AC488VQ','AD428KP','AD428KQ','AD428KR','AD428KS','AD428KT');
             $patentesEspeciales = array('AD923NX','AD923NW','AD937KA','AD923NZ','AD923NV','AD923NY','AC488VN','AC488VO','AD428KP','AD428KQ','AD428KR');
             foreach($unidads as $unidad){
 
-            		if (in_array($unidad['Unidad']['patente'], $patentesEspeciales)) {
-						$boldAbierto="<b>";
-						$boldCerrado="</b>";
-					}else{
-						$boldAbierto="";
-						$boldCerrado="";
-					}
+                if (in_array($unidad['Unidad']['patente'], $patentesEspeciales)) {
+                    $boldAbierto="<b>";
+                    $boldCerrado="</b>";
+                }else{
+                    $boldAbierto="";
+                    $boldCerrado="";
+                }
 
-            		echo '{key:'.$unidad['Unidad']['id'].', label: "'.$boldAbierto.$unidad['Unidad']['patente'].' ('.$unidad['Unidad']['marca'].' '.$unidad['Unidad']['modelo'].')-'.$unidad['Categoria']['categoria'].$boldCerrado.'"},';
-			}
+                echo '{key:'.$unidad['Unidad']['id'].', label: "'.$boldAbierto.$unidad['Unidad']['patente'].' ('.$unidad['Unidad']['marca'].' '.$unidad['Unidad']['modelo'].')-'.$unidad['Categoria']['categoria'].$boldCerrado.'"},';
+            }
 
             ?>];*/
-		scheduler.attachEvent("onBeforeViewChange", function(old_mode,old_date,mode,date){
-		    //alert(date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate());
 
+            var feriados=[
+                <?php
 
-		   if(old_date!=date){
-		   		sections = [];
-		   		scheduler.updateCollection("timeline_sections", sections);
-		   		$.ajax({
-	                url: "<?php echo $this->Html->url('/informes/getUnidadesGrilla', true);?>/"+date.getFullYear()+'-'+pad((date.getMonth()+1),2,0)+'-'+pad(date.getDate(),2,0),
+                foreach($feriados as $feriado){
 
-	                type: 'GET',
-	                dataType: 'json',
-	                success: function(data){
-	                    //alert(data.unidads);
-	                   data.unidads.forEach(function(elemento) {
+                    $comienzo = new DateTime(str_replace('/','-',$feriado['GrillaFeriado']['desde']));
+                    $final = new DateTime(str_replace('/','-',$feriado['GrillaFeriado']['hasta']));
 
-		                   if (patentesEspeciales.includes(elemento.Unidad.patente)) {
+                    for($i = $comienzo; $i <= $final; $i->modify('+1 day')){
 
-								boldAbierto="<b>";
-								boldCerrado="</b>";
-							}else{
-								boldAbierto="";
-								boldCerrado="";
-							}
-	                   		var label = boldAbierto+elemento.Unidad.patente+' ('+elemento.Unidad.marca+' '+elemento.Unidad.modelo+')-'+elemento.Categoria.categoria+boldCerrado;
-	                   		var pos = sections.map(function(e) {
-				                return e.key;
-				            }).indexOf(elemento.Unidad.id);
-				            //alert(pos);
-				            if(pos==-1){
-				            	sections.push({key: elemento.Unidad.id, label:label });
-				            }
+                        echo '{fecha:"'.$i->format("Y-m-d").'"},';
+                    }
 
-						    //alert(elemento.Unidad.patente);
 
 
-						});
-						scheduler.clearAll();
-	                   scheduler.updateCollection("timeline_sections", sections);
+                }
 
+                ?>];
 
-		  				scheduler.load('<?php echo $this->Html->url('/informes/ventas_grilla2', true);?>/'+date.getFullYear()+'-'+pad((date.getMonth()+1),2,0)+'-'+pad(date.getDate(),2,0), 'json' );
+            //console.log(feriados);
 
-	                }
-	            })
+            scheduler.attachEvent("onBeforeViewChange", function(old_mode,old_date,mode,date){
+                //alert(date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate());
 
 
+                if(old_date!=date){
+                    sections = [];
+                    scheduler.updateCollection("timeline_sections", sections);
+                    $.ajax({
+                        url: "<?php echo $this->Html->url('/informes/getUnidadesGrilla', true);?>/"+date.getFullYear()+'-'+pad((date.getMonth()+1),2,0)+'-'+pad(date.getDate(),2,0),
 
-		   }
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data){
+                            //alert(data.unidads);
+                            data.unidads.forEach(function(elemento) {
 
+                                if (patentesEspeciales.includes(elemento.Unidad.patente)) {
 
-		    //scheduler.enableAutoHeight(true,100);
-		    return true;
-		});
+                                    boldAbierto="<b>";
+                                    boldCerrado="</b>";
+                                }else{
+                                    boldAbierto="";
+                                    boldCerrado="";
+                                }
+                                var label = boldAbierto+elemento.Unidad.patente+' ('+elemento.Unidad.marca+' '+elemento.Unidad.modelo+')-'+elemento.Categoria.categoria+boldCerrado;
+                                var pos = sections.map(function(e) {
+                                    return e.key;
+                                }).indexOf(elemento.Unidad.id);
+                                //alert(pos);
+                                if(pos==-1){
+                                    sections.push({key: elemento.Unidad.id, label:label });
+                                }
 
-/*
+                                //alert(elemento.Unidad.patente);
 
-scheduler.attachEvent("onDragIn",function(sid,tid,sgrid,tgrid){
-	alert("dragin");
-    if (tid)    // tid may be null if dropping is in the grid body
-        scheduler.setRowTextStyle(tid,"background-color:red;");// marks current dropping
-    return true;
-})
 
-scheduler.attachEvent("onDragOut",function(tid){
-	alert("dragout");
-    if (tid)
-        scheduler.setRowTextStyle(tid,""); // clears styles set on the previous step
-})
+                            });
+                            scheduler.clearAll();
+                            scheduler.updateCollection("timeline_sections", sections);
 
 
-scheduler.attachEvent("onEventCreated", function(id,e){
-     alert("dale");
-     return true;
-});
+                            scheduler.load('<?php echo $this->Html->url('/informes/ventas_grilla2', true);?>/'+date.getFullYear()+'-'+pad((date.getMonth()+1),2,0)+'-'+pad(date.getDate(),2,0), 'json' );
 
-if (scheduler.getState().lightbox_id){
-    alert("no se");
-} else {
-        alert("se se");
-}
+                        }
+                    })
 
 
-scheduler.attachEvent("onEventDrag", function (id, mode, e){
-	alert("dale");
-    //any custom logic here
-    return true;
-});
-*/
 
+                }
 
 
-scheduler.attachEvent("onBeforeEventChanged", function(ev, e, is_new, x_ind, y_ind, x_val, y_val){
+                //scheduler.enableAutoHeight(true,100);
+                return true;
+            });
 
-    if (is_new){
-    	var today = new Date();
-    	// Para que tampoco se pueda crear del mismo dia, si queremos q se pueda poner en 0 ambos
-    	today.setHours(0);
-    	today.setMinutes(0);
-    	if (today< ev.start_date && today< ev.end_date){
-	       // ev.start_date.setHours(0);
-			ev.start_date.setMinutes(0);
-			ev.end_date.setMinutes(0);
+            /*
 
-		//	console.log("desde: " + ev.start_date) ;
-		//	console.log("fin + " + ev.end_date );
+            scheduler.attachEvent("onDragIn",function(sid,tid,sgrid,tgrid){
+                alert("dragin");
+                if (tid)    // tid may be null if dropping is in the grid body
+                    scheduler.setRowTextStyle(tid,"background-color:red;");// marks current dropping
+                return true;
+            })
 
-			var date = new Date( ev.start_date);
-			var mesDesde = pad( (date.getMonth() + 1), 2);
-			var diaDesde = pad( (date.getDate() ), 2);
+            scheduler.attachEvent("onDragOut",function(tid){
+                alert("dragout");
+                if (tid)
+                    scheduler.setRowTextStyle(tid,""); // clears styles set on the previous step
+            })
 
 
+            scheduler.attachEvent("onEventCreated", function(id,e){
+                 alert("dale");
+                 return true;
+            });
 
-	       var fechaDesde =  date.getFullYear() +"-" + mesDesde +"-" + diaDesde;
-	       // alert((date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear());
+            if (scheduler.getState().lightbox_id){
+                alert("no se");
+            } else {
+                    alert("se se");
+            }
 
-			var dateHasta = new Date( ev.end_date);
-			var mesHasta = pad( (dateHasta.getMonth() + 1), 2);
-			var diaHasta = pad( (dateHasta.getDate() ), 2);
 
-			var fechaHasta =  dateHasta.getFullYear() +"-" + mesHasta +"-" + diaHasta;
-	       // http://localhost/rentACarGestion/Comercial/Reservas/altaReserva.php?cbSede=1&fechaDesde=2016-08-05&horaDesde=10:00&fechaHasta=2016-08-09&horaHasta=10:00
+            scheduler.attachEvent("onEventDrag", function (id, mode, e){
+                alert("dale");
+                //any custom logic here
+                return true;
+            });
+            */
 
-	// x_ind.toSource()
 
 
-		/*var url = "Comercial/Reservas/altaReserva.php?fechaDesde=" + fechaDesde + "&horaDesde=10:00&fechaHasta=" + fechaHasta + "&horaHasta=10:00&idVehiculo=" + x_ind._orig_section;*/
+            scheduler.attachEvent("onBeforeEventChanged", function(ev, e, is_new, x_ind, y_ind, x_val, y_val){
 
-		direccionaJS("<?php echo $this->Html->url('/reservas/crear', true);?>/1/"+ x_ind._orig_section+"/"+fechaDesde+"/"+fechaHasta);
+                if (is_new){
+                    var today = new Date();
+                    // Para que tampoco se pueda crear del mismo dia, si queremos q se pueda poner en 0 ambos
+                    today.setHours(0);
+                    today.setMinutes(0);
+                    if (today< ev.start_date && today< ev.end_date){
+                        // ev.start_date.setHours(0);
+                        ev.start_date.setMinutes(0);
+                        ev.end_date.setMinutes(0);
 
+                        //	console.log("desde: " + ev.start_date) ;
+                        //	console.log("fin + " + ev.end_date );
 
+                        var date = new Date( ev.start_date);
+                        var mesDesde = pad( (date.getMonth() + 1), 2);
+                        var diaDesde = pad( (date.getDate() ), 2);
 
-	/*
-	// x_ind, y_ind, x_val, y_val, e){
 
-		var action_data = scheduler.getActionData(e);
-		alert(action_data.getEvent());
-	    alert(" x-ind: " + x_ind +  " y-ind: " + y_ind +  " x-val: " + x_val +  " y-val: " + y_val );
-	*/
 
-	// alert(" x-ind: " + x_ind.toSource() +  " y-ind: " + y_ind +  " x-val: " + x_val +  " y-val: " + y_val );
+                        var fechaDesde =  date.getFullYear() +"-" + mesDesde +"-" + diaDesde;
+                        // alert((date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear());
 
-	/*
-				var action_data = scheduler.getActionData(e);
+                        var dateHasta = new Date( ev.end_date);
+                        var mesHasta = pad( (dateHasta.getMonth() + 1), 2);
+                        var diaHasta = pad( (dateHasta.getDate() ), 2);
 
-					var eventObj = scheduler.getEvent(id);
-				if (eventObj != null){
-					//eventObj.
+                        var fechaHasta =  dateHasta.getFullYear() +"-" + mesHasta +"-" + diaHasta;
+                        // http://localhost/rentACarGestion/Comercial/Reservas/altaReserva.php?cbSede=1&fechaDesde=2016-08-05&horaDesde=10:00&fechaHasta=2016-08-09&horaHasta=10:00
 
-				}
+                        // x_ind.toSource()
 
-*/
-			return true;
-		}else{
-			alert("No se puede crear una reserva con fecha desde o hasta anteriores al dia de hoy");
-			return false;
-			}
 
-    }else{
-    	//alert(ev.section_id+' '+x_ind._orig_section)
-    	/*if(x_ind._orig_section==ev.section_id){
-    		return false;
-    	}
-    	else{*/
-	    	if(confirm('Seguro desea cambiar la reserva?')){
-		    	//alert(ev.section_id+' '+ev.idReserva);
-		    	var date = new Date( ev.start_date);
-				var mesDesde = pad( (date.getMonth() + 1), 2);
-				var diaDesde = pad( (date.getDate() ), 2);
+                        /*var url = "Comercial/Reservas/altaReserva.php?fechaDesde=" + fechaDesde + "&horaDesde=10:00&fechaHasta=" + fechaHasta + "&horaHasta=10:00&idVehiculo=" + x_ind._orig_section;*/
 
+                        direccionaJS("<?php echo $this->Html->url('/reservas/crear', true);?>/1/"+ x_ind._orig_section+"/"+fechaDesde+"/"+fechaHasta);
 
 
-		       var fechaDesde =  date.getFullYear() +"-" + mesDesde +"-" + diaDesde;
-		       // alert((date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear());
 
-				var dateHasta = new Date( ev.end_date);
-				var mesHasta = pad( (dateHasta.getMonth() + 1), 2);
-				var diaHasta = pad( (dateHasta.getDate() ), 2);
+                        /*
+                        // x_ind, y_ind, x_val, y_val, e){
 
-				var fechaHasta =  dateHasta.getFullYear() +"-" + mesHasta +"-" + diaHasta;
+                            var action_data = scheduler.getActionData(e);
+                            alert(action_data.getEvent());
+                            alert(" x-ind: " + x_ind +  " y-ind: " + y_ind +  " x-val: " + x_val +  " y-val: " + y_val );
+                        */
 
-				//alert(fechaDesde+' '+fechaHasta);
-		    	$.ajax({
-				        url : '<?php echo $this->Html->url('/reservas/modificarUnidad', true);?>',
-				        data: {'data' : {'unidad_id' : ev.section_id,'reserva_id' : ev.idReserva,'retiro' : fechaDesde,'devolucion' : fechaHasta}},
-				        type: 'POST',
-				        dataType: 'json',
-				        success: function(data){
+                        // alert(" x-ind: " + x_ind.toSource() +  " y-ind: " + y_ind +  " x-val: " + x_val +  " y-val: " + y_val );
 
-				            if(data.resultado == 'ERROR'){
-				                alert(data.mensaje);
-				                location.reload();
+                        /*
+                                    var action_data = scheduler.getActionData(e);
 
-				            }
-				            //location.reload();
-				        }
-				    })
-				    return true;
-			}
-			return false;
-		//}
+                                        var eventObj = scheduler.getEvent(id);
+                                    if (eventObj != null){
+                                        //eventObj.
 
-    }
+                                    }
 
+                    */
+                        return true;
+                    }else{
+                        alert("No se puede crear una reserva con fecha desde o hasta anteriores al dia de hoy");
+                        return false;
+                    }
 
-});
+                }else{
+                    //alert(ev.section_id+' '+x_ind._orig_section)
+                    /*if(x_ind._orig_section==ev.section_id){
+                        return false;
+                    }
+                    else{*/
+                    if(confirm('Seguro desea cambiar la reserva?')){
+                        //alert(ev.section_id+' '+ev.idReserva);
+                        var date = new Date( ev.start_date);
+                        var mesDesde = pad( (date.getMonth() + 1), 2);
+                        var diaDesde = pad( (date.getDate() ), 2);
 
-			//===============
-			// Clic zona libre - Nuevo Alquiler
-			//===============
-/*
-scheduler.attachEvent("onCellClick", function (x_ind, y_ind, x_val, y_val, e){
-	var action_data = scheduler.getActionData(e);
-	alert(action_data.getEvent());
-    alert(" x-ind: " + x_ind +  " y-ind: " + y_ind +  " x-val: " + x_val +  " y-val: " + y_val );
-    //any custom logic here
-});
 
-			scheduler.attachEvent("onClick", function (id, e){
-			    var action_data = scheduler.getActionData(e);
-				var eventObj = scheduler.getEvent(id);
-				alert("clic");
-				if (eventObj != null){
-					console.log(event);
-					eventoSeleccionado = eventObj.idReserva;
-					eventoClienteSeleccionado = eventObj.idCliente;
-				//	console.log(eventoClienteSeleccionado);
-				}
 
-				return false; // Con esto evito el menu desplegable del navegador
-			});
+                        var fechaDesde =  date.getFullYear() +"-" + mesDesde +"-" + diaDesde;
+                        // alert((date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear());
 
+                        var dateHasta = new Date( ev.end_date);
+                        var mesHasta = pad( (dateHasta.getMonth() + 1), 2);
+                        var diaHasta = pad( (dateHasta.getDate() ), 2);
 
+                        var fechaHasta =  dateHasta.getFullYear() +"-" + mesHasta +"-" + diaHasta;
 
-			scheduler.attachEvent("onClick", function(event_id, native_event_object) {
-				if (event_id) {
-					var posx = 0;
-					var posy = 0;
-					if (native_event_object.pageX || native_event_object.pageY) {
-						posx = native_event_object.pageX;
-						posy = native_event_object.pageY;
-					} else if (native_event_object.clientX || native_event_object.clientY) {
-						posx = native_event_object.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-						posy = native_event_object.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-					}
-					// menu.showContextMenu(posx, posy);
+                        //alert(fechaDesde+' '+fechaHasta);
+                        $.ajax({
+                            url : '<?php echo $this->Html->url('/reservas/modificarUnidad', true);?>',
+                            data: {'data' : {'unidad_id' : ev.section_id,'reserva_id' : ev.idReserva,'retiro' : fechaDesde,'devolucion' : fechaHasta}},
+                            type: 'POST',
+                            dataType: 'json',
+                            success: function(data){
 
-					return false; // prevent default action and propagation
-				}
-				return true;
-			});
+                                if(data.resultado == 'ERROR'){
+                                    alert(data.mensaje);
+                                    location.reload();
 
-*/
+                                }
+                                //location.reload();
+                            }
+                        })
+                        return true;
+                    }
+                    return false;
+                    //}
 
-			//===============
+                }
+
+
+            });
+
+            //===============
+            // Clic zona libre - Nuevo Alquiler
+            //===============
+            /*
+            scheduler.attachEvent("onCellClick", function (x_ind, y_ind, x_val, y_val, e){
+                var action_data = scheduler.getActionData(e);
+                alert(action_data.getEvent());
+                alert(" x-ind: " + x_ind +  " y-ind: " + y_ind +  " x-val: " + x_val +  " y-val: " + y_val );
+                //any custom logic here
+            });
+
+                        scheduler.attachEvent("onClick", function (id, e){
+                            var action_data = scheduler.getActionData(e);
+                            var eventObj = scheduler.getEvent(id);
+                            alert("clic");
+                            if (eventObj != null){
+                                console.log(event);
+                                eventoSeleccionado = eventObj.idReserva;
+                                eventoClienteSeleccionado = eventObj.idCliente;
+                            //	console.log(eventoClienteSeleccionado);
+                            }
+
+                            return false; // Con esto evito el menu desplegable del navegador
+                        });
+
+
+
+                        scheduler.attachEvent("onClick", function(event_id, native_event_object) {
+                            if (event_id) {
+                                var posx = 0;
+                                var posy = 0;
+                                if (native_event_object.pageX || native_event_object.pageY) {
+                                    posx = native_event_object.pageX;
+                                    posy = native_event_object.pageY;
+                                } else if (native_event_object.clientX || native_event_object.clientY) {
+                                    posx = native_event_object.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+                                    posy = native_event_object.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+                                }
+                                // menu.showContextMenu(posx, posy);
+
+                                return false; // prevent default action and propagation
+                            }
+                            return true;
+                        });
+
+            */
+
+            //===============
             //Configuration
             //===============
 
 
 
             var sections=[
-            <?php
-            /*$patentesEspeciales = array('AC488VR','AB425OY','AA727XE','AA727XF','AA727XG','AC488VQ','AD428KP','AD428KQ','AD428KR','AD428KS','AD428KT');
-            foreach($unidads as $unidad){
+                <?php
+                /*$patentesEspeciales = array('AC488VR','AB425OY','AA727XE','AA727XF','AA727XG','AC488VQ','AD428KP','AD428KQ','AD428KR','AD428KS','AD428KT');
+                foreach($unidads as $unidad){
 
-            		if (in_array($unidad['Unidad']['patente'], $patentesEspeciales)) {
-						$boldAbierto="<b>";
-						$boldCerrado="</b>";
-					}else{
-						$boldAbierto="";
-						$boldCerrado="";
-					}
+                        if (in_array($unidad['Unidad']['patente'], $patentesEspeciales)) {
+                            $boldAbierto="<b>";
+                            $boldCerrado="</b>";
+                        }else{
+                            $boldAbierto="";
+                            $boldCerrado="";
+                        }
 
-            		echo '{key:'.$unidad['Unidad']['id'].', label: "'.$boldAbierto.$unidad['Unidad']['patente'].' ('.$unidad['Unidad']['marca'].' '.$unidad['Unidad']['modelo'].')-'.$unidad['Categoria']['categoria'].$boldCerrado.'"},';
-			}*/
+                        echo '{key:'.$unidad['Unidad']['id'].', label: "'.$boldAbierto.$unidad['Unidad']['patente'].' ('.$unidad['Unidad']['marca'].' '.$unidad['Unidad']['modelo'].')-'.$unidad['Categoria']['categoria'].$boldCerrado.'"},';
+                }*/
 
-            ?>];
+                ?>];
 
 
-			var $heightTest = $('#divGrillaData');
+            var $heightTest = $('#divGrillaData');
             console.log($heightTest.height());
             var cantidadFilas = $heightTest.height() / 8;
 
@@ -712,24 +737,24 @@ scheduler.attachEvent("onCellClick", function (x_ind, y_ind, x_val, y_val, e){
 
             scheduler.createTimelineView({
                 name: "matrix",
-			    x_unit:	"day",
+                x_unit:	"day",
                 x_date:	"%j",
-				section_autoheight:"false", // (if the section_autoheight property has value false, the height of cells will be equal to dy, otherwise the height of cells will be increased to fill all free space
-				fit_events: "false", //(boolean) specifies whether the section's height should be increased, to fit all events in this section, or should be fixed (the dy parameter). Available from version 3.0. By default, true
-				// dy: 25, // Altura minima de las filas //25
-				dy: 33, // Altura minima de las filas //25
-				dx: 250,
-				y_size: 1,
-				// event_dy : cantidadFilas,
+                section_autoheight:"false", // (if the section_autoheight property has value false, the height of cells will be equal to dy, otherwise the height of cells will be increased to fill all free space
+                fit_events: "false", //(boolean) specifies whether the section's height should be increased, to fit all events in this section, or should be fixed (the dy parameter). Available from version 3.0. By default, true
+                // dy: 25, // Altura minima de las filas //25
+                dy: 33, // Altura minima de las filas //25
+                dx: 250,
+                y_size: 1,
+                // event_dy : cantidadFilas,
 
-				event_dy : 33, //45, //25
+                event_dy : 33, //45, //25
 
 
                 x_step:	1, // the X-Axis step in 'x_unit's
                 x_size: 33, // Cantidad de dias a mostrar
                 x_start: 0,
                 x_length: 15 , // The number of 'x_step's that will be scrolled at a time, when the user clicks on the 'next' button in the scheduler's header
-                 y_unit: scheduler.serverList("timeline_sections", sections),
+                y_unit: scheduler.serverList("timeline_sections", sections),
                 y_property:	"section_id",
                 render:"bar",
                 second_scale:{
@@ -739,46 +764,76 @@ scheduler.attachEvent("onCellClick", function (x_ind, y_ind, x_val, y_val, e){
             });
 
 
-			//===============
-			//Customization
-			//===============
-			scheduler.templates.matrix_cell_class = function(evs,x,y){
-				var day = x.getDay();
+            //===============
+            //Customization
+            //===============
+            scheduler.templates.matrix_cell_class = function(evs,x,y){
+                var day = x.getDay();
+
+                for (i = 0; i < feriados.length; i++) {
 
 
 
-				// -------- Para el d�a de hoy
-				var d = new Date();
-				if (x.getDate() == (d.getDate()) && (x.getMonth()) == (d.getMonth()) )
-					return "blue_cell";
 
-				// --------- Para los fines de semana
-				if (day == 0)
-					return "grey_cell";
-				else if (day == 6)
-					return "yellow_cell";
-				else
-					return "white_cell";
-			};
-			scheduler.templates.matrix_scalex_class = function(date){
-				if (date.getDay()==0 || date.getDay()==6)  return "yellow_cell";
-				return "";
-			}
+                    var d = new Date(feriados[i]['fecha']);
+                    d.setDate(d.getDate() + 1);
+
+                    if (x.getDate() == (d.getDate()) && (x.getMonth()) == (d.getMonth()) ){
+
+                        return "orange_cell";
+                    }
+
+
+
+                }
+
+                // -------- Para el dï¿½a de hoy
+                var d = new Date();
+                if (x.getDate() == (d.getDate()) && (x.getMonth()) == (d.getMonth()) )
+                    return "blue_cell";
+
+                // --------- Para los fines de semana
+                if (day == 0)
+                    return "grey_cell";
+                else if (day == 6)
+                    return "yellow_cell";
+                else
+                    return "white_cell";
+            };
+            scheduler.templates.matrix_scalex_class = function(date){
+                for (i = 0; i < feriados.length; i++) {
+
+
+                    var d = new Date(feriados[i]['fecha']);
+
+                    d.setDate(d.getDate() + 1);
+                    console.log(d);
+                    if (date.getDate() == (d.getDate()) && (date.getMonth()) == (d.getMonth()) ){
+
+                        return "orange_cell";
+                    }
+
+
+
+                }
+                if (date.getDay()==0 || date.getDay()==6)  return "yellow_cell";
+                return "";
+            }
 
 
 
             //===============
             //Data loading
             //===============
-             scheduler.config.lightbox.sections=[
+            scheduler.config.lightbox.sections=[
                 {name:"description", height:130, map_to:"text", type:"textarea" , focus:true},
                 {name:"custom", height:23, type:"select", options:sections, map_to:"section_id" },
                 {name:"time", height:72, type:"time", map_to:"auto"}
             ];
 
-			var oneWeekAgo = new Date();
-						oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-			            scheduler.init('scheduler_here',oneWeekAgo,"matrix"); // Poner fecha de hace 7 dias siempre. EL mes tiene un mes menos
+            var oneWeekAgo = new Date();
+            oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+            scheduler.init('scheduler_here',oneWeekAgo,"matrix"); // Poner fecha de hace 7 dias siempre. EL mes tiene un mes menos
 
             // scheduler.getEvent(id).readonly = true;
 
@@ -786,83 +841,83 @@ scheduler.attachEvent("onCellClick", function (x_ind, y_ind, x_val, y_val, e){
 
 
 
-             scheduler.parse([
+            scheduler.parse([
 
-             <?php /*foreach($reservas as $reserva){
+                <?php /*foreach($reservas as $reserva){
 
             		echo '{ start_date: "'.$reserva['retiro'].'", end_date: "'.$reserva['devolucion'].'", text:"<b>Titular:</b>'.$reserva['nombre'].'<br /> <b>Reserva Nro.:</b> '.$reserva['numero'].'<br /><b>Retiro:</b> '.$reserva['fecha_retiro'].' '.$reserva['hora_retiro'].'/'.$reserva['lugar_retiro'].'<br /><b>Devolucion:</b>'.$reserva['fecha_devolucion'].' '.$reserva['hora_devolucion'].'/'.$reserva['lugar_devolucion'].'<br />  <b>Total:</b>  '.$reserva['total'].'<b> Cobrado:</b>  '.$reserva['pagado'].'<b> A Cobrar:</b>  '.$reserva['pendiente'].'<br /><b> Comentarios:</b>  '.$reserva['comentarios'].'<br />", idReserva:"'.$reserva['reserva_id'].'", patente:"'.$reserva['patente'].'", section_id:'.$reserva['unidad_id'].' ,color:"'.$reserva['color'].'", idCliente:'.$reserva['cliente_id'].', readonly:false },';
 			}*/
-			?>
-			],"json");
+                ?>
+            ],"json");
 
 
         }
-	</script>
+    </script>
 </head>
 <body onload="init();">
 
 
 
-            <form method="post" accept-charset="utf-8" class="form-inline">
+<form method="post" accept-charset="utf-8" class="form-inline">
 
-            <div class="form-group">
-            <!-- <input type="button" name="save" value="Guardar Cambios" onclick="salvar()" class="btn btn-success"><img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" style="display:none"/>-->
-            </div>
-        </form>
+    <div class="form-group">
+        <!-- <input type="button" name="save" value="Guardar Cambios" onclick="salvar()" class="btn btn-success"><img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" style="display:none"/>-->
+    </div>
+</form>
 
-        <form id="xml_form" method="post" accept-charset="utf-8">
-            <input type="hidden" name="reservasModificadas" id="reservasModificadas">
-        </form>
+<form id="xml_form" method="post" accept-charset="utf-8">
+    <input type="hidden" name="reservasModificadas" id="reservasModificadas">
+</form>
 
-		<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
-		<div class="dhx_cal_navline">
-			<div class="dhx_cal_prev_button">&nbsp;</div>
-			<div class="dhx_cal_next_button">&nbsp;</div>
-			<div class="dhx_cal_today_button"></div>
-			<div class="dhx_cal_date"></div>
-        </div>
-		<div class="dhx_cal_header">
-		</div>
-		<div class="dhx_cal_data" id="divGrillaData">
-		</div>
-	</div>
+<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+    <div class="dhx_cal_navline">
+        <div class="dhx_cal_prev_button">&nbsp;</div>
+        <div class="dhx_cal_next_button">&nbsp;</div>
+        <div class="dhx_cal_today_button"></div>
+        <div class="dhx_cal_date"></div>
+    </div>
+    <div class="dhx_cal_header">
+    </div>
+    <div class="dhx_cal_data" id="divGrillaData">
+    </div>
+</div>
 
-	<div id="menuData" style="display: none;">
-		<div id="file" text="File">
-			<div id="new" text="New" img="new.gif"></div>
-			<div id="file_sep_1" type="separator"></div>
-			<div id="open" text="Open" img="open.gif"></div>
-			<div id="save" text="Save" img="save.gif"></div>
-			<div id="saveAs" text="Save As..." imgdis="save_as_dis.gif" enabled="false"></div>
-			<div id="file_sep_2" type="separator"></div>
-			<div id="print" text="Print" img="print.gif"></div>
-			<div id="pageSetup" text="Page Setup" imgdis="page_setup_dis.gif" enabled="false"></div>
-			<div id="file_sep_3" type="separator"></div>
-			<div id="close" text="Close" img="close.gif"></div>
-		</div>
-		<div id="m2" text="Edit">
-			<div id="undo" text="Undo" img="undo.gif"></div>
-			<div id="redo" text="Redo" img="redo.gif"></div>
-			<div id="edit_sep_1" type="separator"></div>
-			<div id="selectAll" text="Select All" img="select_all.gif"></div>
-			<div id="edit_sep_2" type="separator"></div>
-			<div id="cut" text="Cut" img="cut.gif"></div>
-			<div id="cpoy" text="Copy" img="copy.gif"></div>
-			<div id="paste" text="Paste" img="paste.gif"></div>
-		</div>
-		<div id="m3" text="Help">
-			<div id="about" text="About..." img="about.gif"></div>
-			<div id="help" text="Help" img="help.gif"></div>
-			<div id="bugReporting" text="Bug Reporting" img="bug_reporting.gif"></div>
-		</div>
-	</div>
+<div id="menuData" style="display: none;">
+    <div id="file" text="File">
+        <div id="new" text="New" img="new.gif"></div>
+        <div id="file_sep_1" type="separator"></div>
+        <div id="open" text="Open" img="open.gif"></div>
+        <div id="save" text="Save" img="save.gif"></div>
+        <div id="saveAs" text="Save As..." imgdis="save_as_dis.gif" enabled="false"></div>
+        <div id="file_sep_2" type="separator"></div>
+        <div id="print" text="Print" img="print.gif"></div>
+        <div id="pageSetup" text="Page Setup" imgdis="page_setup_dis.gif" enabled="false"></div>
+        <div id="file_sep_3" type="separator"></div>
+        <div id="close" text="Close" img="close.gif"></div>
+    </div>
+    <div id="m2" text="Edit">
+        <div id="undo" text="Undo" img="undo.gif"></div>
+        <div id="redo" text="Redo" img="redo.gif"></div>
+        <div id="edit_sep_1" type="separator"></div>
+        <div id="selectAll" text="Select All" img="select_all.gif"></div>
+        <div id="edit_sep_2" type="separator"></div>
+        <div id="cut" text="Cut" img="cut.gif"></div>
+        <div id="cpoy" text="Copy" img="copy.gif"></div>
+        <div id="paste" text="Paste" img="paste.gif"></div>
+    </div>
+    <div id="m3" text="Help">
+        <div id="about" text="About..." img="about.gif"></div>
+        <div id="help" text="Help" img="help.gif"></div>
+        <div id="bugReporting" text="Bug Reporting" img="bug_reporting.gif"></div>
+    </div>
+</div>
 
 <script type="text/javascript">
-function pad(n, width, z) {
-  z = z || '0';
-  n = n + '';
-  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
-}
+    function pad(n, width, z) {
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    }
 
 </script>
 

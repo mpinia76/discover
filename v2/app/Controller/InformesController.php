@@ -162,6 +162,8 @@ class InformesController extends AppController {
 	function index_ventas_grilla(){
         $this->layout = 'informe';
          $this->setLogUsuario('Grilla de reservas');
+
+
     }
 
 	public function getUnidadesGrilla($desde){
@@ -196,7 +198,15 @@ class InformesController extends AppController {
 
          $this->setLogUsuario('Grilla de reservas');
 
+		$this->loadModel('GrillaFeriado');
 
+		$feriados = $this->GrillaFeriado->find('all', array('order' => 'desde ASC'));
+
+
+
+		$this->set(array(
+			'feriados' => $feriados
+		));
 
 
     }

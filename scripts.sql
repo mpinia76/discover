@@ -1424,3 +1424,19 @@ INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (43, 'Operar');
 
 ALTER TABLE `reserva_cobros`
 	ADD COLUMN `concepto_facturacion_id` INT(11) NULL AFTER `cambio`;
+
+################################### 18/05/2022 ###########################################
+CREATE TABLE `grilla_feriados` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(255) NOT NULL,
+	`desde` DATE NULL DEFAULT NULL,
+	`hasta` DATE NULL DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `id` (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1;
+
+INSERT INTO `permiso_grupo` (`nombre`) VALUES ('Carga de feriados en grilla');
+INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (48, 'Operar');
