@@ -623,15 +623,16 @@ $("#ClienteIva").one('focus', function () {
 
 
 $('#ClienteTipoPersona').change(function(){
+    $('#ClienteCuitAux').prop( "disabled", false );
     if ($('#ClienteTipoPersona').val()=='Fisica'){
 
-        $('#ClienteCuitAux').prop( "disabled", true );
+        //$('#ClienteCuitAux').prop( "disabled", true );
         $('#ClienteTitularFactura').prop( "disabled", false );
 
     }
     else{
         $('#ClienteCuitAux').val('');
-        $('#ClienteCuitAux').prop( "disabled", false );
+        //$('#ClienteCuitAux').prop( "disabled", false );
         $('#ClienteTitularFactura').prop( "disabled", true );
         $("#ClienteRazonSocial").val('');
         $("#ClienteTitularFactura").prop('checked', false);

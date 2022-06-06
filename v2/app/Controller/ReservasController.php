@@ -927,6 +927,12 @@ class ReservasController extends AppController {
             	$errores['Cliente']['sexo'][] = 'Seleccione un sexo';
             }
 
+            if (!preg_match ("/^[0-9]+$/", $cliente['codPaisAux'])) {
+
+
+                $errores['Cliente']['codPaisAux'][] = 'Ingrese un codigo valido';
+            }
+
             if($cliente['codPais'] == '') {
                 //$cliente['codPais'] = $cliente['codPaisAux'];
                 $this->Cliente->set('codPais',$cliente['codPaisAux']);
