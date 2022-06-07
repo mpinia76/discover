@@ -27,6 +27,7 @@ class ReservaCobrosController extends AppController {
         $this->set('adelantadas',$adelantadas);
         $this->set('no_adelantadas',$no_adelantadas);
 
+
         if(count($reserva['ReservaDevolucion']>0)){
     		$this->loadModel('ReservaDevolucion');
     		$i=0;
@@ -193,6 +194,11 @@ class ReservaCobrosController extends AppController {
         $this->set('reserva_cobros',$this->ReservaCobro->find('all',array('conditions' => array('reserva_id =' => $reserva_id, 'ReservaCobro.tipo !=' => 'DESCUENTO'), 'order' => 'fecha asc','recursive' => 2)));
         $this->loadModel('CobroTarjetaPosnet');
         $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
+
+        $this->loadModel('ConceptoFacturacion');
+
+
+        $this->set('concepto_facturacions',$this->ConceptoFacturacion->find('list',array('fields' => 'id,nombre','conditions' =>array('activo =' => 1))));
 
     }
     public function finalizar($reserva_id, $restringido=0){
