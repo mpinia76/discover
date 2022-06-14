@@ -102,7 +102,7 @@ class ReservaDevolucionsController extends AppController {
 	                }
 	                if($descubierto&&$sincronizada){
 	          
-	                	$this->CajaMovimiento->deleteAll(array('registro_id' => $devolucion['RelPagoOperacion']['forma_pago_id']), false);
+	                	$this->CajaMovimiento->delete(array('registro_id' => $devolucion['RelPagoOperacion']['forma_pago_id']), false);
 	                	/*App::uses('ConnectionManager', 'Model');
 			        	$dbo = ConnectionManager::getDatasource('default');
 					    $logs = $dbo->getLog();

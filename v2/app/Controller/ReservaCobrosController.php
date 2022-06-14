@@ -656,5 +656,37 @@ class ReservaCobrosController extends AppController {
             $this->redirect('/index');
         }
     }
+
+    public function guardarConcepto(){
+
+        //print_r($this->request->data);
+
+        $this->ReservaCobro->id = $this->request->data['cobro_id'];
+
+
+         $reservaCobro=$this->ReservaCobro->read();
+        $reservaCobro['ReservaCobro']['concepto_facturacion_id']=$this->request->data['concepto_facturacion_id'];
+
+
+
+        $this->ReservaCobro->save($reservaCobro, false);
+
+
+        if(isset($errores) and count($errores) > 0){
+            $this->set('resultado','ERROR');
+            $this->set('mensaje','No se pudo guardar');
+            $this->set('detalle',$errores);
+        }else{
+            $this->set('resultado','OK');
+            $this->set('mensaje','Datos guardados');
+            $this->set('detalle','');
+        }
+
+        $this->set('_serialize', array(
+            'resultado',
+            'mensaje' ,
+            'detalle'
+        ));
+    }
 }
 ?>

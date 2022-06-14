@@ -164,7 +164,10 @@ if(count($reserva_descuentos) > 0){  ?>
                         }
                         ?></td>
                     <td><?php echo $cobro['ReservaCobro']['tipo'].' ('.$posnets[$cobro['CobroTarjeta']['CobroTarjetaTipo']['cobro_tarjeta_posnet_id']].')'?></td>
-                    <td>
+                    <td><?php if($cobro['ConceptoFacturacion']['nombre']){
+                        echo $cobro['ConceptoFacturacion']['nombre'];
+                    }
+                    else{?>
                             <select name="concepto_facturacion_id" id="concepto_facturacion_id_<?php echo $cobro['ReservaCobro']['id'];?>" onchange="guardarConcepto('<?php echo $cobro['ReservaCobro']['id'];?>')">
 	<option value="">Seleccionar...</option>
                             <?php
@@ -175,7 +178,7 @@ if(count($reserva_descuentos) > 0){  ?>
                                 <option  <?php if($cobro['ReservaCobro']['concepto_facturacion_id'] == $k){?> selected="selected" <?php } ?> value="<?php echo $k?>"><?php echo $v?></option>
                             <?php } ?>
                             </select>
-
+                    <?php } ?>
                         </td>
                     <td><a onclick="createWindow('w_reservas_view_cobro','Detalles','<?php echo $this->Html->url('/reserva_cobros/detalle/'.$cobro['ReservaCobro']['id'], true);?>','430','400');"><?php echo $tarjetas_tipo[$cobro['CobroTarjeta']['cobro_tarjeta_tipo_id']]?> - <?php echo $cobro['CobroTarjeta']['tarjeta_numero']?> <?php echo $cobro['CobroTarjeta']['cuotas']?> cuota/s</a></td>
                     <td align="right">$<?php echo $cobro['CobroTarjeta']['monto_neto']?></td>
@@ -344,7 +347,8 @@ function eliminarDescuento(cobro_id){
 }
 function guardarConcepto(cobro_id){
     $('#loading_delete'+cobro_id).show();
-    if(confirm('Seguro desea cambiar el concepto?')){
+
+    if(confirm('Desea cambiar el concepto de facturación a: '+$('#concepto_facturacion_id_'+cobro_id+' option:selected').text())){
         $.ajax({
             url : '<?php echo $this->Html->url('/reserva_cobros/guardarConcepto', true);?>',
             type : 'POST',
@@ -354,11 +358,17 @@ function guardarConcepto(cobro_id){
                 if(data.resultado == 'ERROR'){
                     alert(data.mensaje+' '+data.detalle);
                 }
+                else{
+                    location.reload();
+                }
 
             }
         });
     }
-    location.reload();
+    else{
+        location.reload();
+    }
+    //location.reload();
     $('#loading_delete'+cobro_id).hide();
 }
 function eliminarCobro(cobro_id){
