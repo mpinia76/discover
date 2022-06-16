@@ -31,8 +31,8 @@ switch($cobro['ReservaCobro']['tipo']){
         echo $this->Form->input('CobroTarjeta.fecha_pago',array('class'=>'datepicker','type'=>'text','value' => $cobro['CobroTarjeta']['fecha_pago']));
         /*echo $this->Form->input('CobroTarjeta.dni',array('value' => $cobro['CobroTarjeta']['dni']));
         echo $this->Form->input('CobroTarjeta.domicilio',array('value' => $cobro['CobroTarjeta']['domicilio']));
-        echo $this->Form->input('CobroTarjeta.nacimiento',array('value' => $cobro['CobroTarjeta']['nacimiento']));*/
-        echo $this->Form->input('ReservaCobro.concepto_facturacion_id', array('type' => 'select', 'empty' => 'Seleccionar ...', 'options' => $concepto_facturacions, 'default' => $concepto_facturacion_id));
+        echo $this->Form->input('CobroTarjeta.nacimiento',array('value' => $cobro['CobroTarjeta']['nacimiento']));
+        echo $this->Form->input('ReservaCobro.concepto_facturacion_id', array('type' => 'select', 'empty' => 'Seleccionar ...', 'options' => $concepto_facturacions, 'default' => $concepto_facturacion_id));*/
         //if($cobro['CobroTarjeta']['cobro_tarjeta_lote_id'] == 0){ ?>
             <span onclick="guardar('<?php echo $this->Html->url('/cobro_tarjetas/guardar.json', true);?>',$('form').serialize(),false);" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
         <?php //}else{ ?>

@@ -605,14 +605,14 @@ class CobroTarjetasController extends AppController {
 	            $this->set('detalle',$errores);
 	        }else{
 				$this->CobroTarjeta->save();
-				$this->loadModel('ReservaCobro');
+				/*$this->loadModel('ReservaCobro');
 				$this->ReservaCobro->id = $cobroTarjeta['CobroTarjeta']['reserva_cobro_id'];
 				$reservaCobro=$this->ReservaCobro->read();
 				$reservaCobro['ReservaCobro']['concepto_facturacion_id']=$dataCobro['concepto_facturacion_id'];
-				//$reservaCobro->set('concepto_facturacion_id',$dataCobro['concepto_facturacion_id']);
 
 
-					$this->ReservaCobro->save($reservaCobro, false);
+
+					$this->ReservaCobro->save($reservaCobro, false);*/
 					$this->set('resultado','OK');
 					$this->set('mensaje','Datos guardados');
 					$this->set('detalle','');
