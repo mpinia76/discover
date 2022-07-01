@@ -41,19 +41,22 @@ echo $this->Form->hidden('Reserva.km_ini',array('value' => $reserva['Reserva']['
 <div class="sectionTitle" style="margin-top: 10px;">Extras no adelantadas</div>
 <?php if($reserva['Reserva']['estado'] == 0){ ?>
 <div class="ym-grid">
-    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Extra.extra_rubro_id',array('label' => 'Seleccione un rubro', 'options' => $extra_rubros, 'empty' => 'Rubro', 'type'=>'select')); ?></div>
-    <div class="ym-g75 ym-gl" id="extra_detalle"></div>
+    <div class="ym-g ym-gl" style="width: 15%;"><?php echo $this->Form->input('Extra.consumida',array('label' => 'F. consumo','class' => 'datepicker', 'type' => 'text')); ?></div>
+    <div class="ym-g ym-gl"><?php echo $this->Form->input('Extra.extra_rubro_id',array('label' => 'Seleccione un rubro', 'options' => $extra_rubros, 'empty' => 'Rubro', 'type'=>'select')); ?></div>
+    <div class="ym-g ym-gl" id="extra_detalle" style="width: 65%;"></div>
 </div>
 <?php  } ?>
 <div class="ym-gbox">
     <table width="100%" id="reserva_extras">
             <?php $total_extras = 0;
                 if(count($extras) > 0){
+
                     foreach($extras as $extra){
+                        //print_r($extra);
                         if($extra['Extra']['id'] != ''){
                             $total_extras = $total_extras + ($extra['ReservaExtra']['cantidad']*$extra['ReservaExtra']['precio']); ?>
                             <tr class="border_bottom" id="ReservaExtra<?php echo $extra['ReservaExtra']['id']?>">
-                                <td width="25%"><?php echo $extra['Extra']['ExtraRubro']['rubro'];?></td>
+                                <td width="25%"><?php echo date('d/m/Y',strtotime($extra['ReservaExtra']['consumida']))?> - <?php echo $extra['Extra']['ExtraRubro']['rubro'];?></td>
                                 <td><?php echo $extra['Extra']['ExtraSubrubro']['subrubro'];?> <?php echo $extra['Extra']['detalle']; ?></td>
                                 <td align="right" width="100"><span class="extra_cantidad"><?php echo $extra['ReservaExtra']['cantidad']?> x $<span class="extra_tarifa"><?php echo $extra['ReservaExtra']['precio']?></span></td>
                                 <td align="right" width="50">$<?php echo $extra['ReservaExtra']['cantidad']*$extra['ReservaExtra']['precio']?></td>
@@ -62,7 +65,7 @@ echo $this->Form->hidden('Reserva.km_ini',array('value' => $reserva['Reserva']['
                         <?php }elseif($extra['ExtraVariable']['id'] != ''){
                             $total_extras = $total_extras + $extra['ReservaExtra']['precio']; ?>
                             <tr class="border_bottom" id="ReservaExtra<?php echo $extra['ReservaExtra']['id']?>">
-                                <td width="25%"><?php echo $extra['ExtraVariable']['ExtraRubro']['rubro'];?></td>
+                                <td width="25%"><?php echo date('d/m/Y',strtotime($extra['ReservaExtra']['consumida']))?> - <?php echo $extra['ExtraVariable']['ExtraRubro']['rubro'];?></td>
                                 <td colspan="2"><?php echo $extra['ExtraVariable']['detalle'];?> </td>
                                 <?php if($reserva['Reserva']['estado'] == 0){ ?>
                                 <td align="right" width="50">$<span class="extra_tarifa"><?php echo $extra['ReservaExtra']['precio']?></span></td>
@@ -374,15 +377,28 @@ function editarFactura(factura_id){
 }
 function addExtra(){
     var pattern = /^(([1-9]\d*))$/;
+    if($('#ExtraConsumida').val() == ''){
+        alert('Complete F. Consumo');
+        $('#ExtraConsumida').focus();
+        return false;
+    }
     if(pattern.test($('#ReservaExtraCantidad').val())){
         $.ajax({
           url: '<?php echo $this->Html->url('/reserva_extras/getRow', true);?>',
-          data: {'extra_id' : $('#ExtraId').val(), 'cantidad' : $('#ReservaExtraCantidad').val(), 'reserva_id' : '<?php echo $reserva['Reserva']['id'];?>'},
+          data: {'consumida' : $('#ExtraConsumida').val(),'extra_id' : $('#ExtraId').val(), 'cantidad' : $('#ReservaExtraCantidad').val(), 'reserva_id' : '<?php echo $reserva['Reserva']['id'];?>'},
           type: 'post',
-          success: function(data){
-              $('#reserva_extras').append(data);
-              $('.extras_totales').show();
-          },
+            success : function(data){
+
+                if(data == 'La fecha de consumo esta fuera de rango'){
+                    alert(data);
+                }
+                else{
+                    $('#reserva_extras').append(data);
+                    $('.extras_totales').show();
+                }
+
+            },
+
           dataType: 'html'
         });
     }else{
@@ -402,15 +418,25 @@ function addExtraVariable(){
         $('#ExtraVariableDetalle').focus();
         return false;
     }
+    if($('#ExtraConsumida').val() == ''){
+        alert('Complete F. Consumo');
+        $('#ExtraConsumida').focus();
+        return false;
+    }
     $.ajax({
       url: '<?php echo $this->Html->url('/reserva_extras/getRowVariable', true);?>',
-      data: {'rubro_id' : $('#ExtraExtraRubroId').val(), 'precio' : $('#ReservaExtraPrecio').val(), 'detalle' : $('#ExtraVariableDetalle').val(), 'reserva_id' : '<?php echo $reserva['Reserva']['id'];?>'},
+      data: {'consumida' : $('#ExtraConsumida').val(),'rubro_id' : $('#ExtraExtraRubroId').val(), 'precio' : $('#ReservaExtraPrecio').val(), 'detalle' : $('#ExtraVariableDetalle').val(), 'reserva_id' : '<?php echo $reserva['Reserva']['id'];?>'},
       type : 'post',
       success: function(data){
-          $('#reserva_extras').append(data);
-          $('.extras_totales').show();
-          $('#ReservaExtraPrecio').val('');
-          $('#ExtraVariableDetalle').val('');
+          if(data == 'La fecha de consumo esta fuera de rango'){
+              alert(data);
+          }
+          else {
+              $('#reserva_extras').append(data);
+              $('.extras_totales').show();
+              $('#ReservaExtraPrecio').val('');
+              $('#ExtraVariableDetalle').val('');
+          }
       },
       dataType: 'html'
     });

@@ -1,5 +1,10 @@
 <?php
+if(isset($error)) {
+    echo 'La fecha de consumo esta fuera de rango';
+}
+else{
 $i = rand(100,10000);
+//print_r($extra);
 if(isset($reserva_extra_id)){ ?>
     <tr class="border_bottom" id="ReservaExtra<?php echo $reserva_extra_id?>">
 <?php }else{ ?>
@@ -7,10 +12,11 @@ if(isset($reserva_extra_id)){ ?>
 <?php } ?>
     <td width="25%">
         <input type="hidden" name="data[ReservaExtraCounter][]" value="<?php echo $i?>"/>
+        <input type="hidden" name="data[ReservaExtraConsumida][]" value="<?php echo $consumida?>"/>
         <input type="hidden" name="data[ReservaExtraId][]" value="<?php echo $extra['Extra']['id']?>"/>
         <input type="hidden" name="data[ReservaExtraCantidad][]" value="<?php echo $cantidad?>"/>
         <input type="hidden" name="data[ReservaExtraPrecio][]" value="<?php echo $extra['Extra']['tarifa']?>"/>
-        <?php echo $extra['ExtraRubro']['rubro']?>
+        <?php echo $consumida?> - <?php echo $extra['ExtraRubro']['rubro']?>
     </td>
     <td><?php echo $extra['ExtraSubrubro']['subrubro']?> <?php echo $extra['Extra']['detalle']?></td>
     <td align="right" width="100"><span class="extra_cantidad"><?php echo $cantidad?> x $<span class="extra_tarifa"><?php echo $extra['Extra']['tarifa']?></span></td>
@@ -22,3 +28,4 @@ if(isset($reserva_extra_id)){ ?>
 <?php } ?>
 </tr>
 <script>updateTotal();</script>
+<?php } ?>
