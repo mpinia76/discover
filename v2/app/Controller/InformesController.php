@@ -1844,7 +1844,8 @@ class InformesController extends AppController {
         $capacidad_total = array(0,0,0,0,0,0,0,0,0,0,0,0);
         foreach($unidads as $unidad){
         	//print_r($unidad);
-        	if (($unidad['Unidad']['estado']==1 )&&($unidad['Unidad']['excluir']==0 )) {
+        	//if (($unidad['Unidad']['estado']==1 )&&($unidad['Unidad']['excluir']==0 )) {
+			if ($unidad['Unidad']['excluir']==0 ) {
         		for($i=1; $i<=12; $i++){
         			$dia = $ano.'-'.str_pad($i, 2, "0", STR_PAD_LEFT);
         			$date_parts = explode("/",$unidad['Unidad']['habilitacion']);
@@ -1991,7 +1992,8 @@ class InformesController extends AppController {
         $unidad_total = array();
         foreach($unidads as $unidad){
         	//print_r($unidad);
-        	if (($unidad['Unidad']['estado']==1 )&&($unidad['Unidad']['excluir']==0 )) {
+        	//if (($unidad['Unidad']['estado']==1 )&&($unidad['Unidad']['excluir']==0 )) {
+			if ($unidad['Unidad']['excluir']==0 ) {
         		for($i=1; $i<=12; $i++){
         			$dia = $ano.'-'.str_pad($i, 2, "0", STR_PAD_LEFT);
         			$date_parts = explode("/",$unidad['Unidad']['habilitacion']);
@@ -2442,7 +2444,8 @@ class InformesController extends AppController {
         $porcentaje_ocupado = array();
         foreach($unidads as $unidad){
         	//print_r($unidad);
-        	if (($unidad['Unidad']['estado']==1 )&&($unidad['Unidad']['excluir']==0 )) {
+        	//if (($unidad['Unidad']['estado']==1 )&&($unidad['Unidad']['excluir']==0 )) {
+			if ($unidad['Unidad']['excluir']==0 ) {
         		for($i=1; $i<=12; $i++){
         			$porcentaje_ocupado_unidad[$i]['100']=0;
         			$porcentaje_ocupado_unidad[$i]['75']=0;
