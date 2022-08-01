@@ -1696,7 +1696,7 @@ class InformesController extends AppController {
 		                        		$detalle=$ex['ExtraVariable']['detalle'];
 		                        	}
 
-		                            $reservasMostrar[]=array('check_out'=>$reserva['Reserva']['devolucion'],'nro_reserva'=>$reserva['Reserva']['numero'],'titular'=>$reserva['Cliente']['nombre_apellido'],'unidad'=>$reserva['Unidad']['marca']." ".$reserva['Unidad']['modelo']." ".$reserva['Unidad']['patente'],'agregada'=>date('d/m/Y',strtotime($extra['agregada'])),'adelantada'=>($extra['adelantada'])?'SI':'NO','cantidad'=>$extra['cantidad'],'rubro'=>$rubro['ExtraRubro']['rubro'],'subrubro'=>$subrubro['ExtraSubrubro']['subrubro'],'detalle'=>$detalle,'monto'=>$extra['cantidad']*$extra['precio']);
+		                            $reservasMostrar[]=array('check_out'=>$reserva['Reserva']['devolucion'],'nro_reserva'=>$reserva['Reserva']['numero'],'titular'=>$reserva['Cliente']['nombre_apellido'],'unidad'=>$reserva['Unidad']['marca']." ".$reserva['Unidad']['modelo']." ".$reserva['Unidad']['patente'],'consumida'=>($extra['consumida'])?date('d/m/Y',strtotime($extra['consumida'])):'','agregada'=>date('d/m/Y',strtotime($extra['agregada'])),'adelantada'=>($extra['adelantada'])?'SI':'NO','cantidad'=>$extra['cantidad'],'rubro'=>$rubro['ExtraRubro']['rubro'],'subrubro'=>$subrubro['ExtraSubrubro']['subrubro'],'detalle'=>$detalle,'monto'=>$extra['cantidad']*$extra['precio']);
 	                        	}
 
                         	}
