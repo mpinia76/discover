@@ -933,10 +933,10 @@ class ReservasController extends AppController {
                 $errores['Cliente']['codPaisAux'][] = 'Ingrese un codigo valido';
             }
 
-            if($cliente['codPais'] == '') {
+            //if($cliente['codPais'] == '') {
                 //$cliente['codPais'] = $cliente['codPaisAux'];
                 $this->Cliente->set('codPais',$cliente['codPaisAux']);
-            }
+            //}
 
             if ($cliente['tipoTelefono']=='') {
                 $errores['Cliente']['TipoTelefono'][] = 'Seleccione un Tipo de Teléfono';

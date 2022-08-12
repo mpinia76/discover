@@ -42,7 +42,7 @@ echo $this->Form->hidden('Reserva.km_ini',array('value' => $reserva['Reserva']['
 <?php if($reserva['Reserva']['estado'] == 0){ ?>
 <div class="ym-grid">
     <div class="ym-g ym-gl" style="width: 15%;"><?php echo $this->Form->input('Extra.consumida',array('label' => 'F. consumo','class' => 'datepicker', 'type' => 'text')); ?></div>
-    <div class="ym-g ym-gl"><?php echo $this->Form->input('Extra.extra_rubro_id',array('label' => 'Seleccione un rubro', 'options' => $extra_rubros, 'empty' => 'Rubro', 'type'=>'select')); ?></div>
+    <div class="ym-g ym-gl" style="width: 20%"><?php echo $this->Form->input('Extra.extra_rubro_id',array('label' => 'Seleccione un rubro', 'options' => $extra_rubros, 'empty' => 'Rubro', 'type'=>'select')); ?></div>
     <div class="ym-g ym-gl" id="extra_detalle" style="width: 65%;"></div>
 </div>
 <?php  } ?>
@@ -56,7 +56,7 @@ echo $this->Form->hidden('Reserva.km_ini',array('value' => $reserva['Reserva']['
                         if($extra['Extra']['id'] != ''){
                             $total_extras = $total_extras + ($extra['ReservaExtra']['cantidad']*$extra['ReservaExtra']['precio']); ?>
                             <tr class="border_bottom" id="ReservaExtra<?php echo $extra['ReservaExtra']['id']?>">
-                                <td width="25%"><?php echo date('d/m/Y',strtotime($extra['ReservaExtra']['consumida']))?> - <?php echo $extra['Extra']['ExtraRubro']['rubro'];?></td>
+                                <td width="25%"><?php echo (!empty($extra['ReservaExtra']['consumida']))?date('d/m/Y',strtotime($extra['ReservaExtra']['consumida']))." - ":"";?><?php echo $extra['Extra']['ExtraRubro']['rubro'];?></td>
                                 <td><?php echo $extra['Extra']['ExtraSubrubro']['subrubro'];?> <?php echo $extra['Extra']['detalle']; ?></td>
                                 <td align="right" width="100"><span class="extra_cantidad"><?php echo $extra['ReservaExtra']['cantidad']?> x $<span class="extra_tarifa"><?php echo $extra['ReservaExtra']['precio']?></span></td>
                                 <td align="right" width="50">$<?php echo $extra['ReservaExtra']['cantidad']*$extra['ReservaExtra']['precio']?></td>
@@ -65,7 +65,7 @@ echo $this->Form->hidden('Reserva.km_ini',array('value' => $reserva['Reserva']['
                         <?php }elseif($extra['ExtraVariable']['id'] != ''){
                             $total_extras = $total_extras + $extra['ReservaExtra']['precio']; ?>
                             <tr class="border_bottom" id="ReservaExtra<?php echo $extra['ReservaExtra']['id']?>">
-                                <td width="25%"><?php echo date('d/m/Y',strtotime($extra['ReservaExtra']['consumida']))?> - <?php echo $extra['ExtraVariable']['ExtraRubro']['rubro'];?></td>
+                                <td width="25%"><?php echo (!empty($extra['ReservaExtra']['consumida']))?date('d/m/Y',strtotime($extra['ReservaExtra']['consumida']))." - ":"";?><?php echo $extra['ExtraVariable']['ExtraRubro']['rubro'];?></td>
                                 <td colspan="2"><?php echo $extra['ExtraVariable']['detalle'];?> </td>
                                 <?php if($reserva['Reserva']['estado'] == 0){ ?>
                                 <td align="right" width="50">$<span class="extra_tarifa"><?php echo $extra['ReservaExtra']['precio']?></span></td>
@@ -407,6 +407,11 @@ function addExtra(){
     }
 }
 function addExtraVariable(){
+    if($('#ExtraConsumida').val() == ''){
+        alert('Complete F. Consumo');
+        $('#ExtraConsumida').focus();
+        return false;
+    }
     var pattern = /^[1-9]|[0-9]*[.][1-9]+$/;
     if(!pattern.test($('#ReservaExtraPrecio').val())){
         alert('Ingrese un importe mayor a cero');
@@ -418,11 +423,7 @@ function addExtraVariable(){
         $('#ExtraVariableDetalle').focus();
         return false;
     }
-    if($('#ExtraConsumida').val() == ''){
-        alert('Complete F. Consumo');
-        $('#ExtraConsumida').focus();
-        return false;
-    }
+
     $.ajax({
       url: '<?php echo $this->Html->url('/reserva_extras/getRowVariable', true);?>',
       data: {'consumida' : $('#ExtraConsumida').val(),'rubro_id' : $('#ExtraExtraRubroId').val(), 'precio' : $('#ReservaExtraPrecio').val(), 'detalle' : $('#ExtraVariableDetalle').val(), 'reserva_id' : '<?php echo $reserva['Reserva']['id'];?>'},
