@@ -152,6 +152,7 @@ Montos
 <th>Nro de reserva</th>
 <th>Titular</th>
 <th>DNI/CUIT</th>
+    <th>Condición impositiva</th>
     <th>Concepto de facturacion</th>
 <th>Monto FC</th>
 <th>transfe/deposito <input type="checkbox" <?php echo (($_POST['hTransfiere']==1)||(!isset($_POST['hTransfiere'])))?'checked="checked"':''?> id="columnaTransfiere" name="columnaTransfiere" onClick="buscar();"></input></th>
@@ -175,7 +176,7 @@ mysqli_query($conn,$sql);
 if (isset($_POST['ver'])) {
 
 
-	$sql = "SELECT R.numero,R.id, R.retiro, R.devolucion, R.total, C.nombre_apellido, C.dni, R.estado, C.cuit
+	$sql = "SELECT R.numero,R.id, R.retiro, R.devolucion, R.total, C.nombre_apellido, C.dni, R.estado, C.cuit, C.titular_factura, C.razon_social, C.iva
 FROM reservas R INNER JOIN clientes C ON R.cliente_id = C.id ";
 if ($_POST['metodo']=='devolucion') {
 	$sql .= "WHERE devolucion LIKE '".$_POST["ano"]."-".$_POST["mes"]."%' ORDER BY devolucion, C.nombre_apellido ASC";
@@ -413,13 +414,16 @@ if ($mostrar) {
 	}
 	$totalVentas +=$fc;
 	$totalFacturado +=$facturas;
+    $razonSocial = ($rs['razon_social'])?$rs['razon_social']:$rs['nombre_apellido'];
+    $iva = ($rs['iva'])?$rs['iva']:'Consumidor final';
 ?>
 
 <tr id="<?php echo $rs['id']; ?>" disable="<?php echo $disabled; ?>" color="<?php echo $color; ?>" monto="<?php echo $fc-$facturas+$otrasFacturas; ?>">
 <td><?php echo $rs['devolucion']; ?></td>
 <td><?php echo $rs['numero']; ?></td>
-<td><?php echo ($rs['nombre_apellido']);?></td>
+    <td><?php echo $razonSocial;?></td>
 <td><?php echo ($rs['cuit']!='')?$rs['cuit']:$rs['dni']; ?></td>
+    <td><?php echo $iva; ?></td>
     <td><?php echo $detalle; ?></td>
 <td><?php echo trim( number_format($fc, 2, '.', '') );?></td>
 <td><?php echo trim( number_format($transferencias, 2, '.', '') );?></td>
