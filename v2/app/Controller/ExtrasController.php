@@ -1,6 +1,15 @@
 <?php
 class ExtrasController extends AppController {
     public $scaffold;
+
+    public function index(){
+        $this->layout = 'index';
+        $this->setLogUsuario('Extras');
+
+        $this->set('extras', $this->Extra->find('all'));
+
+
+    }
     public function getSubrubros(){
         if ($this->request->is('ajax')) {
             $this->layout = 'ajax';

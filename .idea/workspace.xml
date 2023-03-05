@@ -23,10 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="Modificaciones varias">
+      <change afterPath="$PROJECT_DIR$/v2/app/View/Extras/index.ctp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/informe_satisfaccion.php" beforeDir="false" afterPath="$PROJECT_DIR$/informe_satisfaccion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/Config/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Config/core.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/ReservaCobros/finalizar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/ReservaCobros/finalizar.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ExtraSubrubrosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ExtraSubrubrosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ExtrasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ExtrasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Model/Plan.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/Plan.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Model/ReservaCobro.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/ReservaCobro.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Model/ReservaDescuento.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/ReservaDescuento.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Extras/add.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Extras/add.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Extras/edit.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Extras/edit.ctp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-es" beforeDir="false" />
@@ -53,6 +61,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1hasZEWHqXHGpJY5aEXW3MZ9KoV" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -61,14 +72,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../accounts_core" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Documents\Mis Webs\discover\v2\app\Controller" />
@@ -222,7 +231,16 @@
       <workItem from="1656580723966" duration="584000" />
       <workItem from="1656682005513" duration="2585000" />
       <workItem from="1659359934681" duration="3247000" />
-      <workItem from="1660330123404" duration="113000" />
+      <workItem from="1660330123404" duration="376000" />
+      <workItem from="1660330536349" duration="51000" />
+      <workItem from="1660331891250" duration="2375000" />
+      <workItem from="1660599473979" duration="52000" />
+      <workItem from="1672769336677" duration="228000" />
+      <workItem from="1673882484867" duration="592000" />
+      <workItem from="1673885489249" duration="624000" />
+      <workItem from="1673985667764" duration="1054000" />
+      <workItem from="1677331944449" duration="2006000" />
+      <workItem from="1678025420305" duration="345000" />
     </task>
     <task id="LOCAL-00001" summary="Modificaciones varias">
       <created>1654626521014</created>
@@ -238,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656682915777</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Modificaciones varias">
+      <created>1660330500952</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1660330500952</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,36 +279,9 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Modificaciones varias" />
     <option name="LAST_COMMIT_MESSAGE" value="Modificaciones varias" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="265" y="0" key="CommitChangelistDialog2" timestamp="1656682908936">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="265" y="0" key="CommitChangelistDialog2/0.0.1280.760@0.0.1280.760" timestamp="1656682908936" />
-    <state x="420" y="135" key="FileChooserDialogImpl" timestamp="1654783307057">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="420" y="135" key="FileChooserDialogImpl/0.0.1280.760@0.0.1280.760" timestamp="1654783307057" />
-    <state x="278" y="141" key="MultipleFileMergeDialog" timestamp="1653939979828">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="278" y="141" key="MultipleFileMergeDialog/0.0.1280.760@0.0.1280.760" timestamp="1653939979828" />
-    <state x="232" y="113" key="Vcs.Push.Dialog.v2" timestamp="1656682917119">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="232" y="113" key="Vcs.Push.Dialog.v2/0.0.1280.760@0.0.1280.760" timestamp="1656682917119" />
-    <state x="347" y="113" width="585" height="534" key="find.popup" timestamp="1660330127053">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="347" y="113" width="585" height="534" key="find.popup/0.0.1280.760@0.0.1280.760" timestamp="1660330127053" />
-    <state x="303" y="81" width="672" height="678" key="search.everywhere.popup" timestamp="1660330136565">
-      <screen x="0" y="0" width="1280" height="760" />
-    </state>
-    <state x="303" y="81" width="672" height="678" key="search.everywhere.popup/0.0.1280.760@0.0.1280.760" timestamp="1660330136565" />
   </component>
 </project>

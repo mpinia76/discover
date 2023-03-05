@@ -445,6 +445,7 @@ if(isset($_POST)){
 		<th width="80">Titular</th>
 		<th width="20">F. Devoluci&oacute;n</th>
 		<th width="50">E-mail</th>
+        <th width="35">Telefono</th>
 		<th width="20">Enviado</th>
 		<th width="20">Respuesta</th>
 		<th width="20">Enviar</th>
@@ -453,8 +454,12 @@ if(isset($_POST)){
 </thead>
 <tbody>
 <?php
+function encodeURIComponent($str) {
+    $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+    return strtr(rawurlencode($str), $revert);
+}
 	if(isset($_POST['ver'])){
-	$sql1 = "SELECT reservas.*,clientes.nombre_apellido,clientes.email
+	$sql1 = "SELECT reservas.*,clientes.nombre_apellido,clientes.email, clientes.codPais, clientes.codArea, clientes.telefono
 	FROM reservas INNER JOIN clientes ON clientes.id=reservas.cliente_id
 
 	WHERE
@@ -468,7 +473,7 @@ if(isset($_POST)){
 	if(mysqli_affected_rows($conn)>0){
 		while($rs1 = mysqli_fetch_array($rsTemp1)){
 			$enviada=0;
-			$sql2 = "SELECT respondida,enviada
+			$sql2 = "SELECT id,respondida,enviada
 			FROM encuesta where reserva_id = ".$rs1['id'];
 
 			$rsTemp2 = mysqli_query($conn,$sql2);
@@ -477,6 +482,14 @@ if(isset($_POST)){
 				if($rs2 = mysqli_fetch_array($rsTemp2)){
 					$imgRespuesta = ($rs2['respondida'])?"ok.gif":"bt_delete.png";
 					$enviada=$rs2['enviada'];
+                    $phone = $rs1['codPais'].$rs1['codArea'].$rs1['telefono']; // Dejar vacio si quieres que el usuario elija a quien enviar el mensaje
+                    $actual_link = 'https://www.discoverushuaia.com.ar/encuestas/encuesta.php?id='.$rs2['id'];
+                    $message = "Estimado ".$rs1['nombre_apellido']." aprovechamos la oportunidad para invitarlos a participar de nuestra encuesta de satisfaccion. Ingresando al siguiente link";
+                    //$message = str_replace(" ", "%20", $message); // Remplazamos los espacios por su equivalente
+                    $mensaje = $message.' '.$actual_link;
+
+                    $wa_link = "https://wa.me/$phone?text=".encodeURIComponent($mensaje);
+                    $wa_button = '<a href="'.$wa_link.'" target="_blank"  class="item"><img width="16px;" src="images/whatsapp.png" align="absmiddle" /></a>';
 				}
 				//$enviarEncuesta ="";
 			}
@@ -485,7 +498,7 @@ if(isset($_POST)){
 				$imgRespuesta = "bt_delete.png";
 
 			}
-			$enviarEncuesta = '<a href="#" onclick="enviar('.$rs1['id'].')" class="item"><img src="images/mail.png" align="absmiddle" />('.$enviada.') </a>';
+			$enviarEncuesta = '<a href="#" onclick="enviar('.$rs1['id'].')" class="item"><img src="images/mail.png" align="absmiddle" />('.$enviada.') </a>'.$wa_button;
 			$modificarEncuesta ="";
 			if(($imgRespuesta != "bt_delete.png")&&(ACCION_123)) {
 				$modificarEncuesta = '<a href="#" onclick="modificar('.$rs1['id'].')" class="item"><img src="images/ico_users.png" align="absmiddle" /></a>';
@@ -499,6 +512,7 @@ if(isset($_POST)){
 				<td><?php echo $rs1['nombre_apellido']?></td>
 				<td><?php echo fechavista($rs1['devolucion'])?></td>
 				<td><?php echo $rs1['email']?></td>
+                <td><?php echo$rs1['codPais'].$rs1['codArea'].$rs1['telefono']?></td>
 				<td style="text-align: center;"><img src="images/<?php echo $imgEnviada?>"></img></td>
 				<td style="text-align: center;"><img src="images/<?php echo $imgRespuesta?>"></img></td>
 				<td style="text-align: center;"><?php echo $enviarEncuesta?></td>

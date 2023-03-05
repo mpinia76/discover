@@ -53,13 +53,14 @@ class ExtraSubrubrosController extends AppController {
             $subrubroes = $this->ExtraSubrubro->find('all',array('limit' => $limit)); 
         }
         foreach ($subrubroes as $subrubro) {
-        	
+        	$activo = ($subrubro['ExtraRubro']['activo'])?'SI':'NO';
         	$rows[] = array(
                 $subrubro['ExtraSubrubro']['id'],
                 $subrubro['ExtraRubro']['rubro'],
                 $subrubro['ExtraSubrubro']['subrubro'],
                 $subrubro['ExtraSubrubro']['subrubro_ingles'],
-                $subrubro['ExtraSubrubro']['subrubro_portugues']
+                $subrubro['ExtraSubrubro']['subrubro_portugues'],
+                $activo
             );
             
         }
