@@ -23,24 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="Modificaciones varias">
-      <change afterPath="$PROJECT_DIR$/v2/app/View/Extras/index.ctp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informe_satisfaccion.php" beforeDir="false" afterPath="$PROJECT_DIR$/informe_satisfaccion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/Config/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Config/core.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ExtraSubrubrosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ExtraSubrubrosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ExtrasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ExtrasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Model/Plan.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/Plan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Model/ReservaCobro.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/ReservaCobro.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Model/ReservaDescuento.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/ReservaDescuento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Extras/add.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Extras/add.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Extras/edit.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Extras/edit.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Layouts/informeGrilla.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Layouts/informeGrilla.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Reservas/plantilla.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Reservas/plantilla.ctp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-es" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/webroot/js/dhtmlx/dhxmenu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/webroot/js/dhtmlx/dhxmenu.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +234,8 @@
       <workItem from="1673885489249" duration="624000" />
       <workItem from="1673985667764" duration="1054000" />
       <workItem from="1677331944449" duration="2006000" />
-      <workItem from="1678025420305" duration="345000" />
+      <workItem from="1678025420305" duration="513000" />
+      <workItem from="1682170243528" duration="2332000" />
     </task>
     <task id="LOCAL-00001" summary="Modificaciones varias">
       <created>1654626521014</created>
@@ -263,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660330500952</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Modificaciones varias">
+      <created>1678025851675</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1678025851675</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

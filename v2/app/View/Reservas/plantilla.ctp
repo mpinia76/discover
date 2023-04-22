@@ -131,7 +131,9 @@ $this->Js->buffer('
 <?php if(!$pdf){ ?>
 <span id="botonDescargar" onclick="descargar()" class="boton guardar">Descargar</span>
 <span id="botonEnviar" onclick="enviarVoucher()" class="boton guardar">Enviar</span>
-
+    <?php if($grilla){ ?>
+        <span id="botonVolver" onclick="volver();" class="boton volver">Volver a la grilla</span>
+    <?php } ?>
 <script>
 
 function descargar(){
