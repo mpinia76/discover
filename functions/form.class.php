@@ -49,7 +49,7 @@ class Form{
 	public function setCampos($campos){
 
 		foreach($campos as $columna=>$atr){
-
+			//echo $atr['type']."<br>";
 			switch($atr['type']){
 				case 'text':
 				$this->createText($columna,$atr);
@@ -417,7 +417,7 @@ class Form{
 
 	}
 
-	public function createFile($name, $atr){
+	public function createFile_old($name, $atr){
 
 //		$atr['infotext']	el texto a mostrar cuando selecciona el archivo
 //		$atr['extensions']	lista de extensiones asi *.jpg;*.jpeg;*.png;*.gif
@@ -427,7 +427,7 @@ class Form{
 		$js .= "
 		<script type=\"text/javascript\">
 		$(document).ready(function() {
-
+			console.log('lo carga');
 			$(\"#".$name."\").uploadify({
 				'uploader'       : 'library/uploadify/uploadify.swf',
 				'script'         : 'library/uploadify/uploadify.php',
@@ -449,6 +449,7 @@ class Form{
 		</script>";
 		$this->js .= $js;
 
+
 		$html .= '<div class="label">'.$atr['label'].'</div>';
 		$html .= '<div class="content">';
 		$html .= '<div id="uploader_'.$name.'">';
@@ -468,50 +469,47 @@ class Form{
 
 	}
 
-	public function createDate($name,$atr){
-
-//		$atr['requerid'] 	true para que sea requerido
-//		$atr['value'] 		el valor que toma
-//		$atr['comment'] 	si se comenta ese campo
-//		$atr['label'] 		el nombre para mostrar del campo
-
-		$js .= "
-		<script>
-		$(function(){
-			$('.".$name."').datePicker();
-		});
-		</script>";
-
-		$this->js .= $js;
-
-		$html .= '<div class="label">'.$atr['label'].'</div>';
+	public function createFile($name, $atr)
+	{
+		$html .= '<div class="label">' . $atr['label'] . '</div>';
 		$html .= '<div class="content">';
-		$html .='<input type="text" class="'.$name.' dp-applied" value="'.$atr['value'].'" name="'.$name.'" id="'.$name.'" />';
+		$html .= '<div id="uploader_' . $name . '">';
 
-		if(isset($atr['comment'])){
-
-			$html .= '<br /><span class="comment">'.$atr['comment'].'</span>';
-
+		if (isset($atr['value'])){
+			$html .= '<input type="hidden" name="' . $name . '" value="' . $atr['value'] . '" />' . $atr['value'] . '<br />';
 		}
 
+		$html .= '<input id="' . $name . '" type="file" name="' . $name . '" />';
+		$html .= '</div>';
 		$html .= '</div>';
 		$html .= '<div style="clear:both;"></div>';
 
 		$this->html .= $html;
 
-		if($atr['requerid']){
+		$js .= "
+    <script type=\"text/javascript\">
+    $(document).ready(function() {
+        $('#" . $name . "').fileupload({
+            url: 'library/upload.php',
+            dataType: 'json',
+            done: function (e, data) {
+                if (data.result.success) {
+                    var filename = data.result.filename.replace(/ /g, '_');
+                    var html = '<input type=\"hidden\" name=\"" . $name . "\" value=\"' + filename + '\" />' + filename;
+                    $('#uploader_" . $name . "').html(html);
+                    $('input[type=submit]').removeAttr('disabled');
+                } else {
+                    console.log('Error al cargar el archivo.');
+                }
+            },
+            fail: function (e, data) {
+                console.log('Error al cargar el archivo.');
+            }
+        });
+    });
+    </script>";
 
-			$js = '
-					if(vacio(F.'.$name.'.value) == false) {
-					alert("'.$atr['label'].' es obligatorio")
-					F.'.$name.'.focus();
-					return false
-					}';
-
-			$this->js_valida .= $js;
-
-		}
-
+		$this->js .= $js;
 	}
 
 
@@ -544,7 +542,7 @@ class Form{
 
 		echo '
 		<div class="container">
-		<form method="POST" name="form" action="'.$this->action.'" onSubmit="return valida(this);">
+		<form method="POST" name="form" id="form" action="'.$this->action.'" onSubmit="return valida(this);" enctype="multipart/form-data">
 		<input name="agregar" id="agregar" type="hidden" value="0">';
 		if($this->extra_file_top != ''){
 
@@ -566,9 +564,7 @@ class Form{
 		<p align="center"><input type="submit" value="'.$this->boton_value.'" name="'.$this->boton_name.'" id="'.$this->boton_name.'" '.$disabled.'/></p>
 		</form>
 		</div>
-		<script type="text/javascript">
-		parent.doIframe();
-		</script>';
+		';
 
 	}
 
