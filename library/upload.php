@@ -1,9 +1,9 @@
 <?php
 // Ruta de destino para guardar los archivos subidos
-$targetDirectory = '../documentos/';
+$targetDirectory = '../'.$_POST['folder'].'/';
 
 // Nombre del campo de archivo en el formulario
-$fileFieldName = 'path';
+$fileFieldName = $_POST['name'];
 
 // Comprobar si se recibi� el archivo
 if (!empty($_FILES[$fileFieldName]['name'])) {
@@ -28,7 +28,7 @@ if (!empty($_FILES[$fileFieldName]['name'])) {
     // No se recibi� ning�n archivo
     $response = array(
         'success' => false,
-        'message' => 'No se recibi� ning�n archivo.'
+        'message' => 'No se recibio ningun archivo.'
     );
 }
 

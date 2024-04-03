@@ -15,7 +15,7 @@ $campos['path'] 			= array(
 								'type'			=> 'file',
 								'label' 		=> 'Archivo',
 								'infotext'		=> 'Seleccione un archivo',
-								'extensions' 	=> '*.pdf;*.doc;*.docx;*.rtf',
+								'extensions' 	=> 'pdf|doc|docx|rtf',
 								'folder'		=> 'documentos',
 								'requerid' 			=> true
 							);

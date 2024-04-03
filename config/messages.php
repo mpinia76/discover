@@ -1,4 +1,6 @@
-<?php  if(isset($result) and $result == 1){ ?>
+<?php
+
+if(isset($result) and $result == 1){ ?>
 	<div id="mensaje" class="ok"><p><img src="images/ok.gif" align="absmiddle" /> &nbsp; Datos guardados correctamente</p></div>
 <?php  }elseif(isset($result) and $result == 2){ ?>
 	<div id="mensaje" class="ok"><p><img src="images/ok.gif" align="absmiddle" /> &nbsp; Datos actualizados correctamente</p></div>

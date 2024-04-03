@@ -474,7 +474,8 @@ class Form{
 		$html .= '<div class="label">' . $atr['label'] . '</div>';
 		$html .= '<div class="content">';
 		$html .= '<div id="uploader_' . $name . '">';
-
+		$html .= '<input type="hidden" name="folder" value="' . $atr['folder'] . '" /><br />';
+		$html .= '<input type="hidden" name="name" value="' . $name . '" /><br />';
 		if (isset($atr['value'])){
 			$html .= '<input type="hidden" name="' . $name . '" value="' . $atr['value'] . '" />' . $atr['value'] . '<br />';
 		}
@@ -492,6 +493,7 @@ class Form{
         $('#" . $name . "').fileupload({
             url: 'library/upload.php',
             dataType: 'json',
+      		acceptFileTypes: /(\.|\/)(" . $atr['extensions'] . ")$/i,
             done: function (e, data) {
                 if (data.result.success) {
                     var filename = data.result.filename.replace(/ /g, '_');
@@ -499,10 +501,12 @@ class Form{
                     $('#uploader_" . $name . "').html(html);
                     $('input[type=submit]').removeAttr('disabled');
                 } else {
+                    alert(data.result.message);
                     console.log('Error al cargar el archivo.');
                 }
             },
             fail: function (e, data) {
+            	alert(data.result.message);	
                 console.log('Error al cargar el archivo.');
             }
         });
@@ -512,7 +516,71 @@ class Form{
 		$this->js .= $js;
 	}
 
+    public function createDate($name,$atr){
 
+//		$atr['requerid'] 	true para que sea requerido
+//		$atr['value'] 		el valor que toma
+//		$atr['comment'] 	si se comenta ese campo
+//		$atr['label'] 		el nombre para mostrar del campo
+
+        $js .= "
+		<script>
+		
+ $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+
+		$(function(){
+			$('.".$name."').datepicker();
+		});
+		</script>";
+
+        $this->js .= $js;
+
+        $html .= '<div class="label">'.$atr['label'].'</div>';
+        $html .= '<div class="content">';
+        $html .='<input type="text" class="'.$name.' dp-applied" value="'.$atr['value'].'" name="'.$name.'" id="'.$name.'" />';
+
+        if(isset($atr['comment'])){
+
+            $html .= '<br /><span class="comment">'.$atr['comment'].'</span>';
+
+        }
+
+        $html .= '</div>';
+        $html .= '<div style="clear:both;"></div>';
+
+        $this->html .= $html;
+
+        if($atr['requerid']){
+
+            $js = '
+					if(vacio(F.'.$name.'.value) == false) {
+					alert("'.$atr['label'].' es obligatorio")
+					F.'.$name.'.focus();
+					return false
+					}';
+
+            $this->js_valida .= $js;
+
+        }
+
+    }
 	public function printJS(){
 
 		$js .= '
