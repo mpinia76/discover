@@ -178,11 +178,11 @@ while($rs = mysqli_fetch_array($rsTemp)){
 				}
 			}
 			if ($_GET['columnaTC']==1) {
-				$sql = "SELECT * FROM cobro_tarjetas ";
+				$sql = "SELECT * FROM cobro_tarjetas INNER JOIN cobro_tarjeta_tipos ON cobro_tarjetas.cobro_tarjeta_tipo_id = cobro_tarjeta_tipos.id INNER JOIN cobro_tarjeta_posnets ON cobro_tarjeta_tipos.cobro_tarjeta_posnet_id = cobro_tarjeta_posnets.id ";
 	        	if ($_POST['metodo']!='devolucion') {
 					$sql .= " INNER JOIN reserva_cobros ON reserva_cobros.id = cobro_tarjetas.reserva_cobro_id ";
 				}
-		        $sql .= " WHERE reserva_cobro_id = ".$rsDescuentos['id'];
+		        $sql .= " WHERE reserva_cobro_id = ".$rsDescuentos['id']." AND cobro_tarjeta_posnets.controla_facturacion = 1";
 	        	if ($_GET['metodo']!='devolucion') {
 					$sql .= " AND (reserva_cobros.fecha LIKE '".$_GET["ano"]."-".$_GET["mes"]."%')";
 				}

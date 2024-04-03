@@ -5,9 +5,7 @@ include_once("model/form.class.php");
 
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Gastos, Compras, Impuestos, Tasas y Cargas sociales: Montos Aprobacion','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Gastos, Compras, Impuestos, Tasas y Cargas sociales: Montos Aprobacion');
 include_once("functions/abm.php");
 
 //indicar tabla a editar

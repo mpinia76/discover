@@ -9,7 +9,7 @@
             </td>
             <td width="36%"  class="locacion">
                 <span class="ciudad">Ushuaia – Tierra del Fuego</span> <br/>
-                25 de Mayo 260 – 2do piso oficina 9 – Edificio Finisterre<br/>
+                25 de Mayo 260 – Planta Baja Oficina 4 – Edificio Finisterre<br/>
                 
             </td>
         </tr>

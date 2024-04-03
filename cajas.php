@@ -11,9 +11,7 @@ $abm 	= "cajas.am.php"; //agregar o modificar
 
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Creacion y Conciliacion de Cajas','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Creacion y Conciliacion de Cajas');
 include_once("config/user.php");
 
 if(isset($_GET['caja_id']) and $_GET['sincronizar']=='si'){

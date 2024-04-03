@@ -163,9 +163,7 @@ function findUnidades (){
 	include("preguntas.inc.php");
 	include_once("config/db.php");
 	include_once("functions/util.php");
-		$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-					VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Informes de satisfaccion','".getRealIP()."')";
-		mysqli_query($conn,$sql);
+    auditarUsuarios('Informes de satisfaccion');
 	include_once("config/user.php");
 	//$conn = mysqli_connect($host, $db_user, $db_pass, $db);
 	//mysql_select_db($db);

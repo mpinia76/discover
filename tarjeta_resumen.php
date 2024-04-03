@@ -4,9 +4,7 @@ session_start();
 
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Resumen de Tarjetas Corporativas','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Resumen de Tarjetas Corporativas');
 $tabla 	= "tarjeta_resumen"; //tabla
 $label 	= "resumen de tarjeta"; //nombre para el editar y agregar
 $file 	= "tarjeta_resumen.php"; //archivo

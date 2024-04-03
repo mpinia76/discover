@@ -3,9 +3,7 @@ session_start();
 
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Conceptos de Ajuste','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Conceptos de Ajuste');
 $tabla 	= "motivo"; //tabla
 $label 	= "motivo"; //nombre para el editar y agregar
 $file 	= "motivos.php"; //archivo

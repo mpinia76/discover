@@ -3,9 +3,7 @@ session_start();
 
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Subrubros de Gastos y Compras','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Subrubros de Gastos y Compras');
 $tabla 	= "subrubro"; //tabla
 $label 	= "subrubro"; //nombre para el editar y agregar
 $file 	= "subrubros.php"; //archivo

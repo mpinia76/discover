@@ -193,7 +193,8 @@ class ReservaCobrosController extends AppController {
         $this->set('reserva_descuentos',$this->ReservaCobro->find('all',array('conditions' => array('reserva_id =' => $reserva_id, 'ReservaCobro.tipo =' => 'DESCUENTO'), 'order' => 'fecha asc')));
         $this->set('reserva_cobros',$this->ReservaCobro->find('all',array('conditions' => array('reserva_id =' => $reserva_id, 'ReservaCobro.tipo !=' => 'DESCUENTO'), 'order' => 'fecha asc','recursive' => 2)));
         $this->loadModel('CobroTarjetaPosnet');
-        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
+        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('conditions' =>array('activo =' => 1),'order' => 'posnet asc')));
+
 
         $this->loadModel('ConceptoFacturacion');
 

@@ -13,10 +13,7 @@ $abm 	= "cuentas_pagar.view.php"; //agregar o modificar
 include_once("functions/delete.php");
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Cuentas a pagar','".getRealIP()."')";
-
-mysqli_query($conn,$sql);
+auditarUsuarios('Cuentas a pagar');
 
 include_once("functions/delete.php");
 ?>

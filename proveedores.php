@@ -13,9 +13,7 @@ include_once("functions/delete.php");
 
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Alta de Proveedores','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Alta de Proveedores');
 
 include_once("functions/delete.php");
 ?>

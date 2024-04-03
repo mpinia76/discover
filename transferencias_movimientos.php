@@ -2,9 +2,7 @@
 session_start();
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Transferencias a debitar','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Transferencias a debitar');
 if(isset($_POST['ok'])){
 
 	include_once("config/db.php");

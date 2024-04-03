@@ -567,7 +567,8 @@ class CobroTarjetasController extends AppController {
         $this->layout = 'ajax';
         
         $this->loadModel('CobroTarjetaPosnet');
-        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
+        //$this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
+		$this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('conditions' =>array('activo =' => 1),'order' => 'posnet asc')));
         
         $this->set('reserva_cobro',$this->request->data['ReservaCobro']);
         $this->set('cobro_tarjeta_tipos', $this->CobroTarjeta->CobroTarjetaTipo->find('list'));

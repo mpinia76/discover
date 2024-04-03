@@ -6,7 +6,7 @@
                 CABA, Argentina (1107) Tel. (54) 11 52547702/ 0810-345-5002<br> <?php echo $solo_desde;?> CABA
             </td>
             <td width="36%"  class="locacion">
-                25 de Mayo 260 2do. 9 Ushuaia, Tierra del Fuego, Argentina (9410) Tel. (54) 2901 425337<br/>
+                25 de Mayo 260 Planta baja Oficina 4 Ushuaia, Tierra del Fuego, Argentina (9410) Tel. (54) 2901 425337<br/>
 
             </td>
         </tr>

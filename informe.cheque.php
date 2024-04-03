@@ -25,9 +25,7 @@ cursor:pointer;
 session_start();
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Informe de cheques','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Informe de cheques');
 ?>
 <?php if(isset($_POST['ano'])) { $ano = $_POST['ano']; }else{ $ano= date('Y'); } ?>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">

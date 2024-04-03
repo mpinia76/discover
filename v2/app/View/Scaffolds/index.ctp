@@ -85,6 +85,7 @@ function eliminar(){
             foreach ($scaffoldFields as $_field) {
 
                 $isKey = false;
+
                 if (!empty($associations['belongsTo'])) {
                     foreach ($associations['belongsTo'] as $_alias => $_details) {
                         if ($_field === $_details['foreignKey']) {
@@ -95,7 +96,13 @@ function eliminar(){
                     }
                 }
                 if ($isKey !== true) {
-                    echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
+                    if (($_field == 'activo')||($_field == 'controla_facturacion')){
+                        echo "<td>" . h((${$singularVar}[$modelClass][$_field]==1)?'SI':'NO') . "</td>";
+                    }
+                    else{
+                        echo "<td>" . h(${$singularVar}[$modelClass][$_field]) . "</td>";
+                    }
+
                 }
             }
         echo '</tr>';

@@ -3,9 +3,7 @@ session_start();
 
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Sectores y Valorizacion de Horas Extras','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Sectores y Valorizacion de Horas Extras');
 $tabla 	= "sector"; //tabla
 $label 	= "sector"; //nombre para el editar y agregar
 $file 	= "sectores.php"; //archivo

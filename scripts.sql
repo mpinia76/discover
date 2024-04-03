@@ -1448,3 +1448,24 @@ ALTER TABLE `reserva_extras`
 ##################################17/01/2023###########################################################
 ALTER TABLE `extra_subrubros`
     ADD COLUMN `activo` TINYINT(1) NOT NULL DEFAULT 1 AFTER `subrubro`;
+
+##################################03/08/2023###########################################################
+ALTER TABLE `cobro_tarjeta_posnets`
+    ADD COLUMN `activo` TINYINT(1) NOT NULL DEFAULT 1,
+    ADD COLUMN `controla_facturacion` TINYINT(1) NOT NULL DEFAULT 1;
+
+##################################03/04/2024###########################################################
+CREATE TABLE `usuario_auditoria` (
+                                     `id` INT(11) NOT NULL AUTO_INCREMENT,
+                                     `usuario_id` INT(11) NOT NULL,
+                                     `fecha` DATE NULL DEFAULT NULL,
+                                     `logueo` TIMESTAMP NULL DEFAULT NULL,
+                                     `last` TIMESTAMP NULL DEFAULT NULL,
+                                     `segundos` float NOT NULL DEFAULT '0',
+                                     `interaccion` VARCHAR(255) NULL DEFAULT NULL,
+                                     `ip` VARCHAR(255) NULL DEFAULT NULL,
+                                     PRIMARY KEY (`id`)
+)
+    COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+;

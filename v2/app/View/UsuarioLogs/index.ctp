@@ -77,60 +77,64 @@ $this->Js->buffer('
 ');
 ?>
 <script>
-function limpiarFechas(){
-	$('#desde').val('');
-	$('#hasta').val('');
-}
+    function limpiarFechas(){
+        $('#desde').val('');
+        $('#hasta').val('');
+    }
 
 
 
 </script>
-<?php 
-    echo $this->Form->create(false, array('class' => 'form-inline'));
+<?php
+/*echo $this->Form->create(false, array('class' => 'form-inline'));
 
-    
-   
-   echo $this->Form->input('desde',array('label' => false,'placeholder' => 'Fecha Desde', 'class' => 'datepicker', 'type' => 'text','style' => 'float: left; display:inline;'));
-   echo $this->Form->input('hasta',array('label' => false,'placeholder' => 'Fecha Hasta', 'class' => 'datepicker', 'type' => 'text','style' => 'float: left; display:inline;'));
-   
-echo $this->Form->end('Cargar');
+
+
+echo $this->Form->input('desde',array('label' => false,'placeholder' => 'Fecha Desde', 'class' => 'datepicker', 'type' => 'text','style' => 'float: left; display:inline;'));
+echo $this->Form->input('hasta',array('label' => false,'placeholder' => 'Fecha Hasta', 'class' => 'datepicker', 'type' => 'text','style' => 'float: left; display:inline;'));
+
+echo $this->Form->end('Cargar');*/
 ?>
+<div id="informe_logs"><strong>&nbsp;&nbsp;Entre fechas&nbsp;<input type="text" name="desde" id="desde" class="datepicker" value="<?php echo $desde?>">&nbsp;&nbsp;y&nbsp;<input type="text" name="hasta" id="hasta" class="datepicker" value="<?php echo $hasta?>"></strong>
 
-<table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable">
-    <thead>
+    <input type="button" onclick="ver_logs();" value="Ver" /> <span id="cargando" style="display:none;">Cargando ...</span>
+
+    <table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable">
+        <thead>
         <tr>
             <th width="100">Id</th>
-            
+
 
             <!-- Campo Creado -->
             <th width="150">
-               <input type="text" style="width: 90%;" id="filter_creado" />
+                <input type="text" style="width: 90%;" id="filter_creado" />
             </th>
 
             <!-- Campo Nombre-->
             <th width="150">
-               <input type="text" style="width: 90%;" id="filter_nombre" />
-            </th>
-       
-       		<!-- Campo Accion-->
-            <th width="150">
-               <input type="text" style="width: 90%;" id="filter_accion" />
+                <input type="text" style="width: 90%;" id="filter_nombre" />
             </th>
 
-            
+            <!-- Campo Accion-->
+            <th width="150">
+                <input type="text" style="width: 90%;" id="filter_accion" />
+            </th>
+
+
             <th width="100">
                 <input type="text" style="width: 90%;" id="filter_ip" />
             </th>
         </tr>
         <tr>
             <th width="100">Id</th>
-            
+
             <th width="150">Fecha/Hora</th>
             <th width="150">Usuario</th>
             <th width="150">Accion</th>
             <th width="150">IP</th>
-           
+
         </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>

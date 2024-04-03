@@ -97,6 +97,34 @@ class AppController extends Controller {
             $this->UsuarioLog->set('ip',$this->getRealIP());
             
             $this->UsuarioLog->save();
+
+            $this->loadModel('UsuarioAuditoria');
+            $userAuditado = $this->UsuarioAuditoria->find('first',array('conditions'=>array('usuario_id'=>$_SESSION['userid'],'fecha'=>date('Y-m-d'))));
+            //print_r($userAuditado);
+
+            if ($userAuditado) {
+                $this->UsuarioAuditoria->id = $userAuditado['UsuarioAuditoria']['id'];
+
+                $last_interaction = strtotime($userAuditado['UsuarioAuditoria']['last']);
+
+                // Calcula los segundos entre la última interacción y el tiempo actual
+                $elapsed_time_seconds = time() - $last_interaction;
+                //$elapsed_time_minutes = round($elapsed_time_seconds / 60);
+
+                $this->UsuarioAuditoria->set('segundos',$userAuditado['UsuarioAuditoria']['segundos'] + $elapsed_time_seconds);
+
+            }
+            else{
+                $this->UsuarioAuditoria->create();
+                $this->UsuarioAuditoria->set('fecha',date('Y-m-d'));
+                $this->UsuarioAuditoria->set('usuario_id',$_SESSION['userid']);
+                $this->UsuarioAuditoria->set('logueo',date('Y-m-d H:i:s'));
+                $this->UsuarioAuditoria->set('segundos',0);
+            }
+            $this->UsuarioAuditoria->set('last',date('Y-m-d H:i:s'));
+            $this->UsuarioAuditoria->set('interaccion',$accion);
+            $this->UsuarioAuditoria->set('ip',$this->getRealIP());
+            $this->UsuarioAuditoria->save();
 		}
 		
 	}

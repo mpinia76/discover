@@ -2,9 +2,7 @@
 session_start();
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Pago de haberes','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Pago de haberes');
 include_once("config/user.php");
 
 $tabla	= "empleados_sueldos";

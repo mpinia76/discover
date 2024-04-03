@@ -8,8 +8,8 @@ class CobroTarjetaCuotasController extends AppController {
         $this->layout = 'form';
         
         $this->loadModel('CobroTarjetaPosnet');
-        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
-        
+        //$this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
+        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('conditions' =>array('activo =' => 1),'order' => 'posnet asc')));
         $this->render('form');
     }
 
@@ -75,8 +75,8 @@ class CobroTarjetaCuotasController extends AppController {
         $this->layout = 'form';
         
         $this->loadModel('CobroTarjetaPosnet');
-        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
-        
+        //$this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
+        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('conditions' =>array('activo =' => 1),'order' => 'posnet asc')));
         $this->CobroTarjetaCuota->id = $id;
         $cobro_tarjeta_cuota = $this->CobroTarjetaCuota->read(); 
 
@@ -94,7 +94,8 @@ class CobroTarjetaCuotasController extends AppController {
         $this->layout = 'form';
         
        $this->loadModel('CobroTarjetaPosnet');
-        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
+        //$this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
+        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('conditions' =>array('activo =' => 1),'order' => 'posnet asc')));
         
         $this->CobroTarjetaCuota->id = $id;
         $cobro_tarjeta_cuota = $this->CobroTarjetaCuota->read(); 

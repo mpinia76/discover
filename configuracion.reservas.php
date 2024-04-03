@@ -3,9 +3,8 @@ session_start();
 include_once("model/form.class.php");
 include_once("config/db.php");
 include_once("functions/util.php");
-	$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-				VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Activar reservas On Line','".getRealIP()."')";
-	mysqli_query($conn,$sql);
+
+auditarUsuarios('Activar reservas On Line');
 include_once("functions/abm.php");
 
 //indicar tabla a editar

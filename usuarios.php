@@ -3,9 +3,7 @@ session_start();
 
 include_once("config/db.php");
 include_once("functions/util.php");
-$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','Administracion de Usuarios','".getRealIP()."')";
-mysqli_query($conn,$sql);
+auditarUsuarios('Administracion de Usuarios');
 $tabla 	= "usuario"; //tabla
 $label 	= "usuario"; //nombre para el editar y agregar
 $file 	= "usuarios.php"; //archivo

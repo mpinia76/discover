@@ -7,9 +7,7 @@ include_once("config/db.php");
 include_once("functions/abm.php");
 include_once("functions/util.php");
 if(isset($_GET['exit']) and $_GET['exit']=="on"){
-	$sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','logout','".getRealIP()."')";
-	mysqli_query($conn,$sql);
+    auditarUsuarios('logout');
 
     session_destroy();
     setcookie("useridushuaia","",time()-3600);
@@ -36,9 +34,7 @@ if(isset($_POST['ingresar'])){
 		$_SESSION['usernombreushuaia'] = $rs['nombre']." ".$rs['apellido'];
 		$_SESSION['userdniushuaia'] = $rs['dni'];
                                     setcookie('useridushuaia',$rs['id'],time()+60*60*24,'/');
-       $sql = "INSERT INTO usuario_log (usuario_id,nombre,accion,ip)
-			VALUES ('".$_SESSION['useridushuaia']."','".$_SESSION['usernombreushuaia']."','login','".getRealIP()."')";
-	mysqli_query($conn,$sql);
+        auditarUsuarios('login');
 		if($rs['admin'] == 1){ $_SESSION['adminushuaia'] = true; }
 		header("Location: desktop.php#");
 	}else{
