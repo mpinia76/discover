@@ -77,7 +77,7 @@ function ver_logs(){
 }
 function ver_auditorias(){
 
-    var desde='';
+    /*var desde='';
     var hasta='';
     if ($('#desdeA').val() && $('#hastaA').val()){
         var strDesde = $('#desdeA').val().split("/");
@@ -98,11 +98,11 @@ function ver_auditorias(){
         var desde = strDesde[2]+'-'+strDesde[1]+'-'+strDesde[0];
 
         var hasta = strHasta[2]+'-'+strHasta[1]+'-'+strHasta[0];
-    }
+    }*/
 
-    $('#cargando').show();
+    $('#cargandoA').show();
     $.ajax({
-        url: '<?php echo $this->Html->url('/usuario_auditorias/index', true);?>/'+desde+'/'+hasta,
+        url: '<?php echo $this->Html->url('/usuario_auditorias/index', true);?>/'+$('#mes').val(),
         dataType: 'html',
         success: function(data){
             $('#cargandoA').hide();

@@ -23,59 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="Modificaciones varias">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/v2/app/Controller/UsuarioAuditoriasController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/v2/app/Model/UsuarioAuditoria.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/v2/app/View/UsuarioAuditorias/index.ctp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/v2/app/View/UsuarioLogs/index_auditoria.ctp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/borrar_orden.php" beforeDir="false" afterPath="$PROJECT_DIR$/borrar_orden.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cajas.php" beforeDir="false" afterPath="$PROJECT_DIR$/cajas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cheques_movimientos.php" beforeDir="false" afterPath="$PROJECT_DIR$/cheques_movimientos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuracion.am.php" beforeDir="false" afterPath="$PROJECT_DIR$/configuracion.am.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuracion.reservas.php" beforeDir="false" afterPath="$PROJECT_DIR$/configuracion.reservas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cuentas.php" beforeDir="false" afterPath="$PROJECT_DIR$/cuentas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cuentas_pagar.php" beforeDir="false" afterPath="$PROJECT_DIR$/cuentas_pagar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentos.php" beforeDir="false" afterPath="$PROJECT_DIR$/documentos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/empleados.php" beforeDir="false" afterPath="$PROJECT_DIR$/empleados.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/empleados_sueldos.php" beforeDir="false" afterPath="$PROJECT_DIR$/empleados_sueldos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/excel_facturacion_electronica_1.php" beforeDir="false" afterPath="$PROJECT_DIR$/excel_facturacion_electronica_1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/excel_facturacion_electronica_2.php" beforeDir="false" afterPath="$PROJECT_DIR$/excel_facturacion_electronica_2.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/facturacion_electronica.php" beforeDir="false" afterPath="$PROJECT_DIR$/facturacion_electronica.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/formulario_DJ230.php" beforeDir="false" afterPath="$PROJECT_DIR$/formulario_DJ230.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/util.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/util.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informe.cheque.php" beforeDir="false" afterPath="$PROJECT_DIR$/informe.cheque.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informe.economico.php" beforeDir="false" afterPath="$PROJECT_DIR$/informe.economico.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informe.financiero.php" beforeDir="false" afterPath="$PROJECT_DIR$/informe.financiero.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informe.impuestos.php" beforeDir="false" afterPath="$PROJECT_DIR$/informe.impuestos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informe_satisfaccion.php" beforeDir="false" afterPath="$PROJECT_DIR$/informe_satisfaccion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/menu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/motivos.php" beforeDir="false" afterPath="$PROJECT_DIR$/motivos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proveedores.php" beforeDir="false" afterPath="$PROJECT_DIR$/proveedores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rubros.php" beforeDir="false" afterPath="$PROJECT_DIR$/rubros.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sectores.php" beforeDir="false" afterPath="$PROJECT_DIR$/sectores.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subrubros.php" beforeDir="false" afterPath="$PROJECT_DIR$/subrubros.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tarjeta_resumen.php" beforeDir="false" afterPath="$PROJECT_DIR$/tarjeta_resumen.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tarjetas.php" beforeDir="false" afterPath="$PROJECT_DIR$/tarjetas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transferencias_movimientos.php" beforeDir="false" afterPath="$PROJECT_DIR$/transferencias_movimientos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios.am.php" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.am.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.json.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usuarios.php" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/AppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/AppController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/CobroTarjetaCuotasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/CobroTarjetaCuotasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/CobroTarjetasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/CobroTarjetasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ReservaCobrosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ReservaCobrosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/UsuarioLogsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/UsuarioLogsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Reservas/voucher.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Reservas/voucher.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Scaffolds/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Scaffolds/index.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/UsuarioLogs/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/UsuarioLogs/index.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Vouchers/ver.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Vouchers/ver.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/webroot/img/contrato_dorso.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/webroot/img/contrato_dorso.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/UsuarioAuditoriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/UsuarioAuditoriasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/UsuarioAuditorias/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/UsuarioAuditorias/index.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/UsuarioLogs/index_auditoria.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/UsuarioLogs/index_auditoria.ctp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,9 +55,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="E:\xampp\php\php.exe" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="1hasZEWHqXHGpJY5aEXW3MZ9KoV" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -111,21 +66,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/Documents/Mis Webs/discover/v2/app/View/UsuarioLogs",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Documents/Mis Webs/discover/v2/app/View/UsuarioLogs&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Documents\Mis Webs\discover\v2\app\View\UsuarioLogs" />
@@ -309,7 +264,9 @@
       <workItem from="1691165630819" duration="587000" />
       <workItem from="1698168926873" duration="758000" />
       <workItem from="1703618685764" duration="1767000" />
-      <workItem from="1712142032139" duration="6884000" />
+      <workItem from="1712142032139" duration="6952000" />
+      <workItem from="1713442448733" duration="2129000" />
+      <workItem from="1713523171098" duration="5914000" />
     </task>
     <task id="LOCAL-00001" summary="Modificaciones varias">
       <created>1654626521014</created>
@@ -339,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1678025851675</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1712150369245</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712150369245</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,5 +324,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Modificaciones varias" />
     <option name="LAST_COMMIT_MESSAGE" value="Modificaciones varias" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/usuarios.json.php</url>
+          <line>6</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
