@@ -99,7 +99,7 @@ class AppController extends Controller {
             $this->UsuarioLog->save();
 
             $this->loadModel('UsuarioAuditoria');
-            $userAuditado = $this->UsuarioAuditoria->find('first',array('conditions'=>array('usuario_id'=>$_SESSION['userid'],'fecha'=>date('Y-m-d'))));
+            $userAuditado = $this->UsuarioAuditoria->find('first',array('conditions'=>array('usuario_id'=>$_SESSION['useridushuaia'],'fecha'=>date('Y-m-d'))));
             //print_r($userAuditado);
 
             if ($userAuditado) {
@@ -109,6 +109,7 @@ class AppController extends Controller {
 
                 // Calcula los segundos entre la última interacción y el tiempo actual
                 $elapsed_time_seconds = time() - $last_interaction;
+                $elapsed_time_seconds = ($elapsed_time_seconds>1440)?1440:$elapsed_time_seconds;
                 //$elapsed_time_minutes = round($elapsed_time_seconds / 60);
 
                 $this->UsuarioAuditoria->set('segundos',$userAuditado['UsuarioAuditoria']['segundos'] + $elapsed_time_seconds);
@@ -117,7 +118,7 @@ class AppController extends Controller {
             else{
                 $this->UsuarioAuditoria->create();
                 $this->UsuarioAuditoria->set('fecha',date('Y-m-d'));
-                $this->UsuarioAuditoria->set('usuario_id',$_SESSION['userid']);
+                $this->UsuarioAuditoria->set('usuario_id',$_SESSION['useridushuaia']);
                 $this->UsuarioAuditoria->set('logueo',date('Y-m-d H:i:s'));
                 $this->UsuarioAuditoria->set('segundos',0);
             }

@@ -24,10 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="Modificaciones varias">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuarios.am.php" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.am.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuarios.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.json.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuarios.php" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/util.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/util.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/AppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/AppController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/Controller/UsuarioAuditoriasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/UsuarioAuditoriasController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/View/UsuarioAuditorias/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/UsuarioAuditorias/index.ctp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/View/UsuarioLogs/index_auditoria.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/UsuarioLogs/index_auditoria.ctp" afterDir="false" />
@@ -266,7 +264,9 @@
       <workItem from="1703618685764" duration="1767000" />
       <workItem from="1712142032139" duration="6952000" />
       <workItem from="1713442448733" duration="2129000" />
-      <workItem from="1713523171098" duration="5914000" />
+      <workItem from="1713523171098" duration="8999000" />
+      <workItem from="1713781928939" duration="5128000" />
+      <workItem from="1713958625676" duration="1208000" />
     </task>
     <task id="LOCAL-00001" summary="Modificaciones varias">
       <created>1654626521014</created>
@@ -304,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712150369245</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1713529355332</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1713529355332</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -102,7 +102,7 @@ function ver_auditorias(){
 
     $('#cargandoA').show();
     $.ajax({
-        url: '<?php echo $this->Html->url('/usuario_auditorias/index', true);?>/'+$('#mes').val(),
+        url: '<?php echo $this->Html->url('/usuario_auditorias/index', true);?>/'+$('#mes').val()+'/'+$('#year').val(),
         dataType: 'html',
         success: function(data){
             $('#cargandoA').hide();
