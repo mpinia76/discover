@@ -1,5 +1,5 @@
 <?php
-$ano= date('Y');
+$year= (isset($year))?$year:date('Y');
 $mes= (isset($mes))?$mes:date('m');
 //calendario
 $this->Js->buffer('$.datepicker.regional[ "es" ]');
@@ -25,10 +25,11 @@ $this->Js->buffer('
             // aData contiene los datos de la fila actual
             // Puedes acceder a cada columna usando aData[index]
 
-            // Aquí asumimos que la columna correspondiente al estado de la auditoría es la 4ª columna
-            var estadoAuditoria = aData[2];
+            // AquÃƒÆ’Ã‚Â­ asumimos que la columna correspondiente al estado de la auditorÃƒÆ’Ã‚Â­a es la 4Ãƒâ€šÃ‚Âª columna
+            var estadoAuditoria = aData[0];
+	    //console.log(estadoAuditoria);
             //alert(estadoAuditoria);
-            // Si no hay auditoría, aplicamos el color de fondo rojo a toda la fila
+            // Si no hay auditorÃƒÆ’Ã‚Â­a, aplicamos el color de fondo rojo a toda la fila
             if (estadoAuditoria === null) {
                 $(nRow).css("background-color", "#ffcccc");
             }
@@ -43,6 +44,7 @@ $this->Js->buffer('
                   {"sType": "date-euro","bSortable": false},
                   {"bSortable": false},
            {"bSortable": false},
+	   {"bSortable": false},
 
            {"bSortable": false}
             
@@ -78,27 +80,38 @@ $this->Js->buffer('
 ');
 ?>
 <script>
-function limpiarFechas(){
-	$('#desdeA').val('');
-	$('#hastaA').val('');
-}
+    function limpiarFechas(){
+        $('#desdeA').val('');
+        $('#hastaA').val('');
+    }
 
 
 
 </script>
-<?php 
-    /*echo $this->Form->create(false, array('class' => 'form-inline'));
+<?php
+/*echo $this->Form->create(false, array('class' => 'form-inline'));
 
-    
-   
-   echo $this->Form->input('desde',array('label' => false,'placeholder' => 'Fecha Desde', 'class' => 'datepicker', 'type' => 'text','style' => 'float: left; display:inline;'));
-   echo $this->Form->input('hasta',array('label' => false,'placeholder' => 'Fecha Hasta', 'class' => 'datepicker', 'type' => 'text','style' => 'float: left; display:inline;'));
-   
+
+
+echo $this->Form->input('desde',array('label' => false,'placeholder' => 'Fecha Desde', 'class' => 'datepicker', 'type' => 'text','style' => 'float: left; display:inline;'));
+echo $this->Form->input('hasta',array('label' => false,'placeholder' => 'Fecha Hasta', 'class' => 'datepicker', 'type' => 'text','style' => 'float: left; display:inline;'));
+
 echo $this->Form->end('Cargar');*/
 ?>
 <div id="informe_auditoria">
+    <select size="1" name="year" id="year">
+        <option <?php if($year == '2018'){?> selected="selected" <?php } ?> >2018</option>
+        <option <?php if($year == '2019'){?> selected="selected" <?php } ?> >2019</option>
+        <option <?php if($year == '2020'){?> selected="selected" <?php } ?> >2020</option>
+        <option <?php if($year == '2021'){?> selected="selected" <?php } ?> >2021</option>
+        <option <?php if($year == '2022'){?> selected="selected" <?php } ?> >2022</option>
+        <option <?php if($year == '2023'){?> selected="selected" <?php } ?> >2023</option>
+        <option <?php if($year == '2024'){?> selected="selected" <?php } ?> >2024</option>
+        <option <?php if($year == '2025'){?> selected="selected" <?php } ?> >2025</option>
+        <option <?php if($year == '2026'){?> selected="selected" <?php } ?> >2026</option>
+        <option <?php if($year == '2027'){?> selected="selected" <?php } ?> >2027</option>
+    </select>
     <select id="mes">
-        <option value="N">Todos</option>
         <option value="01" <?php if($mes == '01'){?> selected="selected" <?php } ?>>Enero</option>
         <option value="02" <?php if($mes == '02'){?> selected="selected" <?php } ?>>Febrero</option>
         <option value="03" <?php if($mes == '03'){?> selected="selected" <?php } ?>>Marzo</option>
@@ -113,8 +126,8 @@ echo $this->Form->end('Cargar');*/
         <option value="12" <?php if($mes == '12'){?> selected="selected" <?php } ?>>Diciembre</option>
     </select>
     <input type="button" onclick="ver_auditorias();" value="Ver" /> <span id="cargandoA" style="display:none;">Cargando ...</span>
-<table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable">
-    <thead>
+    <table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable">
+        <thead>
         <tr>
             <th width="100">Id</th>
 
@@ -133,9 +146,11 @@ echo $this->Form->end('Cargar');*/
             <th width="150">
 
             </th>
+            <th width="150">
 
-       
-       		<!-- Campo Accion-->
+            </th>
+
+            <!-- Campo Accion-->
             <th width="150">
 
             </th>
@@ -150,12 +165,13 @@ echo $this->Form->end('Cargar');*/
             <th width="150">Usuario</th>
             <th width="150">Fecha</th>
             <th width="150">Login</th>
+            <th width="150">Ultima</th>
             <th width="150">Horas</th>
             <th width="150">Ult. Interaccion</th>
             <th width="150">IP</th>
-           
+
         </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+        </thead>
+        <tbody></tbody>
+    </table>
 </div>

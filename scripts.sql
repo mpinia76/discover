@@ -1473,3 +1473,33 @@ ENGINE=InnoDB
 ##################################18/04/2024###########################################################
 ALTER TABLE `usuario`
     ADD COLUMN `activo` TINYINT(1) NOT NULL DEFAULT '1';
+
+##################################23/04/2024############################################################
+CREATE TABLE `neumaticos` (
+                                     `id` INT(11) NOT NULL AUTO_INCREMENT,
+                                     `unidad_id` INT(11) DEFAULT NULL,
+                                     `fecha` DATE NULL DEFAULT NULL,
+                                     `modelo` VARCHAR(255) NULL DEFAULT NULL,
+                                     `marca` VARCHAR(255) NULL DEFAULT NULL,
+                                     `medida` VARCHAR(10) NULL DEFAULT NULL,
+                                     `fabricacion` VARCHAR(4) NULL DEFAULT NULL,
+                                     `posicion` ENUM('DC', 'DA', 'TC', 'TA', 'Auxilio') NOT NULL,
+                                     `temporada` ENUM('Verano', 'Invierno Clavos', 'Invierno Silice', 'Mixto') NOT NULL,
+                                     `dibujo` VARCHAR(2) NULL DEFAULT NULL,
+                                     `estado` ENUM('En uso', 'En deposito','Baja') NOT NULL,
+                                     `km` INT(11) DEFAULT NULL,
+                                     `identificador` VARCHAR(6) NULL DEFAULT NULL,
+                                     PRIMARY KEY (`id`),
+                                     INDEX `id` (`id`),
+                                     INDEX `unidad_id` (`unidad_id`)
+)
+    COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1;
+
+INSERT INTO `permiso_grupo` (`nombre`) VALUES ('Gestion de neumaticos');
+INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (48, 'Operar');
+INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (48, 'Informe');
+
+ALTER TABLE `neumatico`
+    ADD UNIQUE INDEX `identificador` (`identificador`);
