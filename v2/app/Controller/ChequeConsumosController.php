@@ -1250,7 +1250,7 @@ class ChequeConsumosController extends AppController {
 						$this->ChequeConsumo->save();
 						$cuenta=$this->Cuenta->findById($chequeConsumo['cuenta_id']);
 
-						$user_id = $_SESSION['userid'];
+						$user_id = $_SESSION['useridushuaia'];
 						$this->ChequeConsumo->create();
 						$this->ChequeConsumo->set('numero',$chequeConsumoAnterior['ChequeConsumo']['numero']);
 						$this->ChequeConsumo->set('cuenta_id',$chequeConsumoAnterior['ChequeConsumo']['cuenta_id']);

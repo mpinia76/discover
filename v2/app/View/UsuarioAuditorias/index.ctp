@@ -1,5 +1,5 @@
 <?php
-$year= date('Y');
+$year= (isset($year))?$year:date('Y');
 $mes= (isset($mes))?$mes:date('m');
 //calendario
 $this->Js->buffer('$.datepicker.regional[ "es" ]');
@@ -25,11 +25,11 @@ $this->Js->buffer('
             // aData contiene los datos de la fila actual
             // Puedes acceder a cada columna usando aData[index]
 
-            // AquÃ­ asumimos que la columna correspondiente al estado de la auditorÃ­a es la 4Âª columna
+            // AquÃƒÆ’Ã‚Â­ asumimos que la columna correspondiente al estado de la auditorÃƒÆ’Ã‚Â­a es la 4Ãƒâ€šÃ‚Âª columna
             var estadoAuditoria = aData[0];
 	    //console.log(estadoAuditoria);
             //alert(estadoAuditoria);
-            // Si no hay auditorÃ­a, aplicamos el color de fondo rojo a toda la fila
+            // Si no hay auditorÃƒÆ’Ã‚Â­a, aplicamos el color de fondo rojo a toda la fila
             if (estadoAuditoria === null) {
                 $(nRow).css("background-color", "#ffcccc");
             }
@@ -100,6 +100,7 @@ echo $this->Form->end('Cargar');*/
 ?>
 <div id="informe_auditoria">
     <select size="1" name="year" id="year">
+        <option <?php if($year == '2018'){?> selected="selected" <?php } ?> >2018</option>
         <option <?php if($year == '2019'){?> selected="selected" <?php } ?> >2019</option>
         <option <?php if($year == '2020'){?> selected="selected" <?php } ?> >2020</option>
         <option <?php if($year == '2021'){?> selected="selected" <?php } ?> >2021</option>

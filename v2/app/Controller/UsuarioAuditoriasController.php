@@ -38,14 +38,14 @@ class UsuarioAuditoriasController extends AppController {
             $this->set('year',$_SESSION['yearA']);
         }
         else{
-            $_SESSION['yearA'] = date('m');
+            $_SESSION['yearA'] = date('Y');
             $this->set('year',$_SESSION['yearA']);
         }
         /*$gc_maxlifetime = ini_get('session.gc_maxlifetime');
         $cookie_lifetime = ini_get('session.cookie_lifetime');
 
-        echo "Tiempo de vida mÃ¡ximo de sesiÃ³n: $gc_maxlifetime segundos\n";
-        echo "Tiempo de vida de la cookie de sesiÃ³n: $cookie_lifetime segundos\n";*/
+        echo "Tiempo de vida mÃƒÂ¡ximo de sesiÃƒÂ³n: $gc_maxlifetime segundos\n";
+        echo "Tiempo de vida de la cookie de sesiÃƒÂ³n: $cookie_lifetime segundos\n";*/
         $this->setLogUsuario('Auditoria de Usuarios - logueo');
 
     }
@@ -59,7 +59,7 @@ class UsuarioAuditoriasController extends AppController {
         $mes = (isset($_SESSION['mesA']))?$_SESSION['mesA']:date('m');
         $year = (isset($_SESSION['yearA']))?$_SESSION['yearA']:date('Y');
 
-        // Obtener el primer y último día del mes
+        // Obtener el primer y Ãºltimo dÃ­a del mes
         $desde = date('Y-m-01', strtotime("$year-$mes-01"));
         $hasta = date('Y-m-t', strtotime("$year-$mes-01"));
 
@@ -101,9 +101,9 @@ class UsuarioAuditoriasController extends AppController {
 
         $rows = array();
 
-        // Iterar sobre cada día del mes
+        // Iterar sobre cada dÃ­a del mes
         for ($dia = 1; $dia <= cal_days_in_month(CAL_GREGORIAN, $mes, $year); $dia++) {
-            // Obtener la fecha específica del día
+            // Obtener la fecha especÃ­fica del dÃ­a
             $fecha = date('Y-m-d', strtotime("$year-$mes-$dia"));
 
             /*$condicionSearch5=array();
@@ -116,7 +116,7 @@ class UsuarioAuditoriasController extends AppController {
 
             /*$UsuarioAuditorias = $this->UsuarioAuditoria->find('all',array('conditions'=>$condicion,
                                                          'order' => $order, 'limit'=>$_GET['iDisplayLength'], 'offset'=>$_GET['iDisplayStart']));*/
-            // Agregar la condición de activo = 1 a las condiciones de búsqueda existentes
+            // Agregar la condiciÃ³n de activo = 1 a las condiciones de bÃºsqueda existentes
             $condicionSearch1['AND'] = array('Usuario.activo' => 1);
 
             $this->loadModel('Usuario');
@@ -135,12 +135,12 @@ class UsuarioAuditoriasController extends AppController {
             foreach ($usuarios as $usuario) {
                 $usuarioId = $usuario['Usuario']['id'];
 
-                // Obtener las tuplas de auditoría para el usuario actual y la fecha específica
+                // Obtener las tuplas de auditorÃ­a para el usuario actual y la fecha especÃ­fica
                 /*$tuplasAuditoria = $this->UsuarioAuditoria->find('all', array(
                     'conditions' => array_merge(array('usuario_id' => $usuarioId), $condicionSearch5)
                 ));*/
 
-                // Consultar si hay registros de auditoría para este usuario y este día
+                // Consultar si hay registros de auditorÃ­a para este usuario y este dÃ­a
                 $registros = $this->UsuarioAuditoria->find('all', array(
                     'conditions' => array(
                         'usuario_id' => $usuarioId,
@@ -148,10 +148,10 @@ class UsuarioAuditoriasController extends AppController {
                     )
                 ));
                 $apellidoNombre = $usuario['Usuario']['apellido'] . ', ' . $usuario['Usuario']['nombre'];
-                // Si no hay registros para este día, añadir el día a la matriz con un marcador para sombrearlo
+                // Si no hay registros para este dÃ­a, aÃ±adir el dÃ­a a la matriz con un marcador para sombrearlo
                 if (empty($registros)) {
 
-                    // Si el usuario no tiene tuplas de auditorÃ­a, agregar una fila vacÃ­a
+                    // Si el usuario no tiene tuplas de auditorÃƒÂ­a, agregar una fila vacÃƒÂ­a
                     $rows[] = array(
                         null,
                         $apellidoNombre,
@@ -164,7 +164,7 @@ class UsuarioAuditoriasController extends AppController {
                     );
 
                 } else {
-                    // Si hay registros, añadirlos a la matriz de datos de la grilla
+                    // Si hay registros, aÃ±adirlos a la matriz de datos de la grilla
                     foreach ($registros as $registro) {
                         $segundosTotales = $registro['UsuarioAuditoria']['segundos'];
 
