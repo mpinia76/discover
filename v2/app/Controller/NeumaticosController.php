@@ -13,61 +13,146 @@ class NeumaticosController extends AppController {
 
 
     public function dataTable($limit = ""){
+
+        $orderType= ($_GET['sSortDir_0'])? $_GET['sSortDir_0']:'desc';
+        switch ($_GET['iSortCol_0']) {
+            case 1:
+                $order='Neumatico.fecha '.$orderType;
+                break;
+            case 2:
+                $order='Neumatico.marca '.$orderType;
+                break;
+            case 3:
+                $order='Neumatico.modelo '.$orderType;
+                break;
+            case 4:
+                $order='Neumatico.fabricacion '.$orderType;
+                break;
+            case 5:
+                $order='Neumatico.medida '.$orderType;
+                break;
+            case 6:
+                $order='Neumatico.temporada '.$orderType;
+                break;
+            case 7:
+                $order='Neumatico.identificador '.$orderType;
+                break;
+            case 9:
+                $order='Unidad.patente '.$orderType;
+                break;
+            case 10:
+                $order='Neumatico.posicion '.$orderType;
+                break;
+            case 11:
+                $order='Neumatico.estado '.$orderType;
+                break;
+            default:
+                $order='Neumatico.fecha '.$orderType;
+                break;
+        }
+
+
+        $condicionSearch1 = ($_GET['sSearch_1'])?array('Neumatico.fecha LIKE '=> '%'.$this->dateFormatSQL($_GET['sSearch_1']).'%'):array();
+        $condicionSearch2 = ($_GET['sSearch_2'])?array('Neumatico.marca LIKE '=>'%'.$_GET['sSearch_2'].'%'):array();
+        $condicionSearch3 = ($_GET['sSearch_3'])?array('Neumatico.modelo LIKE '=>'%'.$_GET['sSearch_3'].'%'):array();
+        $condicionSearch4 = ($_GET['sSearch_4'])?array('Neumatico.fabricacion LIKE '=>'%'.$_GET['sSearch_4'].'%'):array();
+        $condicionSearch5 = ($_GET['sSearch_5'])?array('Neumatico.medida LIKE '=>'%'.$_GET['sSearch_5'].'%'):array();
+        $condicionSearch6 = ($_GET['sSearch_6'])?array('Neumatico.temporada = '=>$_GET['sSearch_6']):array();
+        $condicionSearch7 = ($_GET['sSearch_7'])?array('Neumatico.identificador LIKE '=>'%'.$_GET['sSearch_7'].'%'):array();
+        $condicionSearch9 = ($_GET['sSearch_9'])?array('Unidad.patente LIKE '=>'%'.$_GET['sSearch_9'].'%'):array();
+        $condicionSearch10 = ($_GET['sSearch_10'])?array('Neumatico.posicion = '=>$_GET['sSearch_10']):array();
+        $condicionSearch11 = ($_GET['sSearch_11'])?array('Neumatico.estado = '=>$_GET['sSearch_11']):array();
+
+        $condicion=array($condicionSearch1,$condicionSearch2,$condicionSearch3,$condicionSearch4,$condicionSearch5,$condicionSearch6,$condicionSearch7,$condicionSearch9,$condicionSearch10,$condicionSearch11);
+
         $rows = array();
         $this->loadModel('Neumatico');
-        if($limit == "todos"){
+
+        $neumaticos = $this->Neumatico->find('all', [
+            'conditions' => $condicion,
+            'order' => $order,
+            'limit' => $_GET['iDisplayLength'],
+            'contain' => ['Unidad'], // Para cargar los datos relacionados de Unidad
+            'fields' => ['Neumatico.*', 'Unidad.marca AS unidad_marca', 'Unidad.patente AS patente'], // Prefijar 'marca' con el alias de la tabla Unidad
+            'offset' => $_GET['iDisplayStart']
+        ]);
+        /*if($limit == "todos"){
             $neumaticos = $this->Neumatico->find('all', [
 
                 'contain' => ['Unidad'], // Para cargar los datos relacionados de Unidad
-                'fields' => ['Neumatico.*', 'Unidad.marca AS unidad_marca'], // Prefijar 'marca' con el alias de la tabla Unidad
+                'fields' => ['Neumatico.*', 'Unidad.marca AS unidad_marca', 'Unidad.patente AS patente'], // Prefijar 'marca' con el alias de la tabla Unidad
             ]);
         }else{
             //$neumaticos = $this->Neumatico->find('all',array('limit' => $limit));
             $neumaticos = $this->Neumatico->find('all', [
                 'limit' => $limit,
                 'contain' => ['Unidad'], // Para cargar los datos relacionados de Unidad
-                'fields' => ['Neumatico.*', 'Unidad.marca AS unidad_marca'], // Prefijar 'marca' con el alias de la tabla Unidad
+                'fields' => ['Neumatico.*', 'Unidad.marca AS unidad_marca', 'Unidad.patente AS patente'], // Prefijar 'marca' con el alias de la tabla Unidad
             ]);
-        }
+        }*/
+        $iTotal = $this->Neumatico->find('count',array('conditions'=> $condicion));
+        $this->loadModel('Unidad');
         foreach ($neumaticos as $neumatico) {
+            $this->Unidad->id = $neumatico['Neumatico']['unidad_id'];
+            $this->request->data = $this->Unidad->read();
+            $unidad = $this->request->data;
+            // Extraer el año y la semana del valor
+            $year = substr($neumatico['Neumatico']['fabricacion'], 2) + 2000; // Extraer los últimos dos dígitos
+            $semana = substr($neumatico['Neumatico']['fabricacion'], 0, 2); // Extraer los primeros dos dígitos
 
-            /*switch($alerta['Alerta']['nivel']) {
-                case 'Nivel 1':
-                    $nivel = '<span style="color:green">' . $alerta['Alerta']['nivel'] . '</span>';
-                    break;
-                case 'Nivel 2':
-                    $nivel = '<span style="color:orange">' . $alerta['Alerta']['nivel'] . '</span>';
-                    break;
-                case 'Nivel 3':
-                    $nivel = '<span style="color:red">' . $alerta['Alerta']['nivel'] . '</span>';
-                    break;
-            }
-            $magnitud = ($alerta['Alerta']['magnitud'])?$alerta['Alerta']['magnitud']:'No aplica';*/
+            // Construir la fecha desde la semana y el año
+            $fecha = new DateTime();
+            $fecha->setISODate($year, $semana); // Establecer la fecha usando la semana y el año
+
+// Calcular la diferencia en años
+            $hoy = new DateTime();
+            $diferencia = $hoy->diff($fecha);
+            $years = $diferencia->y + $diferencia->m / 12 + $diferencia->d / 365.25;
+
+// Formatear el resultado con coma como separador decimal
+            $years = number_format($years, 2, ',', '');
+
+
             $rows[] = array(
                 $neumatico['Neumatico']['id'],
 
-                date('d/m/Y',strtotime($neumatico['Neumatico']['fecha'])),
+                //date('d/m/Y',strtotime($neumatico['Neumatico']['fecha'])),
+                $neumatico['Neumatico']['fecha'],
                 $neumatico['Neumatico']['marca'],
                 $neumatico['Neumatico']['modelo'],
                 $neumatico['Neumatico']['fabricacion'],
-                $neumatico['Neumatico']['dibujo'],
+                $neumatico['Neumatico']['medida'],
                 $neumatico['Neumatico']['temporada'],
                 $neumatico['Neumatico']['identificador'],
-                '',
-                '',
+                $unidad['Categoria']['categoria'],
+                $neumatico['Unidad']['patente'],
                 $neumatico['Neumatico']['posicion'],
                 $neumatico['Neumatico']['estado'],
-                '',
+                $years,
                 ''
             );
 
         }
 
 
-        $this->set('aaData',$rows);
+        /*$this->set('aaData',$rows);
         $this->set('_serialize', array(
             'aaData'
-        ));
+        ));*/
+
+        $output = array(
+            "sEcho" => intval($_GET['sEcho']),
+            "iTotalRecords" => count($rows),
+            "iTotalDisplayRecords" => $iTotal,
+            "aaData" => array()
+        );
+
+        $output['aaData'] = $rows;
+        $this->set('aoData',$output);
+        //print_r($output);
+        $this->set('_serialize',
+            'aoData'
+        );
     }
 
     public function index2(){
@@ -216,10 +301,12 @@ class NeumaticosController extends AppController {
 
     public function crear(){
         $this->layout = 'form';
-        $this->set('posiciones',array('DC' => 'DC','DA' => 'DA','TC' => 'TC','TA' => 'TA','Auxilio' => 'Auxilio'));
+        $this->set('posiciones',array('DI' => 'DI','DD' => 'DD','TI' => 'TI','TD' => 'TD','Auxilio' => 'Auxilio'));
         $this->set('temporadas',array('Verano'=> 'Verano', 'Invierno Clavos'=> 'Invierno Clavos', 'Invierno Silice'=> 'Invierno Silice', 'Mixto'=> 'Mixto'));
         $this->set('estados',array('En uso' => 'En uso','En deposito' => 'En deposito'));
 
+        $this->loadModel('Categoria');
+        $this->set('categorias', $this->Categoria->find('list',array('order' => array('Categoria.categoria ASC'))));
     }
 
     public function editar($id = null){
@@ -231,7 +318,7 @@ class NeumaticosController extends AppController {
         $this->request->data = $this->Neumatico->read();
         $neumatico = $this->request->data;
 
-        $this->set('posiciones',array('DC' => 'DC','DA' => 'DA','TC' => 'TC','TA' => 'TA','Auxilio' => 'Auxilio'));
+        $this->set('posiciones',array('DI' => 'DI','DD' => 'DD','TI' => 'TI','TD' => 'TD','Auxilio' => 'Auxilio'));
         $this->set('temporadas',array('Verano'=> 'Verano', 'Invierno Clavos'=> 'Invierno Clavos', 'Invierno Silice'=> 'Invierno Silice', 'Mixto'=> 'Mixto'));
         $this->set('estados',array('En uso' => 'En uso','En deposito' => 'En deposito'));
 
@@ -259,8 +346,8 @@ class NeumaticosController extends AppController {
                 $errores['Neumatico'] = $this->Neumatico->validationErrors;
             }
 
-            if(($neumatico['estado']=='En uso')&&($neumatico['unidad']=='')){
-                $errores['Neumatico']['unidad'] = 'Debe seleccionar una unidad';
+            if(($neumatico['estado']=='En uso')&&($neumatico['unidad_id']=='')){
+                $errores['Neumatico']['unidad_id'] = 'Debe seleccionar una unidad';
             }
 
 

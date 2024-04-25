@@ -9,7 +9,6 @@ class Neumatico extends AppModel {
         'fecha' => array(
             'rule'     => array('date','dmy'),
             'required' => true,
-            'allowEmpty' => true,
             'message' => 'Ingrese una fecha valida'
         ),
         'marca' => array(
@@ -23,9 +22,9 @@ class Neumatico extends AppModel {
             'message' => 'Ingrese un modelo'
         ),
         'medida' => array(
-            'rule'    => array('between', 0, 10),
             'required'   => true,
-            'message' => 'Ingrese una medida (no mas de 10 caracteres)'
+            'rule' => 'notEmpty',
+            'message' => 'Ingrese una medida'
         ),
         'fabricacion' => array(
             'rule'    => array('between', 4, 4),
@@ -43,14 +42,9 @@ class Neumatico extends AppModel {
             'message' => 'Seleccione una temporada'
         ),
         'dibujo' => array(
-            'rule' => array('numeric'), // Asegura que solo sean números
-            'allowEmpty' => true, // Permite que el campo esté vacío
-            'message' => 'Ingrese solo números'
-        ),
-        'validateDibujoLength' => array(
-            'rule' => array('validateDibujoLength'), // Función de validación personalizada
-            'required' => true, // El campo es requerido
-            'message' => 'Ingrese un máximo de 2 dígitos'
+            'required'   => true,
+            'rule' => 'notEmpty',
+            'message' => 'Ingrese una medida'
         ),
         'estado' => array(
             'required'   => true,
@@ -71,22 +65,17 @@ class Neumatico extends AppModel {
 
     );
 
-    public function validateDibujoLength($check) {
-        $value = array_values($check)[0];
-        return strlen($value) <= 2;
-    }
+
 
 
 
  	public function beforeSave($options = Array()) {
 
-    	if(($this->data['Alerta']['inicio_fecha']!='')){
-            $this->data['Alerta']['inicio_fecha'] = $this->dateFormatBeforeSave($this->data['Alerta']['inicio_fecha']);
+    	if(($this->data['Neumatico']['fecha']!='')){
+            $this->data['Neumatico']['fecha'] = $this->dateFormatBeforeSave($this->data['Neumatico']['fecha']);
         }
 
-        if(($this->data['Alerta']['actual_fecha']!='')){
-            $this->data['Alerta']['actual_fecha'] = $this->dateFormatBeforeSave($this->data['Alerta']['actual_fecha']);
-        }
+
 
         return true;
     }
@@ -94,13 +83,11 @@ class Neumatico extends AppModel {
 
 	public function afterFind($results, $primary = false) {
         foreach ($results as $key => $val) {
-            if (!empty($val) and isset($val['Alerta']['inicio_fecha'])) {
-                $results[$key]['Alerta']['inicio_fecha']= $this->dateFormatAfterFind($val['Alerta']['inicio_fecha']);
+            if (!empty($val) and isset($val['Neumatico']['fecha'])) {
+                $results[$key]['Neumatico']['fecha']= $this->dateFormatAfterFind($val['Neumatico']['fecha']);
             }
 
-            if (!empty($val) and isset($val['Alerta']['actual_fecha'])) {
-                $results[$key]['Alerta']['actual_fecha']= $this->dateFormatAfterFind($val['Alerta']['actual_fecha']);
-            }
+
         }
         return $results;
     }

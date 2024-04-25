@@ -1483,7 +1483,7 @@ CREATE TABLE `neumaticos` (
                                      `marca` VARCHAR(255) NULL DEFAULT NULL,
                                      `medida` VARCHAR(10) NULL DEFAULT NULL,
                                      `fabricacion` VARCHAR(4) NULL DEFAULT NULL,
-                                     `posicion` ENUM('DC', 'DA', 'TC', 'TA', 'Auxilio') NOT NULL,
+                                     `posicion` ENUM('DI', 'DD', 'TI', 'TD', 'Auxilio') NOT NULL,
                                      `temporada` ENUM('Verano', 'Invierno Clavos', 'Invierno Silice', 'Mixto') NOT NULL,
                                      `dibujo` VARCHAR(2) NULL DEFAULT NULL,
                                      `estado` ENUM('En uso', 'En deposito','Baja') NOT NULL,

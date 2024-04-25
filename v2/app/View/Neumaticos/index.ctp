@@ -6,14 +6,15 @@ $this->Js->buffer('
     oTable = $("#dataTable").dataTable( {
 	    "sDom": "<\"dataTables_top\"i>t<\"dataTables_bottom\"lp>r",
         "bProcessing": true,
-    	"bAutoWidth": false,
+        "bServerSide": true,
+        "bAutoWidth": false,
         "oLanguage": {
             "sUrl": "/dataTables.spanish.txt"
         },
         "fnDrawCallback": function( oSettings ) {
             $("#dataTable tr").unbind("dblclick").dblclick(function(){
                 var data = oTable.fnGetData( this );
-                createWindow("w_neumaticos_view","Gestion de neumaticos","'.$this->Html->url('/neumaticos/editar', true).'/"+data[0],"6","350");
+                createWindow("w_neumaticos_view","Gestion de neumaticos","'.$this->Html->url('/neumaticos/editar', true).'/"+data[0],"450","350");
             });
             $("#dataTable tr").click(function(e){
                 $("#dataTable tr").removeClass("row_selected");
@@ -25,20 +26,19 @@ $this->Js->buffer('
         "bDeferRender": true,
         "aoColumns": [
             {"bVisible": false },
+            {"sType": "date-uk"},
             null,
             null,
             null,
             null,
             null,
             null,
+            {"bSortable": false},
             null,
             null,
             null,
-            null,
-            null,
-            null,
-            null,
-            null
+            {"bSortable": false},
+            {"bSortable": false}
         ]
     });
     $(".date_filter").change(function(){ oTable.fnDraw(); })
@@ -65,7 +65,7 @@ $this->Js->buffer('
     $("#filter_fabricacion").keyup(function(){
         oTable.fnFilter($(this).val(),4);
     });
-    $("#filter_dibujo").keyup(function(){
+    $("#filter_medida").keyup(function(){
         oTable.fnFilter($(this).val(),5);
     });
      $("#filter_temporada").change(function(){
@@ -75,24 +75,14 @@ $this->Js->buffer('
             oTable.fnFilter($("#filter_temporada option:selected").text(),6);
          }
      });
-    $("#filter_identificaro").keyup(function(){
+    $("#filter_identificador").keyup(function(){
         oTable.fnFilter($(this).val(),7);
     });
-    $("#filter_categoria").change(function(){
-        if($(this).val() == ""){
-            oTable.fnFilter($(this).val(),8);
-        }else{
-            oTable.fnFilter($("#filter_categoria option:selected").text(),8);
-         }
-     });
-
-     $("#filter_unidad").change(function(){
-        if($(this).val() == ""){
-            oTable.fnFilter($(this).val(),9);
-        }else{
-            oTable.fnFilter($("#filter_unidad option:selected").text(),9);
-         }
-     });
+    
+    $("#filter_unidad").keyup(function(){
+        oTable.fnFilter($(this).val(),9);
+    });
+     
 
      $("#filter_posicion").change(function(){
         if($(this).val() == ""){
@@ -110,13 +100,7 @@ $this->Js->buffer('
          }
      });
 
-    $("#filter_antiguedad").keyup(function(){
-        oTable.fnFilter($(this).val(),12);
-    });
-
-	$("#filter_km").keyup(function(){
-        oTable.fnFilter($(this).val(),13);
-    });
+   
 
 
 
@@ -209,7 +193,7 @@ function eliminar(){
             <input type="text" style="width: 90%;" id="filter_fabricacion" />
         </th>
         <th width="30">
-            <input type="text" style="width: 90%;" id="filter_dibujo" />
+            <input type="text" style="width: 90%;" id="filter_medida" />
         </th>
         <th width="50">
 
@@ -227,32 +211,22 @@ function eliminar(){
         </th>
         <th width="30">
 
-            <select id="filter_categoria">
-                <option value="">Nivel</option>
-                <option>Nivel 1</option>
-                <option>Nivel 2</option>
-                <option>Nivel 3</option>
-            </select>
+
 
         </th>
         <th width="30">
 
-            <select id="filter_unidad">
-                <option value="">Unidad</option>
-                <option>KM</option>
-                <option>Tiempo</option>
-                <option>Reservas</option>
-            </select>
+            <input type="text" style="width: 90%;" id="filter_unidad" />
 
         </th>
         <th width="30">
 
             <select id="filter_posicion">
                 <option value="">Posicion</option>
-                <option>DC</option>
-                <option>DA</option>
-                <option>TC</option>
-                <option>TA</option>
+                <option>DI</option>
+                <option>DD</option>
+                <option>TI</option>
+                <option>TD</option>
                 <option>Auxilio</option>
             </select>
 
@@ -268,10 +242,10 @@ function eliminar(){
 
         </th>
         <th width="30">
-            <input type="text" style="width: 90%;" id="filter_antiguedad" />
+            <!--<input type="text" style="width: 90%;" id="filter_antiguedad" />-->
         </th>
         <th width="20">
-            <input type="text" style="width: 90%;" id="filter_km" />
+            <!--<input type="text" style="width: 90%;" id="filter_km" />-->
         </th>
     </tr>
         <tr>

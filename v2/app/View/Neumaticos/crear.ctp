@@ -4,91 +4,89 @@ $this->Js->buffer('$(".datepicker").datepicker({ dateFormat: "dd/mm/yy", altForm
 
 
 //formulario
-echo $this->Form->create(null, array('url' => '/alertas/crear','inputDefaults' => (array('div' => 'ym-gbox'))));
+echo $this->Form->create(null, array('url' => '/neumaticos/crear','inputDefaults' => (array('div' => 'ym-gbox'))));
 
 ?>
 
 
 
 <div class="ym-grid">
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Alerta.alerta');?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Alerta.corta',array('label'=>'Descripcion'));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Alerta.tipo',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $tipos));?></div>
+    <div class="ym-g20 ym-gl"><?php echo $this->Form->input('Neumatico.fecha',array('class'=>'datepicker','type'=>'text'));?></div>
+    <div class="ym-g40 ym-gl"><?php echo $this->Form->input('Neumatico.marca',array('label'=>'Marca'));?></div>
+    <div class="ym-g40 ym-gl"><?php echo $this->Form->input('Neumatico.modelo',array('label'=>'Modelo'));?></div>
 
+
+</div>
+<div class="ym-grid">
+    <div class="ym-g20 ym-gl"><?php echo $this->Form->input('Neumatico.medida',array('label'=>'Medida','maxlength'=>'10'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.fabricacion',array('label'=>'Fabricación (DOT)','maxlength'=>'4','type'=>'number','oninput' => 'this.value = this.value.slice(0, 4)'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.posicion',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $posiciones));?></div>
+
+</div>
+<div class="ym-grid">
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.temporada',array('label'=>'Temporada','empty' => 'Seleccionar', 'type'=>'select', 'options' => $temporadas));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.dibujo',array('label'=>'Medida MM Dibujo','maxlength'=>'2','type'=>'number','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.estado',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $estados));?></div>
 
 </div>
 
 <div class="ym-grid">
-    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.nivel',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $niveles));?></div>
-    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.unidad',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $unidades));?></div>
-    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.magnitud',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $magnitudes));?></div>
-    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.segmento',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $segmentos));?></div>
-
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Unidad.categoria_id',array('empty' => 'Seleccionar', 'type'=>'select'));?></div>
+    <div class="ym-g40 ym-gl"><?php echo $this->Form->input('Neumatico.unidad_id',array('empty' => 'Seleccionar', 'type'=>'select'));?></div>
+    <div class="ym-g20 ym-gl"><?php echo $this->Form->input('Neumatico.km');?></div>
+</div>
+<div class="ym-grid" style="display: flex; align-items: center;">
+    <div class="ym-g20 ym-gl">
+        <?php echo $this->Form->input('Neumatico.identificador', array('readonly' => 'readonly'));?>
+    </div>
+    <div class="ym-g10 ym-gl">
+        <button type="button" id="generarNumero">Generar</button>
+    </div>
 </div>
 
-<div class="ym-grid">
-    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.controla',array('type'=>'number', 'style'=>'width:60px;'));?></div>
-    <div class="ym-g25 ym-gl" id="divIniNum"><?php echo $this->Form->input('Alerta.inicio_num',array('label'=>'Inicio','type'=>'number', 'style'=>'width:60px;'));?></div>
-    <div class="ym-g25 ym-gl" id="divIniFecha" style="display:none"><?php echo $this->Form->input('Alerta.inicio_fecha',array('label'=>'Inicio','class'=>'datepicker','type'=>'text'));?></div>
-    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.fin_num',array('label'=>'Fin', 'type'=>'number', 'style'=>'width:60px;'));?></div>
-    <div class="ym-g25 ym-gl"><?php echo $this->Form->input('Alerta.recordatorio',array('type'=>'number', 'style'=>'width:60px;'));?></div>
-</div>
-
-<div class="ym-grid">
-    <?php echo $this->Form->input('Alerta.descripcion',array('label' => false, 'type' => 'textarea')); ?>
-</div>
-
-
-
-<span onclick="guardar('guardar.json',$('form').serialize(),{id:'w_alertas',url:'v2/alertas/index'});" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
+<span onclick="guardar('guardar.json',$('form').serialize(),{id:'w_neumaticos',url:'v2/neumaticos/index'});" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
 <?php echo $this->Form->end(); ?>
 
 <script>
-    $('#AlertaUnidad').change(function(){
+    $('#UnidadCategoriaId').change(function(){
+        if($(this).val()!=''){
+            $.ajax({
+                url: '<?php echo $this->Html->url('/reservas/getUnidads/', true);?>'+$(this).val(),
+                dataType: 'html',
 
-
-        switch ($(this).val()) {
-            case 'KM':
-                $('#AlertaMagnitud').val('');
-                $('#AlertaMagnitud').prop('disabled', true);
-                $('#divIniNum').show();
-                $('#divIniFecha').hide();
-                break;
-            case 'Tiempo':
-                $('#AlertaMagnitud').prop('disabled', false);
-                $('#divIniNum').hide();
-                $('#divIniFecha').show();
-                break;
-            case 'Reservas':
-                $('#AlertaMagnitud').val('');
-                $('#AlertaMagnitud').prop('disabled', true);
-                $('#divIniNum').show();
-                $('#divIniFecha').hide();
-                break;
-
+                success: function(data){
+                    $('#NeumaticoUnidadId').html(data);
+                }
+            });
+        }else{
+            $('#NeumaticoUnidadId').html('');
         }
-
     })
+    $('#NeumaticoUnidadId').change(function(){
+        var unidad_id = $(this).val();
+        if(unidad_id !== '') {
+            $.ajax({
+                url: '<?php echo $this->Html->url('/unidads/getKm/', true);?>'+unidad_id,
 
-    $('#AlertaTipo').change(function(){
+                type: 'GET',
 
-        switch ($(this).val()) {
-            case 'Flota':
-                $('#AlertaInicioNum').val('');
-                $('#AlertaInicioNum').prop('disabled', true);
-                $('#AlertaInicioFecha').val('');
-                $('#AlertaInicioFecha').prop('disabled', true);
-                $('#AlertaFinNum').val('');
-                $('#AlertaFinNum').prop('disabled', true);
-                break;
-            case 'General':
-                $('#AlertaInicioNum').prop('disabled', false);
-                $('#AlertaInicioFecha').prop('disabled', false);
-                $('#AlertaFinNum').prop('disabled', false);
-                break;
-
-
+                success: function(response) {
+                    $('#NeumaticoKm').val(response.km);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
         }
+    });
+    $('#generarNumero').click(function(){
+        var numeroAleatorio = generarNumeroAleatorio();
+        $('#NeumaticoIdentificador').val(numeroAleatorio);
+    });
 
-    })
+    function generarNumeroAleatorio() {
+        // Genera un número aleatorio único de 6 cifras
+        var numero = Math.floor(Math.random() * 900000) + 100000;
+        return numero.toString();
+    }
 </script>

@@ -331,5 +331,17 @@ class UnidadsController extends AppController {
         }
     }
 
+    public function getKm($unidad_id) {
+        $this->Unidad->id = $unidad_id;
+        $this->request->data = $this->Unidad->read();
+        $unidad = $this->request->data;
+        // Aquí haz la consulta a la base de datos para obtener los kilómetros correspondientes a la unidad seleccionada
+        $kilometros = // Obtén los kilómetros desde la base de datos
+
+            // Devuelve los kilómetros como respuesta JSON
+            $this->response->type('application/json');
+        $this->response->body(json_encode(['km' => $unidad['Unidad']['km']]));
+        return $this->response;
+    }
 }
 ?>
