@@ -101,10 +101,21 @@ class UsuarioAuditoriasController extends AppController {
 
         $rows = array();
 
+        // Obtener la fecha actual
+        $hoy = new DateTime();
         // Iterar sobre cada dÃ­a del mes
         for ($dia = 1; $dia <= cal_days_in_month(CAL_GREGORIAN, $mes, $year); $dia++) {
             // Obtener la fecha especÃ­fica del dÃ­a
             $fecha = date('Y-m-d', strtotime("$year-$mes-$dia"));
+
+            // Convertir la fecha a un objeto DateTime
+            $fecha_dt = new DateTime($fecha);
+
+            // Comparar la fecha generada con la fecha actual
+            if ($fecha_dt > $hoy) {
+                // Si la fecha generada es mayor que la fecha actual, salir del bucle
+                break;
+            }
 
             /*$condicionSearch5=array();
             if (($desde!='')&&($hasta!='')) {
