@@ -17,9 +17,13 @@ $this->Js->buffer('
                 createWindow("w_neumaticos_view","Gestion de neumaticos","'.$this->Html->url('/neumaticos/editar', true).'/"+data[0],"450","350");
             });
             $("#dataTable tr").click(function(e){
-                $("#dataTable tr").removeClass("row_selected");
-                $(this).toggleClass("row_selected");
-            });
+                if(e.shiftKey){
+                    $(this).toggleClass("row_selected");
+                }else{
+                    $("#dataTable tr").removeClass("row_selected");
+                    $(this).toggleClass("row_selected");
+                }
+             });
         },
         "aaSorting": [],
 		"sAjaxSource": "'.$this->Html->url('/neumaticos/dataTable', true).'",
@@ -118,50 +122,80 @@ $this->Js->buffer('
 ?>
 <script>
 
-function editar(){
-    var row = $("#dataTable tr.row_selected");
-    if(row.length == 0){
-        alert('Debe seleccionar un registro');
-    }else{
-        var data = oTable.fnGetData(row[0]);
+    function cambiarEstado() {
+        var ok = 1;
+        var estadoAnterior = null; // Variable para almacenar el estado de la primera fila seleccionada
+        var unidadAnterior = null; // Variable para almacenar la unidad de la primera fila seleccionada
 
-        createWindow("w_neumaticos_view","Gestion de neumaticos","<?php echo $this->Html->url('/neumaticos/editar', true);?>/"+data[0],"450","350");
+        var row = $("#dataTable tr.row_selected");
+        if (row.length == 0) {
+            alert('Debe seleccionar un registro');
+        } else {
+            var selected = new Array();
+            $('.row_selected').each(function (e, i) {
 
+                var data = oTable.fnGetData(i);
+
+                var estadoActual = data[11]; // Estado actual en la columna 11
+                var unidadActual = data[9]; // Unidad actual en la columna 9
+
+                if (estadoActual == 'Baja') {
+                    alert("No se pueden cambiar los estados de los neumaticos dados de baja");
+                    ok = 0;
+                    return false; // Detener el bucle each si los estados son diferentes
+                }
+
+                // Verificar si es la primera fila seleccionada
+                if (e === 0) {
+                    estadoAnterior = estadoActual; // Almacenar el estado de la primera fila
+                    unidadAnterior = unidadActual; // Almacenar la unidad de la primera fila
+                } else {
+                    // Comparar el estado actual con el estado almacenado
+                    if (estadoActual !== estadoAnterior) {
+                        alert("Todas las filas deben tener el mismo estado.");
+                        ok = 0;
+                        return false; // Detener el bucle each si los estados son diferentes
+                    }
+                    // Comparar la unidad actual con la unidad almacenada
+                    if (unidadActual !== unidadAnterior) {
+                        alert("Todas las filas deben pertenecer a la misma unidad.");
+                        ok = 0;
+                        return false; // Detener el bucle each si las unidades son diferentes
+                    }
+                }
+
+
+                // Verificar si ya se han seleccionado 4 filas
+                if (selected.length >= 4) {
+                    alert("No puedes seleccionar más de 4 filas.");
+                    ok = 0;
+                    return false; // Detener el bucle each si ya se han seleccionado 4 filas
+
+                }
+
+                selected.push(data[0]); // Agregar el elemento al arreglo de selección
+
+
+
+
+
+            });
+            //console.log(ok);
+            if (ok){
+                createWindow('w_neumaticos_estado','Cambiar estado de neumaticos','<?php echo $this->Html->url('/neumaticos/cambiar', true);?>/'+selected.join(','),'450','350');
+// Hacer algo con el arreglo 'selected'
+                //
+            }
+
+
+
+        }
     }
-}
-
-function eliminar(){
-
-	var row = $("#dataTable tr.row_selected");
-    if(row.length == 0){
-        alert('Debe seleccionar un registro');
-    }else{
-        if(confirm('Seguro desea eliminar el alerta?')){
-	    	var id = oTable.fnGetData(row[0]);
-
-	        $.ajax({
-	            url : '<?php echo $this->Html->url('/alertas/eliminar', true);?>',
-	            type : 'POST',
-	            dataType: 'json',
-	            data: {'id' : id},
-	            success : function(data){
-
-	               window.parent.dhxWins.window('w_alertas').attachURL('<?php echo $this->Html->url('/alertas/index', true);?>');
-
-	            }
-	        });
-	    }
-    }
-
-
-
-
-}
 
 </script>
 <ul class="action_bar">
     <li class="boton agregar"><a onclick="createWindow('w_neumaticos_add','Gestion de neumaticos','<?php echo $this->Html->url('/neumaticos/crear', true);?>','450','350');">Crear</a></li>
-    <li class="boton editar"><a onclick="editar();">Editar</a></li>
+    <li class="boton editar"><a onclick="cambiarEstado();">Estado</a></li>
     <!--<li class="boton anular"> <a onclick="eliminar();">Eliminar</a></li>-->
     <li class="filtro">Buscar <input id="data_search" type="text" with="10"/></li>
 </ul>
@@ -234,7 +268,8 @@ function eliminar(){
         <th width="30">
 
             <select id="filter_estado">
-                <option value="">Estado</option>
+                <option value="0">Estado</option>
+                <option value="1" selected="selected">Activas</option>
                 <option>En uso</option>
                 <option>En deposito</option>
                 <option>Baja</option>

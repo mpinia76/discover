@@ -1,9 +1,9 @@
 <?php
 class Neumatico extends AppModel {
 
-    public $belongsTo = array('Unidad');
+    //public $belongsTo = array('Unidad');
 
-
+    public $hasMany = array('NeumaticoEstado');
 
     public $validate = array(
         'fecha' => array(
@@ -45,11 +45,6 @@ class Neumatico extends AppModel {
             'required'   => true,
             'rule' => 'notEmpty',
             'message' => 'Ingrese una medida'
-        ),
-        'estado' => array(
-            'required'   => true,
-            'rule' => 'notEmpty',
-            'message' => 'Seleccione un estado'
         ),
         'identificador' => array(
             'required'   => true,

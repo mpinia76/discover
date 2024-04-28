@@ -1486,8 +1486,8 @@ CREATE TABLE `neumaticos` (
                                      `posicion` ENUM('DI', 'DD', 'TI', 'TD', 'Auxilio') NOT NULL,
                                      `temporada` ENUM('Verano', 'Invierno Clavos', 'Invierno Silice', 'Mixto') NOT NULL,
                                      `dibujo` VARCHAR(2) NULL DEFAULT NULL,
-                                     `estado` ENUM('En uso', 'En deposito','Baja') NOT NULL,
-                                     `km` INT(11) DEFAULT NULL,
+
+
                                      `identificador` VARCHAR(6) NULL DEFAULT NULL,
                                      PRIMARY KEY (`id`),
                                      INDEX `id` (`id`),
@@ -1503,3 +1503,30 @@ INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (48, 'Informe');
 
 ALTER TABLE `neumatico`
     ADD UNIQUE INDEX `identificador` (`identificador`);
+
+CREATE TABLE `neumatico_estados` (
+                              `id` INT(11) NOT NULL AUTO_INCREMENT,
+                              `neumatico_id` INT(11) DEFAULT NULL,
+                              `estado` ENUM('En uso', 'En deposito','Baja') NOT NULL,
+                              `fecha` DATE NULL DEFAULT NULL,
+                              `descripcion` VARCHAR(255) NULL DEFAULT NULL,
+                              `motivo` ENUM('Desgaste', 'Rotura', 'Robo', 'Venta') NULL DEFAULT NULL,
+                              `foto1` VARCHAR(255) NULL DEFAULT NULL,
+                              `foto2` VARCHAR(255) NULL DEFAULT NULL,
+                              `foto3` VARCHAR(255) NULL DEFAULT NULL,
+                              `desde` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+                              `hasta` DATETIME NULL DEFAULT NULL,
+                              `km` INT(11) DEFAULT 0,
+                              `km_unidad` INT(11) DEFAULT 0,
+                              PRIMARY KEY (`id`),
+                              INDEX `id` (`id`),
+                              INDEX `neumatico_id` (`neumatico_id`)
+)
+    COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1;
+
+ALTER TABLE `neumatico_estados`
+    ADD UNIQUE INDEX `neumatico_id_tipo` (`neumatico_id`, `tipo`);
+ALTER TABLE `neumatico_estados`
+    ADD CONSTRAINT `FK_neumatico_estados_neumaticos` FOREIGN KEY (`neumatico_id`) REFERENCES `neumaticos` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;
