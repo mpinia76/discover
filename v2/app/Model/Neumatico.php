@@ -41,11 +41,6 @@ class Neumatico extends AppModel {
             'rule' => 'notEmpty',
             'message' => 'Seleccione una temporada'
         ),
-        'dibujo' => array(
-            'required'   => true,
-            'rule' => 'notEmpty',
-            'message' => 'Ingrese una medida'
-        ),
         'identificador' => array(
             'required'   => true,
             'rule' => 'notEmpty',

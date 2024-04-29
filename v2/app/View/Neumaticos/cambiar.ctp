@@ -11,8 +11,8 @@ echo $this->Form->hidden('Neumatico.fecha_aux', array('value' => $fecha));
 ?>
 
 <div class="ym-grid">
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Unidad.categoria_id',array('empty' => 'Seleccionar', 'type'=>'select', 'default' => $defaultCategoria, 'disabled' => 'disabled'));?></div>
-    <div class="ym-g40 ym-gl"><?php echo $this->Form->input('Neumatico.unidad_id',array('empty' => 'Seleccionar', 'type'=>'select', 'default' => $defaultUnidad, 'disabled' => 'disabled'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Unidad.categoria_id',array('empty' => 'Seleccionar', 'type'=>'select', 'default' => $defaultCategoria, 'disabled' => $disabled));?></div>
+    <div class="ym-g40 ym-gl"><?php echo $this->Form->input('Neumatico.unidad_id',array('empty' => 'Seleccionar', 'type'=>'select', 'default' => $defaultUnidad, 'disabled' => $disabled));?></div>
     <div class="ym-g20 ym-gl"><?php echo $this->Form->input('NeumaticoEstado.km_unidad',array('label'=>'KM','value' => $km));?></div>
 </div>
 
@@ -27,7 +27,44 @@ echo $this->Form->hidden('Neumatico.fecha_aux', array('value' => $fecha));
 
 
 
-<span onclick="guardar('<?php echo $this->Html->url('/neumaticos/guardarCambio.json', true);?>',$('form').serialize(),{id:'w_neumaticos',url:'v2/neumaticos/index'});" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
+
+<span id="botonGuardar" onclick="guardarCerrando('<?php echo $this->Html->url('/neumaticos/guardarCambio.json', true);?>',$('form').serialize(),{id:'w_neumaticos',url:'v2/neumaticos/index'},'w_neumaticos_add');" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
 <?php echo $this->Form->end(); ?>
 
+<script>
+    $('#UnidadCategoriaId').change(function(){
+        if($(this).val()!=''){
+            $.ajax({
+                url: '<?php echo $this->Html->url('/reservas/getUnidads/', true);?>'+$(this).val(),
+                dataType: 'html',
 
+                success: function(data){
+                    $('#NeumaticoUnidadId').html(data);
+                }
+            });
+        }else{
+            $('#NeumaticoUnidadId').html('');
+        }
+    })
+    $('#NeumaticoUnidadId').change(function(){
+        var unidad_id = $(this).val();
+        if(unidad_id !== '') {
+            $.ajax({
+                url: '<?php echo $this->Html->url('/unidads/getKm/', true);?>'+unidad_id,
+
+                type: 'GET',
+
+                success: function(response) {
+                    $('#NeumaticoEstadoKmUnidad').val(response.km);
+                    $('#NeumaticoEstadoKmUnidadAux').val(response.km);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    });
+
+
+
+</script>

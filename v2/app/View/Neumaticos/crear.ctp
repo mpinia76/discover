@@ -5,7 +5,7 @@ $this->Js->buffer('$(".datepicker").datepicker({ dateFormat: "dd/mm/yy", altForm
 
 //formulario
 echo $this->Form->create(null, array('url' => '/neumaticos/crear','inputDefaults' => (array('div' => 'ym-gbox'))));
-echo $this->Form->input('NeumaticoEstado.km_unidad_aux');
+echo $this->Form->hidden('NeumaticoEstado.km_unidad_aux');
 ?>
 
 
@@ -25,7 +25,7 @@ echo $this->Form->input('NeumaticoEstado.km_unidad_aux');
 </div>
 <div class="ym-grid">
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.temporada',array('label'=>'Temporada','empty' => 'Seleccionar', 'type'=>'select', 'options' => $temporadas));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.dibujo',array('label'=>'Medida MM Dibujo','maxlength'=>'2','type'=>'number','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('NeumaticoEstado.dibujo',array('label'=>'Medida MM Dibujo','maxlength'=>'2','type'=>'number','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('NeumaticoEstado.estado',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $estados));?></div>
 
 </div>
@@ -100,4 +100,10 @@ echo $this->Form->input('NeumaticoEstado.km_unidad_aux');
         }
         return numeroAlfanumerico;
     }
+
+    $(document).ready(function() {
+        // Disparar el evento change del campo de selección de categoría al cargar la página
+        $('#UnidadCategoriaId').trigger('change');
+    });
+
 </script>

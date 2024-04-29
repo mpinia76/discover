@@ -1485,7 +1485,7 @@ CREATE TABLE `neumaticos` (
                                      `fabricacion` VARCHAR(4) NULL DEFAULT NULL,
                                      `posicion` ENUM('DI', 'DD', 'TI', 'TD', 'Auxilio') NOT NULL,
                                      `temporada` ENUM('Verano', 'Invierno Clavos', 'Invierno Silice', 'Mixto') NOT NULL,
-                                     `dibujo` VARCHAR(2) NULL DEFAULT NULL,
+
 
 
                                      `identificador` VARCHAR(6) NULL DEFAULT NULL,
@@ -1509,6 +1509,7 @@ CREATE TABLE `neumatico_estados` (
                               `neumatico_id` INT(11) DEFAULT NULL,
                               `estado` ENUM('En uso', 'En deposito','Baja') NOT NULL,
                               `fecha` DATE NULL DEFAULT NULL,
+                              `dibujo` VARCHAR(2) NULL DEFAULT NULL,
                               `descripcion` VARCHAR(255) NULL DEFAULT NULL,
                               `motivo` ENUM('Desgaste', 'Rotura', 'Robo', 'Venta') NULL DEFAULT NULL,
                               `foto1` VARCHAR(255) NULL DEFAULT NULL,
@@ -1527,6 +1528,6 @@ ENGINE=InnoDB
 AUTO_INCREMENT=1;
 
 ALTER TABLE `neumatico_estados`
-    ADD UNIQUE INDEX `neumatico_id_tipo` (`neumatico_id`, `tipo`);
+    ADD UNIQUE INDEX `neumatico_id_estado` (`neumatico_id`, `estado`);
 ALTER TABLE `neumatico_estados`
     ADD CONSTRAINT `FK_neumatico_estados_neumaticos` FOREIGN KEY (`neumatico_id`) REFERENCES `neumaticos` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;

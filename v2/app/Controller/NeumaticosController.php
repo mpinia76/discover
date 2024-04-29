@@ -202,7 +202,7 @@ class NeumaticosController extends AppController {
                 $neumatico['Neumatico']['id'],
 
                 //date('d/m/Y',strtotime($neumatico['Neumatico']['fecha'])),
-                $neumatico['Neumatico']['fecha'],
+                $neumatico['NeumaticoEstado']['fecha'],
                 $neumatico['Neumatico']['marca'],
                 $neumatico['Neumatico']['modelo'],
                 $neumatico['Neumatico']['fabricacion'],
@@ -468,6 +468,7 @@ class NeumaticosController extends AppController {
                         $this->NeumaticoEstado->create();
                         $this->NeumaticoEstado->set('neumatico_id',$this->Neumatico->id);
                         $this->NeumaticoEstado->set('fecha',$neumatico['fecha']);
+                        $this->NeumaticoEstado->set('dibujo',$this->request->data['NeumaticoEstado']['dibujo']);
                         $this->NeumaticoEstado->set('estado',$this->request->data['NeumaticoEstado']['estado']);
                         $this->NeumaticoEstado->set('desde',$neumatico['fecha']);
                         $this->NeumaticoEstado->set('km_unidad',$this->request->data['NeumaticoEstado']['km_unidad']);
@@ -524,20 +525,22 @@ class NeumaticosController extends AppController {
 
         $idsArray = explode(",",$ids);
         //$this->loadModel('PuntoVenta');
-        $neumatico = $this->Neumatico->find('first', array(
+        /*$neumatico = $this->Neumatico->find('first', array(
             'conditions' => array('Neumatico.id' => $idsArray[0]),
-            'joins' => array(
-                array(
-                    'table' => 'neumatico_estados',
-                    'alias' => 'NeumaticoEstado',
-                    'type' => 'LEFT',
-                    'conditions' => array(
-                        'NeumaticoEstado.neumatico_id = Neumatico.id',
-                        'NeumaticoEstado.hasta IS NULL' // Condición para obtener el estado actual
-                    )
+        ));*/
+
+
+            // Recuperar los estados asociados con el neumático
+            $neumatico = $this->Neumatico->NeumaticoEstado->find('first', array(
+                'conditions' => array(
+                    'NeumaticoEstado.neumatico_id' => $idsArray[0],
+                    'NeumaticoEstado.hasta IS NULL' // Filtrar solo el estado actual
                 )
-            )
-        ));
+            ));
+
+            // Asignar los estados al neumático
+            //$neumatico['NeumaticoEstado'] = $neumaticoEstados;
+
 
         //print_r($neumatico);
         $this->loadModel('Categoria');
@@ -559,9 +562,13 @@ class NeumaticosController extends AppController {
 
         //$this->set('neumatico', $neumatico);
         //$this->set('km',$neumatico['NeumaticoEstado'][0]['km_unidad']);
-        $this->set('fecha',$neumatico['NeumaticoEstado'][0]['fecha']);
-        $this->set('dibujo',$neumatico['Neumatico']['dibujo']);
+        //print_r($neumatico);
+        $disabled = ($neumatico['NeumaticoEstado']['estado']=='En uso')?'disabled':'';
+        //echo $neumatico['NeumaticoEstado']['estado'].' - '.$disabled;
+        $this->set('fecha',$neumatico['NeumaticoEstado']['fecha']);
+        $this->set('dibujo',$neumatico['NeumaticoEstado']['dibujo']);
         $this->set('ids', $ids);
+        $this->set('disabled', $disabled);
 
 
     }
@@ -619,38 +626,302 @@ class NeumaticosController extends AppController {
                 $this->set('mensaje','No se pudo guardar');
                 $this->set('detalle',$errores);
             }else{
-                $grabar=1;
-                try {
-                    $this->Neumatico->save();
+                $ids =$this->request->data['Neumatico']['ids'];
+                $ids = explode(",",$ids);
+                $grabar = 1;
+                foreach ($ids as $id) {
 
-                    try {
-                        $this->NeumaticoEstado->create();
-                        $this->NeumaticoEstado->set('neumatico_id',$this->Neumatico->id);
-                        $this->NeumaticoEstado->set('fecha',$neumatico['fecha']);
-                        $this->NeumaticoEstado->set('estado',$this->request->data['NeumaticoEstado']['estado']);
-                        $this->NeumaticoEstado->set('desde',$neumatico['fecha']);
-                        $this->NeumaticoEstado->set('km_unidad',$this->request->data['NeumaticoEstado']['km_unidad']);
-                        $this->NeumaticoEstado->save();
+                        //echo 'id: '.$id;
+                        /*$neumatico = $this->Neumatico->find('first', array(
+                            'conditions' => array('Neumatico.id' => $id),
+                            'joins' => array(
+                                array(
+                                    'table' => 'neumatico_estados',
+                                    'alias' => 'NeumaticoEstado',
+                                    'type' => 'LEFT',
+                                    'conditions' => array(
+                                        'NeumaticoEstado.neumatico_id = Neumatico.id',
+                                        'NeumaticoEstado.hasta IS NULL' // Condición para obtener el estado actual
+                                    )
+                                )
+                            )
+                        ));*/
 
-                    } catch (PDOException $e) {
-                        if ($e->errorInfo[1] == '1062') {
-                            $errores['NeumaticoEstado']['estado'] = 'Estado repetido';
-                            $grabar = 0;
-                        } else {
-                            $errores['Neumatico']['identificador'] = $e->errorInfo[1];
-                            $grabar = 0;
+                        $neumatico = $this->Neumatico->NeumaticoEstado->find('first', array(
+                            'conditions' => array(
+                                'NeumaticoEstado.neumatico_id' => $id,
+                                'NeumaticoEstado.hasta IS NULL' // Filtrar solo el estado actual
+                            )
+                        ));
+
+
+                        $estado = ($neumatico['NeumaticoEstado']['estado']=='En uso')?'En deposito':'En uso';
+                    $this->Neumatico->id = $id;
+                    $neumaticoAux = $this->Neumatico->read();
+                        if ($estado=='En deposito'){
+                            $km=$neumatico['NeumaticoEstado']['km']+$this->request->data['NeumaticoEstado']['km_unidad']-$neumatico['NeumaticoEstado']['km_unidad'];
+
+                            $this->Neumatico->set('unidad_id', null);
+
                         }
+                        else{
+                            $km=$neumatico['NeumaticoEstado']['km'];
+                            $this->Neumatico->set('unidad_id', $this->request->data['Neumatico']['unidad_id']);
+                        }
+                        $this->Neumatico->save();
+                        //print_r($neumatico);
+                        //$this->Neumatico->save();
+
+                        try {
+                            $this->NeumaticoEstado->id = $neumatico['NeumaticoEstado']['id'];
+                            $neumaticoEstado = $this->NeumaticoEstado->read();
+
+                            $this->NeumaticoEstado->set('hasta', $this->request->data['Neumatico']['fecha']);
+                            $this->NeumaticoEstado->save();
+                            $this->NeumaticoEstado->create();
+                            $this->NeumaticoEstado->set('neumatico_id', $id);
+                            $this->NeumaticoEstado->set('fecha', $this->request->data['Neumatico']['fecha']);
+                            $this->NeumaticoEstado->set('estado', $estado);
+                            $this->NeumaticoEstado->set('desde', $this->request->data['Neumatico']['fecha']);
+                            $this->NeumaticoEstado->set('dibujo', $this->request->data['Neumatico']['dibujo']);
+                            $this->NeumaticoEstado->set('km_unidad', $this->request->data['NeumaticoEstado']['km_unidad']);
+                            $this->NeumaticoEstado->set('km', $km);
+
+                            $this->NeumaticoEstado->save();
+
+                        } catch (PDOException $e) {
+                            if ($e->errorInfo[1] == '1062') {
+                                $errores['NeumaticoEstado']['estado'] = 'Estado repetido';
+                                $grabar = 0;
+                            } else {
+                                $errores['Neumatico']['identificador'] = $e->errorInfo[1];
+                                $grabar = 0;
+                            }
+                        }
+
+
+
+
+                }
+                if($grabar) {
+                    $this->Neumatico->commit();
+                    $this->NeumaticoEstado->commit();
+                    $this->set('resultado','OK');
+                    $this->set('mensaje','Datos guardados');
+                    $this->set('detalle','');
+                }
+                else
+                {
+                    $this->Neumatico->rollback();
+                    $this->NeumaticoEstado->rollback();
+                    $this->set('resultado','ERROR');
+                    $this->set('mensaje','No se pudo guardar');
+                    $this->set('detalle',$errores);
+                }
+            }
+            $this->set('_serialize', array(
+                'resultado',
+                'mensaje' ,
+                'detalle'
+            ));
+        }
+    }
+
+
+    public function baja($id){
+        $this->layout = 'form';
+
+
+        $neumatico = $this->Neumatico->NeumaticoEstado->find('first', array(
+            'conditions' => array(
+                'NeumaticoEstado.neumatico_id' => $id,
+                'NeumaticoEstado.hasta IS NULL' // Filtrar solo el estado actual
+            )
+        ));
+
+        $unidad_id = $neumatico['Neumatico']['unidad_id'];
+        if ($unidad_id) {
+            $this->loadModel('Unidad');
+            $unidad = $this->Unidad->find('first',array('conditions'=>array('Unidad.id'=>$unidad_id)));
+
+
+            //print_r($unidad);
+            $this->set('km',$unidad['Unidad']['km']);
+        }
+
+
+        $this->set('fecha',$neumatico['NeumaticoEstado']['fecha']);
+        $this->set('id', $id);
+        $this->set('motivos',array('Desgaste'=>'Desgaste','Rotura'=>'Rotura','Robo'=>'Robo','Venta'=>'Venta'));
+
+
+    }
+
+    public function guardarBaja(){
+
+
+
+        print_r($this->request->data);
+        if(!empty($this->request->data)) {
+
+            $grabar = 1;
+            $this->Neumatico->begin();
+            $this->loadModel('NeumaticoEstado');
+            $this->NeumaticoEstado->begin();
+
+
+
+
+            /*if($this->request->data['NeumaticoEstado']['km_unidad']<$this->request->data['NeumaticoEstado']['km_unidad_aux']){
+                $errores['NeumaticoEstado']['km_unidad'] = 'Los KM no pueden ser menores a los actuales de la unidad';
+            }*/
+
+            if (empty($this->request->data['Neumatico']['fecha'])) {
+                $errores['Neumatico']['fecha'][] = 'Ingrese una fecha valida';
+            }
+            //print_r($this->request->data);
+            if ($this->dateFormatSQL($this->request->data['Neumatico']['fecha'])<$this->dateFormatSQL($this->request->data['Neumatico']['fecha_aux'])) {
+                $errores['Neumatico']['fecha'][] = 'La fecha no puede ser menor a la del estado actual';
+            }
+
+            if (empty($this->request->data['NeumaticoEstado']['motivo'])) {
+                $errores['NeumaticoEstado']['motivo'][] = 'Seleccione un motivo';
+            }
+
+            if (empty($this->request->data['NeumaticoEstado']['descripcion'])) {
+                $errores['NeumaticoEstado']['descripcion'][] = 'Ingrese una descripcion';
+            }
+
+
+
+            //muestro resultado
+            if(isset($errores) and count($errores) > 0){
+                $this->set('resultado','ERROR');
+                $this->set('mensaje','No se pudo guardar');
+                $this->set('detalle',$errores);
+            }else{
+
+                $id=$this->request->data['Neumatico']['id'];
+
+                $neumatico = $this->Neumatico->NeumaticoEstado->find('first', array(
+                    'conditions' => array(
+                        'NeumaticoEstado.neumatico_id' => $id,
+                        'NeumaticoEstado.hasta IS NULL' // Filtrar solo el estado actual
+                    )
+                ));
+
+
+                $estado = $neumatico['NeumaticoEstado']['estado'];
+
+                if ($estado=='Baja') {
+                    $errores['Neumatico']['fecha'][] = 'Ya fue dado de baja';
+                }
+
+                $foto1 = $this->request->data['NeumaticoEstado']['foto1'];
+                $foto2 = $this->request->data['NeumaticoEstado']['foto2'];
+                $foto3 = $this->request->data['NeumaticoEstado']['foto3'];
+
+
+
+                // Directorio donde guardar las imágenes
+                $uploadDir = WWW_ROOT . 'img' . DS . 'neumaticos' . DS;
+
+                // Define las extensiones permitidas
+                $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');
+                // Función para validar la extensión del archivo
+
+
+                // Verifica y guarda los archivos de imagen con extensiones válidas
+                if (!empty($foto1['name'])) {
+                    $filename = $foto1['name'];
+                    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                    if (in_array(strtolower($extension), $allowedExtensions)){
+                        move_uploaded_file($foto1['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
+                        // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
                     }
+                    else{
+                        $errores['NeumaticoEstado']['foto1'] = 'NO es una foto';
+                    }
+
+                }
+
+                if (!empty($foto2['name'])) {
+                    $filename = $foto2['name'];
+                    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                    if (in_array(strtolower($extension), $allowedExtensions)){
+                        move_uploaded_file($foto2['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
+                        // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
+                    }
+                    else{
+                        $errores['NeumaticoEstado']['foto2'] = 'NO es una foto';
+                    }
+
+                }
+
+                if (!empty($foto3['name'])) {
+                    $filename = $foto3['name'];
+                    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                    if (in_array(strtolower($extension), $allowedExtensions)){
+                        move_uploaded_file($foto3['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
+                        // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
+                    }
+                    else{
+                        $errores['NeumaticoEstado']['foto3'] = 'NO es una foto';
+                    }
+
+                }
+
+
+
+                $this->Neumatico->id = $id;
+                $neumaticoAux = $this->Neumatico->read();
+                if ($estado=='En deposito'){
+
+
+                    $km=$neumatico['NeumaticoEstado']['km'];
+
+                }
+                else{
+
+                    $km=$neumatico['NeumaticoEstado']['km']+$this->request->data['NeumaticoEstado']['km_unidad']-$neumatico['NeumaticoEstado']['km_unidad'];
+                }
+                $this->Neumatico->set('unidad_id', null);
+                $this->Neumatico->save();
+                //print_r($neumatico);
+                //$this->Neumatico->save();
+
+
+
+                try {
+                    $this->NeumaticoEstado->id = $neumatico['NeumaticoEstado']['id'];
+                    $neumaticoEstado = $this->NeumaticoEstado->read();
+
+                    $this->NeumaticoEstado->set('hasta', $this->request->data['Neumatico']['fecha']);
+                    $this->NeumaticoEstado->save();
+                    $this->NeumaticoEstado->create();
+                    $this->NeumaticoEstado->set('neumatico_id', $id);
+                    $this->NeumaticoEstado->set('fecha', $this->request->data['Neumatico']['fecha']);
+                    $this->NeumaticoEstado->set('estado', 'Baja');
+                    $this->NeumaticoEstado->set('desde', $this->request->data['Neumatico']['fecha']);
+                   // $this->NeumaticoEstado->set('dibujo', $this->request->data['Neumatico']['dibujo']);
+                    $this->NeumaticoEstado->set('km_unidad', $this->request->data['NeumaticoEstado']['km_unidad']);
+                    $this->NeumaticoEstado->set('motivo', $this->request->data['NeumaticoEstado']['motivo']);
+                    $this->NeumaticoEstado->set('descripcion', $this->request->data['NeumaticoEstado']['descripcion']);
+                    $this->NeumaticoEstado->set('foto1', $foto1['name']);
+                    $this->NeumaticoEstado->set('foto2', $foto2['name']);
+                    $this->NeumaticoEstado->set('foto3', $foto3['name']);
+                    $this->NeumaticoEstado->save();
 
                 } catch (PDOException $e) {
                     if ($e->errorInfo[1] == '1062') {
-                        $errores['Neumatico']['identificador'] = 'Identificador repetido';
+                        $errores['NeumaticoEstado']['estado'] = 'Estado repetido';
                         $grabar = 0;
                     } else {
                         $errores['Neumatico']['identificador'] = $e->errorInfo[1];
                         $grabar = 0;
                     }
                 }
+
 
 
 

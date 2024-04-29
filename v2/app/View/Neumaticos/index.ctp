@@ -192,11 +192,34 @@ $this->Js->buffer('
         }
     }
 
+    function baja(){
+
+        var row = $("#dataTable tr.row_selected");
+        if(row.length == 0){
+            alert('Debe seleccionar un registro');
+        }else{
+            var data = oTable.fnGetData(row[0]);
+            if (data[11]=='Baja'){
+                alert("Neumatico ya dado de baja");
+
+                return false; // Detener el bucle each si ya se han seleccionado 4 filas
+
+            }
+            else{
+                createWindow('w_neumaticos_baja','Baja de neumatico','<?php echo $this->Html->url('/neumaticos/baja', true);?>/'+data[0],'450','350');
+            }
+        }
+
+
+
+
+    }
+
 </script>
 <ul class="action_bar">
     <li class="boton agregar"><a onclick="createWindow('w_neumaticos_add','Gestion de neumaticos','<?php echo $this->Html->url('/neumaticos/crear', true);?>','450','350');">Crear</a></li>
     <li class="boton editar"><a onclick="cambiarEstado();">Estado</a></li>
-    <!--<li class="boton anular"> <a onclick="eliminar();">Eliminar</a></li>-->
+    <li class="boton anular"> <a onclick="baja();">Baja</a></li>
     <li class="filtro">Buscar <input id="data_search" type="text" with="10"/></li>
 </ul>
 
