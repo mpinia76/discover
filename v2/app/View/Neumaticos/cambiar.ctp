@@ -28,7 +28,7 @@ echo $this->Form->hidden('Neumatico.fecha_aux', array('value' => $fecha));
 
 
 
-<span id="botonGuardar" onclick="guardarCerrando('<?php echo $this->Html->url('/neumaticos/guardarCambio.json', true);?>',$('form').serialize(),{id:'w_neumaticos',url:'v2/neumaticos/index'},'w_neumaticos_add');" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
+<span id="botonGuardar" onclick="guardarCerrando('<?php echo $this->Html->url('/neumaticos/guardarCambio.json', true);?>',$('form').serialize(),{id:'w_neumaticos',url:'v2/neumaticos/index'},'w_neumaticos_estado');" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
 <?php echo $this->Form->end(); ?>
 
 <script>

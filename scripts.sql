@@ -1527,7 +1527,6 @@ CREATE TABLE `neumatico_estados` (
 ENGINE=InnoDB
 AUTO_INCREMENT=1;
 
-ALTER TABLE `neumatico_estados`
-    ADD UNIQUE INDEX `neumatico_id_estado` (`neumatico_id`, `estado`);
+
 ALTER TABLE `neumatico_estados`
     ADD CONSTRAINT `FK_neumatico_estados_neumaticos` FOREIGN KEY (`neumatico_id`) REFERENCES `neumaticos` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;

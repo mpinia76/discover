@@ -88,7 +88,7 @@ class NeumaticosController extends AppController {
                     )
                 );
             }
-            else{
+            elseif ($_GET['sSearch_11']!='Estado'){
                 $condicionSearch11 = array('NeumaticoEstado.estado = '=>$_GET['sSearch_11']);
             }
         }
@@ -751,6 +751,7 @@ class NeumaticosController extends AppController {
 
 
         $this->set('fecha',$neumatico['NeumaticoEstado']['fecha']);
+        $this->set('dibujo',$neumatico['NeumaticoEstado']['dibujo']);
         $this->set('id', $id);
         $this->set('motivos',array('Desgaste'=>'Desgaste','Rotura'=>'Rotura','Robo'=>'Robo','Venta'=>'Venta'));
 
@@ -761,7 +762,7 @@ class NeumaticosController extends AppController {
 
 
 
-        print_r($this->request->data);
+        //print_r($this->request->data);
         if(!empty($this->request->data)) {
 
             $grabar = 1;
@@ -792,7 +793,76 @@ class NeumaticosController extends AppController {
                 $errores['NeumaticoEstado']['descripcion'][] = 'Ingrese una descripcion';
             }
 
+            $id=$this->request->data['Neumatico']['id'];
 
+            $neumatico = $this->Neumatico->NeumaticoEstado->find('first', array(
+                'conditions' => array(
+                    'NeumaticoEstado.neumatico_id' => $id,
+                    'NeumaticoEstado.hasta IS NULL' // Filtrar solo el estado actual
+                )
+            ));
+
+
+            $estado = $neumatico['NeumaticoEstado']['estado'];
+
+            if ($estado=='Baja') {
+                $errores['Neumatico']['fecha'][] = 'Ya fue dado de baja';
+            }
+
+            $foto1 = $this->request->data['NeumaticoEstado']['foto1'];
+            $foto2 = $this->request->data['NeumaticoEstado']['foto2'];
+            $foto3 = $this->request->data['NeumaticoEstado']['foto3'];
+
+
+
+            // Directorio donde guardar las imágenes
+            $uploadDir = WWW_ROOT . 'img' . DS . 'neumaticos' . DS;
+
+            //echo $uploadDir;
+            // Define las extensiones permitidas
+            $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');
+            // Función para validar la extensión del archivo
+
+
+            // Verifica y guarda los archivos de imagen con extensiones válidas
+            if (!empty($foto1['name'])) {
+                $filename = $foto1['name'];
+                $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                if (in_array(strtolower($extension), $allowedExtensions)){
+                    move_uploaded_file($foto1['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
+                    // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
+                }
+                else{
+                    $errores['NeumaticoEstado']['foto1'] = 'NO es una imagen';
+                }
+
+            }
+
+            if (!empty($foto2['name'])) {
+                $filename = $foto2['name'];
+                $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                if (in_array(strtolower($extension), $allowedExtensions)){
+                    move_uploaded_file($foto2['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
+                    // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
+                }
+                else{
+                    $errores['NeumaticoEstado']['foto2'] = 'NO es una imagen';
+                }
+
+            }
+
+            if (!empty($foto3['name'])) {
+                $filename = $foto3['name'];
+                $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                if (in_array(strtolower($extension), $allowedExtensions)){
+                    move_uploaded_file($foto3['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
+                    // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
+                }
+                else{
+                    $errores['NeumaticoEstado']['foto3'] = 'NO es una imagen';
+                }
+
+            }
 
             //muestro resultado
             if(isset($errores) and count($errores) > 0){
@@ -801,75 +871,7 @@ class NeumaticosController extends AppController {
                 $this->set('detalle',$errores);
             }else{
 
-                $id=$this->request->data['Neumatico']['id'];
 
-                $neumatico = $this->Neumatico->NeumaticoEstado->find('first', array(
-                    'conditions' => array(
-                        'NeumaticoEstado.neumatico_id' => $id,
-                        'NeumaticoEstado.hasta IS NULL' // Filtrar solo el estado actual
-                    )
-                ));
-
-
-                $estado = $neumatico['NeumaticoEstado']['estado'];
-
-                if ($estado=='Baja') {
-                    $errores['Neumatico']['fecha'][] = 'Ya fue dado de baja';
-                }
-
-                $foto1 = $this->request->data['NeumaticoEstado']['foto1'];
-                $foto2 = $this->request->data['NeumaticoEstado']['foto2'];
-                $foto3 = $this->request->data['NeumaticoEstado']['foto3'];
-
-
-
-                // Directorio donde guardar las imágenes
-                $uploadDir = WWW_ROOT . 'img' . DS . 'neumaticos' . DS;
-
-                // Define las extensiones permitidas
-                $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');
-                // Función para validar la extensión del archivo
-
-
-                // Verifica y guarda los archivos de imagen con extensiones válidas
-                if (!empty($foto1['name'])) {
-                    $filename = $foto1['name'];
-                    $extension = pathinfo($filename, PATHINFO_EXTENSION);
-                    if (in_array(strtolower($extension), $allowedExtensions)){
-                        move_uploaded_file($foto1['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
-                        // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
-                    }
-                    else{
-                        $errores['NeumaticoEstado']['foto1'] = 'NO es una foto';
-                    }
-
-                }
-
-                if (!empty($foto2['name'])) {
-                    $filename = $foto2['name'];
-                    $extension = pathinfo($filename, PATHINFO_EXTENSION);
-                    if (in_array(strtolower($extension), $allowedExtensions)){
-                        move_uploaded_file($foto2['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
-                        // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
-                    }
-                    else{
-                        $errores['NeumaticoEstado']['foto2'] = 'NO es una foto';
-                    }
-
-                }
-
-                if (!empty($foto3['name'])) {
-                    $filename = $foto3['name'];
-                    $extension = pathinfo($filename, PATHINFO_EXTENSION);
-                    if (in_array(strtolower($extension), $allowedExtensions)){
-                        move_uploaded_file($foto3['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
-                        // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
-                    }
-                    else{
-                        $errores['NeumaticoEstado']['foto3'] = 'NO es una foto';
-                    }
-
-                }
 
 
 
@@ -903,8 +905,9 @@ class NeumaticosController extends AppController {
                     $this->NeumaticoEstado->set('fecha', $this->request->data['Neumatico']['fecha']);
                     $this->NeumaticoEstado->set('estado', 'Baja');
                     $this->NeumaticoEstado->set('desde', $this->request->data['Neumatico']['fecha']);
-                   // $this->NeumaticoEstado->set('dibujo', $this->request->data['Neumatico']['dibujo']);
+                    $this->NeumaticoEstado->set('dibujo', $this->request->data['Neumatico']['dibujo']);
                     $this->NeumaticoEstado->set('km_unidad', $this->request->data['NeumaticoEstado']['km_unidad']);
+                    $this->NeumaticoEstado->set('km', $km);
                     $this->NeumaticoEstado->set('motivo', $this->request->data['NeumaticoEstado']['motivo']);
                     $this->NeumaticoEstado->set('descripcion', $this->request->data['NeumaticoEstado']['descripcion']);
                     $this->NeumaticoEstado->set('foto1', $foto1['name']);
