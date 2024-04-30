@@ -1485,9 +1485,6 @@ CREATE TABLE `neumaticos` (
                                      `fabricacion` VARCHAR(4) NULL DEFAULT NULL,
                                      `posicion` ENUM('DI', 'DD', 'TI', 'TD', 'Auxilio') NOT NULL,
                                      `temporada` ENUM('Verano', 'Invierno Clavos', 'Invierno Silice', 'Mixto') NOT NULL,
-
-
-
                                      `identificador` VARCHAR(6) NULL DEFAULT NULL,
                                      PRIMARY KEY (`id`),
                                      INDEX `id` (`id`),
@@ -1507,6 +1504,7 @@ ALTER TABLE `neumatico`
 CREATE TABLE `neumatico_estados` (
                               `id` INT(11) NOT NULL AUTO_INCREMENT,
                               `neumatico_id` INT(11) DEFAULT NULL,
+                              `unidad_id` INT(11) DEFAULT NULL,
                               `estado` ENUM('En uso', 'En deposito','Baja') NOT NULL,
                               `fecha` DATE NULL DEFAULT NULL,
                               `dibujo` VARCHAR(2) NULL DEFAULT NULL,
@@ -1521,7 +1519,8 @@ CREATE TABLE `neumatico_estados` (
                               `km_unidad` INT(11) DEFAULT 0,
                               PRIMARY KEY (`id`),
                               INDEX `id` (`id`),
-                              INDEX `neumatico_id` (`neumatico_id`)
+                              INDEX `neumatico_id` (`neumatico_id`),
+                              INDEX `unidad_id` (`unidad_id`)
 )
     COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB

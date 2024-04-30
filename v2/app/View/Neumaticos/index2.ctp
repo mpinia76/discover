@@ -12,10 +12,7 @@ $this->Js->buffer('
             "sUrl": "/dataTables.spanish.txt"
         },
         "fnDrawCallback": function( oSettings ) {
-            $("#dataTable tr").unbind("dblclick").dblclick(function(){
-                var data = oTable.fnGetData( this );
-                createWindow("w_neumaticos_view","Gestion de neumaticos","'.$this->Html->url('/neumaticos/editar', true).'/"+data[0],"450","350");
-            });
+            
             $("#dataTable tr").click(function(e){
                 if(e.shiftKey){
                     $(this).toggleClass("row_selected");
@@ -26,7 +23,7 @@ $this->Js->buffer('
              });
         },
         "aaSorting": [],
-		"sAjaxSource": "'.$this->Html->url('/neumaticos/dataTable', true).'",
+		"sAjaxSource": "'.$this->Html->url('/neumaticos/dataTable2', true).'/'.$id.'",
         "bDeferRender": true,
         "aoColumns": [
             {"bVisible": false },
@@ -42,7 +39,11 @@ $this->Js->buffer('
             null,
             null,
             {"bSortable": false},
-            {"bSortable": false}
+            {"bSortable": false},
+            {"sType": "date-uk"},
+            {"sType": "date-uk"},
+            null,
+            null
         ]
     });
     $(".date_filter").change(function(){ oTable.fnDraw(); })
@@ -51,7 +52,7 @@ $this->Js->buffer('
 ');
 
 //filtrar total de resultados
-$this->Js->buffer('
+/*$this->Js->buffer('
     $("#total_rows").change(function(){
         oTable.fnReloadAjax("dataTable/"+$(this).val());
     });
@@ -110,138 +111,28 @@ $this->Js->buffer('
 
 
 
-');
+');*/
 
 //abrir ventanas
 $this->Js->buffer('
     dhxWins = parent.dhxWins;
-    position = dhxWins.window("w_neumaticos").getPosition();
+    position = dhxWins.window("w_neumatico_estados").getPosition();
     xpos = position[0];
     ypos = position[1];
 ');
 ?>
 <script>
 
-    function cambiarEstado() {
-        var ok = 1;
-        var estadoAnterior = null; // Variable para almacenar el estado de la primera fila seleccionada
-        var unidadAnterior = null; // Variable para almacenar la unidad de la primera fila seleccionada
-
-        var row = $("#dataTable tr.row_selected");
-        if (row.length == 0) {
-            alert('Debe seleccionar un registro');
-        } else {
-            var selected = new Array();
-            $('.row_selected').each(function (e, i) {
-
-                var data = oTable.fnGetData(i);
-
-                var estadoActual = data[11]; // Estado actual en la columna 11
-                var unidadActual = data[9]; // Unidad actual en la columna 9
-
-                if (estadoActual == 'Baja') {
-                    alert("No se pueden cambiar los estados de los neumaticos dados de baja");
-                    ok = 0;
-                    return false; // Detener el bucle each si los estados son diferentes
-                }
-
-                // Verificar si es la primera fila seleccionada
-                if (e === 0) {
-                    estadoAnterior = estadoActual; // Almacenar el estado de la primera fila
-                    unidadAnterior = unidadActual; // Almacenar la unidad de la primera fila
-                } else {
-                    // Comparar el estado actual con el estado almacenado
-                    if (estadoActual !== estadoAnterior) {
-                        alert("Todas las filas deben tener el mismo estado.");
-                        ok = 0;
-                        return false; // Detener el bucle each si los estados son diferentes
-                    }
-                    // Comparar la unidad actual con la unidad almacenada
-                    if (unidadActual !== unidadAnterior) {
-                        alert("Todas las filas deben pertenecer a la misma unidad.");
-                        ok = 0;
-                        return false; // Detener el bucle each si las unidades son diferentes
-                    }
-                }
-
-
-                // Verificar si ya se han seleccionado 4 filas
-                if (selected.length >= 4) {
-                    alert("No puedes seleccionar más de 4 filas.");
-                    ok = 0;
-                    return false; // Detener el bucle each si ya se han seleccionado 4 filas
-
-                }
-
-                selected.push(data[0]); // Agregar el elemento al arreglo de selección
-
-
-
-
-
-            });
-            //console.log(ok);
-            if (ok){
-                createWindow('w_neumaticos_estado','Cambiar estado de neumaticos','<?php echo $this->Html->url('/neumaticos/cambiar', true);?>/'+selected.join(','),'450','350');
-// Hacer algo con el arreglo 'selected'
-                //
-            }
-
-
-
-        }
-    }
-
-    function baja(){
-
-        var row = $("#dataTable tr.row_selected");
-        if(row.length == 0){
-            alert('Debe seleccionar un registro');
-        }else{
-            var data = oTable.fnGetData(row[0]);
-            if (data[11]=='Baja'){
-                alert("Neumatico ya dado de baja");
-
-                return false; // Detener el bucle each si ya se han seleccionado 4 filas
-
-            }
-            else{
-                createWindow('w_neumaticos_baja','Baja de neumatico','<?php echo $this->Html->url('/neumaticos/baja', true);?>/'+data[0],'450','350');
-            }
-        }
-
-
-
-
-    }
-
-    function detalle(){
-
-        var row = $("#dataTable tr.row_selected");
-        if(row.length == 0){
-            alert('Debe seleccionar un registro');
-        }else{
-            var data = oTable.fnGetData(row[0]);
-
-
-                createWindow('w_neumaticos_detalle','Detalle de neumatico','<?php echo $this->Html->url('/neumaticos/index2', true);?>/'+data[0],'650','350');
-
-        }
-
-
-
-
-    }
 
 
 </script>
 <ul class="action_bar">
-    <li class="boton agregar"><a onclick="createWindow('w_neumaticos_add','Gestion de neumaticos','<?php echo $this->Html->url('/neumaticos/crear', true);?>','450','350');">Crear</a></li>
+    <!--<li class="boton agregar"><a onclick="createWindow('w_neumaticos_add','Gestion de neumaticos','<?php echo $this->Html->url('/neumaticos/crear', true);?>','450','350');">Crear</a></li>
     <li class="boton editar"><a onclick="cambiarEstado();">Estado</a></li>
     <li class="boton anular"> <a onclick="baja();">Baja</a></li>
     <li class="boton consultar"> <a onclick="detalle();">Detalle</a></li>
 
-    <li class="filtro">Buscar <input id="data_search" type="text" with="10"/></li>
+    <li class="filtro">Buscar <input id="data_search" type="text" with="10"/></li>-->
 </ul>
 
 
@@ -252,7 +143,7 @@ $this->Js->buffer('
 
 <table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable">
     <thead>
-    <tr>
+    <!--<tr>
         <th width="50">Id</th>
 
 
@@ -320,13 +211,13 @@ $this->Js->buffer('
             </select>
 
         </th>
-        <th width="30">
+        <th width="30">-->
             <!--<input type="text" style="width: 90%;" id="filter_antiguedad" />-->
-        </th>
+        <!--</th>
         <th width="20">
             <!--<input type="text" style="width: 90%;" id="filter_km" />-->
-        </th>
-    </tr>
+        <!--</th>
+    </tr>-->
         <tr>
             <th width="50">Id</th>
             <th width="50">Fecha</th>
@@ -342,6 +233,10 @@ $this->Js->buffer('
             <th width="30">Estado</th>
             <th width="30">Antigüedad</th>
             <th width="30">Km</th>
+            <th width="30">Desde</th>
+            <th width="30">Hasta</th>
+            <th width="30">Medida MM Dibujo</th>
+            <th width="30">Motivo</th>
         </tr>
     </thead>
     <tbody></tbody>
