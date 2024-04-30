@@ -50,6 +50,11 @@
             Gestion de Alertas
         </div>
     <?php } ?>
+    <?php if(ACCION_152){?>
+        <div class="configuracion item" onclick="createWindow('w_neumaticos','Gestion de neumaticos','v2/neumaticos/index','1230','500'); $('#menu').hide();">
+            Gestion de neumaticos
+        </div>
+    <?php } ?>
         <div class="title" onclick="$('.administracion').toggle();"><img width="30" src="images/ico_admin.png" align="absmiddle" /> Administracion</div>
         <?php if(MENU_4){?>
         <div class="administracion item" onclick="createWindow('w_cuenta','Administrador de cuentas','cuentas.php','1230','400'); $('#menu').hide();">
@@ -261,11 +266,7 @@
             Carga de feriados en grilla
         </div>
     <?php } ?>
-    <?php if(ACCION_152){?>
-        <div class="configuracion item" onclick="createWindow('w_neumaticos','Gestion de neumaticos','v2/neumaticos/index','1230','500'); $('#menu').hide();">
-            Gestion de neumaticos
-        </div>
-    <?php } ?>
+
         <div class="title" onclick="$('.informes').toggle();"><img width="30" src="images/ico_informes.png" align="absmiddle" /> Informes</div>
         <?php if(ACCION_108){ ?>
         <div class="informes item" onclick="createWindow('w_informe','Informe economico','informe.economico.php','1230','400'); $('#menu').hide();">
