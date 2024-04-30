@@ -51,7 +51,7 @@
         </div>
     <?php } ?>
     <?php if(ACCION_152){?>
-        <div class="configuracion item" onclick="createWindow('w_neumaticos','Gestion de neumaticos','v2/neumaticos/index','1230','500'); $('#menu').hide();">
+        <div class="operaciones item" onclick="createWindow('w_neumaticos','Gestion de neumaticos','v2/neumaticos/index','1230','500'); $('#menu').hide();">
             Gestion de neumaticos
         </div>
     <?php } ?>
