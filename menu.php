@@ -263,7 +263,7 @@
     <?php } ?>
     <?php if(ACCION_152){?>
         <div class="configuracion item" onclick="createWindow('w_neumaticos','Gestion de neumaticos','v2/neumaticos/index','1230','500'); $('#menu').hide();">
-            Gestion de nuematicos
+            Gestion de neumaticos
         </div>
     <?php } ?>
         <div class="title" onclick="$('.informes').toggle();"><img width="30" src="images/ico_informes.png" align="absmiddle" /> Informes</div>
