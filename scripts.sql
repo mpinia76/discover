@@ -1501,6 +1501,11 @@ INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (48, 'Informe');
 ALTER TABLE `neumatico`
     ADD UNIQUE INDEX `identificador` (`identificador`);
 
+ALTER TABLE `neumaticos`
+
+    ADD UNIQUE INDEX `unidad_id_posicion` (`unidad_id`, `posicion`);
+
+
 CREATE TABLE `neumatico_estados` (
                               `id` INT(11) NOT NULL AUTO_INCREMENT,
                               `neumatico_id` INT(11) DEFAULT NULL,

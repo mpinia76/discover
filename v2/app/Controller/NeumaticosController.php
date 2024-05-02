@@ -569,10 +569,17 @@ class NeumaticosController extends AppController {
 
                 } catch (PDOException $e) {
                     if ($e->errorInfo[1] == '1062') {
-                        $errores['Neumatico']['identificador'] = 'Identificador repetido';
-                        $grabar = 0;
-                    } else {
-                        $errores['Neumatico']['identificador'] = $e->errorInfo[1];
+                        // Verificar qué índice único causó la excepción
+                        if (strpos($e->getMessage(), 'identificador') !== false) {
+                            // Error de duplicación en el índice 'identificador'
+                            $errores['Neumatico']['identificador'] = 'Identificador repetido';
+                        } elseif (strpos($e->getMessage(), 'unidad_id_posicion') !== false) {
+                            // Error de duplicación en el índice 'unidad_id_posicion'
+                            $errores['Neumatico']['posicion'] = 'Ya existe la posicion para esta unidad';
+                        } else {
+                            // Otro tipo de error, manejar según sea necesario
+                            $errores['Neumatico']['identificador'] = 'Error desconocido: ' . $e->errorInfo[1];
+                        }
                         $grabar = 0;
                     }
                 }
