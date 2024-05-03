@@ -79,7 +79,37 @@ class NeumaticosController extends AppController {
         //$condicionSearch11 = ($_GET['sSearch_11'])?($_GET['sSearch_11']==1)?array('NeumaticoEstado.estado = '=>$_GET['sSearch_11']):array();
         $condicionSearch11 = array();
         //echo 'filtro'.$_GET['sSearch_11'];
-        if ($_GET['sSearch_11']){
+        switch ($_GET['sSearch_11']) {
+            case 'Estado':
+                $condicionSearch11 = array();
+                break;
+            case 'Activas':
+                $condicionSearch11 = array(
+                    'or' => array(
+                        array('NeumaticoEstado.estado' => 'En uso'),
+                        array('NeumaticoEstado.estado' => 'En deposito')
+                    )
+                );
+                break;
+            case 'En uso':
+                $condicionSearch11 = array('NeumaticoEstado.estado = '=>$_GET['sSearch_11']);
+                break;
+            case 'En deposito':
+                $condicionSearch11 = array('NeumaticoEstado.estado = '=>$_GET['sSearch_11']);
+                break;
+            case 'Baja':
+                $condicionSearch11 = array('NeumaticoEstado.estado = '=>$_GET['sSearch_11']);
+                break;
+            default:
+                $condicionSearch11 = array(
+                    'or' => array(
+                        array('NeumaticoEstado.estado' => 'En uso'),
+                        array('NeumaticoEstado.estado' => 'En deposito')
+                    )
+                );
+                break;
+        }
+        /*if ($_GET['sSearch_11']){
             if ($_GET['sSearch_11']=='Activas'){
                 $condicionSearch11 = array(
                     'or' => array(
@@ -91,7 +121,7 @@ class NeumaticosController extends AppController {
             elseif ($_GET['sSearch_11']!='Estado'){
                 $condicionSearch11 = array('NeumaticoEstado.estado = '=>$_GET['sSearch_11']);
             }
-        }
+        }*/
         //print_r($condicionSearch11);
         $condicion=array($condicionSearch1,$condicionSearch2,$condicionSearch3,$condicionSearch4,$condicionSearch5,$condicionSearch6,$condicionSearch7,$condicionSearch9,$condicionSearch10,$condicionSearch11);
 

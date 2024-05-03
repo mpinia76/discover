@@ -241,7 +241,7 @@ $this->Js->buffer('
     <li class="boton anular"> <a onclick="baja();">Baja</a></li>
     <li class="boton consultar"> <a onclick="detalle();">Detalle</a></li>
 
-    <li class="filtro">Buscar <input id="data_search" type="text" with="10"/></li>
+    <!--<li class="filtro">Buscar <input id="data_search" type="text" with="10"/></li>-->
 </ul>
 
 
