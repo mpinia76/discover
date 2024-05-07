@@ -24,6 +24,21 @@ $this->Js->buffer('
                     $(this).toggleClass("row_selected");
                 }
              });
+             
+        },
+        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+            // aData contiene los datos de la fila actual
+            // Puedes acceder a cada columna usando aData[index]
+
+            // AquÃƒÆ’Ã‚Â­ asumimos que la columna correspondiente al estado de la auditorÃƒÆ’Ã‚Â­a es la 4Ãƒâ€šÃ‚Âª columna
+            var patente = aData[9];
+            var estado = aData[11];
+	        //console.log(estadoAuditoria);
+            //alert(estadoAuditoria);
+            // Si no hay auditorÃƒÆ’Ã‚Â­a, aplicamos el color de fondo rojo a toda la fila
+            if(patente!==null && estado==\'En deposito\'){
+                $(nRow).css("background-color", "#ffcccc");
+            }
         },
         "aaSorting": [],
 		"sAjaxSource": "'.$this->Html->url('/neumaticos/dataTable', true).'",
@@ -225,7 +240,7 @@ $this->Js->buffer('
 
     }
 
-    function detalle(){
+    function detalle_old(){
 
         var row = $("#dataTable tr.row_selected");
         if(row.length == 0){
@@ -235,6 +250,24 @@ $this->Js->buffer('
 
 
                 createWindow('w_neumaticos_detalle','Detalle de neumatico','<?php echo $this->Html->url('/neumaticos/index2', true);?>/'+data[0],'650','350');
+
+        }
+
+
+
+
+    }
+
+    function detalle(){
+
+        var row = $("#dataTable tr.row_selected");
+        if(row.length == 0){
+            alert('Debe seleccionar un registro');
+        }else{
+            var data = oTable.fnGetData(row[0]);
+
+
+            createWindow('w_neumaticos_detalle','Detalle de neumatico','<?php echo $this->Html->url('/neumaticos/detalle', true);?>/'+data[0],'650','350');
 
         }
 
