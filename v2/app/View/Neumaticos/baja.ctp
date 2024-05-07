@@ -13,14 +13,15 @@ echo $this->Form->create(null, array(
 ));
 echo $this->Form->hidden('Neumatico.id', array('value' => $id));
 echo $this->Form->hidden('Neumatico.fecha_aux', array('value' => $fecha));
-echo $this->Form->hidden('NeumaticoEstado.km_unidad', array('value' => $km));
+echo $this->Form->hidden('Neumatico.km_unidad', array('value' => $km));
+echo $this->Form->hidden('Neumatico.dibujo_aux', array('value' => $dibujo));
 ?>
 
 
 
 <div class="ym-grid">
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.fecha',array('class'=>'datepicker','type'=>'text'));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.dibujo',array('label'=>'Medida MM Dibujo','value' => $dibujo,'maxlength'=>'2','type'=>'number','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.dibujo',array('label'=>'Medida MM Dibujo','maxlength'=>'2','type'=>'number','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('NeumaticoEstado.motivo',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $motivos));?></div>
 
 </div>
@@ -85,7 +86,18 @@ echo $this->Form->hidden('NeumaticoEstado.km_unidad', array('value' => $km));
     });
     }
 
+    $('#NeumaticoDibujo').change(function() {
+        // Obtener los valores de dibujo y dibujo_aux
+        var dibujo = parseInt($(this).val());
+        var dibujoAux = parseInt($('#NeumaticoDibujoAux').val());
 
+        // Comparar los valores de dibujo y dibujo_aux
+        if (dibujo > dibujoAux) {
+            // Si dibujo es mayor que dibujo_aux, mostrar mensaje de advertencia
+            alert('El valor de "Medida MM Dibujo" es mayor que el valor anterior.');
+            // Aquí puedes agregar lógica adicional según tus necesidades, como mostrar un mensaje más descriptivo o solicitar confirmación
+        }
+    });
 
 </script>
 

@@ -6,22 +6,23 @@ $this->Js->buffer('$(".datepicker").datepicker({ dateFormat: "dd/mm/yy", altForm
 //formulario
 echo $this->Form->create(null, array('url' => '/neumaticos/cambiar','inputDefaults' => (array('div' => 'ym-gbox'))));
 echo $this->Form->hidden('ids', array('value' => $ids));
-echo $this->Form->hidden('NeumaticoEstado.km_unidad_aux', array('value' => $km));
+echo $this->Form->hidden('Neumatico.km_unidad_aux', array('value' => $km));
 echo $this->Form->hidden('Neumatico.fecha_aux', array('value' => $fecha));
+echo $this->Form->hidden('Neumatico.dibujo_aux', array('value' => $dibujo));
 ?>
+<div class="ym-grid">
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.fecha',array('class'=>'datepicker','type'=>'text'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.posicion',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $posiciones));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.dibujo',array('label'=>'Medida MM Dibujo','maxlength'=>'2','type'=>'number','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
+
+</div>
 
 <div class="ym-grid">
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Unidad.categoria_id',array('empty' => 'Seleccionar', 'type'=>'select', 'default' => $defaultCategoria, 'disabled' => $disabled));?></div>
     <div class="ym-g40 ym-gl"><?php echo $this->Form->input('Neumatico.unidad_id',array('empty' => 'Seleccionar', 'type'=>'select', 'default' => $defaultUnidad, 'disabled' => $disabled));?></div>
-    <div class="ym-g20 ym-gl"><?php echo $this->Form->input('NeumaticoEstado.km_unidad',array('label'=>'KM','value' => $km));?></div>
+    <div class="ym-g20 ym-gl"><?php echo $this->Form->input('Neumatico.km_unidad',array('label'=>'KM','value' => $km));?></div>
 </div>
 
-<div class="ym-grid">
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.fecha',array('class'=>'datepicker','type'=>'text'));?></div>
-
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.dibujo',array('label'=>'Medida MM Dibujo','value' => $dibujo,'maxlength'=>'2','type'=>'number','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
-
-</div>
 
 
 
@@ -65,6 +66,18 @@ echo $this->Form->hidden('Neumatico.fecha_aux', array('value' => $fecha));
         }
     });
 
+    $('#NeumaticoDibujo').change(function() {
+        // Obtener los valores de dibujo y dibujo_aux
+        var dibujo = parseInt($(this).val());
+        var dibujoAux = parseInt($('#NeumaticoDibujoAux').val());
+
+        // Comparar los valores de dibujo y dibujo_aux
+        if (dibujo > dibujoAux) {
+            // Si dibujo es mayor que dibujo_aux, mostrar mensaje de advertencia
+            alert('El valor de "Medida MM Dibujo" es mayor que el valor anterior.');
+            // Aquí puedes agregar lógica adicional según tus necesidades, como mostrar un mensaje más descriptivo o solicitar confirmación
+        }
+    });
 
 
 </script>

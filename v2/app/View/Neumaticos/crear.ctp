@@ -5,7 +5,7 @@ $this->Js->buffer('$(".datepicker").datepicker({ dateFormat: "dd/mm/yy", altForm
 
 //formulario
 echo $this->Form->create(null, array('url' => '/neumaticos/crear','inputDefaults' => (array('div' => 'ym-gbox'))));
-echo $this->Form->hidden('NeumaticoEstado.km_unidad_aux');
+echo $this->Form->hidden('Neumatico.km_unidad_aux');
 ?>
 
 
@@ -25,15 +25,15 @@ echo $this->Form->hidden('NeumaticoEstado.km_unidad_aux');
 </div>
 <div class="ym-grid">
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.temporada',array('label'=>'Temporada','empty' => 'Seleccionar', 'type'=>'select', 'options' => $temporadas));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('NeumaticoEstado.dibujo',array('label'=>'Medida MM Dibujo','maxlength'=>'2','type'=>'number','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('NeumaticoEstado.estado',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $estados));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.dibujo',array('label'=>'Medida MM Dibujo','maxlength'=>'2','type'=>'number','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.estado',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $estados));?></div>
 
 </div>
 
 <div class="ym-grid">
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Unidad.categoria_id',array('empty' => 'Seleccionar', 'type'=>'select'));?></div>
     <div class="ym-g40 ym-gl"><?php echo $this->Form->input('Neumatico.unidad_id',array('empty' => 'Seleccionar', 'type'=>'select'));?></div>
-    <div class="ym-g20 ym-gl"><?php echo $this->Form->input('NeumaticoEstado.km_unidad');?></div>
+    <div class="ym-g20 ym-gl"><?php echo $this->Form->input('Neumatico.km_unidad');?></div>
 </div>
 <div class="ym-grid" style="display: flex; align-items: center;">
     <div class="ym-g20 ym-gl">
@@ -71,8 +71,8 @@ echo $this->Form->hidden('NeumaticoEstado.km_unidad_aux');
                 type: 'GET',
 
                 success: function(response) {
-                    $('#NeumaticoEstadoKmUnidad').val(response.km);
-                    $('#NeumaticoEstadoKmUnidadAux').val(response.km);
+                    $('#NeumaticoKmUnidad').val(response.km);
+                    $('#NeumaticoKmUnidadAux').val(response.km);
                 },
                 error: function(xhr, status, error) {
                     console.error(error);

@@ -121,7 +121,17 @@ $this->Js->buffer('
 ');
 ?>
 <script>
+    function editar(){
+        var row = $("#dataTable tr.row_selected");
+        if(row.length == 0){
+            alert('Debe seleccionar un registro');
+        }else{
+            var data = oTable.fnGetData(row[0]);
 
+            createWindow("w_neumaticos_view","Gestion de nuematico","<?php echo $this->Html->url('/neumaticos/editar', true);?>/"+data[0],"450","350");
+
+        }
+    }
     function cambiarEstado() {
         var ok = 1;
         var estadoAnterior = null; // Variable para almacenar el estado de la primera fila seleccionada
@@ -236,7 +246,8 @@ $this->Js->buffer('
 
 </script>
 <ul class="action_bar">
-    <li class="boton agregar"><a onclick="createWindow('w_neumaticos_add','Gestion de neumaticos','<?php echo $this->Html->url('/neumaticos/crear', true);?>','450','350');">Crear</a></li>
+    <li class="boton agregar"><a onclick="createWindow('w_neumaticos_add','Gestion de neumaticos','<?php echo $this->Html->url('/neumaticos/crear', true);?>','450','350');">Alta</a></li>
+    <li class="boton editar"><a onclick="editar();">Editar</a></li>
     <li class="boton editar"><a onclick="cambiarEstado();">Estado</a></li>
     <li class="boton anular"> <a onclick="baja();">Baja</a></li>
     <li class="boton consultar"> <a onclick="detalle();">Detalle</a></li>

@@ -1479,6 +1479,9 @@ CREATE TABLE `neumaticos` (
                                      `id` INT(11) NOT NULL AUTO_INCREMENT,
                                      `unidad_id` INT(11) DEFAULT NULL,
                                      `fecha` DATE NULL DEFAULT NULL,
+
+                                     `estado` ENUM('En uso', 'En deposito','Baja') NOT NULL,
+                                     `dibujo` VARCHAR(2) NULL DEFAULT NULL,
                                      `modelo` VARCHAR(255) NULL DEFAULT NULL,
                                      `marca` VARCHAR(255) NULL DEFAULT NULL,
                                      `medida` VARCHAR(10) NULL DEFAULT NULL,
@@ -1486,6 +1489,8 @@ CREATE TABLE `neumaticos` (
                                      `posicion` ENUM('DI', 'DD', 'TI', 'TD', 'Auxilio') NOT NULL,
                                      `temporada` ENUM('Verano', 'Invierno Clavos', 'Invierno Silice', 'Mixto') NOT NULL,
                                      `identificador` VARCHAR(6) NULL DEFAULT NULL,
+                                     `km` INT(11) DEFAULT 0,
+                                     `km_unidad` INT(11) DEFAULT 0,
                                      PRIMARY KEY (`id`),
                                      INDEX `id` (`id`),
                                      INDEX `unidad_id` (`unidad_id`)
@@ -1498,12 +1503,14 @@ INSERT INTO `permiso_grupo` (`nombre`) VALUES ('Gestion de neumaticos');
 INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (48, 'Operar');
 INSERT INTO `permiso` (`permiso_grupo_id`, `nombre`) VALUES (48, 'Informe');
 
-ALTER TABLE `neumatico`
+ALTER TABLE `neumaticos`
     ADD UNIQUE INDEX `identificador` (`identificador`);
 
 ALTER TABLE `neumaticos`
+    CHANGE COLUMN `estado` `estado` ENUM('En uso','En deposito','Baja') NOT NULL COLLATE 'latin1_swedish_ci' AFTER `unidad_id`,
+    CHANGE COLUMN `posicion` `posicion` ENUM('DI','DD','TI','TD','Auxilio') NOT NULL COLLATE 'latin1_swedish_ci' AFTER `estado`,
+    ADD UNIQUE INDEX `unidad_id_estado_posicion` (`unidad_id`, `estado`, `posicion`);
 
-    ADD UNIQUE INDEX `unidad_id_posicion` (`unidad_id`, `posicion`);
 
 
 CREATE TABLE `neumatico_estados` (
