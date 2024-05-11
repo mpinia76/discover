@@ -807,13 +807,14 @@ class NeumaticosController extends AppController {
                         }
                         else{
                             $km=$neumatico['Neumatico']['km'];
-                            $this->Neumatico->set('unidad_id', $this->request->data['Neumatico']['unidad_id']);
+                            //$this->Neumatico->set('unidad_id', $this->request->data['Neumatico']['unidad_id']);
                         }
                         //print_r($this->request->data);
-
+                        $this->Neumatico->set('dibujo', $this->request->data['Neumatico']['dibujo']);
                         $this->Neumatico->set('posicion', $this->request->data['Neumatico']['posicion']);
                         $this->Neumatico->set('estado', $estado);
-
+                        $this->Neumatico->set('km_unidad', $this->request->data['Neumatico']['km_unidad']);
+                        $this->Neumatico->set('km', $km);
 
 
                         //$this->Neumatico->save();
