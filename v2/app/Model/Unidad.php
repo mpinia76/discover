@@ -4,7 +4,8 @@ class Unidad extends AppModel {
     public $displayField = 'unidad';
     public $virtualFields = array(
 			'unidad' => "CONCAT(marca,' ', modelo,' ',patente,' (km: ',km,')')",
-    		'unidadContrato' => "CONCAT(marca,' ', modelo)"
+    		'unidadContrato' => "CONCAT(marca,' ', modelo)",
+            'unidadPatente' => "CONCAT(marca,' ', modelo,' ',patente)",
 			);
     public $validate = array(
     	'categoria_id' => array(

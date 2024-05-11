@@ -494,7 +494,7 @@ class NeumaticosController extends AppController {
         $neumatico = $this->request->data;
 
 
-        //print_r($neumaticoEstado);
+        //print_r($neumatico);
         /*$this->set('defaultEstado', $neumaticoEstado['NeumaticoEstado']['estado']);
         $this->set('defaultDibujo', $neumaticoEstado['NeumaticoEstado']['dibujo']);*/
         $this->set('defaultKm', $neumatico['Neumatico']['km_unidad']);
@@ -1128,6 +1128,55 @@ class NeumaticosController extends AppController {
             ));
         }
     }
+
+
+    public function detalle($id = null){
+        $this->layout = 'informe';
+
+
+
+        $this->Neumatico->id = $id;
+        $this->request->data = $this->Neumatico->read();
+        $neumatico = $this->request->data;
+
+        $unidad_id = $neumatico['NeumaticoEstado'][0]['unidad_id'];
+        if ($unidad_id) {
+            $this->loadModel('Unidad');
+            $unidad = $this->Unidad->find('first',array('conditions'=>array('Unidad.id'=>$unidad_id)));
+
+
+            //print_r($unidad);
+            $this->set('unidad',$unidad);
+        }
+
+        // Recorrer los estados del neumático y agregar la descripción de la unidad
+        foreach ($neumatico['NeumaticoEstado'] as $k => $neumaticoEstado) {
+            $unidadEstado = $this->Unidad->find('first', array('conditions' => array('Unidad.id' => $neumaticoEstado['unidad_id'])));
+            // Agregar la descripción de la unidad al estado del neumático
+            $neumatico['NeumaticoEstado'][$k]['descripcion_unidad'] = isset($unidadEstado['Unidad']) ? $unidadEstado['Unidad'] : null;
+        }
+
+        //print_r($neumatico);
+
+        $this->set('neumatico',$neumatico);
+    }
+
+    public function fotos($id = null){
+        $this->layout = 'informe';
+        $this->Neumatico->id = $id;
+        $this->request->data = $this->Neumatico->read();
+        $neumatico = $this->request->data;
+        //print_r($neumatico);
+        $imagePath = 'img' . DS . 'neumaticos' . DS;
+
+
+        // Obtener la URL relativa para la imagen
+        $imageUrl = Router::url('/' . $imagePath, true);
+        //echo $imageUrl;
+        $this->set('neumatico',$neumatico);
+        $this->set('imageUrl',$imageUrl);
+    }
+
 }
 ?>
 
