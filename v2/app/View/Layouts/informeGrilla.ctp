@@ -412,11 +412,13 @@
 
 
             var patentesEspeciales=['AC488VR','AB425OY','AA727XE','AA727XF','AA727XG','AC488VQ','AD428KP','AD428KQ','AD428KR','AD428KS','AD428KT'];*/
-            var patentesEspeciales=['AD923NX','AD923NW','AD937KA','AD923NZ','AD923NV','AD923NY','AC488VN','AC488VO','AD428KP','AD428KQ','AD428KR'];
+            //var patentesEspeciales=['AD923NX','AD923NW','AD937KA','AD923NZ','AD923NV','AD923NY','AC488VN','AC488VO','AD428KP','AD428KQ','AD428KR'];
+            var patentesEspeciales=['AG120ET','AG120ES','AG120EQ','AF394UX'];
             /*var sections=[
 <?php
             //$patentesEspeciales = array('AC488VR','AB425OY','AA727XE','AA727XF','AA727XG','AC488VQ','AD428KP','AD428KQ','AD428KR','AD428KS','AD428KT');
-            $patentesEspeciales = array('AD923NX','AD923NW','AD937KA','AD923NZ','AD923NV','AD923NY','AC488VN','AC488VO','AD428KP','AD428KQ','AD428KR');
+            //$patentesEspeciales = array('AD923NX','AD923NW','AD937KA','AD923NZ','AD923NV','AD923NY','AC488VN','AC488VO','AD428KP','AD428KQ','AD428KR');
+            $patentesEspeciales = array('AG120ET','AG120ES','AG120EQ','AF394UX');
             foreach($unidads as $unidad){
 
                 if (in_array($unidad['Unidad']['patente'], $patentesEspeciales)) {
