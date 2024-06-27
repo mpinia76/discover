@@ -7,39 +7,44 @@ $this->Js->buffer('$(".datepicker").datepicker({ dateFormat: "dd/mm/yy", altForm
 echo $this->Form->create(null, array('url' => '/neumaticos/crear','inputDefaults' => (array('div' => 'ym-gbox'))));
 echo $this->Form->hidden('Neumatico.km_unidad_aux');
 ?>
+<div class="ym-grid">
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.condicion',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $condiciones));?></div>
+    <div class="ym-g20 ym-gl"><?php echo $this->Form->input('Neumatico.km');?></div>
 
+
+</div>
 
 
 <div class="ym-grid">
     <div class="ym-g20 ym-gl"><?php echo $this->Form->input('Neumatico.fecha',array('class'=>'datepicker','type'=>'text'));?></div>
-    <div class="ym-g40 ym-gl"><?php echo $this->Form->input('Neumatico.marca',array('label'=>'Marca'));?></div>
-    <div class="ym-g40 ym-gl"><?php echo $this->Form->input('Neumatico.modelo',array('label'=>'Modelo'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.marca',array('label'=>'Marca'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.modelo',array('label'=>'Modelo'));?></div>
 
 
 </div>
 <div class="ym-grid">
     <div class="ym-g20 ym-gl"><?php echo $this->Form->input('Neumatico.medida',array('label'=>'Medida','maxlength'=>'10'));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.fabricacion',array('label'=>'Fabricación (DOT)','maxlength'=>'4','type'=>'number','oninput' => 'this.value = this.value.slice(0, 4)'));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.posicion',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $posiciones));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.fabricacion',array('label'=>'Fabricación (DOT)','maxlength'=>'4','type'=>'number','style' => 'width:100%','oninput' => 'this.value = this.value.slice(0, 4)'));?></div>
 
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.dibujo',array('label'=>'Medida MM Dibujo','maxlength'=>'2','type'=>'number','style' => 'width:100%','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
 </div>
 <div class="ym-grid">
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.temporada',array('label'=>'Temporada','empty' => 'Seleccionar', 'type'=>'select', 'options' => $temporadas));?></div>
-    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.dibujo',array('label'=>'Medida MM Dibujo','maxlength'=>'2','type'=>'number','oninput' => 'this.value = this.value.slice(0, 2)'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.posicion',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $posiciones));?></div>
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.estado',array('empty' => 'Seleccionar', 'type'=>'select', 'options' => $estados));?></div>
 
 </div>
 
 <div class="ym-grid">
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Unidad.categoria_id',array('empty' => 'Seleccionar', 'type'=>'select'));?></div>
-    <div class="ym-g40 ym-gl"><?php echo $this->Form->input('Neumatico.unidad_id',array('empty' => 'Seleccionar', 'type'=>'select'));?></div>
+    <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.unidad_id',array('empty' => 'Seleccionar', 'type'=>'select'));?></div>
     <div class="ym-g20 ym-gl"><?php echo $this->Form->input('Neumatico.km_unidad');?></div>
 </div>
 <div class="ym-grid" style="display: flex; align-items: center;">
     <div class="ym-g20 ym-gl">
         <?php echo $this->Form->input('Neumatico.identificador', array('readonly' => 'readonly'));?>
     </div>
-    <div class="ym-g10 ym-gl">
+    <div class="ym-g10 ym-gl" style="display: flex; align-items: center;margin-top: 15px;">
         <button type="button" id="generarNumero">Generar</button>
     </div>
 </div>

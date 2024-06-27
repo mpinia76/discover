@@ -1541,3 +1541,8 @@ AUTO_INCREMENT=1;
 
 ALTER TABLE `neumatico_estados`
     ADD CONSTRAINT `FK_neumatico_estados_neumaticos` FOREIGN KEY (`neumatico_id`) REFERENCES `neumaticos` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+##################################26/06/2024############################################################
+
+ALTER TABLE `neumaticos`
+    ADD COLUMN `condicion` ENUM('Nueva','Usada') NULL DEFAULT 'Nueva' AFTER `km_unidad`;

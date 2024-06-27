@@ -61,6 +61,9 @@ class NeumaticosController extends AppController {
             case 11:
                 $order='Neumatico.estado '.$orderType;
                 break;
+            case 12:
+                $order='Neumatico.condicion '.$orderType;
+                break;
             default:
                 $order='Neumatico.fecha '.$orderType;
                 break;
@@ -76,10 +79,11 @@ class NeumaticosController extends AppController {
         $condicionSearch7 = ($_GET['sSearch_7'])?array('Neumatico.identificador LIKE '=>'%'.$_GET['sSearch_7'].'%'):array();
         $condicionSearch9 = ($_GET['sSearch_9'])?array('Unidad.patente LIKE '=>'%'.$_GET['sSearch_9'].'%'):array();
         $condicionSearch10 = ($_GET['sSearch_10'])?array('Neumatico.posicion = '=>$_GET['sSearch_10']):array();
+
         //$condicionSearch11 = ($_GET['sSearch_11'])?($_GET['sSearch_11']==1)?array('NeumaticoEstado.estado = '=>$_GET['sSearch_11']):array();
         $condicionSearch11 = array();
         //echo 'filtro'.$_GET['sSearch_11'];
-        switch ($_GET['sSearch_11']) {
+        /*switch ($_GET['sSearch_11']) {
             case 'Estado':
                 $condicionSearch11 = array();
                 break;
@@ -108,7 +112,10 @@ class NeumaticosController extends AppController {
                     )
                 );
                 break;
-        }
+
+        }*/
+        $condicionSearch11 = ($_GET['sSearch_11'])?array('Neumatico.estado = '=>$_GET['sSearch_11']):array();
+        $condicionSearch12 = ($_GET['sSearch_12'])?array('Neumatico.condicion = '=>$_GET['sSearch_12']):array();
         /*if ($_GET['sSearch_11']){
             if ($_GET['sSearch_11']=='Activas'){
                 $condicionSearch11 = array(
@@ -123,7 +130,7 @@ class NeumaticosController extends AppController {
             }
         }*/
         //print_r($condicionSearch11);
-        $condicion=array($condicionSearch1,$condicionSearch2,$condicionSearch3,$condicionSearch4,$condicionSearch5,$condicionSearch6,$condicionSearch7,$condicionSearch9,$condicionSearch10,$condicionSearch11);
+        $condicion=array($condicionSearch1,$condicionSearch2,$condicionSearch3,$condicionSearch4,$condicionSearch5,$condicionSearch6,$condicionSearch7,$condicionSearch9,$condicionSearch10,$condicionSearch11,$condicionSearch12);
 
         $rows = array();
         $this->loadModel('Neumatico');
@@ -221,6 +228,7 @@ class NeumaticosController extends AppController {
                 $neumatico['Unidad']['patente'],
                 $neumatico['Neumatico']['posicion'],
                 $neumatico['Neumatico']['estado'],
+                $neumatico['Neumatico']['condicion'],
                 $years,
                 $neumatico['Neumatico']['km']
             );
@@ -476,6 +484,7 @@ class NeumaticosController extends AppController {
 
     public function crear(){
         $this->layout = 'form';
+        $this->set('condiciones',array('Nueva' => 'Nueva','Usada' => 'Usada'));
         $this->set('posiciones',array('DI' => 'DI','DD' => 'DD','TI' => 'TI','TD' => 'TD','Auxilio' => 'Auxilio'));
         $this->set('temporadas',array('Verano'=> 'Verano', 'Invierno Clavos'=> 'Invierno Clavos', 'Invierno Silice'=> 'Invierno Silice', 'Mixto'=> 'Mixto'));
         $this->set('estados',array('En uso' => 'En uso','En deposito' => 'En deposito'));
@@ -498,6 +507,7 @@ class NeumaticosController extends AppController {
         /*$this->set('defaultEstado', $neumaticoEstado['NeumaticoEstado']['estado']);
         $this->set('defaultDibujo', $neumaticoEstado['NeumaticoEstado']['dibujo']);*/
         $this->set('defaultKm', $neumatico['Neumatico']['km_unidad']);
+        $this->set('condiciones',array('Nueva' => 'Nueva','Usada' => 'Usada'));
         $this->set('posiciones',array('DI' => 'DI','DD' => 'DD','TI' => 'TI','TD' => 'TD','Auxilio' => 'Auxilio'));
         $this->set('temporadas',array('Verano'=> 'Verano', 'Invierno Clavos'=> 'Invierno Clavos', 'Invierno Silice'=> 'Invierno Silice', 'Mixto'=> 'Mixto'));
         $this->set('estados',array('En uso' => 'En uso','En deposito' => 'En deposito'));
@@ -540,6 +550,12 @@ class NeumaticosController extends AppController {
 
             if(($this->request->data['Neumatico']['estado']=='En uso')&&($neumatico['unidad_id']=='')){
                 $errores['Neumatico']['unidad_id'] = 'Debe seleccionar una unidad';
+            }
+            if(($this->request->data['Neumatico']['condicion']=='Nueva')&&($this->request->data['Neumatico']['km']!='0')){
+                $errores['Neumatico']['km'] = 'Si la condicion es Nueva los KM deben ser 0 (cero)';
+            }
+            if(($this->request->data['Neumatico']['condicion']=='Usada')&&($this->request->data['Neumatico']['km']=='0')){
+                $errores['Neumatico']['km'] = 'Si la condicion es Usada los KM no pueden ser 0 (cero)';
             }
 
             if($this->request->data['Neumatico']['km_unidad']<$this->request->data['Neumatico']['km_unidad_aux']){
@@ -591,6 +607,7 @@ class NeumaticosController extends AppController {
                             $this->NeumaticoEstado->set('estado',$this->request->data['Neumatico']['estado']);
                             $this->NeumaticoEstado->set('desde',$neumatico['fecha']);
                             $this->NeumaticoEstado->set('km_unidad',$this->request->data['Neumatico']['km_unidad']);
+                            $this->NeumaticoEstado->set('km',$this->request->data['Neumatico']['km']);
                             $this->NeumaticoEstado->save();
                         }
                         else{
@@ -602,6 +619,7 @@ class NeumaticosController extends AppController {
                             $this->NeumaticoEstado->set('estado',$this->request->data['Neumatico']['estado']);
                             $this->NeumaticoEstado->set('desde',$neumatico['fecha']);
                             $this->NeumaticoEstado->set('km_unidad',$this->request->data['Neumatico']['km_unidad']);
+                            $this->NeumaticoEstado->set('km',$this->request->data['Neumatico']['km']);
                             $this->NeumaticoEstado->save();
                         }
 
@@ -820,6 +838,7 @@ class NeumaticosController extends AppController {
                         //$this->Neumatico->save();
 
                         try {
+
                             $this->Neumatico->save();
                             $neumaticoEstado = $this->Neumatico->NeumaticoEstado->find('first', array(
                                 'conditions' => array(
@@ -847,7 +866,7 @@ class NeumaticosController extends AppController {
                             $this->NeumaticoEstado->set('dibujo', $this->request->data['Neumatico']['dibujo']);
                             $this->NeumaticoEstado->set('km_unidad', $this->request->data['Neumatico']['km_unidad']);
                             $this->NeumaticoEstado->set('km', $km);
-
+                            $this->NeumaticoEstado->set('descripcion', $this->request->data['NeumaticoEstado']['descripcion']);
                             $this->NeumaticoEstado->save();
 
                         } catch (PDOException $e) {
@@ -996,30 +1015,32 @@ class NeumaticosController extends AppController {
             $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');
             // Función para validar la extensión del archivo
 
+            $maxFileSize = 2097152; // 2MB in bytes
 
             // Verifica y guarda los archivos de imagen con extensiones válidas
             if (!empty($foto1['name'])) {
                 $filename = $foto1['name'];
                 $extension = pathinfo($filename, PATHINFO_EXTENSION);
-                if (in_array(strtolower($extension), $allowedExtensions)){
+                if (in_array(strtolower($extension), $allowedExtensions) && $foto1['size'] <= $maxFileSize) {
                     move_uploaded_file($foto1['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
                     // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
                 }
                 else{
-                    $errores['NeumaticoEstado']['foto1'] = 'NO es una imagen';
+                    $errores['NeumaticoEstado']['foto1'] = 'NO es una imagen o supera el tamaño máximo de 2MB';
                 }
+
 
             }
 
             if (!empty($foto2['name'])) {
                 $filename = $foto2['name'];
                 $extension = pathinfo($filename, PATHINFO_EXTENSION);
-                if (in_array(strtolower($extension), $allowedExtensions)){
+                if (in_array(strtolower($extension), $allowedExtensions) && $foto2['size'] <= $maxFileSize) {
                     move_uploaded_file($foto2['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
                     // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
                 }
                 else{
-                    $errores['NeumaticoEstado']['foto2'] = 'NO es una imagen';
+                    $errores['NeumaticoEstado']['foto2'] = 'NO es una imagen o supera el tamaño máximo de 2MB';
                 }
 
             }
@@ -1027,12 +1048,12 @@ class NeumaticosController extends AppController {
             if (!empty($foto3['name'])) {
                 $filename = $foto3['name'];
                 $extension = pathinfo($filename, PATHINFO_EXTENSION);
-                if (in_array(strtolower($extension), $allowedExtensions)){
+                if (in_array(strtolower($extension), $allowedExtensions) && $foto3['size'] <= $maxFileSize) {
                     move_uploaded_file($foto3['tmp_name'], $uploadDir . $filename); // Guarda el archivo en el servidor
                     // Ahora puedes almacenar la ruta de la imagen en la base de datos si es necesario
                 }
                 else{
-                    $errores['NeumaticoEstado']['foto3'] = 'NO es una imagen';
+                    $errores['NeumaticoEstado']['foto3'] = 'NO es una imagen o supera el tamaño máximo de 2MB';
                 }
 
             }
@@ -1140,8 +1161,9 @@ class NeumaticosController extends AppController {
         $neumatico = $this->request->data;
 
         $unidad_id = $neumatico['NeumaticoEstado'][0]['unidad_id'];
+        $this->loadModel('Unidad');
         if ($unidad_id) {
-            $this->loadModel('Unidad');
+
             $unidad = $this->Unidad->find('first',array('conditions'=>array('Unidad.id'=>$unidad_id)));
 
 

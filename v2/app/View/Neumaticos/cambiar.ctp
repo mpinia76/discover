@@ -24,7 +24,9 @@ echo $this->Form->hidden('Neumatico.dibujo_aux', array('value' => $dibujo));
 </div>
 
 
-
+<div class="ym-grid">
+    <?php echo $this->Form->input('NeumaticoEstado.descripcion',array('type' => 'textarea','label' => 'Comentarios')); ?>
+</div>
 
 
 
@@ -56,8 +58,8 @@ echo $this->Form->hidden('Neumatico.dibujo_aux', array('value' => $dibujo));
                 type: 'GET',
 
                 success: function(response) {
-                    $('#NeumaticoEstadoKmUnidad').val(response.km);
-                    $('#NeumaticoEstadoKmUnidadAux').val(response.km);
+                    $('#NeumaticoKmUnidad').val(response.km);
+                    $('#NeumaticoKmUnidadAux').val(response.km);
                 },
                 error: function(xhr, status, error) {
                     console.error(error);

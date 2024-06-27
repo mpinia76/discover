@@ -54,8 +54,9 @@ echo $this->Form->hidden('Neumatico.dibujo_aux', array('value' => $dibujo));
             data: formData,
             processData: false, // Evitar que jQuery procese los datos
             contentType: false, // No establecer contentType
-            success: function (data) {
+            success: function (response) {
                 $('#loading_save').hide();
+                var data = JSON.parse(response);
 
                 if (data.resultado == 'ERROR') {
                     alert(data.mensaje);
