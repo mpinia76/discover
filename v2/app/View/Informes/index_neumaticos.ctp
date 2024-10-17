@@ -10,7 +10,7 @@
 
 
 
-
+<input type="button" onclick="ver_economico();" value="Ver" />
 
   <span id="cargando" style="display:none;">Cargando ...</span>
 <div id="informe_economico"></div>
@@ -27,13 +27,7 @@ function ver_economico(){
         }
     })
 }
-$(document).ready(function() {
-    ver_economico();  // Dispara la función automáticamente al cargar la página
-    // Llama a la función ver_economico cada vez que cambie la selección
-    $('#economico_mes').change(function() {
-        ver_economico();
-    });
-});
+
 
 
 </script>

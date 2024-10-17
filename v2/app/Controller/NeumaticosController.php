@@ -188,7 +188,18 @@ class NeumaticosController extends AppController {
         }*/
         //$iTotal = $this->Neumatico->find('count',array('conditions'=> $condicion));
 
-        $iTotal = $this->Neumatico->find('count',array( 'conditions' => $condicion));
+        $iTotal = $this->Neumatico->find('count',array('joins' => array(
+            array(
+                'table' => 'unidads',
+                'alias' => 'Unidad',
+                'type' => 'LEFT',
+                'conditions' => array(
+                    'Unidad.id = Neumatico.unidad_id'
+                )
+            )
+
+
+        ),array( 'conditions' => $condicion)));
 
         $this->loadModel('Unidad');
         foreach ($neumaticos as $neumatico) {

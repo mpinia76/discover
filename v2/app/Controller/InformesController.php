@@ -3056,7 +3056,7 @@ class InformesController extends AppController {
 
 	}
 
-	function neumaticos($estado){
+	function neumaticos($estado,$pdf=0){
 
 		ini_set( "memory_limit", "-1" );
 		ini_set('max_execution_time', "-1");
@@ -3084,11 +3084,27 @@ class InformesController extends AppController {
 		}
 		//$capacidad_total = $capacidad_total * 30;
 
-		$this->set(array(
+		/*$this->set(array(
 			'estado' => $estado,
 			'unidads' => $unidadesMostrar
 
+		));*/
+
+		$this->set(array(
+			'estado' => $estado,
+			'pdf' => $pdf,
+			'unidads' => $unidadesMostrar
 		));
+		if ($pdf) {
+			/*$this->Mpdf->init(array('format' => 'A4-L'));
+			$this->Mpdf->setFilename('Neumaticos_'.$estado.'.pdf');
+			$this->Mpdf->setOutput('D');*/
+			require_once '../../vendor/autoload.php';
+
+			$mpdf = new \Mpdf\Mpdf(['format' => 'A4-L']);
+			$mpdf->WriteHTML($this->render());
+			$mpdf->Output('Neumaticos_'.$estado.'.pdf','D');
+		}
 
 	}
 }

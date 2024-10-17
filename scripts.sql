@@ -1546,3 +1546,11 @@ ALTER TABLE `neumatico_estados`
 
 ALTER TABLE `neumaticos`
     ADD COLUMN `condicion` ENUM('Nueva','Usada') NULL DEFAULT 'Nueva' AFTER `km_unidad`;
+
+##################################15/10/2024###########################################################
+
+INSERT INTO permiso (`permiso_grupo_id`, `nombre`) VALUES (19, 'BB');
+
+##################################16/10/2024###########################################################
+ALTER TABLE `tarjeta`
+    ADD COLUMN `activa` TINYINT(1) NOT NULL DEFAULT '1';

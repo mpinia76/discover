@@ -121,7 +121,7 @@ $this->Js->buffer('
      });
     $("#filter_condicion").change(function(){
         if($(this).val() == ""){
-            oTable.fnFilter($(this).val(),11);
+            oTable.fnFilter($(this).val(),12);
         }else{
             oTable.fnFilter($("#filter_condicion option:selected").text(),12);
          }

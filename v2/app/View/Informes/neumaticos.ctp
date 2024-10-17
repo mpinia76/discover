@@ -10,11 +10,20 @@
         background-color: #f2f2f2; /* Opcional: color de fondo para el encabezado */
     }
 </style>
+<?php
+if(!$pdf){
+    echo '<ul class="action_bar">
+   
+    <li class="boton pdf"><a onclick="imprimir();">Imprimir</a></li>
 
+</ul>';
+}
+?>
 <table class="fina-tabla" width="100%" cellspacing="0">
         <tr class="titulo">
             <td rowspan="3">Unidad</td>
             <td rowspan="3">Patente</td>
+            <td rowspan="3">Marca</td>
             <td rowspan="3">Medida</td>
             <td colspan="2" rowspan="2"><?php echo $estado; ?></td>
             <td colspan="8">MEDIDAS DIBUJO MM</td>
@@ -46,10 +55,12 @@
         <td class="mes"><?php echo $unidad['Unidad']['marca'].' '.$unidad['Unidad']['modelo']; ?></td>
 
         <td><?php echo $unidad['Unidad']['patente']; ?></td>
+        <td><?php echo $unidad['Unidad']['neumaticos'][0]['Neumatico']['marca']; ?></td>
         <td><?php
             $medida='';
             $discrepancia=0;
             foreach ($unidad['Unidad']['neumaticos'] as $neumatico) {
+                //print_r($neumatico);
                 if ($medida){
                     if ($medida!=$neumatico['Neumatico']['medida']){
                         $discrepancia=1;
@@ -193,6 +204,14 @@
 
         <?php } ?>
 </table>
+<script>
+    function imprimir(){
 
+            document.location = "<?php echo $this->Html->url('/informes/neumaticos', true);?>/"+$('#economico_mes').val()+"/1";
+
+
+    }
+
+</script>
 
 
