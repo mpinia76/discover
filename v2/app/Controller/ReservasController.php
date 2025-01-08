@@ -84,6 +84,55 @@ class ReservasController extends AppController {
 		  $_SESSION['month'] = '01';
 		}
 		$this->setLogUsuario('Carga de extras y facturas');
+        $this->loadModel('Usuario');
+        $user_id = $_SESSION['useridushuaia'];
+        $user = $this->Usuario->find('first',array('conditions'=>array('Usuario.id'=>$user_id)));
+
+        $permisoPlanilla=1;
+        $permisoCheckConsumo=1;
+        $permisoCarga=1;
+        $permisoFinalizar=1;
+        $permisoMasiva=1;
+
+        if ($user['Usuario']['admin'] != '1'){
+            $this->loadModel('UsuarioPermiso');
+            $permisos = $this->UsuarioPermiso->findAllByUsuarioId($user_id);
+            $permisoPlanilla=0;
+            $permisoCheckConsumo=0;
+            $permisoCarga=0;
+            $permisoFinalizar=0;
+            $permisoMasiva=0;
+
+            foreach($permisos as $permiso){
+                if ($permiso['UsuarioPermiso']['permiso_id']==152) {
+                    $permisoPlanilla=1;
+                    continue;
+                }
+                if ($permiso['UsuarioPermiso']['permiso_id']==151) {
+                    $permisoCheckConsumo=1;
+                    continue;
+                }
+                if ($permiso['UsuarioPermiso']['permiso_id']==153) {
+                    $permisoCarga=1;
+                    continue;
+                }
+                if ($permiso['UsuarioPermiso']['permiso_id']==154) {
+                    $permisoFinalizar=1;
+                    continue;
+                }
+                if ($permiso['UsuarioPermiso']['permiso_id']==155) {
+                    $permisoMasiva=1;
+                    continue;
+                }
+
+
+            }
+        }
+        $this->set('permisoPlanilla',$permisoPlanilla);
+        $this->set('permisoCheckConsumo',$permisoCheckConsumo);
+        $this->set('permisoCarga',$permisoCarga);
+        $this->set('permisoFinalizar',$permisoFinalizar);
+        $this->set('permisoMasiva',$permisoMasiva);
     }
 
      public function get_reservas_restringidas($year, $month) {
@@ -1427,6 +1476,77 @@ class ReservasController extends AppController {
 
 
         	$fileName = ($output=='F')?'files/reserva('.$reserva['Reserva']['numero'].')_'.$reserva['Cliente']['nombre_apellido'].'_plantilla_'.date('d_m_Y').'.pdf':'reserva('.$reserva['Reserva']['numero'].')_'.$reserva['Cliente']['nombre_apellido'].'_plantilla_'.date('d_m_Y').'.pdf';
+
+
+
+            require_once '../../vendor/autoload.php';
+
+            $mpdf = new \Mpdf\Mpdf();
+            $mpdf->WriteHTML($this->render());
+            $mpdf->Output($fileName,$output);
+
+        }
+    }
+
+    public function check_consumo($reserva_id, $pdf=0, $output='D',$grilla=null){
+        $this->layout = 'plantilla';
+
+        $this->set('grilla',$grilla);
+
+        $this->loadModel('ExtraRubro');
+        $this->set('extra_rubros',$this->ExtraRubro->find('list'));
+
+        $this->set('pdf',$pdf);
+
+        $this->loadModel('ExtraSubrubro');
+        $this->set('extra_subrubros',$this->ExtraSubrubro->find('list'));
+
+        $this->Reserva->id = $reserva_id;
+        $reserva = $this->Reserva->read();
+        $telefono ='';
+        if ($reserva['Cliente']['tipoTelefono']=='Fijo'){
+            $telefono = $reserva['Cliente']['codPais'].' '.$reserva['Cliente']['codArea'].' '.$reserva['Cliente']['telefono'];
+        }
+        $celular ='';
+        if ($reserva['Cliente']['tipoTelefono']=='Celular'){
+            $celular = $reserva['Cliente']['codPais'].' '.$reserva['Cliente']['codArea'].' '.$reserva['Cliente']['telefono'];
+        }
+        $this->set('telefono',$telefono);
+        $this->set('celular',$celular);
+        $this->set('reserva',$reserva);
+
+
+        $this->loadModel('Categoria');
+        $this->Categoria->id = $reserva['Unidad']['categoria_id'];
+        $categoria = $this->Categoria->read();
+        $this->set('categoria',$categoria);
+        //print_r($categoria);
+        $pagado = 0;
+        $descontado = 0;
+        if(count($reserva['ReservaCobro'])>0){
+            foreach($reserva['ReservaCobro'] as $cobro){
+                if($cobro['tipo'] == 'DESCUENTO'){
+                    $descontado = $descontado + $cobro['monto_neto'];
+                }else{
+                    $pagado = $pagado + $cobro['monto_neto'];
+                }
+            }
+        }
+        $devoluciones = 0;
+        if(count($reserva['ReservaDevolucion']) > 0){
+            foreach($reserva['ReservaDevolucion'] as $devolucion){
+                $devoluciones += $devolucion['monto'];
+            }
+        }
+        $this->set('pagado',round($pagado,2));
+        $this->set('pendiente',round($reserva['Reserva']['total'] - $descontado - $pagado + $devoluciones,2));
+        $this->set('total',round($reserva['Reserva']['total'] - $descontado + $devoluciones,2));
+
+        //genero el pdf
+        if ($pdf) {
+
+
+            $fileName = ($output=='F')?'files/check('.$reserva['Reserva']['numero'].')_'.$reserva['Cliente']['nombre_apellido'].'_plantilla_'.date('d_m_Y').'.pdf':'reserva('.$reserva['Reserva']['numero'].')_'.$reserva['Cliente']['nombre_apellido'].'_plantilla_'.date('d_m_Y').'.pdf';
 
 
 

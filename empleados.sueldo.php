@@ -276,24 +276,21 @@ function sumMes(i){
 		}
 	}
 	?>
-    <p><strong>A&ntilde;o:</strong>
-		<select size="1" id="ano" name="ano" onchange="document.location.href = 'empleados.sueldo.php?ano='+$('#ano').val()+'&empleado_id=<?php echo $_GET['empleado_id']?>'">
-			<option <?php  if($ano == '2011'){ ?> selected="selected" <?php  } ?> value="2011">2011</option>
-			<option <?php  if($ano == '2012'){ ?> selected="selected" <?php  } ?> value="2012">2012</option>
-			<option <?php  if($ano == '2013'){ ?> selected="selected" <?php  } ?> value="2013">2013</option>
-			<option <?php  if($ano == '2014'){ ?> selected="selected" <?php  } ?> value="2014">2014</option>
-			<option <?php  if($ano == '2015'){ ?> selected="selected" <?php  } ?> value="2015">2015</option>
-            <option <?php  if($ano == '2016'){ ?> selected="selected" <?php  } ?> value="2016">2016</option>
-            <option <?php  if($ano == '2017'){ ?> selected="selected" <?php  } ?> value="2017">2017</option>
-            <option <?php  if($ano == '2018'){ ?> selected="selected" <?php  } ?> value="2018">2018</option>
-            <option <?php  if($ano == '2019'){ ?> selected="selected" <?php  } ?> value="2019">2019</option>
-            <option <?php  if($ano == '2020'){ ?> selected="selected" <?php  } ?> value="2020">2020</option>
-            <option <?php  if($ano == '2021'){ ?> selected="selected" <?php  } ?> value="2021">2021</option>
-            <option <?php  if($ano == '2022'){ ?> selected="selected" <?php  } ?> value="2022">2022</option>
-            <option <?php  if($ano == '2023'){ ?> selected="selected" <?php  } ?> value="2023">2023</option>
-            <option <?php  if($ano == '2024'){ ?> selected="selected" <?php  } ?> value="2024">2024</option>
-		</select>
-	</p>
+        <?php
+        $currentYear = date("Y"); // Año actual
+        $startYear = 2011; // Año de inicio del rango
+
+
+        ?>
+        <p><strong>Año:</strong>
+            <select size="1" id="ano" name="ano" onchange="document.location.href = 'empleados.sueldo.php?ano='+$('#ano').val()+'&empleado_id=<?php echo $_GET['empleado_id']?>'">
+                <?php for ($year = $startYear; $year <= $currentYear; $year++): ?>
+                    <option value="<?php echo $year; ?>" <?php if ($ano == $year) echo 'selected="selected"'; ?>>
+                        <?php echo $year; ?>
+                    </option>
+                <?php endfor; ?>
+            </select>
+        </p>
     <?php
 	$sql = "SELECT * FROM empleado_sueldo_0001 WHERE sueldo_id = '$sueldo_id'";
 	$rs = mysqli_fetch_array(mysqli_query($conn,$sql));

@@ -15,13 +15,13 @@ class ReservaCobrosController extends AppController {
         $adelantadas = 0;
         $no_adelantadas = 0;
         //if(count($reserva['ReservaExtra']>0)){
-        foreach($reserva['ReservaExtra'] as $extra){
-            if($extra['adelantada'] == 1){
-                $adelantadas = $adelantadas + $extra['cantidad'] * $extra['precio'];
-            }else{
-                $no_adelantadas = $no_adelantadas + $extra['cantidad'] * $extra['precio'];
+            foreach($reserva['ReservaExtra'] as $extra){
+                if($extra['adelantada'] == 1){
+                    $adelantadas = $adelantadas + $extra['cantidad'] * $extra['precio'];
+                }else{
+                    $no_adelantadas = $no_adelantadas + $extra['cantidad'] * $extra['precio'];
+                }
             }
-        }
         //}
 
         $this->set('adelantadas',$adelantadas);
@@ -29,145 +29,145 @@ class ReservaCobrosController extends AppController {
 
 
         if(count($reserva['ReservaDevolucion']>0)){
-            $this->loadModel('ReservaDevolucion');
-            $i=0;
+    		$this->loadModel('ReservaDevolucion');
+    		$i=0;
             foreach($reserva['ReservaDevolucion'] as $devolucion){
                 switch ($devolucion['forma_pago']) {
-                    case 'EFECTIVO':
-                        $dev = $this->ReservaDevolucion->find('first',array('joins' => array(
+                	case 'EFECTIVO':
+                		$dev = $this->ReservaDevolucion->find('first',array('joins' => array(
 
-                            array(
-                                'table' => 'rel_pago_operacion',
-                                'alias' => 'RelPagoOperacion',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'ReservaDevolucion.id = RelPagoOperacion.operacion_id and RelPagoOperacion.operacion_tipo = "reserva_devolucion" '
-                                )
-                            ),
-                            array(
-                                'table' => 'efectivo_consumo',
-                                'alias' => 'EfectivoConsumo',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'EfectivoConsumo.id = RelPagoOperacion.forma_pago_id'
-                                )
-                            ),
-                            array(
-                                'table' => 'caja',
-                                'alias' => 'Caja',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'EfectivoConsumo.caja_id = Caja.id'
-                                )
-                            ),
-                            array(
-                                'table' => 'usuario',
-                                'alias' => 'Usuario',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'ReservaDevolucion.usuario_id= Usuario.id'
-                                )
-                            )
+					        array(
+					            'table' => 'rel_pago_operacion',
+					            'alias' => 'RelPagoOperacion',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'ReservaDevolucion.id = RelPagoOperacion.operacion_id and RelPagoOperacion.operacion_tipo = "reserva_devolucion" '
+					            )
+					        ),
+					        array(
+					            'table' => 'efectivo_consumo',
+					            'alias' => 'EfectivoConsumo',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'EfectivoConsumo.id = RelPagoOperacion.forma_pago_id'
+					            )
+					        ),
+					        array(
+					            'table' => 'caja',
+					            'alias' => 'Caja',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'EfectivoConsumo.caja_id = Caja.id'
+					            )
+					        ),
+					        array(
+					            'table' => 'usuario',
+					            'alias' => 'Usuario',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'ReservaDevolucion.usuario_id= Usuario.id'
+					            )
+					        )
 
-                        ),'fields'=>array('Caja.caja','EfectivoConsumo.interes','Usuario.nombre','Usuario.apellido'), 'conditions' => array('ReservaDevolucion.id =' => $devolucion['id']), 'recursive' => -1));
-                        if ($dev) {
-                            $devolucion['detalle']='desde caja '.$dev['Caja']['caja'];
-                            $devolucion['interes']=$dev['EfectivoConsumo']['interes'];
-                            $devolucion['usuario']=$dev['Usuario']['nombre'].' '.$dev['Usuario']['apellido'];
-                            $reserva['ReservaDevolucion'][$i]=$devolucion;
-                        }
-                        break;
+					    ),'fields'=>array('Caja.caja','EfectivoConsumo.interes','Usuario.nombre','Usuario.apellido'), 'conditions' => array('ReservaDevolucion.id =' => $devolucion['id']), 'recursive' => -1));
+					   if ($dev) {
+					   		$devolucion['detalle']='desde caja '.$dev['Caja']['caja'];
+					   		$devolucion['interes']=$dev['EfectivoConsumo']['interes'];
+					   		$devolucion['usuario']=$dev['Usuario']['nombre'].' '.$dev['Usuario']['apellido'];
+					   		$reserva['ReservaDevolucion'][$i]=$devolucion;
+					   }
+                	break;
 
-                    case 'TRANSFERENCIA':
-                        $dev = $this->ReservaDevolucion->find('first',array('joins' => array(
+                	case 'TRANSFERENCIA':
+		                $dev = $this->ReservaDevolucion->find('first',array('joins' => array(
 
-                            array(
-                                'table' => 'rel_pago_operacion',
-                                'alias' => 'RelPagoOperacion',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'ReservaDevolucion.id = RelPagoOperacion.operacion_id and RelPagoOperacion.operacion_tipo = "reserva_devolucion" '
-                                )
-                            ),
-                            array(
-                                'table' => 'transferencia_consumo',
-                                'alias' => 'TransferenciaConsumo',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'TransferenciaConsumo.id = RelPagoOperacion.forma_pago_id'
-                                )
-                            ),
-                            array(
-                                'table' => 'cuenta',
-                                'alias' => 'Cuenta',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'TransferenciaConsumo.cuenta_id = Cuenta.id'
-                                )
-                            ),
-                            array(
-                                'table' => 'usuario',
-                                'alias' => 'Usuario',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'ReservaDevolucion.usuario_id= Usuario.id'
-                                )
-                            )
+					        array(
+					            'table' => 'rel_pago_operacion',
+					            'alias' => 'RelPagoOperacion',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'ReservaDevolucion.id = RelPagoOperacion.operacion_id and RelPagoOperacion.operacion_tipo = "reserva_devolucion" '
+					            )
+					        ),
+					        array(
+					            'table' => 'transferencia_consumo',
+					            'alias' => 'TransferenciaConsumo',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'TransferenciaConsumo.id = RelPagoOperacion.forma_pago_id'
+					            )
+					        ),
+					        array(
+					            'table' => 'cuenta',
+					            'alias' => 'Cuenta',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'TransferenciaConsumo.cuenta_id = Cuenta.id'
+					            )
+					        ),
+					        array(
+					            'table' => 'usuario',
+					            'alias' => 'Usuario',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'ReservaDevolucion.usuario_id= Usuario.id'
+					            )
+					        )
 
-                        ),'fields'=>array('Cuenta.nombre','TransferenciaConsumo.interes','Usuario.nombre','Usuario.apellido'), 'conditions' => array('ReservaDevolucion.id =' => $devolucion['id']), 'recursive' => -1));
-                        if ($dev) {
-                            $devolucion['detalle']='desde cuenta '.$dev['Cuenta']['nombre'];
-                            $devolucion['interes']=$dev['TransferenciaConsumo']['interes'];
-                            $devolucion['usuario']=$dev['Usuario']['nombre'].' '.$dev['Usuario']['apellido'];
-                            $reserva['ReservaDevolucion'][$i]=$devolucion;
+					    ),'fields'=>array('Cuenta.nombre','TransferenciaConsumo.interes','Usuario.nombre','Usuario.apellido'), 'conditions' => array('ReservaDevolucion.id =' => $devolucion['id']), 'recursive' => -1));
+					   if ($dev) {
+					   		$devolucion['detalle']='desde cuenta '.$dev['Cuenta']['nombre'];
+					   		$devolucion['interes']=$dev['TransferenciaConsumo']['interes'];
+					   		$devolucion['usuario']=$dev['Usuario']['nombre'].' '.$dev['Usuario']['apellido'];
+					   		$reserva['ReservaDevolucion'][$i]=$devolucion;
 
-                        }
-                        break;
-                    case 'CHEQUE':
-                        $dev = $this->ReservaDevolucion->find('first',array('joins' => array(
+					   }
+		                break;
+		            case 'CHEQUE':
+		                $dev = $this->ReservaDevolucion->find('first',array('joins' => array(
 
-                            array(
-                                'table' => 'rel_pago_operacion',
-                                'alias' => 'RelPagoOperacion',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'ReservaDevolucion.id = RelPagoOperacion.operacion_id and RelPagoOperacion.operacion_tipo = "reserva_devolucion" '
-                                )
-                            ),
-                            array(
-                                'table' => 'cheque_consumo',
-                                'alias' => 'ChequeConsumo',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'ChequeConsumo.id = RelPagoOperacion.forma_pago_id'
-                                )
-                            ),
-                            array(
-                                'table' => 'usuario',
-                                'alias' => 'Usuario',
-                                'type' => 'LEFT',
-                                'conditions' => array(
-                                    'ReservaDevolucion.usuario_id= Usuario.id'
-                                )
-                            )
+					        array(
+					            'table' => 'rel_pago_operacion',
+					            'alias' => 'RelPagoOperacion',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'ReservaDevolucion.id = RelPagoOperacion.operacion_id and RelPagoOperacion.operacion_tipo = "reserva_devolucion" '
+					            )
+					        ),
+					        array(
+					            'table' => 'cheque_consumo',
+					            'alias' => 'ChequeConsumo',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'ChequeConsumo.id = RelPagoOperacion.forma_pago_id'
+					            )
+					        ),
+					        array(
+					            'table' => 'usuario',
+					            'alias' => 'Usuario',
+					            'type' => 'LEFT',
+					            'conditions' => array(
+					                'ReservaDevolucion.usuario_id= Usuario.id'
+					            )
+					        )
 
-                        ),'fields'=>array('ChequeConsumo.numero','ChequeConsumo.interes','Usuario.nombre','Usuario.apellido'), 'conditions' => array('ReservaDevolucion.id =' => $devolucion['id']), 'recursive' => -1));
-                        if ($dev) {
-                            $devolucion['detalle']='cheque numero '.$dev['ChequeConsumo']['numero'];
-                            $devolucion['interes']=$dev['ChequeConsumo']['interes'];
-                            $devolucion['usuario']=$dev['Usuario']['nombre'].' '.$dev['Usuario']['apellido'];
-                            $reserva['ReservaDevolucion'][$i]=$devolucion;
+					    ),'fields'=>array('ChequeConsumo.numero','ChequeConsumo.interes','Usuario.nombre','Usuario.apellido'), 'conditions' => array('ReservaDevolucion.id =' => $devolucion['id']), 'recursive' => -1));
+					   if ($dev) {
+					   		$devolucion['detalle']='cheque numero '.$dev['ChequeConsumo']['numero'];
+					   		$devolucion['interes']=$dev['ChequeConsumo']['interes'];
+					   		$devolucion['usuario']=$dev['Usuario']['nombre'].' '.$dev['Usuario']['apellido'];
+					   		$reserva['ReservaDevolucion'][$i]=$devolucion;
 
-                        }
-                        break;
+					   }
+		                break;
                 }
 
-                $i++;
-                //print_r($dev);
+			   $i++;
+		        //print_r($dev);
             }
         }
         //print_r($reserva['ReservaDevolucion']);
-        $this->set('reserva',$reserva);
+       $this->set('reserva',$reserva);
 
 
 
@@ -193,8 +193,8 @@ class ReservaCobrosController extends AppController {
         $this->set('reserva_descuentos',$this->ReservaCobro->find('all',array('conditions' => array('reserva_id =' => $reserva_id, 'ReservaCobro.tipo =' => 'DESCUENTO'), 'order' => 'fecha asc')));
         $this->set('reserva_cobros',$this->ReservaCobro->find('all',array('conditions' => array('reserva_id =' => $reserva_id, 'ReservaCobro.tipo !=' => 'DESCUENTO'), 'order' => 'fecha asc','recursive' => 2)));
         $this->loadModel('CobroTarjetaPosnet');
-        //$this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('conditions' =>array('activo =' => 1),'order' => 'posnet asc')));
-        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('order' => 'posnet asc')));
+        $this->set('posnets',$this->CobroTarjetaPosnet->find('list',array('conditions' =>array('activo =' => 1),'order' => 'posnet asc')));
+
 
         $this->loadModel('ConceptoFacturacion');
 
@@ -308,13 +308,13 @@ class ReservaCobrosController extends AppController {
             }
         }
         //if(count($reserva['ReservaExtra']>0)){
-        foreach($reserva['ReservaExtra'] as $extra){
-            if($extra['adelantada'] == 1){
-                $adelantadas = $adelantadas + $extra['cantidad'] * $extra['precio'];
-            }else{
-                $no_adelantadas = $no_adelantadas + $extra['cantidad'] * $extra['precio'];
+            foreach($reserva['ReservaExtra'] as $extra){
+                if($extra['adelantada'] == 1){
+                    $adelantadas = $adelantadas + $extra['cantidad'] * $extra['precio'];
+                }else{
+                    $no_adelantadas = $no_adelantadas + $extra['cantidad'] * $extra['precio'];
+                }
             }
-        }
         //}
 
         $devoluciones = 0;
@@ -323,8 +323,8 @@ class ReservaCobrosController extends AppController {
                 $devoluciones += $devolucion['monto'];
             }
         }
-        // echo 'Descontado: '.$descontado;
-        $this->set('descontado',$descontado);
+       // echo 'Descontado: '.$descontado;
+		 $this->set('descontado',$descontado);
         $this->set('pendiente_previo',$reserva['Reserva']['total'] - $pagado + $devoluciones);
         $this->set('no_adelantadas',$no_adelantadas);
 
@@ -358,29 +358,29 @@ class ReservaCobrosController extends AppController {
         $this->set('puntos_venta',$this->PuntoVenta->find('list'));
 
 
-        $user_id = $_SESSION['useridushuaia'];
+		$user_id = $_SESSION['useridushuaia'];
         $user = $this->Usuario->find('first',array('conditions'=>array('Usuario.id'=>$_SESSION['useridushuaia'])));
 
         $permisoEditar=1;
-        $permisoDescuento=1;
+		$permisoDescuento=1;
         $permisoCobro=1;
         $permisoFactura=1;
         if ($user['Usuario']['admin'] != '1'){
-            $this->loadModel('UsuarioPermiso');
-            $permisos = $this->UsuarioPermiso->findAllByUsuarioId($user_id);
-            $permisoEditar=0;
-            $permisoDescuento=0;
+	        $this->loadModel('UsuarioPermiso');
+	        $permisos = $this->UsuarioPermiso->findAllByUsuarioId($user_id);
+	        $permisoEditar=0;
+	        $permisoDescuento=0;
             $permisoCobro=0;
             $permisoFactura=0;
-            foreach($permisos as $permiso){
-                if ($permiso['UsuarioPermiso']['permiso_id']==125) {
-                    $permisoEditar=1;
-                    //continue;
-                }
-                if ($permiso['UsuarioPermiso']['permiso_id']==138) {
-                    $permisoDescuento=1;
-                    //continue;
-                }
+	    	foreach($permisos as $permiso){
+               if ($permiso['UsuarioPermiso']['permiso_id']==125) {
+               		$permisoEditar=1;
+               		//continue;
+               }
+	    		if ($permiso['UsuarioPermiso']['permiso_id']==138) {
+               		$permisoDescuento=1;
+               		//continue;
+               }
                 if ($permiso['UsuarioPermiso']['permiso_id']==156) {
                     $permisoCobro=1;
                     //continue;
@@ -389,7 +389,7 @@ class ReservaCobrosController extends AppController {
                     $permisoFactura=1;
                     //continue;
                 }
-            }
+	        }
         }
         $this->set('permisoEditar',$permisoEditar);
         $this->set('permisoDescuento',$permisoDescuento);
@@ -397,7 +397,7 @@ class ReservaCobrosController extends AppController {
         $this->set('permisoFactura',$permisoFactura);
         $this->set('restringido',$restringido);
         //if ($restringido) {
-        $this->set('reserva_descuentos',$this->ReservaCobro->find('all',array('conditions' => array('reserva_id =' => $reserva_id, 'ReservaCobro.tipo =' => 'DESCUENTO'), 'order' => 'fecha asc')));
+        	 $this->set('reserva_descuentos',$this->ReservaCobro->find('all',array('conditions' => array('reserva_id =' => $reserva_id, 'ReservaCobro.tipo =' => 'DESCUENTO'), 'order' => 'fecha asc')));
         //}
 
     }
@@ -530,11 +530,11 @@ class ReservaCobrosController extends AppController {
             $this->set('resultado','ERROR');
             $this->set('mensaje','No se pudo guardar');
             $this->set('detalle',$errores);
-        }else{
+         }else{
             $this->set('resultado','OK');
             $this->set('mensaje','Datos guardados');
             $this->set('detalle','');
-        }
+         }
 
         $this->set('_serialize', array(
             'resultado',
@@ -557,101 +557,101 @@ class ReservaCobrosController extends AppController {
         ));
     }
 
-    public function eliminarCobro(){
-        $user_id = $_SESSION['useridushuaia'];
+	public function eliminarCobro(){
+		$user_id = $_SESSION['useridushuaia'];
         $user = $this->Usuario->find('first',array('conditions'=>array('Usuario.id'=>$_SESSION['useridushuaia'])));
-        $tienePermiso=1;
+       	$tienePermiso=1;
         $tienePermisoSincro=1;
         if ($user['Usuario']['admin'] != '1'){
-            $this->loadModel('UsuarioPermiso');
-            $permisos = $this->UsuarioPermiso->findAllByUsuarioId($user_id);
-            $tienePermiso=0;
+	        $this->loadModel('UsuarioPermiso');
+	        $permisos = $this->UsuarioPermiso->findAllByUsuarioId($user_id);
+	        $tienePermiso=0;
             $tienePermisoSincro=0;
-            foreach($permisos as $permiso){
-                if ($permiso['UsuarioPermiso']['permiso_id']==139){
-                    $tienePermisoSincro=1;
-                }
-                if ($permiso['UsuarioPermiso']['permiso_id']==101) {
-                    $tienePermiso=1;
-                    //continue;
-                }
-            }
+	    	foreach($permisos as $permiso){
+	    	if ($permiso['UsuarioPermiso']['permiso_id']==139){
+	    				$tienePermisoSincro=1;
+	    			}
+	               if ($permiso['UsuarioPermiso']['permiso_id']==101) {
+	               		$tienePermiso=1;
+	               		//continue;
+	               }
+	        }
         }
         if ($tienePermiso) {
-            $descubierto=1;
-            $sincronizada=1;
-            $this->ReservaCobro->id = $this->request->data['cobro_id'];
-            $cobro = $this->ReservaCobro->read();
-            switch($cobro['ReservaCobro']['tipo']){
-                case 'EFECTIVO':
-                    //print_r($cobro['CobroEfectivo']);
-                    $this->loadModel('CajaSincronizada');
-                    $fechaSincronizada = $this->CajaSincronizada->find('first',array('fields'=>'MAX(CajaSincronizada.fecha) as fecha','conditions' => array('CajaSincronizada.caja_id =' => $cobro['CobroEfectivo']['caja_id'])));
+        	$descubierto=1;
+        	$sincronizada=1;
+        	$this->ReservaCobro->id = $this->request->data['cobro_id'];
+	        $cobro = $this->ReservaCobro->read();
+	        switch($cobro['ReservaCobro']['tipo']){
+	        	case 'EFECTIVO':
+	               //print_r($cobro['CobroEfectivo']);
+	        $this->loadModel('CajaSincronizada');
+	        		$fechaSincronizada = $this->CajaSincronizada->find('first',array('fields'=>'MAX(CajaSincronizada.fecha) as fecha','conditions' => array('CajaSincronizada.caja_id =' => $cobro['CobroEfectivo']['caja_id'])));
 
-                    $this->loadModel('CajaMovimiento');
-                    $movimientos = $this->CajaMovimiento->find('all',array('conditions' => array('origen' => 'reservacobro_'.$cobro['CobroEfectivo']['id'])));
+	        		 $this->loadModel('CajaMovimiento');
+	        		$movimientos = $this->CajaMovimiento->find('all',array('conditions' => array('origen' => 'reservacobro_'.$cobro['CobroEfectivo']['id'])));
 
-                    foreach ($movimientos as $movimiento) {
-                        //print_r($movimiento);
+	        		foreach ($movimientos as $movimiento) {
+	        			//print_r($movimiento);
 
-                        if ($fechaSincronizada[0]['fecha']>=$movimiento['CajaMovimiento']['fecha']) {
-                            if (!$tienePermisoSincro) {
-                                $sincronizada=0;
-                            }
+		        		if ($fechaSincronizada[0]['fecha']>=$movimiento['CajaMovimiento']['fecha']) {
+		        			if (!$tienePermisoSincro) {
+		        				$sincronizada=0;
+		        			}
 
-                        }
-                    }
-
-
-                    $this->loadModel('Caja');
-                    $caja=$this->Caja->findById($cobro['CobroEfectivo']['caja_id']);
+		        		}
+	        		}
 
 
-
-                    if (!$caja['Caja']['descubierto']) {
-                        $monto = $this->CajaMovimiento->find('first',array('fields'=>'SUM(CajaMovimiento.monto) as total','conditions' => array('CajaMovimiento.caja_id =' => $cobro['CobroEfectivo']['caja_id'])));
-
-                        $montoTotal =$monto[0]['total']-$cobro['CobroEfectivo']['monto_neto'];
-                        //echo $montoTotal;
-                        if ($montoTotal<0) {
-                            $descubierto=0;
-                        }
-                    }
-                    if($descubierto&&$sincronizada){
-                        $this->CajaMovimiento->deleteAll(array('origen' => 'reservacobro_'.$cobro['CobroEfectivo']['id']), false);
-                    }
+	                $this->loadModel('Caja');
+	                $caja=$this->Caja->findById($cobro['CobroEfectivo']['caja_id']);
 
 
-                    break;
 
-                case 'TRANSFERENCIA':
-                    //print_r($cobro['CobroTransferencia']);
-                    $this->loadModel('CuentaMovimiento');
-                    $this->CuentaMovimiento->deleteAll(array('cuenta_id' => $cobro['CobroTransferencia']['cuenta_id'],'origen' => 'reservatransferencia_'.$cobro['CobroTransferencia']['id']), false);
-                    break;
-            }
-            if (!$descubierto) {
-                $this->set('resultado','ERROR');
-                $this->set('mensaje','Cobro no eliminado, ');
-                $this->set('detalle','genera saldo negativo en caja no autorizada');
-            }
-            elseif(!$sincronizada) {
-                $this->set('resultado','ERROR');
-                $this->set('mensaje','Cobro no eliminado, ');
-                $this->set('detalle','la caja se encuentra conciliada y sincronizada para la fecha del movimiento que intenta realizar. Contactar administrador');
-            }
-            else{
-                $this->ReservaCobro->delete($this->request->data['cobro_id'],true);
+	                if (!$caja['Caja']['descubierto']) {
+	                	$monto = $this->CajaMovimiento->find('first',array('fields'=>'SUM(CajaMovimiento.monto) as total','conditions' => array('CajaMovimiento.caja_id =' => $cobro['CobroEfectivo']['caja_id'])));
 
-                $this->set('resultado','OK');
-                $this->set('mensaje','Cobro eliminado');
-                $this->set('detalle','');
-            }
+	                	$montoTotal =$monto[0]['total']-$cobro['CobroEfectivo']['monto_neto'];
+						//echo $montoTotal;
+	                	if ($montoTotal<0) {
+	                		$descubierto=0;
+	                	}
+	                }
+	                if($descubierto&&$sincronizada){
+	                	$this->CajaMovimiento->deleteAll(array('origen' => 'reservacobro_'.$cobro['CobroEfectivo']['id']), false);
+	                }
+
+
+	                break;
+
+	            case 'TRANSFERENCIA':
+	            	//print_r($cobro['CobroTransferencia']);
+	               $this->loadModel('CuentaMovimiento');
+	           		$this->CuentaMovimiento->deleteAll(array('cuenta_id' => $cobro['CobroTransferencia']['cuenta_id'],'origen' => 'reservatransferencia_'.$cobro['CobroTransferencia']['id']), false);
+	                break;
+	        }
+        	if (!$descubierto) {
+	        	$this->set('resultado','ERROR');
+		        $this->set('mensaje','Cobro no eliminado, ');
+		        $this->set('detalle','genera saldo negativo en caja no autorizada');
+	        }
+	        elseif(!$sincronizada) {
+	        	$this->set('resultado','ERROR');
+		        $this->set('mensaje','Cobro no eliminado, ');
+		        $this->set('detalle','la caja se encuentra conciliada y sincronizada para la fecha del movimiento que intenta realizar. Contactar administrador');
+	        }
+        	else{
+        		$this->ReservaCobro->delete($this->request->data['cobro_id'],true);
+
+		        $this->set('resultado','OK');
+		        $this->set('mensaje','Cobro eliminado');
+		        $this->set('detalle','');
+        	}
         }
         else{
-            $this->set('resultado','ERROR');
-            $this->set('mensaje','Cobro no eliminado');
-            $this->set('detalle','No tiene permiso');
+        	$this->set('resultado','ERROR');
+	        $this->set('mensaje','Cobro no eliminado');
+	        $this->set('detalle','No tiene permiso');
         }
 
 
@@ -679,7 +679,7 @@ class ReservaCobrosController extends AppController {
         $this->ReservaCobro->id = $this->request->data['cobro_id'];
 
 
-        $reservaCobro=$this->ReservaCobro->read();
+         $reservaCobro=$this->ReservaCobro->read();
         $reservaCobro['ReservaCobro']['concepto_facturacion_id']=$this->request->data['concepto_facturacion_id'];
 
 
