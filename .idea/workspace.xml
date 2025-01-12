@@ -22,33 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="Modificaciones varias">
-      <change afterPath="$PROJECT_DIR$/v2/app/Controller/ReservaCobrosController_old.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/v2/app/View/ExtraRubros/extra_subrubro.ctp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/v2/app/View/Reservas/check_consumo.ctp" afterDir="false" />
+    <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/empleados.sueldo.php" beforeDir="false" afterPath="$PROJECT_DIR$/empleados.sueldo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Config/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Config/core.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ExtraRubrosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ExtraRubrosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ReservaCobrosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ReservaCobrosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ReservaExtrasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ReservaExtrasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Model/ReservaExtra.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/ReservaExtra.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Extras/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Extras/index.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/ReservaCobros/finalizar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/ReservaCobros/finalizar.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/ReservaExtras/get_row.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/ReservaExtras/get_row.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/ReservaExtras/get_row_variable.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/ReservaExtras/get_row_variable.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Reservas/index_restringido.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Reservas/index_restringido.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-es" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-es" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/logs/debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/logs/error.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/informe_satisfaccion.php" beforeDir="false" afterPath="$PROJECT_DIR$/informe_satisfaccion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +297,9 @@
       <workItem from="1733908408517" duration="906000" />
       <workItem from="1733943522898" duration="593000" />
       <workItem from="1735055204380" duration="77000" />
-      <workItem from="1736364633861" duration="4001000" />
+      <workItem from="1736364633861" duration="4706000" />
+      <workItem from="1736617016977" duration="57000" />
+      <workItem from="1736692763469" duration="264000" />
     </task>
     <task id="LOCAL-00001" summary="Modificaciones varias">
       <created>1654626521014</created>
@@ -430,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731445571804</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Modificaciones varias">
+      <created>1736375614973</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1736375614973</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,6 +433,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Modificaciones varias" />
     <option name="LAST_COMMIT_MESSAGE" value="Modificaciones varias" />
   </component>
