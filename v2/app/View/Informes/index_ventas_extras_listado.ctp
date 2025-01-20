@@ -1,24 +1,18 @@
-<?php $ano= date('Y'); 
-	  $mes= date('m'); 	
+<?php $ano= date('Y');
+	  $mes= date('m');
+$currentYear = date("Y"); // Año actual
+$startYear = 2011; // Año de inicio del rango
 	  ?>
-	  
-<strong>A&ntilde;o</strong>: 
+
+<strong>A&ntilde;o</strong>:
 <select id="financiero_mensual_ano">
-    <option <?php if($ano == '2012'){?> selected="selected" <?php } ?>>2012</option>
-    <option <?php if($ano == '2013'){?> selected="selected" <?php } ?>>2013</option>
-    <option <?php if($ano == '2014'){?> selected="selected" <?php } ?>>2014</option>
-    <option <?php if($ano == '2015'){?> selected="selected" <?php } ?>>2015</option>
-    <option <?php if($ano == '2016'){?> selected="selected" <?php } ?>>2016</option>
-    <option <?php if($ano == '2017'){?> selected="selected" <?php } ?>>2017</option>
-    <option <?php if($ano == '2018'){?> selected="selected" <?php } ?>>2018</option>
-    <option <?php if($ano == '2019'){?> selected="selected" <?php } ?>>2019</option>
-    <option <?php if($ano == '2020'){?> selected="selected" <?php } ?>>2020</option>
-    <option <?php if($ano == '2021'){?> selected="selected" <?php } ?>>2021</option>
-    <option <?php if($ano == '2022'){?> selected="selected" <?php } ?>>2022</option>
-    <option <?php if($ano == '2023'){?> selected="selected" <?php } ?>>2023</option>
-    <option <?php if($ano == '2024'){?> selected="selected" <?php } ?>>2024</option>
-</select> 
-<strong>Mes</strong>: 
+    <?php for ($year = $startYear; $year <= $currentYear; $year++): ?>
+        <option value="<?php echo $year; ?>" <?php if ($ano == $year) echo 'selected="selected"'; ?>>
+            <?php echo $year; ?>
+        </option>
+    <?php endfor; ?>
+</select>
+<strong>Mes</strong>:
 <select id="financiero_mesual_mes">
     <option value="01" <?php if($mes == '01'){?> selected="selected" <?php } ?>>Enero</option>
     <option value="02" <?php if($mes == '02'){?> selected="selected" <?php } ?>>Febrero</option>
@@ -32,10 +26,10 @@
     <option value="10" <?php if($mes == '10'){?> selected="selected" <?php } ?>>Octubre</option>
     <option value="11" <?php if($mes == '11'){?> selected="selected" <?php } ?>>Noviembre</option>
     <option value="12" <?php if($mes == '12'){?> selected="selected" <?php } ?>>Diciembre</option>
-</select> 
+</select>
 
 
-<strong>Tipo</strong>: 
+<strong>Tipo</strong>:
 <select id="tipo">
 	<option>Seleccionar...</option>
 	<?php if($permisoAdelantada){ ?>
@@ -44,28 +38,28 @@
     <?php if($permisoNoAdelantada){ ?>
     <option value="2">No adelantados</option>
     <?php } ?>
-    
-</select> 
-<strong>Rubros</strong>: 
+
+</select>
+<strong>Rubros</strong>:
 <select id="extra_rubro">
 	<option>Seleccionar...</option>
-    <?php foreach($extra_rubros as $id => $rubro){ 
-    	
+    <?php foreach($extra_rubros as $id => $rubro){
+
         echo '<option value="'.$id.'">'.$rubro.'</option>';
      } ?>
-    
-    
-    
-</select> 
 
-<strong>Subrubros</strong>: 
+
+
+</select>
+
+<strong>Subrubros</strong>:
 <span id="extra_subrubros">
 <select id="extra_subrubro">
 	<option>Seleccionar...</option>
-    
-    
-    
-    
+
+
+
+
 </select>
 </span>
 <input type="button" onclick="ver_extras();" value="Ver" /> <span id="cargando2" style="display:none;">Cargando ...</span>
@@ -77,20 +71,20 @@ $('#extra_rubro').change(function(){
           url: '<?php echo $this->Html->url('/extras/getSubrubrosInforme', true);?>',
           data: {'rubro_id' : $(this).val() },
           success: function(data){
-           
+
             $('#extra_subrubros').html(data);
-            
+
           },
           dataType: 'html'
         });
     }else{
-        
+
         $('#extra_subrubros').html('');
     }
 });
 
 function ver_extras(){
-	
+
     $('#cargando2').show();
     $.ajax({
         url: '<?php echo $this->Html->url('/informes/ventas_extras_listado', true);?>/'+$('#financiero_mesual_mes').val()+'/'+$('#financiero_mensual_ano').val()+'/'+$('#tipo').val()+'/'+$('#extra_rubro').val()+'/'+$('#extra_subrubro').val(),

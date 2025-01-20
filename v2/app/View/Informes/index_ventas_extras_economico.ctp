@@ -1,25 +1,16 @@
 <?php
 $ano= date('Y');
-
+$currentYear = date("Y"); // Año actual
+$startYear = 2011; // Año de inicio del rango
 ?>
 <strong>Informe Economico</strong>:
 <select id="economico_mes">
 	<option>Seleccionar...</option>
-    <option>2012</option>
-    <option>2013</option>
-    <option>2014</option>
-    <option>2015</option>
-    <option>2016</option>
-    <option>2017</option>
-    <option>2018</option>
-    <option>2019</option>
-    <option>2020</option>
-    <option <?php if($ano == '2021'){?> selected="selected" <?php } ?>>2021</option>
-    <option <?php if($ano == '2022'){?> selected="selected" <?php } ?>>2022</option>
-    <option <?php if($ano == '2023'){?> selected="selected" <?php } ?>>2023</option>
-    <option <?php if($ano == '2024'){?> selected="selected" <?php } ?>>2024</option>
-    <option <?php if($ano == '2025'){?> selected="selected" <?php } ?>>2025</option>
-    <option <?php if($ano == '2026'){?> selected="selected" <?php } ?>>2026</option>
+    <?php for ($year = $startYear; $year <= $currentYear; $year++): ?>
+        <option value="<?php echo $year; ?>" <?php if ($ano == $year) echo 'selected="selected"'; ?>>
+            <?php echo $year; ?>
+        </option>
+    <?php endfor; ?>
 </select> <strong>&nbsp;&nbsp;Entre fechas&nbsp;<input type="text" name="desde" id="desde" class="datepicker">&nbsp;&nbsp;y&nbsp;<input type="text" name="hasta" id="hasta" class="datepicker"></strong>
 
 <input type="button" onclick="ver_economico();" value="Ver" /> <span id="cargando" style="display:none;">Cargando ...</span>
