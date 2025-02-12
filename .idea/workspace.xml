@@ -23,15 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="Modificaciones varias">
-      <change afterPath="$PROJECT_DIR$/v2/app/View/Neumaticos/baja.ctp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Config/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Config/core.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/NeumaticosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/NeumaticosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Model/Neumatico.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Model/Neumatico.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Neumaticos/cambiar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Neumaticos/cambiar.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Neumaticos/crear.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Neumaticos/crear.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Neumaticos/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Neumaticos/index.ctp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" afterDir="false" />
@@ -72,21 +64,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "E:/Documents/Mis Webs/discover/v2/app/View/Neumaticos",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Documents/Mis Webs/discover/v2/app/View/Neumaticos&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Documents\Mis Webs\discover\v2\app\View\Neumaticos" />
@@ -277,6 +269,11 @@
       <workItem from="1713958625676" duration="1208000" />
       <workItem from="1714041385565" duration="14756000" />
       <workItem from="1714387247662" duration="15937000" />
+      <workItem from="1714474311468" duration="8391000" />
+      <workItem from="1714646818847" duration="744000" />
+      <workItem from="1714652295574" duration="83000" />
+      <workItem from="1715079101347" duration="11177000" />
+      <workItem from="1717512302326" duration="1423000" />
     </task>
     <task id="LOCAL-00001" summary="Modificaciones varias">
       <created>1654626521014</created>
@@ -322,7 +319,55 @@
       <option name="project" value="LOCAL" />
       <updated>1713529355332</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1714479845098</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714479845098</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1714485769979</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714485769979</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1714493290207</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1714493290207</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1714498463932</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714498463932</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1715090391102</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715090391102</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1717513713096</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717513713096</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,6 +395,15 @@
           <url>file://$PROJECT_DIR$/usuarios.json.php</url>
           <line>6</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/v2/app/Controller/NeumaticosController.php</url>
+          <line>259</line>
+          <properties>
+            <option name="className" value="\NeumaticosController" />
+            <option name="methodName" value="dataTable" />
+          </properties>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
