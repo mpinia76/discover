@@ -12,12 +12,25 @@ $json	= "empleados_sueldos.json.php"; //json
 //resta modificar los datos del grid
 include_once("functions/delete.php");
 
-if(ACCION_66 and ACCION_67){
+/*if(ACCION_66 and ACCION_67 and ACCION_152){
 	$espacio = 'todos';
 }elseif(ACCION_66){
 	$espacio = 'oficina';
 }elseif(ACCION_67){
 	$espacio = 'Oficina Ushuaia';
+}elseif(ACCION_152){
+    $espacio = 'BB';
+}*/
+
+$espacio = array();
+if(ACCION_66){
+    $espacio[] = '1';
+}
+if(ACCION_67){
+    $espacio[] = '2';
+}
+if(ACCION_152){
+    $espacio[] = '3';
 }
 
 ?>
@@ -87,7 +100,8 @@ function ver(){
 		$('#mygrid_container').show();
 		//$('#mensaje').hide();
 		mygrid.clearAll();
-		mygrid.load("<?php echo $json?>?ano="+ano+"&mes="+mes+"&espacio=<?php echo $espacio?>","json");
+
+        mygrid.load("<?php echo $json?>?ano=" + ano + "&mes=" + mes + "&espacio=<?php echo implode(',', $espacio); ?>", "json");
 	}
 }
 function pagar(){

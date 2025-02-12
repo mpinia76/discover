@@ -1541,3 +1541,36 @@ AUTO_INCREMENT=1;
 
 ALTER TABLE `neumatico_estados`
     ADD CONSTRAINT `FK_neumatico_estados_neumaticos` FOREIGN KEY (`neumatico_id`) REFERENCES `neumaticos` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;
+
+##################################26/06/2024############################################################
+
+ALTER TABLE `neumaticos`
+    ADD COLUMN `condicion` ENUM('Nueva','Usada') NULL DEFAULT 'Nueva' AFTER `km_unidad`;
+
+##################################15/10/2024###########################################################
+
+INSERT INTO permiso (`permiso_grupo_id`, `nombre`) VALUES (19, 'BB');
+
+##################################16/10/2024###########################################################
+ALTER TABLE `tarjeta`
+    ADD COLUMN `activa` TINYINT(1) NOT NULL DEFAULT '1';
+
+}
+
+##################################22/11/2024###########################################################
+ALTER TABLE `reserva_extras`
+    ADD COLUMN `usuario_id` INT(11) NULL AFTER `extra_variable_id`;
+
+ALTER TABLE `reserva_extras`
+    ADD COLUMN `consumida` DATE NULL AFTER `extra_variable_id`;
+
+INSERT INTO permiso (`permiso_grupo_id`, `nombre`) VALUES (21, 'Check de consumos - Boton');
+INSERT INTO permiso (`permiso_grupo_id`, `nombre`) VALUES (21, 'Planilla de reserva- Boton');
+INSERT INTO permiso (`permiso_grupo_id`, `nombre`) VALUES (21, 'Carga de extras y facturas - Boton + funcionalidad de carga de extras');
+INSERT INTO permiso (`permiso_grupo_id`, `nombre`) VALUES (21, 'Finalizar - Boton');
+INSERT INTO permiso (`permiso_grupo_id`, `nombre`) VALUES (21, 'Asignacion Masiva - Boton');
+INSERT INTO permiso (`permiso_grupo_id`, `nombre`) VALUES (21, 'Permitir cobros');
+INSERT INTO permiso (`permiso_grupo_id`, `nombre`) VALUES (21, 'Permitir carga facturas');
+
+DELETE FROM `permiso` WHERE  `id`=83;
+UPDATE permiso SET `nombre`='Editar y eliminar facturas' WHERE  `id`=125;

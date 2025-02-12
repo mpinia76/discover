@@ -56,6 +56,7 @@ $this->Js->buffer('
             null,
             null,
             null,
+            null,
             {"bSortable": false},
             {"bSortable": false}
         ]
@@ -118,7 +119,13 @@ $this->Js->buffer('
             oTable.fnFilter($("#filter_estado option:selected").text(),11);
          }
      });
-
+    $("#filter_condicion").change(function(){
+        if($(this).val() == ""){
+            oTable.fnFilter($(this).val(),12);
+        }else{
+            oTable.fnFilter($("#filter_condicion option:selected").text(),12);
+         }
+     });
    
 
 
@@ -143,7 +150,7 @@ $this->Js->buffer('
         }else{
             var data = oTable.fnGetData(row[0]);
 
-            createWindow("w_neumaticos_view","Gestion de nuematico","<?php echo $this->Html->url('/neumaticos/editar', true);?>/"+data[0],"450","350");
+            createWindow("w_neumaticos_view","Editar parametros de Alta","<?php echo $this->Html->url('/neumaticos/editar', true);?>/"+data[0],"450","350");
 
         }
     }
@@ -279,7 +286,7 @@ $this->Js->buffer('
 
 </script>
 <ul class="action_bar">
-    <li class="boton agregar"><a onclick="createWindow('w_neumaticos_add','Gestion de neumaticos','<?php echo $this->Html->url('/neumaticos/crear', true);?>','450','350');">Alta</a></li>
+    <li class="boton agregar"><a onclick="createWindow('w_neumaticos_add','Alta de neumatico','<?php echo $this->Html->url('/neumaticos/crear', true);?>','450','350');">Alta</a></li>
     <li class="boton editar"><a onclick="editar();">Editar</a></li>
     <li class="boton editar"><a onclick="cambiarEstado();">Estado</a></li>
     <li class="boton anular"> <a onclick="baja();">Baja</a></li>
@@ -356,11 +363,20 @@ $this->Js->buffer('
         <th width="30">
 
             <select id="filter_estado">
-                <option value="0">Estado</option>
-                <option value="1" selected="selected">Activas</option>
+                <option value="">Estado</option>
                 <option>En uso</option>
                 <option>En deposito</option>
                 <option>Baja</option>
+            </select>
+
+        </th>
+        <th width="50">
+
+            <select id="filter_condicion">
+                <option value="">Condicion</option>
+                <option>Nueva</option>
+                <option>Usada</option>
+
             </select>
 
         </th>
@@ -384,6 +400,7 @@ $this->Js->buffer('
             <th width="30">Unidad</th>
             <th width="30">Posicion</th>
             <th width="30">Estado</th>
+            <th width="50">Condicion</th>
             <th width="30">Antigüedad</th>
             <th width="30">Km</th>
         </tr>

@@ -348,6 +348,11 @@
             Base de datos
         </div>
     <?php } ?>
+    <?php if(ACCION_153){ ?>
+        <div class="informes item" onclick="createWindow('w_informe_neumaticos','Informe de neumaticos','v2/informes/index_neumaticos','1230','600'); $('#menu').hide();">
+            Informe de neumaticos
+        </div>
+    <?php } ?>
          <div class="title" onclick="$('.onLine').toggle();"><img width="30" src="images/ico_configure.png" align="absmiddle" /> Reservas On line</div>
         <?php if(MENU_40){ ?>
         <div class="onLine item" onclick="createWindow('w_configuracion_reservas','Configuracion reservas On Line','configuracion.reservas.php','600','400'); $('#menu').hide();">

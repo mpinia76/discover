@@ -1,4 +1,5 @@
 <?php
+session_start();
 class ReservaExtrasController extends AppController {
     public $scaffold;
     public function index(){
@@ -74,23 +75,23 @@ class ReservaExtrasController extends AppController {
 	        $this->set('resultado','OK');
 	        $this->set('mensaje','Extra eliminada');
 	        $this->set('detalle','');
-        }    
-        else{    
-        
+        }
+        else{
+
 	        $this->set('resultado','ERROR');
 	        $this->set('mensaje','Extra no eliminada - ');
-	        $this->set('detalle','Realice antes la devolucion correspondiente y luego elimine los extras que equivalen al monto devuelto');    
+	        $this->set('detalle','Realice antes la devolucion correspondiente y luego elimine los extras que equivalen al monto devuelto');
         }
-        
+
         $this->set('_serialize', array(
             'resultado',
             'mensaje' ,
-            'detalle' 
+            'detalle'
         ));
        // $this->autoRender = false;
-        
+
     }
-    
+
 	public function controlarEliminacion(){
         $id = $this->request->data['reserva_extra_id'];
         $this->ReservaExtra->id = $id;
@@ -142,27 +143,27 @@ class ReservaExtrasController extends AppController {
             $pendiente = round(round($reserva['Reserva']['total'],2) + round($no_adelantadas,2) - round($descontado,2) - round($pagado,2) + round($devoluciones,2),2);
             $pendiente = ($pendiente==-0)?0:$pendiente;
         if ($pendiente > 0) {
-	        
+
 	        $this->set('resultado','OK');
 	        $this->set('mensaje','Extra eliminada');
 	        $this->set('detalle','');
-        }    
-        else{    
-        
+        }
+        else{
+
 	        $this->set('resultado','ERROR');
 	        $this->set('mensaje','Extra no eliminada - ');
-	        $this->set('detalle','Realice antes la devolucion correspondiente y luego elimine los extras que equivalen al monto devuelto');    
+	        $this->set('detalle','Realice antes la devolucion correspondiente y luego elimine los extras que equivalen al monto devuelto');
         }
-        
+
         $this->set('_serialize', array(
             'resultado',
             'mensaje' ,
-            'detalle' 
+            'detalle'
         ));
        // $this->autoRender = false;
-        
+
     }
-    
+
     public function getRow(){
         $this->layout = 'ajax';
 
@@ -196,6 +197,7 @@ class ReservaExtrasController extends AppController {
                     'cantidad' => $this->request->data['cantidad'],
                     'precio' => $extra['Extra']['tarifa'],
                     'adelantada' => 0,
+                    'usuario_id' => $_SESSION['useridushuaia'],
                     'agregada' => date('Y-m-d')
                 ));
                 $this->ReservaExtra->save();
@@ -209,21 +211,21 @@ class ReservaExtrasController extends AppController {
     }
     public function getRowVariable(){
         $this->layout = 'ajax';
-        
+
         if($this->request->data){
             $this->set('precio',$this->request->data['precio']);
             $this->set('detalle',$this->request->data['detalle']);
             $this->set('consumida',$this->request->data['consumida']);
             $this->loadModel('ExtraRubro');
             $this->set('rubro',$this->ExtraRubro->findById($this->request->data['rubro_id']));
-            
+
             $this->loadModel('ExtraVariable');
             $this->ExtraVariable->set(array(
                 'extra_rubro_id' => $this->request->data['rubro_id'],
                 'detalle' => $this->request->data['detalle']
             ));
             $this->ExtraVariable->save();
-            
+
 
             $this->loadModel('Reserva');
             $this->Reserva->id = $this->request->data['reserva_id'];
@@ -248,12 +250,13 @@ class ReservaExtrasController extends AppController {
                     'precio' => $this->request->data['precio'],
                     'adelantada' => 0,
                     'cantidad' => 1,
+                    'usuario_id' => $_SESSION['useridushuaia'],
                     'agregada' => date('Y-m-d')
                 ));
                 $this->ReservaExtra->save();
                 $this->set('reserva_extra_id', $this->ReservaExtra->id);
             }
-            
+
         }else{
             $this->set('precio',$this->request->query['precio']);
             $this->set('detalle',$this->request->query['detalle']);

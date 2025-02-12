@@ -114,6 +114,8 @@ class InformesController extends AppController {
 
     }
 
+
+
 	function index_ventas_ocupacion_x_categoria(){
         $this->layout = 'informe';
          $this->setLogUsuario('Informe de ocupacion por categoria');
@@ -1722,6 +1724,7 @@ class InformesController extends AppController {
     }
 
 
+
 	function ventas_ocupacion($ano,$desde,$hasta){
     	//echo $desde;
         ini_set( "memory_limit", "-1" );
@@ -3046,5 +3049,63 @@ class InformesController extends AppController {
         $this->ExportXls->export($fileName, $headerRow, $data);
     }
 
+
+	function index_neumaticos(){
+		$this->layout = 'informe';
+		$this->setLogUsuario('Informe de neumaticos');
+
+	}
+
+	function neumaticos($estado,$pdf=0){
+
+		ini_set( "memory_limit", "-1" );
+		ini_set('max_execution_time', "-1");
+		//error_reporting(0);
+
+		$this->layout = 'ajax';
+
+		$this->loadModel('Neumatico');
+
+		$this->loadModel('Unidad');
+
+		$unidads = $this->Unidad->find('all',array('conditions' => array('estado =' =>1)));
+
+		$unidadesMostrar = array();
+		foreach($unidads as $unidad){
+			//print_r($unidad);
+			//if (($unidad['Unidad']['estado']==1 )&&($unidad['Unidad']['excluir']==0 )) {
+			if ($unidad['Unidad']['excluir']==0 ) {
+				$neumaticos = $this->Neumatico->find('all',array('conditions' => array('unidad_id =' =>$unidad['Unidad']['id'],'estado ='=>$estado)));
+				$unidad['Unidad']['neumaticos']=$neumaticos;
+				$unidadesMostrar[]=$unidad;
+
+			}
+			//$capacidad_total += $apartamento['Apartamento']['capacidad'] * 30;
+		}
+		//$capacidad_total = $capacidad_total * 30;
+
+		/*$this->set(array(
+			'estado' => $estado,
+			'unidads' => $unidadesMostrar
+
+		));*/
+
+		$this->set(array(
+			'estado' => $estado,
+			'pdf' => $pdf,
+			'unidads' => $unidadesMostrar
+		));
+		if ($pdf) {
+			/*$this->Mpdf->init(array('format' => 'A4-L'));
+			$this->Mpdf->setFilename('Neumaticos_'.$estado.'.pdf');
+			$this->Mpdf->setOutput('D');*/
+			require_once '../../vendor/autoload.php';
+
+			$mpdf = new \Mpdf\Mpdf(['format' => 'A4-L']);
+			$mpdf->WriteHTML($this->render());
+			$mpdf->Output('Neumaticos_'.$estado.'.pdf','D');
+		}
+
+	}
 }
 ?>

@@ -42,11 +42,12 @@ $this->Js->buffer('
         <td>Hasta</td>
         <td>KM Recorrido</td>
         <td>Dibujo MM</td>
-        
+        <td>Comentarios</td>
     </tr>
     <?php
     //print_r($neumatico['NeumaticoEstado']);
-    foreach($neumatico['NeumaticoEstado'] as $neumaticoEstado){?>
+    foreach($neumatico['NeumaticoEstado'] as $neumaticoEstado){
+        $comentarios = ($neumaticoEstado['estado']!='Baja')?$neumaticoEstado['descripcion']:'';?>
         <tr>
             <td ><?php echo $neumaticoEstado['descripcion_unidad']['unidadPatente'];?></td>
             <td ><?php echo $neumaticoEstado['estado'];?></td>
@@ -54,6 +55,7 @@ $this->Js->buffer('
             <td ><?php echo $neumaticoEstado['hasta'];?></td>
             <td ><?php echo $neumaticoEstado['km'];?></td>
             <td ><?php echo $neumaticoEstado['dibujo'];?></td>
+            <td ><?php echo $comentarios;?></td>
         </tr>
 
         <?php //print_r($reserva);
