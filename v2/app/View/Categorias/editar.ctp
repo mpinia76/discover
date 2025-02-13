@@ -20,7 +20,18 @@ echo $this->Form->create(null, array('url' => '/categorias/crear','inputDefaults
 </div>
 
 
-
+<div class="sectionSubtitle">Descripcion</div>
+<div class="ym-grid">
+    <?php echo $this->Form->input('Categoria.descripcion',array('label' => false, 'type' => 'textarea')); ?>
+</div>
+<div class="sectionSubtitle">Descripcion ingles</div>
+<div class="ym-grid">
+    <?php echo $this->Form->input('Categoria.descripcion_ingles',array('label' => false, 'type' => 'textarea')); ?>
+</div>
+<div class="sectionSubtitle">Descripcion portugues</div>
+<div class="ym-grid">
+    <?php echo $this->Form->input('Categoria.descripcion_portugues',array('label' => false, 'type' => 'textarea')); ?>
+</div>
 
 
 

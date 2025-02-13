@@ -24,11 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="Modificaciones varias">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_dev_es-ar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_cake_es-ar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_default_es-ar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/VouchersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/VouchersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Categorias/crear.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Categorias/crear.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Categorias/editar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Categorias/editar.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Vouchers/ver.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Vouchers/ver.ctp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,6 +274,8 @@
       <workItem from="1714652295574" duration="83000" />
       <workItem from="1715079101347" duration="11177000" />
       <workItem from="1717512302326" duration="1423000" />
+      <workItem from="1739358663392" duration="1001000" />
+      <workItem from="1739444522954" duration="4684000" />
     </task>
     <task id="LOCAL-00001" summary="Modificaciones varias">
       <created>1654626521014</created>
@@ -367,7 +369,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717513713096</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1739358762262</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1739358762262</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1739359110952</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1739359110952</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -398,7 +416,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/v2/app/Controller/NeumaticosController.php</url>
-          <line>259</line>
+          <line>278</line>
           <properties>
             <option name="className" value="\NeumaticosController" />
             <option name="methodName" value="dataTable" />
