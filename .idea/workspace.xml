@@ -24,11 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="Modificaciones varias">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/Controller/VouchersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/VouchersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Categorias/crear.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Categorias/crear.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Categorias/editar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Categorias/editar.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Vouchers/ver.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Vouchers/ver.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Reservas/editar.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Reservas/editar.ctp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -275,7 +272,8 @@
       <workItem from="1715079101347" duration="11177000" />
       <workItem from="1717512302326" duration="1423000" />
       <workItem from="1739358663392" duration="1001000" />
-      <workItem from="1739444522954" duration="4684000" />
+      <workItem from="1739444522954" duration="4710000" />
+      <workItem from="1739874659201" duration="2596000" />
     </task>
     <task id="LOCAL-00001" summary="Modificaciones varias">
       <created>1654626521014</created>
@@ -385,7 +383,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739359110952</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1739456623123</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1739456623123</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

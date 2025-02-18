@@ -1304,9 +1304,11 @@ class ReservasController extends AppController {
 	            $reserva = $this->request->data['Reserva'];
 	            //print_r($reserva);
 	            $this->Reserva->set($reserva);
-	            if (($reserva['reservado_por']!='')or($reserva['subcanal_id']!='')or($reserva['lugar_retiro_id']!='')or($reserva['lugar_devolucion_id']!='')
+	            /*if (($reserva['reservado_por']!='')or($reserva['subcanal_id']!='')or($reserva['lugar_retiro_id']!='')or($reserva['lugar_devolucion_id']!='')
 	            or($reserva['pax_adultos']!='0')or($reserva['pax_menores']!='0')or($reserva['pax_bebes']!='0')or($reserva['discover']!='0')or($reserva['discover_plus']!='0')
-	            or($reserva['discover_advance']!='0')or($reserva['total_estadia']!='0') ){
+	            or($reserva['discover_advance']!='0')or($reserva['total_estadia']!='0') ){*/
+                if (($reserva['reservado_por']!='')
+                    or($reserva['pax_adultos']!='0')or($reserva['pax_menores']!='0')or($reserva['pax_bebes']!='0')){
 	            	$this->guardar();
 	            }
 	       		else{
