@@ -24,8 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_extras_economico.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_extras_economico.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_extras_listado.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_extras_listado.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Config/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Config/core.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +47,18 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/cheques_debitar.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/informe.economico.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/v2/app/Controller/ReservaExtrasController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/v2/app/Controller/ReservaExtrasController_old.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/v2/app/View/Informes/index_iva_ventas.ctp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/v2/app/View/Informes/index_ventas_extras.ctp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/v2/app/View/Informes/index_ventas_extras_economico.ctp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/v2/app/View/Informes/index_ventas_extras_listado.ctp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/v2/app/View/ReservaCobros/finalizar.ctp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/v2/app/View/ReservaCobros/finalizar_old.ctp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -61,21 +74,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Documents/Mis Webs/discover/v2/app/Controller&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/Documents/Mis Webs/discover",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Documents\Mis Webs\discover\v2\app\Controller" />
@@ -88,7 +102,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-php-predefined-ba97393d7c68-6f8e3395a2b4-com.jetbrains.php.sharedIndexes-PS-233.14808.18" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-PS-243.24978.50" />
+        <option value="bundled-php-predefined-a98d8de5180a-fbeb0b58ac0f-com.jetbrains.php.sharedIndexes-PS-243.24978.50" />
       </set>
     </attachedChunks>
   </component>
@@ -303,7 +318,12 @@
       <workItem from="1736692763469" duration="322000" />
       <workItem from="1736985125489" duration="980000" />
       <workItem from="1737051138468" duration="517000" />
-      <workItem from="1737380563638" duration="544000" />
+      <workItem from="1737380563638" duration="880000" />
+      <workItem from="1737546952554" duration="253000" />
+      <workItem from="1737721416244" duration="722000" />
+      <workItem from="1737725118636" duration="64000" />
+      <workItem from="1739305787874" duration="379000" />
+      <workItem from="1740076880352" duration="51000" />
     </task>
     <task id="LOCAL-00001" summary="Modificaciones varias">
       <created>1654626521014</created>
@@ -433,7 +453,14 @@
       <option name="project" value="LOCAL" />
       <updated>1736986330136</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Modificaciones varias">
+      <created>1737381668526</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1737381668526</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
