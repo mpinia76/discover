@@ -1402,8 +1402,25 @@ class ReservasController extends AppController {
 		                $this->Reserva->set('cliente_id',$this->Cliente->id);
 		                $this->Reserva->set('estado','3');
 		                $this->Reserva->save();
+                        $this->loadModel('ReservaExtra');
+                        $this->ReservaExtra->deleteAll(array('reserva_id' => $this->Reserva->id, 'adelantada' => 1), false);
+                        if(array_key_exists('ReservaExtraId',$this->request->data)){
+                            $reservaextras = $this->request->data['ReservaExtraId'];
+                            if($reservaextras and count($reservaextras)>0){
 
-
+                                $i=0;
+                                foreach($reservaextras as $extra){
+                                    $this->ReservaExtra->create();
+                                    $this->ReservaExtra->set('extra_id',$extra);
+                                    $this->ReservaExtra->set('cantidad',$this->request->data['ReservaExtraCantidad'][$i]);
+                                    $this->ReservaExtra->set('precio',$this->request->data['ReservaExtraPrecio'][$i]);
+                                    $this->ReservaExtra->set('reserva_id',$this->Reserva->id);
+                                    $this->ReservaExtra->set('agregada',date('Y-m-d'));
+                                    $this->ReservaExtra->save();
+                                    $i++;
+                                }
+                            }
+                        }
 
 		                $this->set('resultado','OK');
 		                $this->set('mensaje','Datos guardados');
