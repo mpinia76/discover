@@ -39,6 +39,10 @@
             <td><?php echo $categoria['Categoria']['categoria'];?></td>
         </tr>
         <tr>
+            <td width="200"><strong><?php echo  $descripcion_label;?>:</strong></td>
+            <td><?php echo $descripcion;?></td>
+        </tr>
+        <tr>
             <td width="200"><strong><?php echo $lugar_retiro;?>:</strong></td>
             <td><?php echo $reserva['Lugar_Retiro']['lugar'];?></td>
         </tr>

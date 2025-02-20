@@ -40,7 +40,8 @@ class VouchersController extends AppController {
         		$this->set('adultos',utf8_encode('Mayores'));
         		$this->set('menores',utf8_encode('Menores'));
         		$this->set('bebes',utf8_encode('Beb�s'));
-        		$this->set('categoria_label',utf8_encode('Categor�a'));
+        		$this->set('categoria_label',utf8_encode('Categoría'));
+				$this->set('descripcion_label',utf8_encode('Descripción'));
         		$this->set('lugar_retiro',utf8_encode('Lugar Retiro'));
         		$this->set('retiro',utf8_encode('Retiro'));
         		$this->set('lugar_devolucion',utf8_encode('Lugar Devoluci�n'));
@@ -64,6 +65,7 @@ class VouchersController extends AppController {
         		$this->set('menores',utf8_encode('Childs'));
         		$this->set('bebes',utf8_encode('Babies'));
         		$this->set('categoria_label',utf8_encode('Category'));
+				$this->set('descripcion_label',utf8_encode('Description'));
         		$this->set('lugar_retiro',utf8_encode('Pick up location'));
         		$this->set('retiro',utf8_encode('Pick up date and time'));
         		$this->set('lugar_devolucion',utf8_encode('Drop off location'));
@@ -87,6 +89,7 @@ class VouchersController extends AppController {
         		$this->set('menores',utf8_encode('Crian�as'));
         		$this->set('bebes',utf8_encode('Beb�s'));
         		$this->set('categoria_label',utf8_encode('Categoria'));
+				$this->set('descripcion_label',utf8_encode('Descrição'));
         		$this->set('lugar_retiro',utf8_encode('Local da retirada'));
         		$this->set('retiro',utf8_encode('Data e hora da retirada'));
         		$this->set('lugar_devolucion',utf8_encode('Local da devolu��o'));
@@ -111,6 +114,20 @@ class VouchersController extends AppController {
 		$this->Categoria->id = $reserva['Unidad']['categoria_id'];
 		$categoria = $this->Categoria->read();
 		$this->set('categoria',$categoria);
+
+		switch ($idioma) {
+			case 1:
+				$this->set('descripcion',$categoria['Categoria']['descripcion']);
+				break;
+
+			case 2:
+				$this->set('descripcion',$categoria['Categoria']['descripcion_ingles']);
+				break;
+
+			case 3:
+				$this->set('descripcion',$categoria['Categoria']['descripcion_portugues']);
+				break;
+		}
 
 		$this->set('idioma',$idioma);
         $extras = $this->Reserva->ReservaExtra->find('all',array('conditions' => array('reserva_id' => $reserva_id),'recursive' => 2));
