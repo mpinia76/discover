@@ -539,101 +539,115 @@ class NeumaticosController extends AppController {
     }
 
 
-    public function guardar(){
-
-
-
-        //print_r($this->request->data);
+    public function guardar() {
         if(!empty($this->request->data)) {
-
-
             $this->Neumatico->begin();
             $this->loadModel('NeumaticoEstado');
             $this->NeumaticoEstado->begin();
 
-
-            //vaildo reserva
             $neumatico = $this->request->data['Neumatico'];
             $this->Neumatico->set($neumatico);
-            if(!$this->Neumatico->validates()){
+
+            if(!$this->Neumatico->validates()) {
                 $errores['Neumatico'] = $this->Neumatico->validationErrors;
             }
 
-            if(($this->request->data['Neumatico']['estado']=='En uso')&&($neumatico['unidad_id']=='')){
+            if($neumatico['estado'] == 'En uso' && empty($neumatico['unidad_id'])) {
                 $errores['Neumatico']['unidad_id'] = 'Debe seleccionar una unidad';
             }
-            if(($this->request->data['Neumatico']['condicion']=='Nueva')&&($this->request->data['Neumatico']['km']!='0')){
+
+            if($neumatico['condicion'] == 'Nueva' && $neumatico['km'] != '0') {
                 $errores['Neumatico']['km'] = 'Si la condicion es Nueva los KM deben ser 0 (cero)';
             }
-            if(($this->request->data['Neumatico']['condicion']=='Usada')&&($this->request->data['Neumatico']['km']=='0')){
+
+            if($neumatico['condicion'] == 'Usada' && $neumatico['km'] == '0') {
                 $errores['Neumatico']['km'] = 'Si la condicion es Usada los KM no pueden ser 0 (cero)';
             }
 
-            if($this->request->data['Neumatico']['km_unidad']<$this->request->data['Neumatico']['km_unidad_aux']){
+            if($neumatico['km_unidad'] < $neumatico['km_unidad_aux']) {
                 $errores['Neumatico']['km_unidad'] = 'Los KM no pueden ser menores a los actuales de la unidad';
             }
 
-            // Si se ha especificado una unidad en la solicitud, verifica cuántos neumáticos están asignados a esa unidad
-            if (!empty($this->request->data['Neumatico']['unidad_id'])) {
-                $neumaticosAsignados = $this->Neumatico->find('count', array(
-                    'conditions' => array(
-                        'Neumatico.unidad_id' => $this->request->data['Neumatico']['unidad_id'],'Estado' => 'En uso'
-                    )
-                ));
+            // ❗️Validación personalizada por estado
+            if (!empty($neumatico['unidad_id']) && !empty($neumatico['posicion']) && !empty($neumatico['estado'])) {
+                $unidadId = $neumatico['unidad_id'];
+                $posicion = $neumatico['posicion'];
+                $estado = $neumatico['estado'];
+                $neumaticoId = !empty($this->Neumatico->id) ? $this->Neumatico->id : 0;
+
+                $neumaticosExistentes = $this->Neumatico->find('count', [
+                    'conditions' => [
+                        'Neumatico.unidad_id' => $unidadId,
+                        'Neumatico.posicion' => $posicion,
+                        'Neumatico.estado' => $estado,
+                        'NOT' => ['Neumatico.id' => $neumaticoId]
+                    ]
+                ]);
+
+                if ($estado === 'En uso' && $neumaticosExistentes >= 1) {
+                    $errores['Neumatico']['posicion'] = 'Ya existe un neumático en uso para esta posición en la unidad.';
+                }
+
+                if ($estado === 'En deposito' && $neumaticosExistentes >= 2) {
+                    $errores['Neumatico']['posicion'] = 'Ya hay 2 neumáticos en depósito para esta posición en la unidad.';
+                }
             }
 
-            // Si ya hay 5 neumáticos asignados a la unidad, agrega un error
-            if ($neumaticosAsignados >= 5) {
-                $errores['Neumatico']['unidad_id'] = 'La unidad ya tiene asignados 5 neumaticos';
+            // Validar máximo 5 neumáticos asignados a una unidad
+            if (!empty($neumatico['unidad_id'])) {
+                $neumaticosAsignados = $this->Neumatico->find('count', [
+                    'conditions' => [
+                        'Neumatico.unidad_id' => $neumatico['unidad_id'],
+                        'Neumatico.estado' => 'En uso'
+                    ]
+                ]);
+
+                if ($neumaticosAsignados >= 5) {
+                    $errores['Neumatico']['unidad_id'] = 'La unidad ya tiene asignados 5 neumáticos';
+                }
             }
 
-
-//print_r($neumaticoActual);
-            //muestro resultado
-            if(isset($errores) and count($errores) > 0){
-                $this->set('resultado','ERROR');
-                $this->set('mensaje','No se pudo guardar');
-                $this->set('detalle',$errores);
-            }
-
-            else{
-                $grabar=1;
+            if (isset($errores) && count($errores) > 0) {
+                $this->set('resultado', 'ERROR');
+                $this->set('mensaje', 'No se pudo guardar');
+                $this->set('detalle', $errores);
+            } else {
+                $grabar = 1;
                 try {
                     $this->Neumatico->save();
 
                     try {
-                        $neumaticoEstado = $this->Neumatico->NeumaticoEstado->find('first', array(
-                            'conditions' => array(
+                        $neumaticoEstado = $this->Neumatico->NeumaticoEstado->find('first', [
+                            'conditions' => [
                                 'NeumaticoEstado.neumatico_id' => $this->Neumatico->id,
-                                'NeumaticoEstado.hasta IS NULL' // Filtrar solo el estado actual
-                            )
-                        ));
-                        if(!empty($neumaticoEstado)) {
+                                'NeumaticoEstado.hasta IS NULL'
+                            ]
+                        ]);
+
+                        if (!empty($neumaticoEstado)) {
                             $this->NeumaticoEstado->id = $neumaticoEstado['NeumaticoEstado']['id'];
                             $neumaticoEstado = $this->NeumaticoEstado->read();
 
-                            $this->NeumaticoEstado->set('unidad_id',$this->request->data['Neumatico']['unidad_id']);
-                            $this->NeumaticoEstado->set('fecha',$neumatico['fecha']);
-                            $this->NeumaticoEstado->set('dibujo',$this->request->data['Neumatico']['dibujo']);
-                            $this->NeumaticoEstado->set('estado',$this->request->data['Neumatico']['estado']);
-                            $this->NeumaticoEstado->set('desde',$neumatico['fecha']);
-                            $this->NeumaticoEstado->set('km_unidad',$this->request->data['Neumatico']['km_unidad']);
-                            $this->NeumaticoEstado->set('km',$this->request->data['Neumatico']['km']);
+                            $this->NeumaticoEstado->set('unidad_id', $neumatico['unidad_id']);
+                            $this->NeumaticoEstado->set('fecha', $neumatico['fecha']);
+                            $this->NeumaticoEstado->set('dibujo', $neumatico['dibujo']);
+                            $this->NeumaticoEstado->set('estado', $neumatico['estado']);
+                            $this->NeumaticoEstado->set('desde', $neumatico['fecha']);
+                            $this->NeumaticoEstado->set('km_unidad', $neumatico['km_unidad']);
+                            $this->NeumaticoEstado->set('km', $neumatico['km']);
                             $this->NeumaticoEstado->save();
-                        }
-                        else{
+                        } else {
                             $this->NeumaticoEstado->create();
-                            $this->NeumaticoEstado->set('neumatico_id',$this->Neumatico->id);
-                            $this->NeumaticoEstado->set('unidad_id',$this->request->data['Neumatico']['unidad_id']);
-                            $this->NeumaticoEstado->set('fecha',$neumatico['fecha']);
-                            $this->NeumaticoEstado->set('dibujo',$this->request->data['Neumatico']['dibujo']);
-                            $this->NeumaticoEstado->set('estado',$this->request->data['Neumatico']['estado']);
-                            $this->NeumaticoEstado->set('desde',$neumatico['fecha']);
-                            $this->NeumaticoEstado->set('km_unidad',$this->request->data['Neumatico']['km_unidad']);
-                            $this->NeumaticoEstado->set('km',$this->request->data['Neumatico']['km']);
+                            $this->NeumaticoEstado->set('neumatico_id', $this->Neumatico->id);
+                            $this->NeumaticoEstado->set('unidad_id', $neumatico['unidad_id']);
+                            $this->NeumaticoEstado->set('fecha', $neumatico['fecha']);
+                            $this->NeumaticoEstado->set('dibujo', $neumatico['dibujo']);
+                            $this->NeumaticoEstado->set('estado', $neumatico['estado']);
+                            $this->NeumaticoEstado->set('desde', $neumatico['fecha']);
+                            $this->NeumaticoEstado->set('km_unidad', $neumatico['km_unidad']);
+                            $this->NeumaticoEstado->set('km', $neumatico['km']);
                             $this->NeumaticoEstado->save();
                         }
-
 
                     } catch (PDOException $e) {
                         if ($e->errorInfo[1] == '1062') {
@@ -647,46 +661,36 @@ class NeumaticosController extends AppController {
 
                 } catch (PDOException $e) {
                     if ($e->errorInfo[1] == '1062') {
-                        // Verificar qué índice único causó la excepción
                         if (strpos($e->getMessage(), 'identificador') !== false) {
-                            // Error de duplicación en el índice 'identificador'
                             $errores['Neumatico']['identificador'] = 'Identificador repetido';
                         } elseif (strpos($e->getMessage(), 'unidad_id_estado_posicion') !== false) {
-                            // Error de duplicación en el índice 'unidad_id_posicion'
                             $errores['Neumatico']['posicion'] = 'Ya existe la posicion para esta unidad';
                         } else {
-                            // Otro tipo de error, manejar según sea necesario
                             $errores['Neumatico']['identificador'] = 'Error desconocido: ' . $e->errorInfo[1];
                         }
                         $grabar = 0;
                     }
                 }
 
-
-
-                if($grabar) {
+                if ($grabar) {
                     $this->Neumatico->commit();
                     $this->NeumaticoEstado->commit();
-                    $this->set('resultado','OK');
-                    $this->set('mensaje','Datos guardados');
-                    $this->set('detalle','');
-                }
-                else
-                {
+                    $this->set('resultado', 'OK');
+                    $this->set('mensaje', 'Datos guardados');
+                    $this->set('detalle', '');
+                } else {
                     $this->Neumatico->rollback();
                     $this->NeumaticoEstado->rollback();
-                    $this->set('resultado','ERROR');
-                    $this->set('mensaje','No se pudo guardar');
-                    $this->set('detalle',$errores);
+                    $this->set('resultado', 'ERROR');
+                    $this->set('mensaje', 'No se pudo guardar');
+                    $this->set('detalle', $errores);
                 }
             }
-            $this->set('_serialize', array(
-                'resultado',
-                'mensaje' ,
-                'detalle'
-            ));
+
+            $this->set('_serialize', ['resultado', 'mensaje', 'detalle']);
         }
     }
+
 
     public function cambiar($ids){
         $this->layout = 'form';
@@ -758,13 +762,6 @@ class NeumaticosController extends AppController {
             $this->NeumaticoEstado->begin();
 
 
-
-
-
-            if($this->request->data['Neumatico']['km_unidad']<$this->request->data['Neumatico']['km_unidad_aux']){
-                $errores['Neumatico']['km_unidad'] = 'Los KM no pueden ser menores a los actuales de la unidad';
-            }
-
             if (empty($this->request->data['Neumatico']['fecha'])) {
                 $errores['Neumatico']['fecha'][] = 'Ingrese una fecha valida';
             }
@@ -804,7 +801,8 @@ class NeumaticosController extends AppController {
                 $grabar = 1;
                 foreach ($ids as $id) {
 
-                        //echo 'id: '.$id;
+
+                    //echo 'id: '.$id;
                         /*$neumatico = $this->Neumatico->find('first', array(
                             'conditions' => array('Neumatico.id' => $id),
                             'joins' => array(
@@ -827,7 +825,7 @@ class NeumaticosController extends AppController {
                         //print_r($neumatico);
                         $estado = ($neumatico['Neumatico']['estado']=='En uso')?'En deposito':'En uso';
                         $this->Neumatico->id = $id;
-
+                    //file_put_contents(APP . 'tmp/logs/debug.log', 'Procesando neumático con estado: ' . $estado . "\n", FILE_APPEND);
                         if ($estado=='En deposito'){
                             $km=$neumatico['Neumatico']['km']+$this->request->data['Neumatico']['km_unidad']-$neumatico['Neumatico']['km_unidad'];
 
@@ -838,6 +836,49 @@ class NeumaticosController extends AppController {
                             $km=$neumatico['Neumatico']['km'];
                             //$this->Neumatico->set('unidad_id', $this->request->data['Neumatico']['unidad_id']);
                         }
+
+                    // Obtener los datos de unidad y posición para las validaciones
+                    $unidadId = $this->request->data['Neumatico']['unidad_id'];
+                    $posicion = $this->request->data['Neumatico']['posicion'];
+
+                    // Validación de solo un neumático "En uso" para la misma unidad y posición
+                    if ($estado == 'En uso') {
+                        $neumaticoEnUso = $this->Neumatico->find('count', array(
+                            'conditions' => array(
+                                'Neumatico.unidad_id' => $unidadId,
+                                'Neumatico.posicion' => $posicion,
+                                'Neumatico.estado' => 'En uso'
+                            )
+                        ));
+                        //file_put_contents(APP . 'tmp/logs/debug.log', 'cant: ' . $neumaticoEnUso . "\n", FILE_APPEND);
+                        if ($neumaticoEnUso > 0) {
+                            $errores['Neumatico']['posicion'] = 'Ya existe un neumático "En uso" para esta unidad y posición';
+                            $grabar = 0;
+                        }
+                    }
+
+                    // Validación de hasta 2 neumáticos "En depósito" para la misma unidad y posición
+                    if ($estado == 'En deposito') {
+                        $neumaticosEnDeposito = $this->Neumatico->find('count', array(
+                            'conditions' => array(
+                                'Neumatico.unidad_id' => $unidadId,
+                                'Neumatico.posicion' => $posicion,
+                                'Neumatico.estado' => 'En deposito'
+                            )
+                        ));
+                        //file_put_contents(APP . 'tmp/logs/debug.log', 'cant: ' . $neumaticosEnDeposito . "\n", FILE_APPEND);
+                        if ($neumaticosEnDeposito >= 2) {
+                            $errores['Neumatico']['posicion'] = 'Ya existen 2 neumáticos "En depósito" para esta unidad y posición';
+                            $grabar = 0;
+                        }
+                    }
+
+                    // Si ya se encontró un error, no continuar
+                    if ($grabar == 0) {
+                        break;
+                    }
+
+
                         //print_r($this->request->data);
                         $this->Neumatico->set('dibujo', $this->request->data['Neumatico']['dibujo']);
                         $this->Neumatico->set('posicion', $this->request->data['Neumatico']['posicion']);
@@ -849,6 +890,8 @@ class NeumaticosController extends AppController {
                         //$this->Neumatico->save();
 
                         try {
+// Suponiendo que $estado es un objeto o un array
+                            file_put_contents(APP . 'tmp/logs/debug.log', 'Guardar: ' . print_r($this->Neumatico, true) . "\n", FILE_APPEND);
 
                             $this->Neumatico->save();
                             $neumaticoEstado = $this->Neumatico->NeumaticoEstado->find('first', array(

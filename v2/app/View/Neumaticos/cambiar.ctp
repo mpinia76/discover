@@ -9,6 +9,7 @@ echo $this->Form->hidden('ids', array('value' => $ids));
 echo $this->Form->hidden('Neumatico.km_unidad_aux', array('value' => $km));
 echo $this->Form->hidden('Neumatico.fecha_aux', array('value' => $fecha));
 echo $this->Form->hidden('Neumatico.dibujo_aux', array('value' => $dibujo));
+echo $this->Form->hidden('Neumatico.unidad_id', array('value' => $defaultUnidad));
 ?>
 <div class="ym-grid">
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('Neumatico.fecha',array('class'=>'datepicker','type'=>'text'));?></div>
