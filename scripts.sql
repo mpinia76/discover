@@ -1582,3 +1582,17 @@ ALTER TABLE `categorias`
 ALTER TABLE `categorias`
     ADD COLUMN `descripcion_ingles` text NULL,
     ADD COLUMN `descripcion_portugues` text NULL;
+
+##################################19/05/2025###########################################################
+CREATE TABLE `descuento_periodos` (
+                                    `id` INT(11) NOT NULL AUTO_INCREMENT,
+                                    `descuento_id` INT(11) NOT NULL,
+                                    `desde` DATE NULL DEFAULT NULL,
+                                    `hasta` DATE NULL DEFAULT NULL,
+                                    PRIMARY KEY (`id`),
+                                    INDEX `id` (`id`),
+                                    INDEX `descuento_id` (`descuento_id`)
+)
+    COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1;
