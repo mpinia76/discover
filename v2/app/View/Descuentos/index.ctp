@@ -13,7 +13,7 @@ $this->Js->buffer('
         "fnDrawCallback": function( oSettings ) {
             $("#dataTable tr").unbind("dblclick").dblclick(function(){
                 var data = oTable.fnGetData( this );
-                createWindow("w_descuentos_view","Ver Opcion de Cobro","'.$this->Html->url('/descuentos/editar', true).'/"+data[0],"450","300");
+                createWindow("w_descuentos_view","Ver Opcion de Cobro","'.$this->Html->url('/descuentos/editar', true).'/"+data[0],"450","550");
             });
             $("#dataTable tr").click(function(e){
                 $("#dataTable tr").removeClass("row_selected");
@@ -63,7 +63,7 @@ function editar(){
     }else{
         var data = oTable.fnGetData(row[0]);
 
-        createWindow("w_descuentos_view","Ver opcion de Cobro","<?php echo $this->Html->url('/descuentos/editar', true);?>/"+data[0],"450","300");
+        createWindow("w_descuentos_view","Ver opcion de Cobro","<?php echo $this->Html->url('/descuentos/editar', true);?>/"+data[0],"450","550");
 
     }
 }
@@ -98,7 +98,7 @@ function eliminar(){
 
 </script>
 <ul class="action_bar">
-    <li class="boton agregar"><a onclick="createWindow('w_descuentos_add','Crear Opcion de Cobro','<?php echo $this->Html->url('/descuentos/crear', true);?>','450','300');">Crear</a></li>
+    <li class="boton agregar"><a onclick="createWindow('w_descuentos_add','Crear Opcion de Cobro','<?php echo $this->Html->url('/descuentos/crear', true);?>','450','550');">Crear</a></li>
     <li class="boton editar"><a onclick="editar();">Editar</a></li>
     <li class="boton anular"> <a onclick="eliminar();">Eliminar</a></li>
     <li class="filtro">Buscar <input id="data_search" type="text" with="10"/></li>

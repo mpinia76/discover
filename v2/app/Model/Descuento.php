@@ -1,6 +1,9 @@
 <?php
 class Descuento extends AppModel {
     public $displayField = 'descuento';
+
+    public $hasMany = array('DescuentoPeriodo');
+
     public $validate = array(
         'descuento' => array(
             'required'   => true,

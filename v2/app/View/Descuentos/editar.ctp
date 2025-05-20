@@ -1,5 +1,6 @@
 <?php
-
+$this->Js->buffer('$.datepicker.regional[ "es" ]');
+$this->Js->buffer('$(".datepicker").datepicker({ dateFormat: "dd/mm/yy", altFormat: "yy-mm-dd" });');
 //formulario
 echo $this->Form->create(null, array('url' => '/descuentos/crear','inputDefaults' => (array('div' => 'ym-gbox'))));
 
@@ -51,7 +52,37 @@ echo $this->Form->create(null, array('url' => '/descuentos/crear','inputDefaults
 </div>
 
 
+<!-- periodos -->
+<div id="divPeriodos">
+    <div class="sectionSubtitle">Períodos</div>
+    <div class="ym-grid">
+        <div class="ym-g33 ym-gl"><?php echo $this->Form->input('DescuentoPeriodo.desde',array('class'=>'datepicker','type'=>'text'));?></div>
+        <div class="ym-g33 ym-gl"><?php echo $this->Form->input('DescuentoPeriodo.hasta',array('class'=>'datepicker','type'=>'text'));?></div>
+        <div class="ym-g25 ym-gl"><div id="btn_add_extra" class="ym-gbox" style="margin-top:5px;"><span onclick="addPeriodo();" class="boton agregar">+ agregar</span></div></div>
+    </div>
+    <table width="100%" id="descuento_periodos">
 
+        <?php $i = 0;
+
+        if(count($descuentoPeriodos) > 0){
+            foreach($descuentoPeriodos as $descuentoPeriodo){
+                //print_r($descuentoPeriodo);
+                ?>
+
+                <tr class="border_bottom" id="Extra<?php echo $i;?>">
+                    <td width="25%">
+
+
+                        <input type="hidden" name="data[DescuentoPeriodoDesde][]" value="<?php echo $descuentoPeriodo['DescuentoPeriodo']['desde'];?>"/>
+                        <input type="hidden" name="data[DescuentoPeriodoHasta][]" value="<?php echo $descuentoPeriodo['DescuentoPeriodo']['hasta'];?>"/>
+                        <?php echo $descuentoPeriodo['DescuentoPeriodo']['desde']?>
+                    </td>
+
+                    <td><?php echo $descuentoPeriodo['DescuentoPeriodo']['hasta']?></td>
+                    <td align="right" width="50"><a onclick="quitarExtra('<?php echo $descuentoPeriodo['DescuentoPeriodo']['id']?>', <?php echo $i?>);">quitar</a></td>
+                </tr>
+            <?php  }} ?>
+    </table>
 
 
 <span id="botonGuardar" onclick="guardar('<?php echo $this->Html->url('/descuentos/guardar.json', true);?>',$('form').serialize(),{id:'w_descuentos',url:'v2/descuentos/index'});" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
@@ -94,4 +125,45 @@ echo $this->Form->create(null, array('url' => '/descuentos/crear','inputDefaults
         }
 
     })
+
+    function addPeriodo() {
+        var desde = $('#DescuentoPeriodoDesde').val();
+        var hasta = $('#DescuentoPeriodoHasta').val();
+
+        if (!desde || !hasta) {
+            alert("Debes completar ambas fechas: Desde y Hasta.");
+            return;
+        }
+
+        // Convertir fechas de dd/mm/yyyy a objetos Date
+        var partesDesde = desde.split('/');
+        var partesHasta = hasta.split('/');
+
+        var fechaDesde = new Date(partesDesde[2], partesDesde[1] - 1, partesDesde[0]); // Año, Mes (0-11), Día
+        var fechaHasta = new Date(partesHasta[2], partesHasta[1] - 1, partesHasta[0]);
+
+        if (fechaDesde > fechaHasta) {
+            alert("La fecha 'Desde' no puede ser posterior a la fecha 'Hasta'.");
+            return;
+        }
+
+        $.ajax({
+            url: '<?php echo $this->Html->url('/descuento_periodos/getRow', true);?>',
+            data: {
+                'desde': desde,
+                'hasta': hasta
+            },
+            success: function (data) {
+                $('#descuento_periodos').append(data);
+            },
+            dataType: 'html'
+        });
+    }
+
+    function quitarExtra(reserva_extra_id, item){
+
+        if(confirm('Seguro desea eliminar el periodo?')){
+            $('#Extra'+item).remove();
+        }
+    }
 </script>
