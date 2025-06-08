@@ -588,7 +588,7 @@ class NeumaticosController extends AppController {
                     $errores['Neumatico']['posicion'] = 'Ya existe un neumático en uso para esta posición en la unidad.';
                 }
 
-                if ($estado === 'En deposito' && $neumaticosExistentes >= 2) {
+                if ($estado === 'En deposito' && $neumaticosExistentes >= 3) {
                     $errores['Neumatico']['posicion'] = 'Ya hay 2 neumáticos en depósito para esta posición en la unidad.';
                 }
             }
@@ -825,7 +825,7 @@ class NeumaticosController extends AppController {
                         //print_r($neumatico);
                         $estado = ($neumatico['Neumatico']['estado']=='En uso')?'En deposito':'En uso';
                         $this->Neumatico->id = $id;
-                    //file_put_contents(APP . 'tmp/logs/debug.log', 'Procesando neumático con estado: ' . $estado . "\n", FILE_APPEND);
+                    file_put_contents(APP . 'tmp/logs/debug.log', 'Procesando neumático con estado: ' . $estado . "\n", FILE_APPEND);
                         if ($estado=='En deposito'){
                             $km=$neumatico['Neumatico']['km']+$this->request->data['Neumatico']['km_unidad']-$neumatico['Neumatico']['km_unidad'];
 
@@ -867,8 +867,8 @@ class NeumaticosController extends AppController {
                             )
                         ));
                         //file_put_contents(APP . 'tmp/logs/debug.log', 'cant: ' . $neumaticosEnDeposito . "\n", FILE_APPEND);
-                        if ($neumaticosEnDeposito >= 2) {
-                            $errores['Neumatico']['posicion'] = 'Ya existen 2 neumáticos "En depósito" para esta unidad y posición';
+                        if ($neumaticosEnDeposito >= 3) {
+                            $errores['Neumatico']['posicion'] = 'Ya existen 3 neumáticos "En depósito" para esta unidad y posición';
                             $grabar = 0;
                         }
                     }
@@ -886,14 +886,19 @@ class NeumaticosController extends AppController {
                         $this->Neumatico->set('km_unidad', $this->request->data['Neumatico']['km_unidad']);
                         $this->Neumatico->set('km', $km);
 
-
+                        if ($estado == 'En uso') {
+                            $this->Neumatico->set('unidad_id', $unidadId);
+                        }
+                    //file_put_contents(APP . 'tmp/logs/debug.log', 'Estado: ' . $estado .' unidad: '.$this->Neumatico->unidad_id. "\n", FILE_APPEND);
                         //$this->Neumatico->save();
 
                         try {
 // Suponiendo que $estado es un objeto o un array
-                            file_put_contents(APP . 'tmp/logs/debug.log', 'Guardar: ' . print_r($this->Neumatico, true) . "\n", FILE_APPEND);
+                            //file_put_contents(APP . 'tmp/logs/debug.log', 'Guardar: ' . print_r($this->Neumatico, true) . "\n", FILE_APPEND);
 
-                            $this->Neumatico->save();
+                            if (!$this->Neumatico->save()) {
+                                file_put_contents(APP . 'tmp/logs/debug.log', print_r($this->Neumatico->validationErrors, true), FILE_APPEND);
+                            }
                             $neumaticoEstado = $this->Neumatico->NeumaticoEstado->find('first', array(
                                 'conditions' => array(
                                     'NeumaticoEstado.neumatico_id' => $id,

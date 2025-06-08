@@ -69,6 +69,7 @@ if(($_POST['agregar'])){
 
 		$sql = "SELECT id,monto_moneda,cambio,usados FROM caja_movimiento WHERE monto_moneda>0 AND caja_id=".$_POST['origen']." AND moneda_id = ".$_POST['moneda_id']. " ORDER BY id ASC";
 		//echo $sql;
+        _log($sql);
 		$rsTemp = mysqli_query($conn,$sql);
 		$monto=0;
 		$ok=1;
@@ -94,6 +95,8 @@ if(($_POST['agregar'])){
 				$usados = $rs['usados']+($rs['monto_moneda']-$rs['usados']);
 				$sql_update = "UPDATE caja_movimiento SET usados = ".$usados." WHERE id = ".$rs['id'] ;
 				_log($sql_update);
+                _log('Monto: '.$monto);
+                _log('Monto moneda: '.$monto_moneda);
 				//echo $monto."<br>";
 				//echo $monto_moneda."<br>";
 				//echo $sql_update."<br>";

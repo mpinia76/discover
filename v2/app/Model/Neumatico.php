@@ -11,11 +11,11 @@ class Neumatico extends AppModel {
             'required' => true,
             'message' => 'Ingrese una fecha valida'
         ),
-        'condicion' => array(
+       /* 'condicion' => array(
             'required'   => true,
             'rule' => 'notEmpty',
             'message' => 'Seleccione una condicion'
-        ),
+        ),*/
         'km' => array(
             'rule'    => array('range', -1,9999999),
             'required'   => true,

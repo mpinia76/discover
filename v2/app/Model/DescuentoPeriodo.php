@@ -18,10 +18,6 @@ class DescuentoPeriodo extends AppModel {
                 'required'   => true,
                 'rule' => array('date','dmy'),
                 'message' => 'Ingrese una fecha valida'
-            ),
-            'after' => array(
-                'rule' => 'after_hasta',
-                'message' => 'La fecha debe ser posterior o igual a desde'
             )
         ),
     );
