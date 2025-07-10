@@ -147,48 +147,43 @@
     <h2>Extras Anticipados</h2>
 
     <?php
-     //print_r($reserva['ReservaExtra']);
+
+
+
     //if(count($reserva['ReservaExtra']) > 0){
-    	$tasa_aeropuerto = 0;
-    	$conductor_adicional = 0;
-    	$gps = 0;
-    	$butaca_bebe = 0;
-    	$porta_ski = 0;
-    	$cadenas_nieve=0;
-    	foreach($reserva['ReservaExtra'] as $extra){
-    		if($extra['extra_id']==1){
-    			$tasa_aeropuerto = 1;
-    		}
-    		if($extra['extra_id']==4){
-    			$conductor_adicional = 1;
-    		}
-    		if($extra['extra_id']==5){
-    			$gps = 1;
-    		}
-    		if($extra['extra_id']==2){
-    			$butaca_bebe = 1;
-    		}
-    		if($extra['extra_id']==6){
-    			$porta_ski = 1;
-    		}
-    		if($extra['extra_id']==3){
-    			$cadenas_nieve = 1;
-    		}
-    	}
-    //}
-    ?>
-    <table width="100%" class="test">
-        <tr>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($tasa_aeropuerto ?'check_circle.png':'uncheck_circle.png'); ?>  Tasa Aeropuerto </p></td>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($conductor_adicional ?'check_circle.png':'uncheck_circle.png'); ?>  Conductor Adicional</p></td>
-		    <td class="border2"><p style="font-size:12px;"><?php echo $this->Html->image($gps ?'check_circle.png':'uncheck_circle.png'); ?>  GPS </p></td>
-    	</tr>
-    	<tr>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($butaca_bebe ?'check_circle.png':'uncheck_circle.png'); ?>  <?php echo utf8_encode('Butaca bebé');?>  </p></td>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($porta_ski ?'check_circle.png':'uncheck_circle.png'); ?>  Porta Ski</p></td>
-		    <td class="border2"><p style="font-size:12px;"><?php echo $this->Html->image($cadenas_nieve ?'check_circle.png':'uncheck_circle.png'); ?>  Otros </p></td>
-    	</tr>
-    </table>
+
+$columnasPorFila = 3;
+$contador = 0;
+if(count($extras) > 0){
+    echo '<table width="100%" class="test"><tr>';
+
+    foreach ($extras as $extra) {
+
+        $nombre = $extra['ReservaExtra']['cantidad'].' '.$extra['Extra']['ExtraSubrubro']['subrubro'].' '.$extra['Extra']['detalle'].' $'.$extra['ReservaExtra']['precio'];
+
+        $imagen = $this->Html->image('check_circle.png'); // siempre check porque viene incluido
+
+        echo '<td class="border2"><p style="font-size:12px;">' . $imagen . ' ' . h($nombre) . '</p></td>';
+        $contador++;
+
+        // Cada 3 columnas, cerrar y abrir fila
+        if ($contador % $columnasPorFila === 0) {
+            echo '</tr><tr>';
+        }
+    }
+
+    // Si la última fila no se completó, cerramos la fila
+    if ($contador % $columnasPorFila !== 0) {
+        // Completar con celdas vacías
+        $restantes = $columnasPorFila - ($contador % $columnasPorFila);
+        for ($i = 0; $i < $restantes; $i++) {
+            echo '<td class="border2"></td>';
+        }
+        echo '</tr>';
+    }
+
+    echo '</table>';
+}?>
     <table width="100%"><tr><td></td></tr></table>
     <table width="100%">
         <tr>
@@ -390,49 +385,37 @@
     </table>
     <h2>Extras in advance</h2>
 
-    <?php
-     //print_r($reserva['ReservaExtra']);
-    //if(count($reserva['ReservaExtra']) > 0){
-    	$tasa_aeropuerto = 0;
-    	$conductor_adicional = 0;
-    	$gps = 0;
-    	$butaca_bebe = 0;
-    	$porta_ski = 0;
-    	$cadenas_nieve=0;
-    	foreach($reserva['ReservaExtra'] as $extra){
-    		if($extra['extra_id']==1){
-    			$tasa_aeropuerto = 1;
-    		}
-    		if($extra['extra_id']==4){
-    			$conductor_adicional = 1;
-    		}
-    		if($extra['extra_id']==5){
-    			$gps = 1;
-    		}
-    		if($extra['extra_id']==2){
-    			$butaca_bebe = 1;
-    		}
-    		if($extra['extra_id']==6){
-    			$porta_ski = 1;
-    		}
-    		if($extra['extra_id']==3){
-    			$cadenas_nieve = 1;
-    		}
-    	}
-    //}
-    ?>
-    <table width="100%" class="test">
-        <tr>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($tasa_aeropuerto ?'check_circle.png':'uncheck_circle.png'); ?>  Airport fee </p></td>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($conductor_adicional ?'check_circle.png':'uncheck_circle.png'); ?>  Aditional driver</p></td>
-		    <td class="border2"><p style="font-size:12px;"><?php echo $this->Html->image($gps ?'check_circle.png':'uncheck_circle.png'); ?>  GPS </p></td>
-    	</tr>
-    	<tr>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($butaca_bebe ?'check_circle.png':'uncheck_circle.png'); ?>  <?php echo utf8_encode('Baby seat');?>  </p></td>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($porta_ski ?'check_circle.png':'uncheck_circle.png'); ?>  Ski locker</p></td>
-		    <td class="border2"><p style="font-size:12px;"><?php echo $this->Html->image($cadenas_nieve ?'check_circle.png':'uncheck_circle.png'); ?>  Others </p></td>
-    	</tr>
-    </table>
+        <?php
+        if(count($extras) > 0) {
+            echo '<table width="100%" class="test"><tr>';
+
+            foreach ($extras as $extra) {
+
+                $nombre = $extra['ReservaExtra']['cantidad'] . ' ' . $extra['Extra']['ExtraSubrubro']['subrubro_ingles'] . ' ' . $extra['Extra']['detalle'] . ' $' . $extra['ReservaExtra']['precio'];
+
+                $imagen = $this->Html->image('check_circle.png'); // siempre check porque viene incluido
+
+                echo '<td class="border2"><p style="font-size:12px;">' . $imagen . ' ' . h($nombre) . '</p></td>';
+                $contador++;
+
+                // Cada 3 columnas, cerrar y abrir fila
+                if ($contador % $columnasPorFila === 0) {
+                    echo '</tr><tr>';
+                }
+            }
+
+            // Si la última fila no se completó, cerramos la fila
+            if ($contador % $columnasPorFila !== 0) {
+                // Completar con celdas vacías
+                $restantes = $columnasPorFila - ($contador % $columnasPorFila);
+                for ($i = 0; $i < $restantes; $i++) {
+                    echo '<td class="border2"></td>';
+                }
+                echo '</tr>';
+            }
+
+            echo '</table>';
+        }?>
     <table width="100%"><tr><td></td></tr></table>
     <table width="100%">
         <tr>
@@ -634,49 +617,37 @@
     </table>
     <h2>Extras Antecipados</h2>
 
-    <?php
-     //print_r($reserva['ReservaExtra']);
-    //if(count($reserva['ReservaExtra']) > 0){
-    	$tasa_aeropuerto = 0;
-    	$conductor_adicional = 0;
-    	$gps = 0;
-    	$butaca_bebe = 0;
-    	$porta_ski = 0;
-    	$cadenas_nieve=0;
-    	foreach($reserva['ReservaExtra'] as $extra){
-    		if($extra['extra_id']==1){
-    			$tasa_aeropuerto = 1;
-    		}
-    		if($extra['extra_id']==4){
-    			$conductor_adicional = 1;
-    		}
-    		if($extra['extra_id']==5){
-    			$gps = 1;
-    		}
-    		if($extra['extra_id']==2){
-    			$butaca_bebe = 1;
-    		}
-    		if($extra['extra_id']==6){
-    			$porta_ski = 1;
-    		}
-    		if($extra['extra_id']==3){
-    			$cadenas_nieve = 1;
-    		}
-    	}
-    //}
-    ?>
-    <table width="100%" class="test">
-        <tr>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($tasa_aeropuerto ?'check_circle.png':'uncheck_circle.png'); ?>  Taxa Aeroporto </p></td>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($conductor_adicional ?'check_circle.png':'uncheck_circle.png'); ?>  <?php echo utf8_encode('Tanque de gasolina pré-pago'); ?></p></td>
-		    <td class="border2"><p style="font-size:12px;"><?php echo $this->Html->image($gps ?'check_circle.png':'uncheck_circle.png'); ?>  GPS </p></td>
-    	</tr>
-    	<tr>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($butaca_bebe ?'check_circle.png':'uncheck_circle.png'); ?>  <?php echo utf8_encode('Cadeirinha Bebé');?>  </p></td>
-		    <td class="border2" ><p style="font-size:12px;"><?php echo $this->Html->image($porta_ski ?'check_circle.png':'uncheck_circle.png'); ?>  Porta-Ski</p></td>
-		    <td class="border2"><p style="font-size:12px;"><?php echo $this->Html->image($cadenas_nieve ?'check_circle.png':'uncheck_circle.png'); ?>  Outros </p></td>
-    	</tr>
-    </table>
+        <?php
+        if(count($extras) > 0) {
+            echo '<table width="100%" class="test"><tr>';
+
+            foreach ($extras as $extra) {
+
+                $nombre = $extra['ReservaExtra']['cantidad'] . ' ' . $extra['Extra']['ExtraSubrubro']['subrubro_portugues'] . ' ' . $extra['Extra']['detalle'] . ' $' . $extra['ReservaExtra']['precio'];
+
+                $imagen = $this->Html->image('check_circle.png'); // siempre check porque viene incluido
+
+                echo '<td class="border2"><p style="font-size:12px;">' . $imagen . ' ' . h($nombre) . '</p></td>';
+                $contador++;
+
+                // Cada 3 columnas, cerrar y abrir fila
+                if ($contador % $columnasPorFila === 0) {
+                    echo '</tr><tr>';
+                }
+            }
+
+            // Si la última fila no se completó, cerramos la fila
+            if ($contador % $columnasPorFila !== 0) {
+                // Completar con celdas vacías
+                $restantes = $columnasPorFila - ($contador % $columnasPorFila);
+                for ($i = 0; $i < $restantes; $i++) {
+                    echo '<td class="border2"></td>';
+                }
+                echo '</tr>';
+            }
+
+            echo '</table>';
+        }?>
     <table width="100%"><tr><td></td></tr></table>
     <table width="100%">
         <tr>

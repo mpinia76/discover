@@ -1749,6 +1749,22 @@ class ReservasController extends AppController {
         $this->loadModel('ExtraSubrubro');
         $this->set('extra_subrubros',$this->ExtraSubrubro->find('list'));*/
 
+        $extras = $this->Reserva->ReservaExtra->find('all', [
+            'conditions' => [
+                'ReservaExtra.reserva_id' => $reserva_id,
+                'ReservaExtra.adelantada' => 1,
+                'ReservaExtra.extra_id !=' => 0
+            ],
+            'contain' => [
+                'Extra' => [
+                    'ExtraRubro',
+                    'ExtraSubrubro'
+                ]
+            ]
+        ]);
+
+        $this->set('extras',$extras);
+
         $this->Reserva->id = $reserva_id;
         $reserva = $this->Reserva->read();
         /*App::uses('ConnectionManager', 'Model');
@@ -1784,6 +1800,8 @@ class ReservasController extends AppController {
         /*$this->set('pagado',$pagado);
         $this->set('pendiente',$reserva['Reserva']['total'] - $descontado - $pagado);*/
        $this->set('total',$reserva['Reserva']['total'] - $descontado + $devoluciones);
+
+
 
         //genero el pdf
 
