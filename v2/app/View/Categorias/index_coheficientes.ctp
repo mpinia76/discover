@@ -5,7 +5,7 @@
     <li class="boton pdf"><a onclick="imprimir();">Imprimir</a></li>
     
 	';?>
-	<li class="boton agregar"><a onclick="createWindow('w_categoria_coheficiente_add','Crear Coheficiente','<?php echo $this->Html->url('/categorias/crear_coheficiente', true);?>','450','150');">Crear Asociacion</a></li>
+	<li class="boton agregar"><a onclick="createWindow('w_categoria_coheficiente_add','Crear Coheficiente','<?php echo $this->Html->url('/categorias/crear_coheficiente', true);?>','450','300');">Crear Asociacion</a></li>
 </ul>
 <?php
  }
@@ -82,7 +82,7 @@ $('#EditTable td').dblclick(function () {
      
      
      if(id){
-     	createWindow("w_categoria_coheficiente_update","Editar Coheficiente","<?php echo $this->Html->url('/categorias/editar_coheficiente', true);?>/"+id,"450","200");
+     	createWindow("w_categoria_coheficiente_update","Editar Coheficiente","<?php echo $this->Html->url('/categorias/editar_coheficiente', true);?>/"+id,"450","300");
      }
 });
 

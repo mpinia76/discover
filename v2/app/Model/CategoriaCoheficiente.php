@@ -2,12 +2,14 @@
 class CategoriaCoheficiente extends AppModel {
     public $useTable = 'categoria_coheficiente';
     public $belongsTo = array('Categoria');
+
+    public $hasMany = array('CategoriaCoheficientePeriodo');
     
     public $validate = array(
     	'categoria_id' => array(
             'required'   => true,
             'rule' => 'notEmpty',
-            'message' => 'Debe seleccionar una categoría'
+            'message' => 'Debe seleccionar una categorï¿½a'
         ),
         'dia' => array(
             'required'   => true,

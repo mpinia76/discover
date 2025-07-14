@@ -159,7 +159,7 @@ class DescuentosController extends AppController {
 
          	$this->loadModel('Descuento');
 
-
+            $this->Descuento->DescuentoPeriodo->deleteAll(['DescuentoPeriodo.descuento_id' => $this->request->data['id']], false);
             $this->Descuento->delete($this->request->data['id'],true);
 
 

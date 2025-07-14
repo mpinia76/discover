@@ -1,5 +1,6 @@
 <?php
-
+$this->Js->buffer('$.datepicker.regional[ "es" ]');
+$this->Js->buffer('$(".datepicker").datepicker({ dateFormat: "dd/mm/yy", altFormat: "yy-mm-dd" });');
 
 //formulario
 echo $this->Form->create(null, array('url' => '/categorias/crear_coheficiente','inputDefaults' => (array('div' => 'ym-gbox'))));
@@ -14,13 +15,62 @@ echo $this->Form->create(null, array('url' => '/categorias/crear_coheficiente','
     <div class="ym-g33 ym-gl"><?php echo $this->Form->input('CategoriaCoheficiente.coheficiente',array('type'=>'number','value'=>$coheficiente));?></div>
 </div>
 
+<!-- periodos -->
+<div id="divPeriodos">
+    <div class="sectionSubtitle">Períodos</div>
+    <div class="ym-grid">
+        <div class="ym-g33 ym-gl"><?php echo $this->Form->input('CategoriaCoheficientePeriodo.desde',array('class'=>'datepicker','type'=>'text'));?></div>
+        <div class="ym-g33 ym-gl"><?php echo $this->Form->input('CategoriaCoheficientePeriodo.hasta',array('class'=>'datepicker','type'=>'text'));?></div>
+        <div class="ym-g25 ym-gl"><div id="btn_add_extra" class="ym-gbox" style="margin-top:5px;"><span onclick="addPeriodo();" class="boton agregar">+ agregar</span></div></div>
+    </div>
+    <table width="100%" id="categoria_coheficiente_periodos"></table>
 
 
 
-<span id="botonGuardar" onclick="guardar('<?php echo $this->Html->url('/categorias/guardar_coheficiente.json', true);?>',$('form').serialize(),{id:'w_coheficientes_categorias',url:'v2/categorias/index_coheficientes'});" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
+
+    <span id="botonGuardar" onclick="guardar('<?php echo $this->Html->url('/categorias/guardar_coheficiente.json', true);?>',$('form').serialize(),{id:'w_coheficientes_categorias',url:'v2/categorias/index_coheficientes'});" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
 <span id="botonGuardarError" class="boton guardar" style="display:none">Procesando...</span>
 <?php echo $this->Form->end(); ?>
 
 <script>
+    function addPeriodo() {
+        var desde = $('#CategoriaCoheficientePeriodoDesde').val();
+        var hasta = $('#CategoriaCoheficientePeriodoHasta').val();
 
+        if (!desde || !hasta) {
+            alert("Debes completar ambas fechas: Desde y Hasta.");
+            return;
+        }
+
+        // Convertir fechas de dd/mm/yyyy a objetos Date
+        var partesDesde = desde.split('/');
+        var partesHasta = hasta.split('/');
+
+        var fechaDesde = new Date(partesDesde[2], partesDesde[1] - 1, partesDesde[0]); // Año, Mes (0-11), Día
+        var fechaHasta = new Date(partesHasta[2], partesHasta[1] - 1, partesHasta[0]);
+
+        if (fechaDesde > fechaHasta) {
+            alert("La fecha 'Desde' no puede ser posterior a la fecha 'Hasta'.");
+            return;
+        }
+
+        $.ajax({
+            url: '<?php echo $this->Html->url('/categoria_coheficiente_periodos/getRow', true);?>',
+            data: {
+                'desde': desde,
+                'hasta': hasta
+            },
+            success: function (data) {
+                $('#categoria_coheficiente_periodos').append(data);
+            },
+            dataType: 'html'
+        });
+    }
+
+    function quitarExtra(reserva_extra_id, item){
+
+        if(confirm('Seguro desea eliminar el periodo?')){
+            $('#Extra'+item).remove();
+        }
+    }
 </script>

@@ -1596,3 +1596,17 @@ CREATE TABLE `descuento_periodos` (
     COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=1;
+
+##################################14/07/2025###########################################################
+CREATE TABLE `categoria_coheficiente_periodos` (
+                                      `id` INT(11) NOT NULL AUTO_INCREMENT,
+                                      `categoria_coheficiente_id` INT(11) NOT NULL,
+                                      `desde` DATE NULL DEFAULT NULL,
+                                      `hasta` DATE NULL DEFAULT NULL,
+                                      PRIMARY KEY (`id`),
+                                      INDEX `id` (`id`),
+                                      INDEX `categoria_coheficiente_id` (`categoria_coheficiente_id`)
+)
+    COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1;

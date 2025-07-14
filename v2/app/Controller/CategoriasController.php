@@ -509,7 +509,8 @@ class CategoriasController extends AppController {
 		$this->CategoriaCoheficiente->id = $id;
         $this->request->data = $this->CategoriaCoheficiente->read();
 
-
+		$categoriaCoheficientePeriodos = $this->CategoriaCoheficiente->CategoriaCoheficientePeriodo->find('all',array('conditions' => array('categoria_coheficiente_id' => $id),'recursive' => 2));
+		$this->set('categoriaCoheficientePeriodos',$categoriaCoheficientePeriodos);
         $this->set('categoria_coheficiente', $this->CategoriaCoheficiente->read());
     }
 
@@ -535,8 +536,53 @@ class CategoriasController extends AppController {
                 $this->set('detalle',$errores);
             }else{
             	try {
-                	$this->CategoriaCoheficiente->save();
+					// Validar periodos (según estructura de inputs)
+					// Si los periodos vienen con nombres separados como arrays paralelos
+					$periodos = [];
+					if (!empty($this->request->data['CategoriaCoheficientePeriodoCounter']) &&
+						!empty($this->request->data['CategoriaCoheficientePeriodoDesde']) &&
+						!empty($this->request->data['CategoriaCoheficientePeriodoHasta'])) {
 
+						$counters = $this->request->data['CategoriaCoheficientePeriodoCounter'];
+						$desdeArr = $this->request->data['CategoriaCoheficientePeriodoDesde'];
+						$hastaArr = $this->request->data['CategoriaCoheficientePeriodoHasta'];
+
+						foreach ($desdeArr as $i => $desde) {
+							$periodo = [
+								'id' => isset($counters[$i]) ? $counters[$i] : null,
+								'desde' => $desde,
+								'hasta' => isset($hastaArr[$i]) ? $hastaArr[$i] : null
+							];
+
+							$this->CategoriaCoheficiente->CategoriaCoheficientePeriodo->create();
+							if ($periodo['id']) {
+								$this->CategoriaCoheficiente->CategoriaCoheficientePeriodo->id = $periodo['id'];
+							}
+							$this->CategoriaCoheficiente->CategoriaCoheficientePeriodo->set($periodo);
+
+							if (!$this->CategoriaCoheficiente->CategoriaCoheficientePeriodo->validates()) {
+								foreach ($this->CategoriaCoheficiente->CategoriaCoheficientePeriodo->validationErrors as $field => $messages) {
+									$errores['CategoriaCoheficientePeriodo'][$i][$field] = is_array($messages) ? implode(', ', $messages) : $messages;
+								}
+							} else {
+								$periodos[] = $periodo;
+							}
+						}
+					}
+
+
+                	$this->CategoriaCoheficiente->save();
+					$categoria_coheficiente_id = $this->CategoriaCoheficiente->id;
+
+					// Borrar periodos anteriores
+					$this->CategoriaCoheficiente->CategoriaCoheficientePeriodo->deleteAll(['CategoriaCoheficientePeriodo.categoria_coheficiente_id' => $categoria_coheficiente_id], false);
+
+					// Guardar nuevos periodos
+					foreach ($periodos as $periodo) {
+						$periodo['categoria_coheficiente_id'] = $categoria_coheficiente_id;
+						$this->CategoriaCoheficiente->CategoriaCoheficientePeriodo->create();
+						$this->CategoriaCoheficiente->CategoriaCoheficientePeriodo->save($periodo);
+					}
 
 
 	            	$this->set('resultado','OK');
@@ -571,7 +617,7 @@ class CategoriasController extends AppController {
 
          	$this->loadModel('CategoriaCoheficiente');
 
-
+			$this->CategoriaCoheficiente->CategoriaCoheficientePeriodo->deleteAll(['CategoriaCoheficientePeriodo.categoria_coheficiente_id' => $this->request->data['id']], false);
             $this->CategoriaCoheficiente->delete($this->request->data['id'],true);
 
 
