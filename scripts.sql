@@ -1610,3 +1610,9 @@ CREATE TABLE `categoria_coheficiente_periodos` (
     COLLATE='latin1_swedish_ci'
 ENGINE=InnoDB
 AUTO_INCREMENT=1;
+
+##################################21/07/2025###########################################################
+ALTER TABLE `descuentos`
+    CHANGE COLUMN `descuento` `descuento` TEXT NOT NULL COLLATE 'latin1_swedish_ci' AFTER `id`,
+    CHANGE COLUMN `descuento_ingles` `descuento_ingles` TEXT NOT NULL COLLATE 'latin1_swedish_ci' AFTER `descuento`,
+    CHANGE COLUMN `descuento_portugues` `descuento_portugues` TEXT NOT NULL COLLATE 'latin1_swedish_ci' AFTER `descuento_ingles`;

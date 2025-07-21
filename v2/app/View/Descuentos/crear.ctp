@@ -2,6 +2,18 @@
 $this->Js->buffer('$.datepicker.regional[ "es" ]');
 $this->Js->buffer('$(".datepicker").datepicker({ dateFormat: "dd/mm/yy", altFormat: "yy-mm-dd" });');
 
+echo $this->Html->script('https://cdn.jsdelivr.net/npm/tinymce@4.9.11/tinymce.min.js', ['block' => 'script']);
+$this->Js->buffer("
+    tinymce.init({
+        selector: '#DescuentoDescuento, #DescuentoDescuentoIngles, #DescuentoDescuentoPortugues',
+        menubar: false,
+        plugins: 'link lists',
+        toolbar: 'undo redo | bold italic underline | bullist numlist | link',
+        height: 200,
+        branding: false
+    });
+");
+
 
 //formulario
 echo $this->Form->create(null, array('url' => '/descuentos/crear','inputDefaults' => (array('div' => 'ym-gbox'))));
@@ -65,8 +77,10 @@ echo $this->Form->create(null, array('url' => '/descuentos/crear','inputDefaults
 
 
 
-<span onclick="guardar('guardar.json',$('form').serialize(),{id:'w_descuentos',url:'v2/descuentos/index'});" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>
-<?php echo $this->Form->end(); ?>
+<!--<span onclick="guardar('guardar.json',$('form').serialize(),{id:'w_descuentos',url:'v2/descuentos/index'});" class="boton guardar">Guardar <img src="<?php echo $this->webroot; ?>img/loading_save.gif" class="loading" id="loading_save" /></span>-->
+    <span onclick="if (typeof tinymce !== 'undefined') tinymce.triggerSave(); guardar('guardar.json',$('form').serialize(),{id:'w_descuentos',url:'v2/descuentos/index'});" class="boton guardar">Guardar</span>
+
+    <?php echo $this->Form->end(); ?>
 
 <script>
     $('#DescuentoMercadopago').change(function(){

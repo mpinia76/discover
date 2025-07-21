@@ -78,6 +78,7 @@ class DescuentosController extends AppController {
 
     public function guardar() {
         if (!empty($this->request->data)) {
+            //file_put_contents(APP . 'tmp/logs/debug.log', print_r($this->request->data, true), FILE_APPEND);
 
             $descuento = $this->request->data['Descuento'];
             $this->Descuento->set($descuento);

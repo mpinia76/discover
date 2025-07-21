@@ -1,6 +1,18 @@
 <?php
 $this->Js->buffer('$.datepicker.regional[ "es" ]');
 $this->Js->buffer('$(".datepicker").datepicker({ dateFormat: "dd/mm/yy", altFormat: "yy-mm-dd" });');
+
+echo $this->Html->script('https://cdn.jsdelivr.net/npm/tinymce@4.9.11/tinymce.min.js', ['block' => 'script']);
+$this->Js->buffer("
+    tinymce.init({
+        selector: '#DescuentoDescuento, #DescuentoDescuentoIngles, #DescuentoDescuentoPortugues',
+        menubar: false,
+        plugins: 'link lists',
+        toolbar: 'undo redo | bold italic underline | bullist numlist | link',
+        height: 200,
+        branding: false
+    });
+");
 //formulario
 echo $this->Form->create(null, array('url' => '/descuentos/crear','inputDefaults' => (array('div' => 'ym-gbox'))));
 
