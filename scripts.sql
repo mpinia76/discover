@@ -1616,3 +1616,6 @@ ALTER TABLE `descuentos`
     CHANGE COLUMN `descuento` `descuento` TEXT NOT NULL COLLATE 'latin1_swedish_ci' AFTER `id`,
     CHANGE COLUMN `descuento_ingles` `descuento_ingles` TEXT NOT NULL COLLATE 'latin1_swedish_ci' AFTER `descuento`,
     CHANGE COLUMN `descuento_portugues` `descuento_portugues` TEXT NOT NULL COLLATE 'latin1_swedish_ci' AFTER `descuento_ingles`;
+
+##################################02/09/2025###########################################################
+INSERT INTO `permiso` (`id`, `permiso_grupo_id`, `nombre`) VALUES (NULL, '45', 'Operar'), (NULL, '43', 'Operar');
