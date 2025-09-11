@@ -1,23 +1,19 @@
 <?php
 //DATOS PARA LA BASE DE DATOS MYSQL
 
-
-/*$dbhost = "163.10.35.37";
-$dbname = "discover";
-$dbuser = "root";
-$dbpassword = "secyt";*/
-
-$dbhost = "localhost";
-$dbname = "discover";
-$dbuser = "root";
-$dbpassword = "";
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'discover');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
 //CONEXION A LA BASE DE DATOS
 
 /*$conn=mysql_connect($dbhost, $dbuser, $dbpassword);
+//print_r($conn);
 mysql_select_db($dbname);*/
 
-$conn=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
+$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
 
 //CONSULTAS COMUNES
 function sql_meses($tabla,$ano,$campo = 'fecha'){

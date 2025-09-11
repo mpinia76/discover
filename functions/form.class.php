@@ -268,12 +268,9 @@ class Form{
 		$html .='<div class="label">'.$atr['label'].'</div>';
 		$html .='<div class="content">';
 
-        $dbhost = "localhost";
-        $dbname = "discover";
-        $dbuser = "root";
-        $dbpassword = "";
+		include_once("config/db.php");
 
-        $conn=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
+		$conn = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 		if($atr['sql'] != ''){
 			$sql = $atr['sql'];
@@ -356,12 +353,9 @@ class Form{
 		$html .='<div class="label">'.$atr['label'].'</div>';
 		$html .='<div class="content">';
 
-        $dbhost = "localhost";
-        $dbname = "discoverbsas";
-        $dbuser = "root";
-        $dbpassword = "";
 
-        $connBsAs = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
+		include_once("config/dbBsAs.php.php");
+        $connBsAs = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 		if($atr['sql'] != ''){
 			$sql = $atr['sql'];

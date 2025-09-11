@@ -7,13 +7,9 @@ ini_set('display_startup_errors', 1);
 
 error_reporting(E_ALL);*/
 
-$dbhost = "localhost";
-$dbname = "discover";
-$dbuser = "root";
-$dbpassword = "";
+include_once("config/db.php");
 
-
-$conn=mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
+$conn=mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 
 if(isset($dataid) and $dataid!=''){
