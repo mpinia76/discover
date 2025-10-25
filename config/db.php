@@ -6,6 +6,27 @@ define('DB_NAME', 'discover');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
+
+// API tusFacturas
+define('API_KEY', '68875');
+define('API_TOKEN', '237a174222d68f6069f7f23a03f79de4');
+define('API_URL', 'https://www.tusfacturas.app/app/api/v2/facturacion/nuevo_encola');
+define('WEBHOOK_TOKEN', '0f7f6a17143f9cefe10f073a27ebb19a21510cc2f2675ee7a0a6d23a4a3218d7');
+
+// User Tokens por punto de venta o CUIT
+$tusfacturas_tokens = [
+	1 => [ // Punto de venta 1
+		'NUMERO' => '00001',
+		'CUIT' => '20251748056',
+		'USER_TOKEN' => 'a121bac417e52622bb9412e23a0e70ca941c8902cb745033c6705df5f9e51e40'
+	],
+	2 => [ // Punto de venta 2
+		'NUMERO' => '00002',
+		'CUIT' => '20251748056',
+		'USER_TOKEN' => '6a79fec78166a3b9b4db3b9ee17ff6179aa02931d9af87f561d5f60119d535c4'
+	]
+];
+
 //CONEXION A LA BASE DE DATOS
 
 /*$conn=mysql_connect($dbhost, $dbuser, $dbpassword);

@@ -134,7 +134,7 @@ class ReservaFacturasController extends AppController {
         }
         else{
         	$explode_name = explode('.', $data['ReservaFacturaExcel']['name']);
-            //Se valida as� y no con el mime type porque este no funciona para algunos programas
+            //Se valida as� y no con el mime type porque este no funciona para algunos programas
             $pos_ext = count($explode_name) - 1;
             if (!in_array(strtolower($explode_name[$pos_ext]), explode(",","xls,XLS,xlsx,XLSX"))) {
             	$errores['ReservaFactura']['excel'][]='El archivo a subir debe ser Excel';
@@ -215,9 +215,9 @@ class ReservaFacturasController extends AppController {
           						$tipoItem=str_replace('Factura ', '',trim($val));
           						$tipoDocItem=1;
           					}
-          					$pos = strpos(trim($val), 'ota de Cr�dito ');
+          					$pos = strpos(trim($val), 'ota de Cr�dito ');
           					if ($pos != false) {
-          						$tipoItem=str_replace('Nota de Cr�dito ', '',trim($val));
+          						$tipoItem=str_replace('Nota de Cr�dito ', '',trim($val));
           						$tipoDocItem=2;
           					}
           				break;
@@ -527,5 +527,403 @@ class ReservaFacturasController extends AppController {
   		$this->ExportXls->export($fileName, $headerRow, $data);
     }
 
+	public function cronImportarFacturas() {
+		$this->autoRender = false; // No renderiza vista
+
+		App::uses('HttpSocket', 'Network/Http');
+
+		// Traemos los tokens de los puntos de venta
+		$tusfacturas_tokens = Configure::read('TusFacturas.tokens');
+
+		// Cargamos el modelo
+		$this->loadModel('ReservaFacturaProcesada');
+
+		// Traemos las reservas procesadas que aún no fueron consultadas en la API
+		$reservas = $this->ReservaFacturaProcesada->find('all', [
+			'conditions' => ['procesada_api' => 0],
+			'limit' => 50, // límite para no saturar la API
+			'order' => ['fecha' => 'ASC']
+		]);
+
+		$http = new HttpSocket();
+		App::import('Core', 'CakeLog');
+
+// Generar nombre del archivo con fecha
+		$nombreFile = 'facturas_reserva_' . date('Ymd'); // ej: facturas_reserva_20251020
+
+// Función helper para escribir en el log
+		function escribirLog($mensaje, $nombreFile) {
+			CakeLog::write('info', $mensaje, $nombreFile);
+		}
+		foreach ($reservas as $reserva) {
+			echo "<pre>DEBUG ReservaFacturaProcesada:\n";
+			print_r($reserva['ReservaFacturaProcesada']);
+			echo "</pre>";
+			$reserva_id = $reserva['ReservaFacturaProcesada']['reserva_id'];
+			$reserva_valida = true; // Bandera para verificar si todas las facturas pasan validación
+			$facturas_guardadas = false;
+			$errores_api = [];
+			// Recorremos los puntos de venta
+			foreach ($tusfacturas_tokens as $pvId => $tokenData) {
+
+				$payload = [
+					'usertoken' => $tokenData['USER_TOKEN'],
+					'apikey'    => API_KEY,
+					'apitoken'  => API_TOKEN,
+					'busqueda_tipo' => 'EXT_REF',
+					'pagina'    => 0,
+					'limite'    => 100,
+					'comprobante' => [
+						'tipo' => '', // vacío para todos los tipos
+						'operacion' => 'V',
+						'punto_venta' => $tokenData['NUMERO'],
+						'numero_desde' => '0',
+						'numero_hasta' => '99999999',
+						'external_reference' => 'RES-' . $reserva_id
+					],
+
+				];
+				echo "<pre>JSON enviado:\n";
+				print_r($payload);
+				echo "</pre>";
+
+				$ch = curl_init('https://www.tusfacturas.app/app/api/v2/facturacion/consulta_avanzada');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_POST, true);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+
+				$response = curl_exec($ch);
+				curl_close($ch);
+
+				$data = json_decode($response, true);
+
+				// Mostrar info de depuración
+				echo "<pre>Reserva ID: $reserva_id, PV: {$tokenData['NUMERO']}\n";
+				print_r($data);
+				echo "</pre>";
+
+				$this->loadModel('ReservaFactura');
+
+
+				if (!empty($data['comprobantes'])) {
+					foreach ($data['comprobantes'] as $comp) {
+						$this->ReservaFactura->create();
+						$partes = explode(' ', $comp['comprobante']['tipo']);
+						$tipoLetra = end($partes); // devuelve la última palabra
+
+						$this->ReservaFactura->set([
+							'reserva_id' => $reserva_id,
+							'punto_venta_id' => $pvId,
+							'tipo' => $tipoLetra, // solo la letra
+							'titular' => $reserva['ReservaFacturaProcesada']['cliente'],
+							'fecha_emision' => $comp['comprobante']['fecha'],
+							'numero' => str_pad($comp['comprobante']['numero'], 8, '0', STR_PAD_LEFT),
+							'monto' => $comp['comprobante']['total'],
+							'tipoDoc' => 1,
+							'agregada_por' => $reserva['ReservaFacturaProcesada']['usuario_id']
+						]);
+
+						if ($this->ReservaFactura->validates()) {
+							$this->ReservaFactura->save();
+							escribirLog("Factura de reserva $reserva_id guardada correctamente", $nombreFile);
+							$facturas_guardadas = true;
+							$reserva_valida = true;
+						} else {
+							$reserva_valida = false;
+							$errores = '';
+							foreach ($this->ReservaFactura->validationErrors as $value) {
+								foreach ($value as $val) {
+									$errores .= $val . ' - ';
+								}
+							}
+							escribirLog("Factura de reserva $reserva_id NO guardada: $errores", $nombreFile);
+							$errores_api[$pvId] = $errores;
+						}
+					}
+				} else {
+					$errores_api[$pvId] = $data['error_details'] ?? 'Sin comprobantes';
+				}
+			}
+
+			// Guardamos el estado final de la reserva
+			$this->ReservaFacturaProcesada->id = $reserva['ReservaFacturaProcesada']['id'];
+			if ($facturas_guardadas) {
+				$this->ReservaFacturaProcesada->save([
+					'procesada_api' => 1,
+					'error_api' => 0,
+					'error_mensaje' => null
+				]);
+			} else {
+				$this->ReservaFacturaProcesada->save([
+					'procesada_api' => 1,
+					'error_api' => 1,
+					'error_mensaje' => json_encode($errores_api)
+				]);
+			}
+		}
+
+		echo "Importación finalizada";
+	}
+
+	public function probarApiCron() {
+		$this->autoRender = false; // No renderiza vista
+
+		App::uses('HttpSocket', 'Network/Http');
+
+		// Traemos los tokens de los puntos de venta
+		$tusfacturas_tokens = Configure::read('TusFacturas.tokens');
+
+		// Cargamos el modelo
+		$this->loadModel('ReservaFacturaProcesada');
+
+		// Traemos las reservas procesadas que aún no fueron consultadas en la API
+		$reservas = $this->ReservaFacturaProcesada->find('all', [
+			'conditions' => ['procesada_api' => 0],
+			'limit' => 50, // límite para no saturar la API
+			'order' => ['fecha' => 'ASC']
+		]);
+
+		$http = new HttpSocket();
+
+		foreach ($reservas as $reserva) {
+			$reserva_id = $reserva['ReservaFacturaProcesada']['reserva_id'];
+
+			// Recorremos los puntos de venta
+			foreach ($tusfacturas_tokens as $pvId => $tokenData) {
+
+				$payload = [
+					'usertoken' => $tokenData['USER_TOKEN'],
+					'apikey'    => API_KEY,
+					'apitoken'  => API_TOKEN,
+					'busqueda_tipo' => 'EXT_REF',
+					'pagina'    => 0,
+					'limite'    => 100,
+					'comprobante' => [
+						'tipo' => '', // vacío para todos los tipos
+						'operacion' => 'V',
+						'punto_venta' => $tokenData['NUMERO'],
+						'numero_desde' => '0',
+						'numero_hasta' => '99999999',
+						'external_reference' => 'RES-' . $reserva_id
+					],
+
+				];
+				echo "<pre>JSON enviado:\n";
+				print_r($payload);
+				echo "</pre>";
+
+				$ch = curl_init('https://www.tusfacturas.app/app/api/v2/facturacion/consulta_avanzada');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_POST, true);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+
+				$response = curl_exec($ch);
+				curl_close($ch);
+
+				$data = json_decode($response, true);
+
+				// Mostrar toda la info de la API en pantalla
+				echo "<pre>";
+				echo "Reserva ID: " . $reserva_id . "\n";
+				echo "Punto de Venta: " . $tokenData['NUMERO'] . "\n";
+				echo "Respuesta API completa:\n";
+				print_r($data);
+				echo "</pre>";
+				echo str_repeat("-", 80) . "<br>";
+
+				// Marcamos como procesada para no repetir
+				/*$this->ReservaFacturaProcesada->id = $reserva['ReservaFacturaProcesada']['id'];
+				$this->ReservaFacturaProcesada->saveField('procesada_api', 1);*/
+
+				// Si querés procesar y guardar info de facturas, acá va el insert a reserva_facturas
+			}
+		}
+
+		echo "Consulta de API finalizada.\n";
+	}
+
+	public function listarFacturasApi() {
+		$this->autoRender = false; // No renderiza vista
+
+		App::uses('HttpSocket', 'Network/Http');
+
+		// Traemos los tokens de los puntos de venta
+		$tusfacturas_tokens = Configure::read('TusFacturas.tokens');
+
+		$http = new HttpSocket();
+
+		foreach ($tusfacturas_tokens as $pvId => $tokenData) {
+			echo "<h3>Punto de Venta: " . $tokenData['NUMERO'] . "</h3>";
+
+			$pagina = 0;
+			$total = 0;
+
+			do {
+				$payload = [
+					'usertoken' => $tokenData['USER_TOKEN'],
+					'apikey'    => API_KEY,
+					'apitoken'  => API_TOKEN,
+					'busqueda_tipo' => 'F', // Buscar por rango de comprobantes
+					'pagina' => $pagina,
+					'limite' => 100,
+
+					'comprobante' => [
+						"fecha" =>   "17/10/2025",
+						'operacion' => 'V',     // venta
+
+					]
+				];
+
+				$ch = curl_init('https://www.tusfacturas.app/app/api/v2/facturacion/consulta_avanzada');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_POST, true);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+
+				$response = curl_exec($ch);
+				curl_close($ch);
+
+				$data = json_decode($response, true);
+
+				if ($data['error'] === 'N' && !empty($data['comprobantes'])) {
+					foreach ($data['comprobantes'] as $comp) {
+						echo "<pre>";
+						print_r($comp);
+						echo "</pre>";
+						$total++;
+					}
+				} else {
+					echo "Error o no hay comprobantes: ";
+					print_r($data);
+				}
+
+				$pagina++;
+			} while (!empty($data['comprobantes'])); // paginar mientras haya resultados
+
+			echo "<p>Total facturas encontradas: $total</p>";
+			echo str_repeat("-", 80) . "<br>";
+		}
+
+		echo "Consulta de API finalizada.";
+	}
+
+	public function validarPuntoVenta() {
+		$this->autoRender = false; // no renderiza vista
+		$this->layout = 'ajax';
+
+		$reserva_id = $this->request->data['reserva_id'];
+		$punto_venta_id = $this->request->data['punto_venta_id'];
+
+		$this->loadModel('ReservaFactura');
+		$this->loadModel('PuntoVenta');
+		$this->loadModel('Reserva'); // <-- cargar modelo Reserva para obtener numero
+
+		$puntoVenta = $this->PuntoVenta->read(null, $punto_venta_id);
+		$error = 0;
+		$numero = '';
+		$numero_reserva = '';
+		$punto_venta_numero = '';
+
+		if ($reserva_id && $puntoVenta) {
+			// Obtenemos la reserva para mostrar el número
+			$reserva = $this->Reserva->read(null, $reserva_id);
+			$numero_reserva = $reserva['Reserva']['numero'];
+
+			// Buscamos la factura de la reserva
+			$factura = $this->ReservaFactura->find('first', array(
+				'conditions' => array('ReservaFactura.reserva_id' => $reserva_id),
+				'order' => 'ReservaFactura.fecha_emision ASC'
+			));
+
+			if ($factura) {
+				$numero = $factura['ReservaFactura']['numero'];
+				$punto_venta_factura_id = $factura['ReservaFactura']['punto_venta_id'];
+
+				// Traemos el número real del punto de venta
+				$puntoFactura = $this->PuntoVenta->read(null, $punto_venta_factura_id);
+				$punto_venta_numero = $puntoFactura ? $puntoFactura['PuntoVenta']['numero'] : '';
+
+				if ($punto_venta_id != $punto_venta_factura_id) {
+					$error = 1;
+				}
+			}
+		}
+
+		echo json_encode(array(
+			'error' => $error,
+			'numero' => $numero,
+			'numero_reserva' => $numero_reserva, // <-- agregamos
+			'punto_venta' => $punto_venta_numero
+		));
+	}
+
+// En ReservaFacturasController.php
+	public function validarFechaFactura() {
+		$this->autoRender = false; // No renderiza vista
+		$this->layout = 'ajax';
+
+
+		$punto_venta_id = $this->request->data['punto_venta_id'] ?? null;
+		$fecha = $this->request->data['fecha'] ?? null;
+
+		if (!$punto_venta_id || !$fecha) {
+			echo json_encode(['error' => 1, 'mensaje' => 'Datos incompletos']);
+			return;
+		}
+
+		$this->loadModel('ReservaFactura');
+		$this->loadModel('PuntoVenta');
+
+
+		$puntoVenta = $this->PuntoVenta->read(null, $punto_venta_id);
+		// Obtenemos la fecha más reciente de facturas existentes para ese punto de venta
+		$ultimaFactura = $this->ReservaFactura->find('first', [
+			'conditions' => ['ReservaFactura.punto_venta_id' => $punto_venta_id],
+			'order' => ['ReservaFactura.fecha_emision DESC'],
+			'fields' => ['ReservaFactura.fecha_emision', 'ReservaFactura.numero', 'ReservaFactura.reserva_id']
+		]);
+
+		$error = 0;
+		$mensaje = '';
+
+		if ($ultimaFactura) {
+			$fechaUltima = $ultimaFactura['ReservaFactura']['fecha_emision'];
+
+			// Normalizar formatos de fecha
+			$fechaObj = DateTime::createFromFormat('d/m/Y', $fecha);
+			if (!$fechaObj) $fechaObj = DateTime::createFromFormat('Y-m-d', $fecha);
+
+			$fechaUltimaObj = DateTime::createFromFormat('Y-m-d', $fechaUltima);
+			if (!$fechaUltimaObj) $fechaUltimaObj = DateTime::createFromFormat('d/m/Y', $fechaUltima);
+
+			if ($fechaObj && $fechaUltimaObj && $fechaObj < $fechaUltimaObj) {
+				$error = 1;
+				$punto_venta_numero = $puntoVenta ? $puntoVenta['PuntoVenta']['numero'] : '';
+				$numeroFactura = $ultimaFactura ? $ultimaFactura['ReservaFactura']['numero'] : '';
+				$mensaje = sprintf(
+					"No se puede emitir una factura con fecha anterior a la última ya emitida para el punto de venta %s. Factura: %s Fecha: %s",
+					$punto_venta_numero,
+					$numeroFactura,
+					$fechaUltimaObj->format('d/m/Y')
+				);
+			}
+		}
+
+
+
+
+
+
+
+
+		echo json_encode([
+			'error' => $error,
+			'mensaje' => $mensaje,
+			'numero' => $numeroFactura,
+			'punto_venta' => $punto_venta_numero
+		]);
+	}
 }
 ?>
