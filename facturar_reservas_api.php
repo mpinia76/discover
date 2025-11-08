@@ -1,12 +1,14 @@
 <?php
 //DATOS DEL USUARIO
 session_start();
-$usuarioId = $_SESSION['useridushuaia'];
+$usuarioId = $_SESSION['userid'];
 include_once("config/db.php");
 include_once("functions/util.php");
 $nombreFile = 'factura_reserva_' . date('Ymd') . '_log';
 $dt = date('Y-m-d G:i:s');
 $logPath = "./logs/" . $nombreFile . ".log";
+$logRes = $dt . " | Session: " . print_r($_SESSION, true) . "\n";
+file_put_contents($logPath, $logRes, FILE_APPEND);
 // POST
 $fecha = $_POST['fecha']; // formato dd/mm/yyyy
 // Normalizar formato a dd/mm/yyyy
@@ -35,8 +37,10 @@ if ($fechaObj < (clone $hoy)->modify('-10 days')) {
     die(json_encode(['error' => 'AFIP no permite facturar servicios con más de 10 días de antigüedad.']));
 }
 
+
+
 //$conceptoId = intval($_POST['conceptoId']);
-//$monto = floatval($_POST['monto']);
+$monto = floatval($_POST['monto']);
 $ids = explode(',', trim($_POST['ids'], ','));
 $puntoVentaId = intval($_POST['puntoVenta']);
 $columnaTransfiere = $_POST['columnaTransfiere'] ?? 0;
@@ -62,14 +66,7 @@ $puntoVenta = $tf['NUMERO'];
 
 
 
-$conceptoGral='';
-/*if($conceptoId){
-    // Concepto de la factura
-    $sqlConcepto = "SELECT nombre FROM concepto_facturacions WHERE id = $conceptoId";
-    $rsC = mysqli_query($conn, $sqlConcepto);
-    $cRow = mysqli_fetch_assoc($rsC);
-    $conceptoGral    = $cRow['nombre'] ?? "";
-}*/
+
 
 
 
@@ -91,19 +88,19 @@ foreach ($ids as $idReserva) {
     /*$logRes = $dt . " | Reserva ID: $idReserva | Resultado consulta CUIT: " . print_r($res, true) . "\n";
     file_put_contents($logPath, $logRes, FILE_APPEND);*/
     $detalle = '';
-    if ($conceptoGral){
-        $sql = "SELECT reserva_cobros.*, concepto_facturacions.nombre as concepto_facturacion FROM reserva_cobros LEFT JOIN concepto_facturacions ON reserva_cobros.concepto_facturacion_id = concepto_facturacions.id  WHERE fecha LIKE '".$_POST["ano"]."-".$_POST["mes"]."%' AND reserva_id = ". $idReserva." AND reserva_cobros.tipo <> 'DESCUENTO' ORDER BY reserva_cobros.id";
+    //if ($conceptoGral){
+    $sql = "SELECT reserva_cobros.*, concepto_facturacions.nombre as concepto_facturacion FROM reserva_cobros LEFT JOIN concepto_facturacions ON reserva_cobros.concepto_facturacion_id = concepto_facturacions.id  WHERE fecha LIKE '".$_POST["ano"]."-".$_POST["mes"]."%' AND reserva_id = ". $idReserva." AND reserva_cobros.tipo <> 'DESCUENTO' ORDER BY reserva_cobros.id";
 
-        $rsTempCobros = mysqli_query($conn,$sql);
+    $rsTempCobros = mysqli_query($conn,$sql);
 
-        while($rsCobros = mysqli_fetch_array($rsTempCobros)){
-            $detalle = $rsCobros['concepto_facturacion'];
-        }
-        $conceptoNombre=($detalle)?$detalle:'Alquiler de Departamento';
+    while($rsCobros = mysqli_fetch_array($rsTempCobros)){
+        $detalle = $rsCobros['concepto_facturacion'];
     }
+    $conceptoNombre=($detalle)?$detalle:'Alquiler de Departamento';
+    /*}
     else{
         $conceptoNombre=$conceptoGral;
-    }
+    }*/
 
 
     // ---------------------
@@ -198,7 +195,7 @@ foreach ($ids as $idReserva) {
                 $documento = '20251748056';
             }
             break;
-
+        case 'CF': // Consumidor Final → Factura B
         case 'MT': // Monotributo → Factura B
         case 'EX': // Exento → Factura B
             $facturaTipo = 'B';
@@ -212,7 +209,7 @@ foreach ($ids as $idReserva) {
             break;
 
         default: // Consumidor Final → Factura C
-            $facturaTipo = 'C';
+            $facturaTipo = 'B';
             $documentoTipo = 'DNI';
             $documento = $res['dni'] ?? '99999999';
             break;
@@ -240,14 +237,14 @@ foreach ($ids as $idReserva) {
     // Armar JSON para API v2 asincrónica
     $payload = [
         'usertoken' => $tf['USER_TOKEN'],
-        'apikey' => API_KEY,
-        'apitoken' => API_TOKEN,
+        'apikey' => $tf['API_KEY'],
+        'apitoken' => $tf['API_TOKEN'],
         'cliente' => [
             'documento_tipo' => $documentoTipo,
             'documento_nro' => $documento,
-            'razon_social' => $titular,
+            'razon_social' => ($titular),
             'email' => $res['email'] ?? 'no-reply@empresa.com',
-            'domicilio' => $domicilioFiscal,
+            'domicilio' => ($domicilioFiscal),
             'provincia' => $res['provincia_id'] ?? '2',
             'envia_por_mail' => 'N',
             'reclama_deuda' => 'N',
@@ -277,7 +274,7 @@ foreach ($ids as $idReserva) {
             'detalle'=>[[
                 'cantidad'=>1,
                 'producto'=>[
-                    'descripcion'=>$conceptoNombre . " - Reserva #" . $res['numero'],
+                    'descripcion'=>$conceptoNombre,
                     'codigo'=>'0001',
                     'lista_precios'=>'Lista API',
                     'unidad_bulto'=>1,
@@ -302,7 +299,7 @@ foreach ($ids as $idReserva) {
                 'formas_pago'=>[['descripcion'=>'Contado','importe'=>$total]],
                 'total'=>$total
             ],
-            'webhook'=>['token'=>WEBHOOK_TOKEN]
+            'webhook'=>['token'=>$tf['WEBHOOK_TOKEN']]
         ]
     ];
 
@@ -331,19 +328,24 @@ foreach ($ids as $idReserva) {
 // Guardar factura procesada solo si se envió bien
     if (empty($respData['error']) || $respData['error'] === 'N') {
 
-        // Borrar registro anterior
+        $cliente = mysqli_real_escape_string($conn, $res['nombre_apellido']);
+        $dni = mysqli_real_escape_string($conn, trim($res['dni']));
+
         mysqli_query($conn, "DELETE FROM reserva_factura_procesada 
-        WHERE reserva_id = ".$res['id']."
-        AND cliente = '".$res['nombre_apellido']."'
-        AND dni = '".trim($res['dni'])."'
-        AND total = '".$total."'"
+            WHERE reserva_id = ".$res['id']."
+            AND cliente = '".$cliente."'
+            AND dni = '".$dni."'
+            AND total = '".$total."'"
         );
 
-        // Insertar nuevo registro
         $insert = "INSERT INTO reserva_factura_procesada 
-        (reserva_id, fecha, cliente, dni, total, neto, diferencia, usuario_id) VALUES 
-        (".$res['id'].",'".date('Y-m-d H:i:s')."','".$res['nombre_apellido']."','".trim($res['dni'])."','".$total."','".$neto."','".($total-$neto)."','".($usuarioId)."')";
+(reserva_id, fecha, cliente, dni, total, neto, diferencia, usuario_id, punto_venta_id) VALUES 
+(".$res['id'].",'".date('Y-m-d H:i:s')."','".$cliente."','".$dni."','".$total."','".$neto."','".($total-$neto)."','".($usuarioId)."','".$puntoVentaId."')";
+        $logRes = $dt . " | Inserta: " . $insert . "\n";
+        file_put_contents($logPath, $logRes, FILE_APPEND);
+
         mysqli_query($conn, $insert);
+
     }
 
     $resultados[] = [

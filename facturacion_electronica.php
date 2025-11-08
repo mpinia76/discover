@@ -74,7 +74,7 @@ cursor:pointer;
 </select>
     <select size="1" name="ano" id="ano">
         <?php
-        $anio_actual = date('Y');
+        $anio_actual = date('Y')+1;
         for ($i = $anio_actual; $i >= 2010; $i--) {
             $selected = ($i == $ano) ? 'selected' : '';
             echo "<option value='$i' $selected>$i</option>";
@@ -120,11 +120,25 @@ Montos
 <input type="submit"  name="ver" id="ver" value="ver" /><span id="cargando" style="display:none;">Cargando ...</span>
 
 </form>
-<?php //if ($_POST['metodo']=='devolucion') {?>
+<?php //if ($_POST['metodo']=='devolucion') {
+include_once("config/db.php");
+include_once("functions/util.php");?>
 <select size="1" name="descargas" id="descargas">
 	<option value="descarga1" <?php if($_POST['descargas'] == '"descarga1"'){?> selected="selected" <?php } ?> >descarga1</option>
 	<!-- <option value="descarga2" <?php if($_POST['descargas'] == '"descarga2"'){?> selected="selected" <?php } ?> >descarga2</option> -->
 
+</select>
+<select size="1" name="puntos" id="puntos">
+    <?php
+    $sql = "SELECT id, CONCAT(numero,' ', cuit,' ', descripcion,' ', direccion) as punto, alicuota FROM punto_ventas";
+    $rsTemp = mysqli_query($conn,$sql);
+    while($rs = mysqli_fetch_array($rsTemp)){
+        ?>
+        <option value="<?php echo $rs['id']?>" data-alicuota="<?php echo $rs['alicuota']; ?>"
+            <?php if($_POST['puntos'] == $rs['id']) echo 'selected="selected"'; ?>>
+            <?php echo $rs['punto']?>
+        </option>
+    <?php } ?>
 </select>
 <input type="button" name="descargar" id="descargar" value="Descargar" onClick="descargar()"/>
 <input type="button" name="facturar" id="facturar" value="Facturar" onClick="abrirFacturacion()"/>
@@ -177,64 +191,76 @@ Montos
 
 </tr>
 <?php
-include_once("config/db.php");
-include_once("functions/util.php");
+
 auditarUsuarios('Facturacion electronica');
 
 if (isset($_POST['ver'])) {
     // Obtener todos los conceptos posibles (idealmente al inicio del archivo para no repetir)
     $conceptos = mysqli_query($conn, "SELECT id, nombre FROM concepto_facturacions ORDER BY nombre");
 
-	$sql = "SELECT R.numero,R.id, R.retiro, R.devolucion, R.total, C.nombre_apellido, C.dni, R.estado, C.cuit, C.titular_factura, C.razon_social, C.iva,
-    RFP.id AS procesada_id,
-    RFP.procesada_api,
-    RFP.error_api,
-    RFP.error_mensaje
+    $ano = mysqli_real_escape_string($conn, $_POST['ano']);
+    $mes = mysqli_real_escape_string($conn, $_POST['mes']);
+
+    $inicio = "$ano-$mes-01";
+    $fin = date('Y-m-t', strtotime($inicio)); // último día real del mes
+
+    $sql = "
+SELECT 
+    R.id,
+    MAX(R.numero) AS numero,
+    MAX(R.retiro) AS retiro,
+    MAX(R.devolucion) AS devolucion,
+    MAX(R.total) AS total,
+    MAX(C.nombre_apellido) AS nombre_apellido,
+    MAX(C.dni) AS dni,
+    MAX(R.estado) AS estado,
+    MAX(C.cuit) AS cuit,
+    MAX(C.titular_factura) AS titular_factura,
+    MAX(C.razon_social) AS razon_social,
+    MAX(C.iva) AS iva,
+    MAX(RFP.id) AS procesada_id,
+    MAX(RFP.procesada_api) AS procesada_api,
+    MAX(RFP.error_api) AS error_api,
+    MAX(RFP.error_mensaje) AS error_mensaje
 FROM reservas R
 INNER JOIN clientes C ON R.cliente_id = C.id
 LEFT JOIN (
-    SELECT 
-        rfp1.*
+    SELECT rfp1.*
     FROM reserva_factura_procesada rfp1
     INNER JOIN (
         SELECT reserva_id, MAX(id) AS max_id
         FROM reserva_factura_procesada
         GROUP BY reserva_id
     ) rfp2 
-        ON rfp1.id = rfp2.max_id
+    ON rfp1.id = rfp2.max_id
 ) AS RFP 
     ON RFP.reserva_id = R.id 
     AND RFP.cliente = C.nombre_apellido 
     AND RFP.dni = C.dni
 ";
-    $ano = mysqli_real_escape_string($conn, $_POST['ano']);
-    $mes = mysqli_real_escape_string($conn, $_POST['mes']);
-    $inicio = $ano . '-' . $mes . '-01';
-    $fin = $ano . '-' . $mes . '-31';
-if ($_POST['metodo']=='devolucion') {
-	$sql .= "WHERE devolucion LIKE '".$_POST["ano"]."-".$_POST["mes"]."%' ORDER BY devolucion, C.nombre_apellido ASC";
-}
-else{
-	/*$sql .= "INNER JOIN reserva_cobros RC ON R.id = RC.reserva_id
-	LEFT JOIN cobro_transferencias ON RC.id = cobro_transferencias.reserva_cobro_id
-	LEFT JOIN cobro_cheques ON RC.id = cobro_cheques.reserva_cobro_id ";
-	$sql .= "WHERE (RC.fecha LIKE '".$_POST["ano"]."-".$_POST["mes"]."%' OR RC.fecha LIKE '".$_POST["ano"]."-".$_POST["mes"]."%'
-	OR cobro_transferencias.fecha_acreditado LIKE '".$_POST["ano"]."-".$_POST["mes"]."%'
-	OR cobro_cheques.fecha_acreditado LIKE '".$_POST["ano"]."-".$_POST["mes"]."%'
-	OR cobro_cheques.asociado_a_pagos_fecha LIKE '".$_POST["ano"]."-".$_POST["mes"]."%')
-	 AND RC.tipo != 'DESCUENTO'
-	GROUP BY R.id ORDER BY devolucion, C.nombre_apellido ASC";*/
-    $sql .= "INNER JOIN reserva_cobros RC ON R.id = RC.reserva_id
-	LEFT JOIN cobro_transferencias ON RC.id = cobro_transferencias.reserva_cobro_id
-	LEFT JOIN cobro_cheques ON RC.id = cobro_cheques.reserva_cobro_id WHERE (
-        RC.fecha BETWEEN '$inicio' AND '$fin'
-        OR cobro_transferencias.fecha_acreditado BETWEEN '$inicio' AND '$fin'
-        OR cobro_cheques.fecha_acreditado BETWEEN '$inicio' AND '$fin'
-        OR cobro_cheques.asociado_a_pagos_fecha BETWEEN '$inicio' AND '$fin'
-    )
-    AND RC.tipo != 'DESCUENTO'
-    ORDER BY devolucion, C.nombre_apellido ASC";
-}
+
+    if ($_POST['metodo'] == 'devolucion') {
+        $sql .= "
+        WHERE R.devolucion BETWEEN '$inicio' AND '$fin'
+        GROUP BY R.id
+        ORDER BY R.devolucion, C.nombre_apellido ASC
+    ";
+    } else {
+        $sql .= "
+        INNER JOIN reserva_cobros RC ON R.id = RC.reserva_id
+        LEFT JOIN cobro_transferencias CT ON RC.id = CT.reserva_cobro_id
+        LEFT JOIN cobro_cheques CH ON RC.id = CH.reserva_cobro_id
+        WHERE (
+            RC.fecha BETWEEN '$inicio' AND '$fin'
+            OR CT.fecha_acreditado BETWEEN '$inicio' AND '$fin'
+            OR CH.fecha_acreditado BETWEEN '$inicio' AND '$fin'
+            OR CH.asociado_a_pagos_fecha BETWEEN '$inicio' AND '$fin'
+        )
+        AND RC.tipo != 'DESCUENTO'
+        GROUP BY R.id
+        ORDER BY R.devolucion, C.nombre_apellido ASC
+    ";
+    }
 
 //echo $sql;
     $rsTemp = mysqli_query($conn,$sql);
@@ -260,7 +286,7 @@ else{
             $detalle='';
             $sql = "SELECT reserva_cobros.*, concepto_facturacions.nombre as concepto_facturacion FROM reserva_cobros LEFT JOIN concepto_facturacions ON reserva_cobros.concepto_facturacion_id = concepto_facturacions.id  WHERE reserva_id = ".$rs['id']." AND reserva_cobros.tipo <> 'DESCUENTO' ORDER BY reserva_cobros.id";
             if ($_POST['metodo']!='devolucion') {
-                $sql .= "AND fecha LIKE '".$_POST["ano"]."-".$_POST["mes"]."%'";
+                $sql .= " AND fecha LIKE '".$_POST["ano"]."-".$_POST["mes"]."%'";
             }
 
 
@@ -373,6 +399,7 @@ else{
                     }
                 }
             }
+
             $fc = $transferencias+$tarjetas+$cheques;
 
             $fcEstado = $transferenciasEstado+$tarjetasEstado+$chequesEstado;
@@ -405,6 +432,7 @@ else{
             $disabled=0;
             $color = '';   // por defecto
             $detalleError ='';
+
             if ($rs['error_api'] == 1) {
                 $estado = 'Error API';
                 $color = 'ff0000';  // rojo
@@ -484,6 +512,7 @@ else{
             if ($fc==0) {
                 $mostrar = 0;
             }
+            //echo $mostrar."<br>";
             if ($mostrar) {
                 if (($estado == 'Pendiente')||($estado == 'Facturacion Parcial')) {
                     $aFacturar +=$fc-$facturas+$otrasFacturas;
@@ -505,15 +534,19 @@ else{
 
                     echo '<td>';
                     if (($estado=='Pendiente')||($estado=='Error API')||($estado=='Facturacion Parcial')) {
-                        echo '<select class="select-concepto" data-id="' . $idCobro . '" style="width:200px;">';
+                        echo '<select class="select-concepto" data-id="' . $idCobro . '" style="width:100px;">';
+                        echo '<option value=""></option>';
                         mysqli_data_seek($conceptos, 0); // reiniciar puntero
                         while ($c = mysqli_fetch_assoc($conceptos)) {
-                            $selected = ($c['nombre'] == $detalle) ? 'selected' : '';
-                            echo '<option value="' . $c['id'] . '" ' . $selected . '>' . $c['nombre'] . '</option>';
+                            // Solo mostrar conceptos del punto de venta seleccionado
+                            // Supongamos que en tu tabla concepto_facturacions hay un campo punto_venta_id
+                            if ($c['punto_venta_id'] == $_POST['puntos']) {
+                                $selected = ($c['nombre'] == $detalle) ? 'selected' : '';
+                                echo '<option value="' . $c['id'] . '" ' . $selected . '>' . $c['nombre'] . '</option>';
+                            }
                         }
                         echo '</select>';
-                    }
-                    else{
+                    } else {
                         echo $detalle;
                     }
                     echo '</td>'; ?>
