@@ -180,6 +180,11 @@ foreach ($ids as $idReserva) {
     $condicionIvaDb = $res['iva'] ?? '';
     $condicionIvaApi = $mapIvaApi[$condicionIvaDb] ?? 'CF'; // CF = Consumidor Final
 
+    if ($rowPV['alicuota'] == 0) {
+        $condicionIvaApi = 'EX';
+    }
+
+
 // 🔹 Tipo y número de documento
     $documentoTipo = '';
     $documento = '';
