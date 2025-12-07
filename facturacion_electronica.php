@@ -898,7 +898,7 @@ echo '<script>
         var fecha = $('#fechaFactura').val();
 
         var ids = $('#idsSeleccionados').val();
-        var puntoVenta = 1;
+        var puntoVenta = $('#puntos').val();
 
         var ano = $('#ano').val();
         var mes = $('#mes').val();
