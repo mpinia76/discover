@@ -154,6 +154,7 @@ foreach ($ids as $idReserva) {
     // Total final
     $total = $transferencias + $tarjetas + $cheques - $facturas;
     $neto = $total / $ivaCoeficiente;
+    $iva = $total - $neto;
 
     // ---------------------
 // Datos del cliente
@@ -179,6 +180,7 @@ foreach ($ids as $idReserva) {
     ];
     $condicionIvaDb = $res['iva'] ?? '';
     $condicionIvaApi = $mapIvaApi[$condicionIvaDb] ?? 'CF'; // CF = Consumidor Final
+
 
     if ($rowPV['alicuota'] == 0) {
         $condicionIvaApi = 'EX';
@@ -227,14 +229,31 @@ foreach ($ids as $idReserva) {
 // RG5329 se usa sólo en B/C
     $rg5329 = ($facturaTipo == 'A') ? 'N' : 'N';
 
-    // 🔹 Calcular valores según tipo de comprobante
-    if ($facturaTipo == 'A') {
-        $alicuota = 21;
+    /*$alicuota = $rowPV['alicuota'] * 100; // ejemplo: 0.21 → 21
+    $precio_unitario = $neto; // sin IVA*/
+
+    if ($rowPV['alicuota'] == 0) {
+        // OPERACIÓN EXENTA
+        $alicuota = -1;
+        $precio_unitario = $total; // precio final
+        $precio_unitario_sin_iva = null;
+    } else {
+        // OPERACIÓN GRAVADA
+        $alicuota = $rowPV['alicuota'] * 100; // ej 21
+        $precio_unitario_sin_iva = $neto;
+        $precio_unitario = null;
+    }
+
+    /*if ($facturaTipo == 'A') {
+        // Factura A → separar IVA
+        $alicuota = $rowPV['alicuota'] * 100; // ejemplo: 0.21 → 21
         $precio_unitario = $neto; // sin IVA
     } else {
-        $alicuota = 0;
+        // Factura B → precio final, pero con la alicuota correcta
+        $alicuota = $rowPV['alicuota'] * 100; // ejemplo: 21
         $precio_unitario = $total; // total con IVA incluido
-    }
+    }*/
+
 
     // Domicilio fiscal obligatorio
     $domicilioFiscal = !empty($res['direccion']) ? $res['direccion'] : 'Sin domicilio fiscal';
@@ -287,7 +306,8 @@ foreach ($ids as $idReserva) {
                     'unidad_medida' => 7,
                     'actualiza_precio' => 'S',
                     'rg5329' => $rg5329,
-                    'precio_unitario_sin_iva' => $precio_unitario
+                    'precio_unitario_sin_iva' => $precio_unitario_sin_iva,
+                    'precio_unitario' => $precio_unitario
                 ],
                 'afecta_stock'=>'S',
                 'bonificacion_porcentaje'=>0,
