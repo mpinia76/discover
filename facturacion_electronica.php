@@ -534,7 +534,7 @@ LEFT JOIN (
 
                     echo '<td>';
                     if (($estado=='Pendiente')||($estado=='Error API')||($estado=='Facturacion Parcial')) {
-                        echo '<select class="select-concepto" data-id="' . $idCobro . '" style="width:100px;">';
+                        echo '<select class="select-concepto" data-id="' . $idCobro . '" data-reserva-id="' . $rs['id'] . '" style="width:100px;">';
                         echo '<option value=""></option>';
                         mysqli_data_seek($conceptos, 0); // reiniciar puntero
                         while ($c = mysqli_fetch_assoc($conceptos)) {
@@ -907,6 +907,44 @@ echo '<script>
         var columnaTC = $('#columnaTC').is(':checked') ? 1 : 0;
         var columnaCheques = $('#columnaCheques').is(':checked') ? 1 : 0;
 
+        /* =========================
+          🔹 RECOLECTAR CONCEPTOS
+          ========================= */
+        var conceptos = {};
+        var errorConcepto = false;
+
+        $('.select-concepto').each(function () {
+
+            var cobroId = $(this).attr('data-id');
+
+            //console.log('COBRO:', cobroId);
+
+            var reservaId = $(this).attr('data-reserva-id');
+            if (ids.indexOf(reservaId) === -1) {
+                //console.log('⛔ COBRO IGNORADO (reserva no seleccionada):', cobroId);
+                return;
+            }
+
+            var conceptoId = $(this).val();
+
+            //console.log('✔ TOMADO:', cobroId, '→ concepto:', conceptoId);
+
+            if (!conceptoId) {
+                errorConcepto = true;
+                $(this).css('border', '2px solid red');
+            } else {
+                $(this).css('border', '');
+            }
+
+            conceptos[cobroId] = conceptoId;
+        });
+
+        if (errorConcepto) {
+            alert('Debe seleccionar un concepto para cada cobro seleccionado.');
+            return;
+        }
+
+
         if (!fecha || !puntoVenta) {
             alert('Debe completar la fecha y/ punto de venta.');
             return;
@@ -951,7 +989,8 @@ echo '<script>
                 puntoVenta: puntoVenta,
                 columnaTransfiere: columnaTransfiere,
                 columnaTC: columnaTC,
-                columnaCheques: columnaCheques
+                columnaCheques: columnaCheques,
+                conceptos: conceptos // 👈 acá viajan
             },
             success: function(resp) {
                 let mensaje = "";
