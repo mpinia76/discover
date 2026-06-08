@@ -868,6 +868,7 @@ echo '<script>
             return;
         }
 
+        var puntoVenta = $('#puntos').val();
 
         // Validación de fecha para el punto de venta
         $.ajax({
@@ -875,7 +876,7 @@ echo '<script>
             type: 'POST',
             dataType: 'json',
             data: {
-                punto_venta_id: 1,
+                punto_venta_id: puntoVenta,
                 fecha: fecha
             },
             success: function(resp) {
@@ -902,6 +903,7 @@ echo '<script>
 
         var ano = $('#ano').val();
         var mes = $('#mes').val();
+        var metodo = $('#metodo').val();
 
         var columnaTransfiere = $('#columnaTransfiere').is(':checked') ? 1 : 0;
         var columnaTC = $('#columnaTC').is(':checked') ? 1 : 0;
@@ -944,6 +946,21 @@ echo '<script>
             return;
         }
 
+        /* =========================
+           🔹 RECOLECTAR MONTOS
+        ========================= */
+        var montos = {};
+
+        $('.trSelected', $('.medios_pago')).each(function() {
+            var id = $(this).attr('id');
+            var disable = $(this).attr('disable');
+
+            if (id && disable == '0') {
+                var monto = parseFloat($(this).attr('monto')) || 0;
+                montos[id] = monto;
+            }
+        });
+
 
         if (!fecha || !puntoVenta) {
             alert('Debe completar la fecha y/ punto de venta.');
@@ -963,7 +980,7 @@ echo '<script>
         }
 
         if (diffDias > 10) {
-            alert('AFIP no permite emitir facturas de servicios con más de 10 días de antigÃ¼edad.');
+            alert('AFIP no permite emitir facturas de servicios con más de 10 días de antigüedad.');
             return;
         }
 
@@ -985,12 +1002,14 @@ echo '<script>
                 fecha: fecha,
                 ano: ano,
                 mes: mes,
+                metodo: metodo,
                 ids: ids,
                 puntoVenta: puntoVenta,
                 columnaTransfiere: columnaTransfiere,
                 columnaTC: columnaTC,
                 columnaCheques: columnaCheques,
-                conceptos: conceptos // 👈 acá viajan
+                conceptos: conceptos, // 👈 acá viajan
+                montos: montos // ✅ ACÁ
             },
             success: function(resp) {
                 let mensaje = "";

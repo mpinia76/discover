@@ -138,11 +138,12 @@ class ReservasController extends AppController {
      public function get_reservas_restringidas($year, $month) {
         $from = $year .'-'. $month .'-01 00:00:00';
 	$to = $year .'-'. $month .'-31 00:00:00';
-	$result = Cache::read('get_reservas_restringidas', 'long');
-        if (!$result) {
-			$result = $this->Reserva->find('all',array('order' => 'Reserva.id desc', 'conditions' => array('Reserva.devolucion between ? and ?' => array($from, $to))));
-			Cache::write('get_reservas_restringidas', $result, 'long');
-		}
+         $cacheKey = 'get_reservas_restringidas_'.$year.'_'.$month;
+         $result = Cache::read($cacheKey, 'long');
+         if (!$result) {
+             $result = $this->Reserva->find('all',array('order' => 'Reserva.id desc', 'conditions' => array('Reserva.devolucion between ? and ?' => array($from, $to))));
+             Cache::write($cacheKey, $result, 'long');
+         }
         return $result;
     }
 
@@ -161,11 +162,12 @@ class ReservasController extends AppController {
 			$condicion=array('Reserva.retiro between ? and ?' => array($from, $to),'Reserva.creado between ? and ?' => array($this->dateFormatSQL($desde), $this->dateFormatSQL($hasta)));
 		}
 		else $condicion=array('Reserva.retiro between ? and ?' => array($from, $to));
-		$result = Cache::read('get_reservas', 'long');
-                if (!$result) {
-	         $result = $this->Reserva->find('all',array('order' => 'Reserva.id desc', 'conditions' => $condicion));
-	       Cache::write('get_reservas', $result, 'long');
-	       }
+        $cacheKey = 'get_reservas_'.$year.'_'.$month.'_'.$desde.'_'.$hasta;
+        $result = Cache::read($cacheKey, 'long');
+        if (!$result) {
+            $result = $this->Reserva->find('all',array('order' => 'Reserva.id desc', 'conditions' => $condicion));
+            Cache::write($cacheKey, $result, 'long');
+        }
           return $result;
     }
 
@@ -335,7 +337,8 @@ class ReservasController extends AppController {
 
 	public function get_reservas_check($desde, $hasta) {
 
-		$result = Cache::read('get_reservas_check', 'long');
+        $cacheKey = 'get_reservas_check_'.$desde.'_'.$hasta;
+        $result = Cache::read($cacheKey, 'long');
 
 		if (($desde!='')&&($hasta!='')) {
 
@@ -357,7 +360,7 @@ class ReservasController extends AppController {
 			    $lastLog = end($logs['log']);
 
 			    echo $lastLog['query'];*/
-		       Cache::write('get_reservas_check', $result, 'long');
+                Cache::write($cacheKey, $result, 'long');
 	       }
 		}
 
@@ -452,7 +455,7 @@ class ReservasController extends AppController {
         $output['aaData'] = $rows;
         $this->set('aoData',$output);
         //print_r($output);
-        $this->set('_serialize', aoData);
+        $this->set('_serialize', 'aoData');
     }
 
     public function cancelar(){
@@ -510,20 +513,21 @@ class ReservasController extends AppController {
 
         $facturado = 0;
         if(count($reserva['ReservaFactura']) > 0){
-            foreach($reseva['ReservaFactura'] as $factura){
+            foreach($reserva['ReservaFactura'] as $factura){   // was $reseva (typo)
                 $facturado += $factura['monto'];
             }
         }
 
         if($facturado >= $fiscal){
+            // Only mark as finalized when the invoiced amount is correct
+            $this->Reserva->set('estado',1);
+            $this->Reserva->save();
             $resultado = 'OK';
             $mensaje = '';
         }else{
             $resultado = 'ERROR';
             $mensaje = 'El monto de la/las facturas realizada es incorrecto, por favor consulte al administrador';
         }
-        $this->Reserva->set('estado',1);
-        $this->Reserva->save();
 
         $this->set('resultado',$resultado);
         $this->set('mensaje',$mensaje);
@@ -574,7 +578,7 @@ class ReservasController extends AppController {
         //$sectores = $this->EmpleadoTrabajo->find('all',array('order' => array('EmpleadoTrabajo.id ASC'),'conditions' => array('EmpleadoTrabajo.sector_1_id' => 1, 'Empleado.estado' => 1)));
 
         $empleadosTrabajo = $this->EmpleadoTrabajo->find('all',array('fields'=>array('max(EmpleadoTrabajo.id) as id'), 'group' => array('EmpleadoTrabajo.empleado_id'), 'conditions' => array( 'Empleado.estado ' => 1 )));
-
+        $empleados = array();
         foreach($empleadosTrabajo as $empleadoTrabajo){
 
         	$this->EmpleadoTrabajo->id = $empleadoTrabajo[0]['id'];
@@ -943,105 +947,88 @@ class ReservasController extends AppController {
 
         if(!empty($this->request->data)) {
 
-        	//print_r($this->request->data);
             //valido cliente
             $cliente = $this->request->data['Cliente'];
-            //print_r($cliente);
             $this->Cliente->set($cliente);
             if(!$this->Cliente->validates()){
-                 $errores['Cliente'] = $this->Cliente->validationErrors;
+                $errores['Cliente'] = $this->Cliente->validationErrors;
             }
 
             if ($cliente['tipoDocumento']=='') {
                 $errores['Cliente']['tipoDocumento'][] = 'Seleccione un Tipo de Documento';
             }
 
-        	if ($cliente['dni']=='') {
-            	$errores['Cliente']['dni'][] = 'Ingrese un Documento';
+            if ($cliente['dni']=='') {
+                $errores['Cliente']['dni'][] = 'Ingrese un Documento';
             }
 
             if ($cliente['tipoDocumento']=='DNI') {
                 if (!ctype_digit($cliente['dni'])){
                     $errores['Cliente']['dni'][] = 'Ingrese solo numeros';
                 }
-
             }
             if ($cliente['tipoDocumento']=='DNI') {
                 if (strlen($cliente['dni'])!=8){
                     $errores['Cliente']['dni'][] = 'El DNI debe contener 8 digitos';
                 }
-
             }
-        	if ($cliente['sexo']=='') {
-            	$errores['Cliente']['sexo'][] = 'Seleccione un sexo';
+            if ($cliente['sexo']=='') {
+                $errores['Cliente']['sexo'][] = 'Seleccione un sexo';
             }
 
             if (!preg_match ("/^[0-9]+$/", $cliente['codPaisAux'])) {
-
-
                 $errores['Cliente']['codPaisAux'][] = 'Ingrese un codigo valido';
             }
 
-            //if($cliente['codPais'] == '') {
-                //$cliente['codPais'] = $cliente['codPaisAux'];
-                $this->Cliente->set('codPais',$cliente['codPaisAux']);
-            //}
+            $this->Cliente->set('codPais',$cliente['codPaisAux']);
 
             if ($cliente['tipoTelefono']=='') {
                 $errores['Cliente']['TipoTelefono'][] = 'Seleccione un Tipo de Teléfono';
             }
 
-
             if(($cliente['telefono'] == '') AND ($cliente['celular'] == '')){
-            	$errores['Cliente']['telefono'][] = 'Ingrese un telefono o celular valido';
-            	$errores['Cliente']['celular'][] = 'Ingrese un telefono o celular valido';
+                $errores['Cliente']['telefono'][] = 'Ingrese un telefono o celular valido';
+                $errores['Cliente']['celular'][] = 'Ingrese un telefono o celular valido';
             }
 
-        	if ($cliente['email']=='') {
-            	$errores['Cliente']['email'][] = 'Ingrese un E-mail';
+            if ($cliente['email']=='') {
+                $errores['Cliente']['email'][] = 'Ingrese un E-mail';
             }
 
-        	if ($cliente['email2']=='') {
-            	$errores['Cliente']['email2'][] = 'Ingrese un E-mail';
+            if ($cliente['email2']=='') {
+                $errores['Cliente']['email2'][] = 'Ingrese un E-mail';
             }
 
-        	if ($cliente['email']!=$cliente['email2']) {
-            	$errores['Cliente']['email2'][] = 'Los E-mails son distintos';
+            if ($cliente['email']!=$cliente['email2']) {
+                $errores['Cliente']['email2'][] = 'Los E-mails son distintos';
             }
 
-        	if ($cliente['nro_licencia_de_conducir']=='') {
-            	$errores['Cliente']['nro_licencia_de_conducir'][] = 'Ingrese un nro licencia de conducir';
+            if ($cliente['nro_licencia_de_conducir']=='') {
+                $errores['Cliente']['nro_licencia_de_conducir'][] = 'Ingrese un nro licencia de conducir';
             }
 
-        	if ($cliente['vencimiento']=='') {
-            	$errores['Cliente']['vencimiento'][] = 'Ingrese un Vencimiento';
+            if ($cliente['vencimiento']=='') {
+                $errores['Cliente']['vencimiento'][] = 'Ingrese un Vencimiento';
             }
 
             if ($cliente['nacionalidad']=='') {
-            	$errores['Cliente']['nacionalidadAux'] = 'Seleccione una nacionalidad';
+                $errores['Cliente']['nacionalidadAux'] = 'Seleccione una nacionalidad';
             }
 
             if(($cliente['iva'] != '') AND ($cliente['tipoPersona'] == '')){
                 $errores['Cliente']['tipoPersona'][] = 'Seleccione un Tipo de Persona';
-
             }
             if(($cliente['iva'] != '') AND ($cliente['razon_social'] == '')){
                 $errores['Cliente']['razon_social'][] = 'Ingrese una Razon Social';
-
             }
-            //echo $cliente['iva'];
+
             if ($cliente['iva'] == ''){
-
-
                 $this->Cliente->set('razon_social','');
                 $this->Cliente->set('cuit','');
                 $this->Cliente->set('tipoPersona',null);
                 $this->Cliente->set('iva',null);
-
             }
-	        $vencimiento = $cliente['vencimiento'];
-
-
+            $vencimiento = $cliente['vencimiento'];
 
 
             //vaildo reserva
@@ -1051,135 +1038,161 @@ class ReservasController extends AppController {
                 $errores['Reserva'] = $this->Reserva->validationErrors;
             }
 
-        	if ($reserva['lugar_retiro_id']=='') {
-            	$errores['Reserva']['lugar_retiro_id'][] = 'Debe seleccionar un lugar';
+            if ($reserva['lugar_retiro_id']=='') {
+                $errores['Reserva']['lugar_retiro_id'][] = 'Debe seleccionar un lugar';
             }
 
-        	if ($reserva['lugar_devolucion_id']=='') {
-            	$errores['Reserva']['lugar_devolucion_id'][] = 'Debe seleccionar un lugar';
+            if ($reserva['lugar_devolucion_id']=='') {
+                $errores['Reserva']['lugar_devolucion_id'][] = 'Debe seleccionar un lugar';
             }
 
-        	if ($reserva['reservado_por']=='') {
-            	$errores['Reserva']['reservado_por'][] = 'Debe seleccionar quien realizo la reserva';
-            }
-            //print_r($reserva);
-        	if ($reserva['subcanal_id']=='') {
-            	$errores['Reserva']['subcanal_id'][] = 'Debe seleccionar un subcanal';
+            if ($reserva['reservado_por']=='') {
+                $errores['Reserva']['reservado_por'][] = 'Debe seleccionar quien realizo la reserva';
             }
 
-        	$retiro = $reserva['retiro'];
-	        $devolucion = $reserva['devolucion'];
+            if ($reserva['subcanal_id']=='') {
+                $errores['Reserva']['subcanal_id'][] = 'Debe seleccionar un subcanal';
+            }
 
-	        if ($vencimiento) {
-	        	$date_parts = explode("/",$vencimiento);
-	        	$vencimiento =  $date_parts[2]."-".$date_parts[1]."-".$date_parts[0];
-	        }
-        	if ($retiro) {
-	        	$date_parts = explode("/",$retiro);
-	        	$hora_retiro = str_replace(' ', '',$reserva['hora_retiro']);
-	        	$hora_retiro = date('H:i:s', strtotime($hora_retiro) - 3600);
-	        	$retiro =  $date_parts[2]."-".$date_parts[1]."-".$date_parts[0].' '.$hora_retiro;
+            $retiro = $reserva['retiro'];
+            $devolucion = $reserva['devolucion'];
 
-	        }
-			if ($devolucion) {
-	        	$date_parts = explode("/",$devolucion);
-	        	$hora_devolucion = str_replace(' ', '',$reserva['hora_devolucion']);
-	        	$hora_devolucion = date('H:i:s', strtotime($hora_devolucion) + 3600);
-	        	$devolucion =  $date_parts[2]."-".$date_parts[1]."-".$date_parts[0].' '.$hora_devolucion;
-	        }
-	        if ($vencimiento<$devolucion) {
-	        	$errores['Cliente']['vencimiento'][]='Su licencia esta vencida para la fecha de la reserva';
-	        }
-
-
-
-            //echo $retiro.' - '.$devolucion;
-	        $result = $this->Reserva->find('first', array(
-			  'conditions' => array(
-			    'Reserva.unidad_id' => $reserva['unidad_id'],
-	        	'Reserva.id <>' => (isset($reserva['id']))?$reserva['id']:'',
-	        	'AND' => array('or' => array(
-	        		'Reserva.estado <> ' => 2,
-	        		'Reserva.estado ' => null,
-	        	)),
-			    'or' => array(
-	        	  array('CONCAT(Reserva.retiro,\' \',Reserva.hora_retiro) <'=>$retiro,
-	        	  'CONCAT(Reserva.devolucion,\' \',Reserva.hora_devolucion) >'=>$devolucion),
-			      'CONCAT(Reserva.retiro,\' \',Reserva.hora_retiro) between ? and ?' => array($retiro, $devolucion),
-			      'CONCAT(Reserva.devolucion,\' \',Reserva.hora_devolucion) between ? and ?' => array($retiro, $devolucion),
-			    )
-			  )
-			));
-
-			/*App::uses('ConnectionManager', 'Model');
-        	$dbo = ConnectionManager::getDatasource('default');
-		    $logs = $dbo->getLog();
-		    $lastLog = end($logs['log']);
-
-		    echo $lastLog['query'];*/
-        	//print_r($result);
+            if ($vencimiento) {
+                $date_parts = explode("/",$vencimiento);
+                $vencimiento =  $date_parts[2]."-".$date_parts[1]."-".$date_parts[0];
+            }
+            if ($retiro) {
+                $date_parts = explode("/",$retiro);
+                $hora_retiro = str_replace(' ', '',$reserva['hora_retiro']);
+                $hora_retiro = date('H:i:s', strtotime($hora_retiro) - 3600);
+                $retiro =  $date_parts[2]."-".$date_parts[1]."-".$date_parts[0].' '.$hora_retiro;
+            }
+            if ($devolucion) {
+                $date_parts = explode("/",$devolucion);
+                $hora_devolucion = str_replace(' ', '',$reserva['hora_devolucion']);
+                $hora_devolucion = date('H:i:s', strtotime($hora_devolucion) + 3600);
+                $devolucion =  $date_parts[2]."-".$date_parts[1]."-".$date_parts[0].' '.$hora_devolucion;
+            }
+            if ($vencimiento<$devolucion) {
+                $errores['Cliente']['vencimiento'][]='Su licencia esta vencida para la fecha de la reserva';
+            }
 
 
-	        if ($result) {
-	        	$errores['Reserva']['unidad_id'][]='La unidad seleccionada se encuentra incluida en otra reserva para la fecha seleccionada: "Numero de reserva '.$result['Reserva']['numero'].'"';
+            $result = $this->Reserva->find('first', array(
+                'conditions' => array(
+                    'Reserva.unidad_id' => $reserva['unidad_id'],
+                    'Reserva.id <>' => (isset($reserva['id']))?$reserva['id']:'',
+                    'AND' => array('or' => array(
+                        'Reserva.estado <> ' => 2,
+                        'Reserva.estado ' => null,
+                    )),
+                    'or' => array(
+                        array('CONCAT(Reserva.retiro,\' \',Reserva.hora_retiro) <'=>$retiro,
+                            'CONCAT(Reserva.devolucion,\' \',Reserva.hora_devolucion) >'=>$devolucion),
+                        'CONCAT(Reserva.retiro,\' \',Reserva.hora_retiro) between ? and ?' => array($retiro, $devolucion),
+                        'CONCAT(Reserva.devolucion,\' \',Reserva.hora_devolucion) between ? and ?' => array($retiro, $devolucion),
+                    )
+                )
+            ));
 
-	        }
+            if ($result) {
+                $errores['Reserva']['unidad_id'][]='La unidad seleccionada se encuentra incluida en otra reserva para la fecha seleccionada: "Numero de reserva '.$result['Reserva']['numero'].'"';
+            }
 
-	        $total_pasajeros = $reserva['pax_adultos']+$reserva['pax_menores']+$reserva['pax_bebes'];
+            $total_pasajeros = $reserva['pax_adultos']+$reserva['pax_menores']+$reserva['pax_bebes'];
 
-	        $this->loadModel('Unidad');
-			$this->Unidad->id = $reserva['unidad_id'];
-			$unidad = $this->Unidad->read();
-			//print_r($unidad);
+            $this->loadModel('Unidad');
+            $this->Unidad->id = $reserva['unidad_id'];
+            $unidad = $this->Unidad->read();
 
-			$date_parts = explode("/",$unidad['Unidad']['habilitacion']);
+            $date_parts = explode("/",$unidad['Unidad']['habilitacion']);
+            $habilitacion = $date_parts[2].'-'.$date_parts[1].'-'.$date_parts[0];
+            $date_parts = explode("/",$unidad['Unidad']['baja']);
+            $baja = $date_parts[2].'-'.$date_parts[1].'-'.$date_parts[0];
 
-	        $habilitacion = $date_parts[2].'-'.$date_parts[1].'-'.$date_parts[0];
-        		$date_parts = explode("/",$unidad['Unidad']['baja']);
-        		$baja = $date_parts[2].'-'.$date_parts[1].'-'.$date_parts[0];
+            if (($baja<$devolucion)) {
+                $errores['Reserva']['unidad_id'][]='La unidad seleccionada tiene fecha de baja '.$unidad['Unidad']['baja'];
+            }
 
-        		if (($baja<$devolucion)) {
-        			$errores['Reserva']['unidad_id'][]='La unidad seleccionada tiene fecha de baja '.$unidad['Unidad']['baja'];
-        		}
+            if (($habilitacion>$retiro)) {
+                $errores['Reserva']['unidad_id'][]='La unidad seleccionada tiene fecha de habilitacion '.$unidad['Unidad']['habilitacion'];
+            }
 
-        		if (($habilitacion>$retiro)) {
-        			$errores['Reserva']['unidad_id'][]='La unidad seleccionada tiene fecha de habilitacion '.$unidad['Unidad']['habilitacion'];
-        		}
+            if (intval($total_pasajeros)>intval($unidad['Unidad']['capacidad'])) {
+                $errores['Reserva']['unidad_id'][]='La capacidad homologada de la unidad seleccionada es inferior a la cantidad de pasajeros';
+            }
 
-
-
-
-			if (intval($total_pasajeros)>intval($unidad['Unidad']['capacidad'])) {
-				$errores['Reserva']['unidad_id'][]='La capacidad homologada de la unidad seleccionada es inferior a la cantidad de pasajeros';
-			}
-			$total=$reserva['total_estadia'];
-        	if(array_key_exists('ReservaExtraId',$this->request->data)){
-            	$reservaextras = $this->request->data['ReservaExtraId'];
+            $total=$reserva['total_estadia'];
+            if(array_key_exists('ReservaExtraId',$this->request->data)){
+                $reservaextras = $this->request->data['ReservaExtraId'];
                 if($reservaextras and count($reservaextras)>0){
-
-                	$i=0;
+                    $i=0;
                     foreach($reservaextras as $extra){
                         $total += $this->request->data['ReservaExtraPrecio'][$i]*$this->request->data['ReservaExtraCantidad'][$i];
+                        $i++;
+                    }
+                }
+            }
+            if ($total != $reserva['total']) {
+                $errores['Reserva']['total_estadia']='No coinciden los montos';
+            }
+
+            // Validate conductors before saving anything, so a bad one
+            // doesn't leave the Reserva already inserted
+            if(array_key_exists('ReservaConductorNombreApellido',$this->request->data)){
+                $reservaconductors = $this->request->data['ReservaConductorNombreApellido'];
+                if($reservaconductors and count($reservaconductors)>0){
+                    $i=0;
+                    foreach($reservaconductors as $conductor){
+                        $this->ReservaConductor->create();
+                        $this->ReservaConductor->set('nombre_apellido',$this->request->data['ReservaConductorNombreApellido'][$i]);
+                        $this->ReservaConductor->set('dni',$this->request->data['ReservaConductorDni'][$i]);
+                        $this->ReservaConductor->set('telefono',$this->request->data['ReservaConductorTelefono'][$i]);
+                        $this->ReservaConductor->set('email',$this->request->data['ReservaConductorEmail'][$i]);
+                        $this->ReservaConductor->set('nro_licencia_de_conducir',$this->request->data['ReservaConductorNroLicencia'][$i]);
+                        $this->ReservaConductor->set('vencimiento',$this->request->data['ReservaConductorVencimiento'][$i]);
+                        $this->ReservaConductor->set('lugar_emision',$this->request->data['ReservaConductorLugarEmision'][$i]);
+                        $this->ReservaConductor->set('direccion',$this->request->data['ReservaConductorDireccion'][$i]);
+                        $this->ReservaConductor->set('localidad',$this->request->data['ReservaConductorLocalidad'][$i]);
+
+                        if(!$this->ReservaConductor->validates()){
+                            foreach ($this->ReservaConductor->validationErrors as $validationError){
+                                $errores['Cliente']['ad_localidad'][] = $validationError[0];
+                            }
+                        }
+
+                        $date_parts = explode("/",$this->request->data['ReservaConductorVencimiento'][$i]);
+                        $vencimientoConductor = $date_parts[2]."-".$date_parts[1]."-".$date_parts[0];
+
+                        if ($vencimientoConductor<$devolucion) {
+                            $errores['Cliente']['ad_localidad'][]='La licencia de uno de los conductores está vencida para la fecha de la reserva';
+                        }
 
                         $i++;
-                     }
-                  }
-               }
-            //echo $total .' '. $reserva['total'];
-	        if ($total != $reserva['total']) {
-	        	$errores['Reserva']['total_estadia']='No coinciden los montos';
-	        }
+                    }
+                }
+            }
+
             //muestro resultado
             if(isset($errores) and count($errores) > 0){
                 $this->set('resultado','ERROR');
                 $this->set('mensaje','No se pudo guardar');
                 $this->set('detalle',$errores);
             }else{
-                //print_r($cliente);
                 //guardo cliente
                 $this->Cliente->save();
-                //print_r($this->Cliente);
+
                 //guardo reserva
+                if (empty($reserva['id'])) {
+                    // New reservation: recalculate number at save time, never trust the form
+                    $this->Reserva->create();
+                    $ultima_reserva = $this->Reserva->find('first', array(
+                        'order'  => array('Reserva.numero' => 'desc'),
+                        'fields' => array('Reserva.numero'),
+                    ));
+                    $this->Reserva->set('numero', $ultima_reserva['Reserva']['numero'] + 1);
+                }
+
                 $this->Reserva->set('cliente_id',$this->Cliente->id);
                 $this->Reserva->set('estado','0');
                 $this->Reserva->save();
@@ -1189,7 +1202,6 @@ class ReservasController extends AppController {
                 if(array_key_exists('ReservaExtraId',$this->request->data)){
                     $reservaextras = $this->request->data['ReservaExtraId'];
                     if($reservaextras and count($reservaextras)>0){
-
                         $i=0;
                         foreach($reservaextras as $extra){
                             $this->ReservaExtra->create();
@@ -1203,17 +1215,14 @@ class ReservasController extends AppController {
                         }
                     }
                 }
-                //print_r($this->request->data['ReservaConductorNombreApellido']);
+
+                //guardo conductores (ya validados arriba)
                 $this->ReservaConductor->deleteAll(array('reserva_id' => $this->Reserva->id), false);
                 if(array_key_exists('ReservaConductorNombreApellido',$this->request->data)){
-
                     $reservaconductors = $this->request->data['ReservaConductorNombreApellido'];
-
                     if($reservaconductors and count($reservaconductors)>0){
-
                         $i=0;
                         foreach($reservaconductors as $conductor){
-                            //echo $this->request->data['ReservaConductorNombreApellido'][$i];
                             $this->ReservaConductor->create();
                             $this->ReservaConductor->set('reserva_id',$this->Reserva->id);
                             $this->ReservaConductor->set('nombre_apellido',$this->request->data['ReservaConductorNombreApellido'][$i]);
@@ -1225,42 +1234,15 @@ class ReservasController extends AppController {
                             $this->ReservaConductor->set('lugar_emision',$this->request->data['ReservaConductorLugarEmision'][$i]);
                             $this->ReservaConductor->set('direccion',$this->request->data['ReservaConductorDireccion'][$i]);
                             $this->ReservaConductor->set('localidad',$this->request->data['ReservaConductorLocalidad'][$i]);
-
-                            if(!$this->ReservaConductor->validates()){
-                                foreach ($this->ReservaConductor->validationErrors as $validationError){
-                                    //print_r($validationError);
-                                    $errores['Cliente']['ad_localidad'][] = $validationError[0];
-                                }
-
-                            }
-
-                            $date_parts = explode("/",$this->request->data['ReservaConductorVencimiento'][$i]);
-                            $vencimiento =  $date_parts[2]."-".$date_parts[1]."-".$date_parts[0];
-
-                            if ($vencimiento<$devolucion) {
-                                $errores['Cliente']['ad_localidad'][]='La licencia de uno de los conductores está vencida para la fecha de la reserva';
-                            }
-                            if(isset($errores) and count($errores) > 0){
-                                break;
-                            }
-                            else{
-                                $this->ReservaConductor->save();
-                            }
-
-
+                            $this->ReservaConductor->save();
                             $i++;
                         }
                     }
                 }
-                 if(isset($errores) and count($errores) > 0){
-                    $this->set('resultado','ERROR');
-                    $this->set('mensaje','No se pudo guardar');
-                    $this->set('detalle',$errores);
-                }else {
-                     $this->set('resultado', 'OK');
-                     $this->set('mensaje', 'Datos guardados');
-                     $this->set('detalle', '');
-                 }
+
+                $this->set('resultado', 'OK');
+                $this->set('mensaje', 'Datos guardados');
+                $this->set('detalle', '');
             }
             $this->set('_serialize', array(
                 'resultado',
@@ -1399,6 +1381,16 @@ class ReservasController extends AppController {
 		                $this->Cliente->save();
 
 		                //guardo reserva
+                        if (empty($reserva['id'])) {
+                            // New reservation: recalculate number at save time, never trust the form
+                            $this->Reserva->create();
+                            $ultima_reserva = $this->Reserva->find('first', array(
+                                'order'  => array('Reserva.numero' => 'desc'),
+                                'fields' => array('Reserva.numero'),
+                            ));
+                            $this->Reserva->set('numero', $ultima_reserva['Reserva']['numero'] + 1);
+                        }
+
 		                $this->Reserva->set('cliente_id',$this->Cliente->id);
 		                $this->Reserva->set('estado','3');
 		                $this->Reserva->save();

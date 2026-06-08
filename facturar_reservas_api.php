@@ -32,10 +32,10 @@ if ($fechaObj > $hoy) {
     die(json_encode(['error' => 'La fecha de facturación no puede ser futura.']));
 }
 
-$diffDias = $hoy->diff($fechaObj)->days;
+/*$diffDias = $hoy->diff($fechaObj)->days;
 if ($fechaObj < (clone $hoy)->modify('-10 days')) {
     die(json_encode(['error' => 'AFIP no permite facturar servicios con más de 10 días de antigüedad.']));
-}
+}*/
 
 
 
@@ -46,8 +46,10 @@ $puntoVentaId = intval($_POST['puntoVenta']);
 $columnaTransfiere = $_POST['columnaTransfiere'] ?? 0;
 $columnaTC = $_POST['columnaTC'] ?? 0;
 $columnaCheques = $_POST['columnaCheques'] ?? 0;
-$conceptosPost = $_POST['conceptos'] ?? [];
-
+$conceptosPost = isset($_POST['conceptos']) ? $_POST['conceptos'] : array();
+$ano = (int)$_POST['ano'];
+$mes = str_pad((int)$_POST['mes'], 2, '0', STR_PAD_LEFT);
+$montosPost = isset($_POST['montos']) ? $_POST['montos'] : array();
 // Punto de venta
 $sqlPV = "SELECT numero, alicuota FROM punto_ventas WHERE id = $puntoVentaId";
 $rsPV = mysqli_query($conn, $sqlPV);
@@ -111,57 +113,12 @@ foreach ($conceptosPost as $idCobro => $conceptoId) {
 
     $res = mysqli_fetch_assoc($rs);
 
-
-    // ---------------------
-    // CÁLCULO DE MONTOS
-    // ---------------------
-    $transferencias = $tarjetas = $cheques = 0;
-
-    $sqlCobros = "SELECT * FROM reserva_cobros WHERE reserva_id = $idReserva";
-    $rsCobros = mysqli_query($conn, $sqlCobros);
-    while ($cobro = mysqli_fetch_assoc($rsCobros)) {
-        if ($cobro['tipo'] == "DESCUENTO") continue;
-
-        // Transferencias
-        if ($columnaTransfiere == 1) {
-            $sqlTrans = "SELECT * FROM cobro_transferencias INNER JOIN cuenta ON cobro_transferencias.cuenta_id = cuenta.id  
-                         WHERE reserva_cobro_id = {$cobro['id']} AND cuenta.controla_facturacion = 1 AND cobro_transferencias.acreditado = 1";
-            $rsTrans = mysqli_query($conn, $sqlTrans);
-            while ($t = mysqli_fetch_assoc($rsTrans)) {
-                $transferencias += $t['monto_neto'] + $t['intereses'];
-            }
-        }
-
-        // Tarjetas
-        if ($columnaTC == 1) {
-            $sqlTC = "SELECT * FROM cobro_tarjetas WHERE reserva_cobro_id = {$cobro['id']}";
-            $rsTC = mysqli_query($conn, $sqlTC);
-            while ($t = mysqli_fetch_assoc($rsTC)) {
-                $tarjetas += $t['monto_neto'] + $t['intereses'];
-            }
-        }
-
-        // Cheques
-        if ($columnaCheques == 1) {
-            $sqlCheques = "SELECT * FROM cobro_cheques LEFT JOIN cuenta ON cobro_cheques.cuenta_acreditado = cuenta.id  
-                           WHERE reserva_cobro_id = {$cobro['id']} AND ((acreditado = 1 AND cuenta.controla_facturacion = 1) OR (cobro_cheques.cuenta_acreditado=0))";
-            $rsCheques = mysqli_query($conn, $sqlCheques);
-            while ($ch = mysqli_fetch_assoc($rsCheques)) {
-                $cheques += $ch['monto_neto'];
-            }
-        }
+    if (!isset($montosPost[$idReserva])) {
+        die(json_encode(['error' => "Monto no recibido para reserva $idReserva"]));
     }
 
-    // Facturas previas
-    $sqlFact = "SELECT * FROM reserva_facturas WHERE reserva_id = $idReserva";
-    $rsFact = mysqli_query($conn, $sqlFact);
-    $facturas = 0;
-    while ($f = mysqli_fetch_assoc($rsFact)) {
-        $facturas += $f['monto'];
-    }
+    $total = (float)$montosPost[$idReserva];
 
-    // Total final
-    $total = $transferencias + $tarjetas + $cheques - $facturas;
     $neto = $total / $ivaCoeficiente;
     $iva = $total - $neto;
 
@@ -238,20 +195,8 @@ foreach ($conceptosPost as $idCobro => $conceptoId) {
 // RG5329 se usa sólo en B/C
     $rg5329 = ($facturaTipo == 'A') ? 'N' : 'N';
 
-    /*$alicuota = $rowPV['alicuota'] * 100; // ejemplo: 0.21 → 21
-    $precio_unitario = $neto; // sin IVA*/
-
-    if ($rowPV['alicuota'] == 0) {
-        // OPERACIÓN EXENTA
-        $alicuota = -1;
-        $precio_unitario = $total; // precio final
-        $precio_unitario_sin_iva = null;
-    } else {
-        // OPERACIÓN GRAVADA
-        $alicuota = $rowPV['alicuota'] * 100; // ej 21
-        $precio_unitario_sin_iva = $neto;
-        $precio_unitario = null;
-    }
+    $alicuota = $rowPV['alicuota'] * 100; // ejemplo: 0.21 → 21
+    $precio_unitario = $neto; // sin IVA
 
     /*if ($facturaTipo == 'A') {
         // Factura A → separar IVA
@@ -315,8 +260,7 @@ foreach ($conceptosPost as $idCobro => $conceptoId) {
                     'unidad_medida' => 7,
                     'actualiza_precio' => 'S',
                     'rg5329' => $rg5329,
-                    'precio_unitario_sin_iva' => $precio_unitario_sin_iva,
-                    'precio_unitario' => $precio_unitario
+                    'precio_unitario_sin_iva' => $precio_unitario
                 ],
                 'afecta_stock'=>'S',
                 'bonificacion_porcentaje'=>0,
@@ -366,7 +310,7 @@ foreach ($conceptosPost as $idCobro => $conceptoId) {
         $dni = mysqli_real_escape_string($conn, trim($res['dni']));
 
         mysqli_query($conn, "DELETE FROM reserva_factura_procesada 
-            WHERE reserva_id = ".$res['id']."
+            WHERE reserva_id = ".$idReserva."
             AND cliente = '".$cliente."'
             AND dni = '".$dni."'
             AND total = '".$total."'"
@@ -374,7 +318,7 @@ foreach ($conceptosPost as $idCobro => $conceptoId) {
 
         $insert = "INSERT INTO reserva_factura_procesada 
 (reserva_id, fecha, cliente, dni, total, neto, diferencia, usuario_id, punto_venta_id) VALUES 
-(".$res['id'].",'".date('Y-m-d H:i:s')."','".$cliente."','".$dni."','".$total."','".$neto."','".($total-$neto)."','".($usuarioId)."','".$puntoVentaId."')";
+(".$idReserva.",'".date('Y-m-d H:i:s')."','".$cliente."','".$dni."','".$total."','".$neto."','".($total-$neto)."','".($usuarioId)."','".$puntoVentaId."')";
         $logRes = $dt . " | Inserta: " . $insert . "\n";
         file_put_contents($logPath, $logRes, FILE_APPEND);
 
