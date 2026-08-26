@@ -1,18 +1,15 @@
-<strong>Informe Financiero</strong>: 
+<?php
+$ano       = date('Y');   // año actual, preseleccionado
+$anoInicio = 2012;        // primer año disponible
+$anoMax    = $ano + 1;    // año siguiente como máximo (se genera solo cada año)
+?>
+<strong>Informe Financiero</strong>:
 <select id="financiero_ano">
-	<option>Seleccionar...</option>
-    <option>2016</option>
-    <option>2017</option>
-    <option selected='selected'>2018</option>
-    <option>2019</option>
-    <option>2020</option>
-    <option>2021</option>
-    <option>2022</option>
-    <option>2023</option>
-    <option>2024</option>
-    <option>2025</option>
-    <option>2026</option>
-</select> 
+    <option>Seleccionar...</option>
+    <?php for($y = $anoInicio; $y <= $anoMax; $y++){ ?>
+        <option <?php if($ano == $y){?> selected="selected" <?php } ?>><?php echo $y; ?></option>
+    <?php } ?>
+</select>
 <strong>&nbsp;&nbsp;Entre fechas&nbsp;<input type="text" name="desde" id="desde" class="datepicker">&nbsp;&nbsp;y&nbsp;<input type="text" name="hasta" id="hasta" class="datepicker"></strong>
 <input type="button" onclick="ver_financiero();" value="Ver" /> <span id="cargando" style="display:none;">Cargando ...</span>
 <div id="informe_financiero"></div>
@@ -72,19 +69,12 @@ $(".datepicker").datepicker({ dateFormat: "dd/mm/yy", altFormat: "yy-mm-dd" });
     <option value="10">Octubre</option>
     <option value="11">Noviembre</option>
     <option value="12">Diciembre</option>
-</select> 
+</select>
 <select id="financiero_mensual_ano">
-    <option>2016</option>
-    <option>2017</option>
-    <option selected="selected">2018</option>
-    <option>2019</option>
-    <option>2020</option>
-    <option>2021</option>
-    <option>2022</option>
-    <option>2023</option>
-    <option>2024</option>
-    <option>2025</option>
-    <option>2026</option>
+    <option>Seleccionar...</option>
+    <?php for($y = $anoInicio; $y <= $anoMax; $y++){ ?>
+        <option <?php if($ano == $y){?> selected="selected" <?php } ?>><?php echo $y; ?></option>
+    <?php } ?>
 </select> <input type="button" onclick="ver_financiero_mensual();" value="Ver" />
 <div id="financiero_mensual"></div>
 <script>

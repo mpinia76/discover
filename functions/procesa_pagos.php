@@ -194,8 +194,8 @@ if ($ok) {
 				$cheque_interes[$key]=($cheque_interes[$key])?$cheque_interes[$key]:0;
 				$cheque_descuento[$key]=($cheque_descuento[$key])?$cheque_descuento[$key]:0;
 				//guardo el registro de cheques
-				$sql = "INSERT INTO cheque_consumo (numero,titular,fecha,monto,interes,descuento,cuenta_id,chequera_id) VALUES
-						('".$cheque_numero[$key]."','".$cheque_titular[$key]."','".fechasql($cheque_fecha[$key])."','".$cheque_monto[$key]."','".$cheque_interes[$key]."','".$cheque_descuento[$key]."','".$cheque_cuenta_id[$key]."','".$chequera_id[$key]."')";
+				$sql = "INSERT INTO cheque_consumo (numero,titular,fecha,monto,interes,descuento,cuenta_id,chequera_id,vencido) VALUES
+						('".$cheque_numero[$key]."','".$cheque_titular[$key]."','".fechasql($cheque_fecha[$key])."','".$cheque_monto[$key]."','".$cheque_interes[$key]."','".$cheque_descuento[$key]."','".$cheque_cuenta_id[$key]."','".$chequera_id[$key]."','0')";
 				mysqli_query($conn,$sql);
 				//_log($sql);
 

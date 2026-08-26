@@ -1,6 +1,7 @@
 <?php
-$ano= date('Y');
-
+$ano       = date('Y');   // año actual, preseleccionado
+$anoInicio = 2012;        // primer año disponible
+$anoMax    = $ano + 1;    // año siguiente como máximo (se genera solo cada año)
 ?>
 
 
@@ -13,22 +14,10 @@ $ano= date('Y');
 </tr>
 <tr>
 	<td><input type="button" onclick="ver_economico();" value="Ver" /> </td><td><select id="economico_mes">
-	<option>Seleccionar...</option>
-    <option>2012</option>
-    <option>2013</option>
-    <option>2014</option>
-    <option>2015</option>
-    <option>2016</option>
-    <option>2017</option>
-    <option>2018</option>
-    <option>2019</option>
-    <option>2020</option>
-    <option <?php if($ano == '2021'){?> selected="selected" <?php } ?>>2021</option>
-    <option <?php if($ano == '2022'){?> selected="selected" <?php } ?>>2022</option>
-    <option <?php if($ano == '2023'){?> selected="selected" <?php } ?>>2023</option>
-    <option <?php if($ano == '2024'){?> selected="selected" <?php } ?>>2024</option>
-    <option>2025</option>
-    <option>2026</option>
+            <option>Seleccionar...</option>
+            <?php for($y = $anoInicio; $y <= $anoMax; $y++){ ?>
+                <option <?php if($ano == $y){?> selected="selected" <?php } ?>><?php echo $y; ?></option>
+            <?php } ?>
 </select></td><td><input type="text" name="desde" id="desde" class="datepicker">&nbsp;&nbsp;y&nbsp;<input type="text" name="hasta" id="hasta" class="datepicker"></td><td><select id="UnidadCategoriaId">
 	<option>Seleccionar...</option>
 	<?php foreach($categorias as $categoria){ ?>

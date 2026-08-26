@@ -1185,7 +1185,7 @@ class ReservasController extends AppController {
                 //guardo reserva
                 if (empty($reserva['id'])) {
                     // New reservation: recalculate number at save time, never trust the form
-                    $this->Reserva->create();
+                    $this->Reserva->id = null;
                     $ultima_reserva = $this->Reserva->find('first', array(
                         'order'  => array('Reserva.numero' => 'desc'),
                         'fields' => array('Reserva.numero'),
