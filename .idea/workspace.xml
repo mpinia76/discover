@@ -22,14 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="">
+    <list default="true" id="3e2b1e44-fed2-4135-ae72-41dab74d5b16" name="Default Changelist" comment="Modificaciones varias">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/dbBsAs.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/dbBsAs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/form.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/form.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/form.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/model/form.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/permisos.php" beforeDir="false" afterPath="$PROJECT_DIR$/permisos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unidades.json.php" beforeDir="false" afterPath="$PROJECT_DIR$/unidades.json.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/procesa_pagos.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions/procesa_pagos.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/Controller/ReservasController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_economico.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_economico.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_financiero.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/View/Informes/index_ventas_financiero.ctp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_file_map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" beforeDir="false" afterPath="$PROJECT_DIR$/v2/app/tmp/cache/persistent/myapp_cake_core_method_cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,11 +95,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Documents\Mis Webs\discover" />
+      <recent name="E:\Documents\Mis Webs\discover\config" />
       <recent name="D:\Documents\Mis Webs\discover\v2\app\Controller" />
       <recent name="D:\Documents\Mis Webs\discover\v2\app\View\Reservas" />
       <recent name="D:\Documents\Mis Webs\discover\v2\app\View\ExtraRubros" />
-      <recent name="D:\Documents\Mis Webs\discover\v2\app\View\Informes" />
-      <recent name="D:\Documents\Mis Webs\discover\v2\app\View\Neumaticos" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -331,6 +331,65 @@
       <workItem from="1757170884423" duration="1228000" />
       <workItem from="1757550176285" duration="433000" />
       <workItem from="1757551443508" duration="1845000" />
+      <workItem from="1765205722210" duration="14000" />
+      <workItem from="1765300079985" duration="450000" />
+      <workItem from="1765306186837" duration="279000" />
+      <workItem from="1765396101717" duration="595000" />
+      <workItem from="1765475871886" duration="589000" />
+      <workItem from="1765562425957" duration="132000" />
+      <workItem from="1765583329580" duration="3000" />
+      <workItem from="1765634414781" duration="592000" />
+      <workItem from="1765821413516" duration="594000" />
+      <workItem from="1765907949324" duration="159000" />
+      <workItem from="1765933999789" duration="1055000" />
+      <workItem from="1765993293092" duration="612000" />
+      <workItem from="1766004224242" duration="596000" />
+      <workItem from="1766067652289" duration="337000" />
+      <workItem from="1766082449776" duration="66000" />
+      <workItem from="1766166466837" duration="18000" />
+      <workItem from="1766251785749" duration="607000" />
+      <workItem from="1767815490002" duration="601000" />
+      <workItem from="1767834929915" duration="594000" />
+      <workItem from="1767876861039" duration="1593000" />
+      <workItem from="1767890150827" duration="272000" />
+      <workItem from="1767892948377" duration="4000" />
+      <workItem from="1767959129473" duration="3007000" />
+      <workItem from="1769431938517" duration="931000" />
+      <workItem from="1769434124712" duration="1000" />
+      <workItem from="1769435590172" duration="102000" />
+      <workItem from="1769461362437" duration="37000" />
+      <workItem from="1769518998513" duration="414000" />
+      <workItem from="1770054655761" duration="1444000" />
+      <workItem from="1770139478622" duration="598000" />
+      <workItem from="1770150364071" duration="76000" />
+      <workItem from="1770310019935" duration="599000" />
+      <workItem from="1770337886151" duration="40000" />
+      <workItem from="1770401333594" duration="593000" />
+      <workItem from="1770659370647" duration="3093000" />
+      <workItem from="1770719410209" duration="4331000" />
+      <workItem from="1770805009176" duration="597000" />
+      <workItem from="1770854614003" duration="595000" />
+      <workItem from="1770892641869" duration="598000" />
+      <workItem from="1771437647610" duration="132000" />
+      <workItem from="1771458859979" duration="109000" />
+      <workItem from="1771510048918" duration="31000" />
+      <workItem from="1780933377284" duration="1710000" />
+      <workItem from="1781028380208" duration="606000" />
+      <workItem from="1781119290369" duration="633000" />
+      <workItem from="1781210128538" duration="2641000" />
+      <workItem from="1784391975126" duration="925000" />
+      <workItem from="1784572791087" duration="589000" />
+      <workItem from="1784642572411" duration="248000" />
+      <workItem from="1784728136186" duration="595000" />
+      <workItem from="1784741773074" duration="596000" />
+      <workItem from="1784819880567" duration="597000" />
+      <workItem from="1784899132759" duration="594000" />
+      <workItem from="1784998778328" duration="596000" />
+      <workItem from="1785161102106" duration="595000" />
+      <workItem from="1785763690646" duration="65000" />
+      <workItem from="1785848680439" duration="306000" />
+      <workItem from="1787686183908" duration="902000" />
+      <workItem from="1787747108635" duration="599000" />
     </task>
     <task id="LOCAL-00001" summary="Modificaciones varias">
       <created>1654626521014</created>
@@ -467,7 +526,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737381668526</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1767890416390</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1767890416390</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Modificaciones varias">
+      <option name="closed" value="true" />
+      <created>1780943501248</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1780943501248</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,6 +571,20 @@
           <url>file://$PROJECT_DIR$/usuarios.json.php</url>
           <line>6</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/facturar_reservas_api.php</url>
+          <line>51</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/v2/app/Controller/ReservasController.php</url>
+          <line>499</line>
+          <properties>
+            <option name="className" value="\ReservasController" />
+            <option name="methodName" value="finalizar" />
+          </properties>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
