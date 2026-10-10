@@ -117,9 +117,17 @@ Montos
 <input type="hidden"  name="hTransfiere" id="hTransfiere"/>
 <input type="hidden"  name="hTC" id="hTC"/>
 <input type="hidden"  name="hCheques" id="hCheques"/>
-<input type="submit"  name="ver" id="ver" value="ver" /><span id="cargando" style="display:none;">Cargando ...</span>
+<input type="submit"  name="ver" id="ver" value="ver" /><span id="cargando" style="<?php echo isset($_POST['ver']) ? '' : 'display:none;'; ?>color:#c00;font-weight:bold;font-size:15px;margin-left:10px;">Cargando datos, por favor espere...</span>
 
 </form>
+<?php
+// Mandar ya al navegador el aviso "Cargando..." antes de las consultas pesadas
+if (isset($_POST['ver'])) {
+    echo str_repeat(' ', 4096);
+    while (ob_get_level() > 0) { @ob_end_flush(); }
+    @flush();
+}
+?>
 <?php //if ($_POST['metodo']=='devolucion') {
 include_once("config/db.php");
 include_once("functions/util.php");?>
@@ -459,6 +467,15 @@ LEFT JOIN (
                         $disabled = 1;
                         $color = '9404cd';
                     }
+                }
+            }
+            // Sin saldo por facturar en el mes, o "Error API" de una reserva ya facturada completa:
+            // la fila no se puede seleccionar (evita enviar comprobantes por $0, negativos o duplicados).
+            $montoAFacturar = $fc - $facturas + $otrasFacturas;
+            if ($montoAFacturar <= 0 || ($estado == 'Error API' && $facturas >= $fcEstado)) {
+                $disabled = 1;
+                if ($estado == 'Error API') {
+                    $color = ($facturas == $fcEstado) ? '15d905' : '9404cd';
                 }
             }
             //echo $estado."-".$_POST['estado']."<br>";
@@ -979,7 +996,7 @@ echo '<script>
             return;
         }
 
-        if (diffDias > 10) {
+        if (diffDias >= 10) {
             alert('AFIP no permite emitir facturas de servicios con más de 10 días de antigüedad.');
             return;
         }
@@ -1014,9 +1031,15 @@ echo '<script>
             success: function(resp) {
                 let mensaje = "";
 
+                if (!resp || !resp.results) {
+                    alert((resp && resp.error) ? resp.error : 'Respuesta inesperada del servidor. No reenviar sin revisar.');
+                    w1.close();
+                    $('#ver').click();
+                    return;
+                }
                 resp.results.forEach(function(r) {
                     if (r.error === "N") {
-                        mensaje += "✔ Reserva ID " + r.id + ": Factura emitida correctamente.\n";
+                        mensaje += "✔ Reserva ID " + r.id + ": enviada a TusFacturas (la emision se confirma en unos minutos).\n";
                     } else {
                         let detalle = "Error desconocido";
 
@@ -1038,7 +1061,7 @@ echo '<script>
             },
             error: function(xhr, status, err) {
                 console.error(xhr, status, err);
-                alert("Error inesperado al facturar.");
+                alert("Error de comunicacion al facturar. Puede haberse enviado igual: NO reenviar, recargar el listado en unos minutos.");
             },
             complete: function() {
                 $('#loadingFacturacion').hide();

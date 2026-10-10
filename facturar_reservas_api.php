@@ -1,7 +1,14 @@
 <?php
 //DATOS DEL USUARIO
 session_start();
-$usuarioId = $_SESSION['userid'];
+header('Content-Type: application/json');
+set_time_limit(0);
+ignore_user_abort(true); // si el navegador corta, el envio en curso termina y queda registrado
+// Sin sesion no se factura (si no, el envio no queda registrado y se puede duplicar)
+if (empty($_SESSION['userid'])) {
+    die(json_encode(['error' => 'Tu sesion vencio. Volve a ingresar al sistema antes de facturar. No se envio nada.']));
+}
+$usuarioId = (int)$_SESSION['userid'];
 include_once("config/db.php");
 include_once("functions/util.php");
 $nombreFile = 'factura_reserva_' . date('Ymd') . '_log';
@@ -75,6 +82,34 @@ $puntoVenta = $tf['NUMERO'];
 $conceptoNombre = null;
 $idReserva = null;
 
+// Busca en TusFacturas comprobantes de la reserva (RES-id) que NO esten rechazados
+function comprobantesVigentes($tf, $idReserva) {
+    $p = ['usertoken' => $tf['USER_TOKEN'], 'apikey' => $tf['API_KEY'], 'apitoken' => $tf['API_TOKEN'],
+        'busqueda_tipo' => 'EXT_REF', 'pagina' => 0, 'limite' => 100,
+        'comprobante' => ['tipo' => '', 'operacion' => 'V', 'punto_venta' => $tf['NUMERO'],
+            'numero_desde' => '0', 'numero_hasta' => '99999999', 'external_reference' => 'RES-' . $idReserva]];
+    $ch = curl_init('https://www.tusfacturas.app/app/api/v2/facturacion/consulta_avanzada');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($p));
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+    $resp = curl_exec($ch);
+    curl_close($ch);
+    if ($resp === false) return false; // no se pudo consultar
+    $data = json_decode($resp, true);
+    $out = [];
+    if (!empty($data['comprobantes'])) foreach ($data['comprobantes'] as $c) {
+        $c = $c['comprobante'];
+        if (stripos($c['status'], 'ERROR') !== false) continue;   // rechazado: no cuenta
+        if (stripos($c['tipo'], 'CREDITO') !== false) continue;   // NC: no cuenta
+        $out[] = $c;
+    }
+    return $out;
+}
+$resultados = [];
+
 foreach ($conceptosPost as $idCobro => $conceptoId) {
 
     $idCobro = (int)$idCobro;
@@ -118,6 +153,15 @@ foreach ($conceptosPost as $idCobro => $conceptoId) {
     }
 
     $total = (float)$montosPost[$idReserva];
+
+    // No enviar comprobantes por $0 o negativos: TusFacturas los acepta en cola
+    // pero no los emite, y la reserva termina en "Error API".
+    if ($total <= 0) {
+        file_put_contents($logPath, $dt . " | Reserva ID: $idReserva | NO enviada: total <= 0 ($total)\n", FILE_APPEND);
+        $resultados[] = ['id' => $idReserva, 'success' => false, 'error' => 'S',
+            'errores' => ['No hay saldo para facturar (monto ' . $total . '). No se envio.'], 'error_details' => [], 'raw_response' => null];
+        continue;
+    }
 
     $neto = $total / $ivaCoeficiente;
     $iva = $total - $neto;
@@ -286,8 +330,62 @@ foreach ($conceptosPost as $idCobro => $conceptoId) {
     $logPayload = $dt . " | Enviando reserva ID: $idReserva | Payload: " . json_encode($payload, JSON_UNESCAPED_UNICODE) . "\n";
     file_put_contents($logPath, $logPayload, FILE_APPEND);
 
+    // ---------- CONTROLES ANTI-DUPLICADO (antes de llamar a la API) ----------
+    $cliente = mysqli_real_escape_string($conn, $res['nombre_apellido']);
+    $dni = mysqli_real_escape_string($conn, trim($res['dni']));
+
+    // a) ya hay un envio de esta reserva esperando que TusFacturas lo procese
+    $rsPend = mysqli_query($conn, "SELECT id FROM reserva_factura_procesada WHERE reserva_id = $idReserva AND procesada_api = 0 LIMIT 1");
+    if ($rsPend && mysqli_num_rows($rsPend) > 0) {
+        $resultados[] = ['id' => $idReserva, 'success' => false, 'error' => 'S',
+            'errores' => ['Ya hay un envio de esta reserva en proceso. Esperar a que se procese antes de reenviar.'], 'error_details' => [], 'raw_response' => null];
+        file_put_contents($logPath, $dt . " | Reserva ID: $idReserva | BLOQUEADA: envio pendiente\n", FILE_APPEND);
+        continue;
+    }
+    // b) en TusFacturas ya existe un comprobante vigente igual (mismo total y fecha) o uno en cola
+    $vigentes = comprobantesVigentes($tf, $idReserva);
+    if ($vigentes === false) {
+        $resultados[] = ['id' => $idReserva, 'success' => false, 'error' => 'S',
+            'errores' => ['No se pudo verificar en TusFacturas si ya existe la factura. No se envio; reintentar mas tarde.'], 'error_details' => [], 'raw_response' => null];
+        file_put_contents($logPath, $dt . " | Reserva ID: $idReserva | BLOQUEADA: no se pudo consultar TusFacturas\n", FILE_APPEND);
+        continue;
+    }
+    $dupe = null;
+    foreach ($vigentes as $v) {
+        $mismoTotal = abs((float)$v['total'] - (float)$total) < 0.01;
+        $enCola = (empty($v['numero']) || (int)$v['numero'] == 0);
+        if (($mismoTotal && $v['fecha'] == $fecha) || $enCola) { $dupe = $v; break; }
+    }
+    if ($dupe) {
+        $txt = (empty($dupe['numero']) || (int)$dupe['numero'] == 0)
+            ? 'Ya hay un comprobante de esta reserva en cola en TusFacturas (' . $dupe['status'] . ').'
+            : 'Ya existe en TusFacturas la factura ' . $dupe['numero'] . ' del ' . $dupe['fecha'] . ' por ' . $dupe['total'] . '.';
+        $resultados[] = ['id' => $idReserva, 'success' => false, 'error' => 'S',
+            'errores' => [$txt . ' No se envio.'], 'error_details' => [], 'raw_response' => null];
+        file_put_contents($logPath, $dt . " | Reserva ID: $idReserva | BLOQUEADA: $txt\n", FILE_APPEND);
+        continue;
+    }
+    // c) registrar el envio ANTES de llamar a la API; si no se puede registrar, no se envia
+    mysqli_query($conn, "DELETE FROM reserva_factura_procesada
+        WHERE reserva_id = ".$idReserva." AND cliente = '".$cliente."' AND dni = '".$dni."'
+        AND total = '".$total."' AND procesada_api = 1");
+    $insert = "INSERT INTO reserva_factura_procesada 
+(reserva_id, fecha, cliente, dni, total, neto, diferencia, usuario_id, punto_venta_id) VALUES 
+(".$idReserva.",'".date('Y-m-d H:i:s')."','".$cliente."','".$dni."','".$total."','".$neto."','".($total-$neto)."',".$usuarioId.",".$puntoVentaId.")";
+    if (!mysqli_query($conn, $insert)) {
+        $errSql = mysqli_error($conn);
+        file_put_contents($logPath, $dt . " | Reserva ID: $idReserva | NO enviada: fallo el registro previo: $errSql\n", FILE_APPEND);
+        $resultados[] = ['id' => $idReserva, 'success' => false, 'error' => 'S',
+            'errores' => ['No se pudo registrar el envio en el sistema. No se envio.'], 'error_details' => [], 'raw_response' => null];
+        continue;
+    }
+    $rfpId = mysqli_insert_id($conn);
+    file_put_contents($logPath, $dt . " | Inserta (previo): " . $insert . " -> id $rfpId\n", FILE_APPEND);
+
     // Enviar request asincrónico
     $ch = curl_init(API_URL);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 60);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
     curl_setopt($ch, CURLOPT_POST, true);
@@ -303,8 +401,16 @@ foreach ($conceptosPost as $idCobro => $conceptoId) {
 
     // Guardar log
     file_put_contents($logPath, $logMsg, FILE_APPEND);
-// Guardar factura procesada solo si se envió bien
-    if (empty($respData['error']) || $respData['error'] === 'N') {
+    if ($response === false || !is_array($respData)) {
+        // Sin respuesta clara: el registro queda (bloquea reenvios) y el cron resolvera el estado real
+        file_put_contents($logPath, $dt . " | Reserva ID: $idReserva | SIN RESPUESTA CLARA de TusFacturas; queda registrada como enviada\n", FILE_APPEND);
+        $respData = ['error' => 'S', 'errores' => ['TusFacturas no respondio. Puede haberse enviado igual: NO reenviar; revisar en unos minutos.']];
+    } elseif (isset($respData['error']) && $respData['error'] !== 'N') {
+        // Rechazo inmediato de la API: no hay comprobante; se borra el registro previo para poder reintentar
+        mysqli_query($conn, "DELETE FROM reserva_factura_procesada WHERE id = " . (int)$rfpId);
+    }
+    // (el registro ya se hizo antes de enviar; el bloque viejo queda desactivado)
+    if (false) {
 
         $cliente = mysqli_real_escape_string($conn, $res['nombre_apellido']);
         $dni = mysqli_real_escape_string($conn, trim($res['dni']));
